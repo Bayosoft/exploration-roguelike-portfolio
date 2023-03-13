@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "Ey4pkMiqsG7XOz4+vgoXrS3l3K1bZoV3Ahs091i5LWwpNqmionnw1tPOW3PjFnRpHLK9ee1uwEP5P6mbTNwT0A==",
+  "success": true,
+  "projectFilePath": "E:\\Git\\exploration-roguelike\\ExplorationRoguelike\\ExplorationRoguelike\\Assets\\3. GUI\\Quest Log\\QuestLog-blend.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\rapha\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.31\\microsoft.xaml.behaviors.wpf.1.1.31.nupkg.sha512",
+    "C:\\Users\\rapha\\.nuget\\packages\\noesis.gui.extensions\\3.0.8\\noesis.gui.extensions.3.0.8.nupkg.sha512"
+  ],
+  "logs": []
+}
