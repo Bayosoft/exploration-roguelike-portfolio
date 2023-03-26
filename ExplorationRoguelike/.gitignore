@@ -22,7 +22,7 @@
 # Visual Studio cache directory
 .vs/
 
-# Blend directory
+# Blend directory (this might be too much?)
 Blend/
 
 # Gradle cache directory
