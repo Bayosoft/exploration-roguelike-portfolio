@@ -1,26 +1,23 @@
-﻿#if UNITY_5_3_OR_NEWER
+#if UNITY_5_3_OR_NEWER
 #define NOESIS
 using Noesis;
 #else
 using System;
-using System.Windows;
 using System.Windows.Controls;
 #endif
 
-namespace ExplortationRoguelike.GUI.Combat
+namespace ExplorationRoguelike.GUI.Combat
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+
     public partial class CombatView : UserControl
     {
         public CombatView()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
 #if NOESIS
-        void InitializeComponent()
+        private void InitializeComponent()
         {
             NoesisUnity.LoadComponent(this);
         }

@@ -40,6 +40,11 @@ public class CombatViewModel : MonoBehaviour, INotifyPropertyChanged
     public ObservableCollection<Quest> _quests;
     public ObservableCollection<Quest> Quests { get => _quests; }
 
+    private string _questName = "Nature's Uprising";
+    public string QuestName {
+        get => _questName;
+        set { if (_questName != value) { _questName = value; OnPropertyChanged("QuestName"); } }
+    }
     public NoesisEventCommand NoesisEventCommand { get; set; }
 
     private Quest _selectedQuest;

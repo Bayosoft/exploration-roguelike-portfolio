@@ -22,8 +22,9 @@
 # Visual Studio cache directory
 .vs/
 
-# Blend directory (this might be too much?)
-Blend/
+# Blend
+Blend/bin
+Blend/obj
 
 # Gradle cache directory
 .gradle/
