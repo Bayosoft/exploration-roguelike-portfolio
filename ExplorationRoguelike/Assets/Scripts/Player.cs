@@ -1,3 +1,4 @@
+using ExplorationRoguelike.Scripts.Combat;
 using System;
 using UnityEngine;
 
@@ -6,10 +7,15 @@ public class Player : MonoBehaviour
     public int MaxHealth;
     public int Damage;
 
+    [SerializeField]
     private int _currentHealth;
     public int CurrentHealth { get => _currentHealth; }
 
-    public void EnterCombat(Combat combat)
+    void Start()
+    {
+        _currentHealth = MaxHealth;
+    }
+    public void EnterCombat(ActiveCombat combat)
     {
         combat.Attacked += ReceiveAttack;
     }

@@ -16,7 +16,7 @@ public abstract class EnemyBase : ScriptableObject
     // TODO: (EventHandler<EnemyTakeTurnEventArgs>)
     public event EventHandler TookTurn;
     
-    protected virtual void TakeTurn(EventArgs e)
+    public virtual void TakeTurn(EventArgs e)
     {
         TookTurn?.Invoke(this, e);
     }
