@@ -1,12 +1,21 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ExplorationRoguelike.Scripts.Combat
 {
     public class ActiveCombat : MonoBehaviour
     {
+        private enum CombatState
+        {
+            START,
+            PLAYERTURN,
+            ENEMYTURN,
+            WON,
+            LOST
+        };
+
+        private CombatState _currentState;
+
         public event EventHandler EnemyLost;
         public event EventHandler PlayerLost;
 
@@ -24,12 +33,35 @@ namespace ExplorationRoguelike.Scripts.Combat
 
         public void StartCombat()
         {
+            _currentState = CombatState.START;
+
             Enemy.TookTurn += OnAttacked;
-            
+            Player.TookTurn += OnAttacked;
+
             Player.EnterCombat(this);
+            Enemy.EnterCombat(this);
+
+            _currentState = CombatState.PLAYERTURN; 
+        }
+
+        public void StartTurn() 
+        { 
+            if(_currentState == CombatState.PLAYERTURN)
+            {
+                Player.TakeTurn(new EventArgs());
+
+                _currentState = CombatState.ENEMYTURN;
+            }
+            else if(_currentState == CombatState.ENEMYTURN) 
+            { 
+                Enemy.TakeTurn(new EventArgs());
+
+                _currentState = CombatState.PLAYERTURN;
+            }
         }
         public void OnAttacked(object sender, EventArgs e)
         {
+
             Attacked?.Invoke(this, e);
         }
 

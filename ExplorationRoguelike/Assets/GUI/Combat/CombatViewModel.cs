@@ -12,7 +12,7 @@ namespace ExplortationRoguelike.GUI.Combat
         private ActiveCombat _activeCombat;
 
         public int PlayerHealth { get {  return _activeCombat.Player.CurrentHealth; } }
-        public int EnemyHealth { get; private set; }
+        public int EnemyHealth { get { return _activeCombat.Enemy.CurrentHealth; } }
 
         [SerializeField]
         private NoesisEventCommand _enemyAttackedCommand;
@@ -39,8 +39,9 @@ namespace ExplortationRoguelike.GUI.Combat
 
         public void OnEnemyAttacked()
         {
-            _activeCombat.Enemy.TakeTurn(new EventArgs());
+            _activeCombat.StartTurn();
             OnPropertyChanged("PlayerHealth");
+            OnPropertyChanged("EnemyHealth");
         }
 
     }
