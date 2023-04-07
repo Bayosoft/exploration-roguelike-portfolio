@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 10
   Damage: 2
-  Decsription: An ugly masked goblin with a short rusty knife.
+  Description: 
+  _currentHealth: 20

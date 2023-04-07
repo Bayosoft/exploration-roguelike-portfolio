@@ -1,3 +1,4 @@
+using ExplorationRoguelike;
 using ExplorationRoguelike.Scripts.Combat;
 using System;
 using UnityEngine;
@@ -6,7 +7,7 @@ public class Player : MonoBehaviour, ICombatant
 {
     public int MaxHealth;
     public int Damage;
-    public event EventHandler TookTurn;
+    public event EventHandler<TakeTurnEventArgs> TookTurn;
 
     [SerializeField]
     private int _currentHealth;
@@ -18,14 +19,14 @@ public class Player : MonoBehaviour, ICombatant
     }
     public void EnterCombat(ActiveCombat combat)
     {
-        combat.Attacked += ReceiveAttack;
+   //     combat.Attacked += ReceiveAttack;
     }
 
-    private void ReceiveAttack(object sender, EventArgs e)
+    public void ReceiveAttack(TakeTurnEventArgs e)
     {
-        _currentHealth -= 5; // TODO: Add actual damage/effect here from the event.
+        _currentHealth -= e.Damage; 
     }
-    public void TakeTurn(EventArgs e)
+    public void TakeTurn(TakeTurnEventArgs e)
     {
         TookTurn?.Invoke(this, e);
     }

@@ -19,7 +19,7 @@ namespace ExplorationRoguelike.Scripts.Combat
         public event EventHandler EnemyLost;
         public event EventHandler PlayerLost;
 
-        public event EventHandler Attacked;
+        public event EventHandler<TakeTurnEventArgs> Attacked;
 
         public Player Player;
         public EnemyBase Enemy;
@@ -44,25 +44,16 @@ namespace ExplorationRoguelike.Scripts.Combat
             _currentState = CombatState.PLAYERTURN; 
         }
 
-        public void StartTurn() 
-        { 
-            if(_currentState == CombatState.PLAYERTURN)
-            {
-                Player.TakeTurn(new EventArgs());
-
-                _currentState = CombatState.ENEMYTURN;
-            }
-            else if(_currentState == CombatState.ENEMYTURN) 
-            { 
-                Enemy.TakeTurn(new EventArgs());
-
-                _currentState = CombatState.PLAYERTURN;
-            }
-        }
-        public void OnAttacked(object sender, EventArgs e)
+        public void HandleTurnEvent(TakeTurnEventArgs turnEvent) 
         {
+            turnEvent.Attacker.TakeTurn(turnEvent);
 
-            Attacked?.Invoke(this, e);
+           // else Debug.Log($"Not {turnEvent.Attacker}'s turn");
+        }
+        public void OnAttacked(object sender, TakeTurnEventArgs e)
+        {
+            e.Target.ReceiveAttack(e);
+//            Attacked?.Invoke(this, e);
         }
 
         // Update is called once per frame

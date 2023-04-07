@@ -1,3 +1,4 @@
+using ExplorationRoguelike;
 using ExplorationRoguelike.Scripts.Combat;
 using System;
 using System.Collections;
@@ -11,26 +12,25 @@ public abstract class EnemyBase : ScriptableObject, ICombatant
     public int Damage;
     public string Description;
 
-    [SerializeField]
     private int _currentHealth;
     public int CurrentHealth { get => _currentHealth; }
 
     // TODO: (EventHandler<EnemyTakeTurnEventArgs>)
-    public event EventHandler TookTurn;
+    public event EventHandler<TakeTurnEventArgs> TookTurn;
 
-    public void Awake()
+    public virtual void Awake()
     {
         _currentHealth = MaxHealth;
     }
 
     public virtual void EnterCombat(ActiveCombat combat)
     {
-        combat.Attacked += ReceiveAttack;
+      //  combat.Attacked += ReceiveAttack;
     }
 
-    private void ReceiveAttack(object sender, EventArgs e)
+    public void ReceiveAttack(TakeTurnEventArgs e)
     {
-        _currentHealth -= 3;
+        _currentHealth -= e.Damage;
     }
 
     public void ExitCombat(ActiveCombat combat)
@@ -38,7 +38,7 @@ public abstract class EnemyBase : ScriptableObject, ICombatant
         throw new NotImplementedException();
     }
 
-    public virtual void TakeTurn(EventArgs e)
+    public virtual void TakeTurn(TakeTurnEventArgs e)
     {
         TookTurn?.Invoke(this, e);
     }
