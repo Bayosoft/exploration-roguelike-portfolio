@@ -1,3 +1,4 @@
+using ExplorationRoguelike.Assets.Scripts.Combat;
 using System;
 using UnityEngine;
 
@@ -5,7 +6,7 @@ namespace ExplorationRoguelike.Scripts.Combat
 {
     public class ActiveCombat : MonoBehaviour
     {
-        private enum CombatState
+        public enum CombatState
         {
             START,
             PLAYERTURN,
@@ -15,18 +16,20 @@ namespace ExplorationRoguelike.Scripts.Combat
         };
 
         private CombatState _currentState;
+        public CombatState CurrentState { get { return _currentState; } }
 
         public event EventHandler EnemyLost;
         public event EventHandler PlayerLost;
 
-        public event EventHandler<TakeTurnEventArgs> Attacked;
+        public event EventHandler<TurnTakenEventArgs> OnAttacked;
 
         public Player Player;
-        public EnemyBase Enemy;
+        public Enemy Enemy;
 
         // Start is called before the first frame update
         void Start()
         {
+
             DontDestroyOnLoad(gameObject);
             StartCombat();
         }
@@ -35,31 +38,49 @@ namespace ExplorationRoguelike.Scripts.Combat
         {
             _currentState = CombatState.START;
 
-            Enemy.TookTurn += OnAttacked;
-            Player.TookTurn += OnAttacked;
-
             Player.EnterCombat(this);
             Enemy.EnterCombat(this);
+
+            Player.TurnTaken += OnTurnTaken;
+            Enemy.TurnTaken += OnTurnTaken;
 
             _currentState = CombatState.PLAYERTURN; 
         }
 
         public void HandleTurnEvent(TakeTurnEventArgs turnEvent) 
         {
-            turnEvent.Attacker.TakeTurn(turnEvent);
-
-           // else Debug.Log($"Not {turnEvent.Attacker}'s turn");
+            if(turnEvent.Attacker is Player && _currentState == CombatState.PLAYERTURN)
+            {
+                turnEvent.Attacker.ExecuteTurn(turnEvent);
+            }
+            else if(turnEvent.Attacker is Enemy && _currentState == CombatState.ENEMYTURN)
+            {
+                turnEvent.Attacker.ExecuteTurn(turnEvent);
+            }
+            else Debug.Log($"Not {turnEvent.Attacker}'s turn");
         }
-        public void OnAttacked(object sender, TakeTurnEventArgs e)
+        public void OnTurnTaken(object sender, TurnTakenEventArgs e)
         {
-            e.Target.ReceiveAttack(e);
-//            Attacked?.Invoke(this, e);
+            if (CombatState.PLAYERTURN == _currentState)
+            {
+                _currentState = CombatState.ENEMYTURN;
+            }
+            else if(_currentState == CombatState.ENEMYTURN)
+            {
+                _currentState = CombatState.PLAYERTURN;
+            }
         }
 
-        // Update is called once per frame
-        void Update()
+        public void OnDeath(ICombatant deadCombatant)
         {
-
+            if(deadCombatant is Player)
+            {
+                _currentState = CombatState.LOST;
+            }
+            else if(deadCombatant is Enemy)
+            {
+                _currentState = CombatState.WON;
+            }
         }
     }
 }

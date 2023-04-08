@@ -1,4 +1,5 @@
 using ExplorationRoguelike;
+using ExplorationRoguelike.Assets.Scripts.Combat;
 using ExplorationRoguelike.Scripts.Combat;
 using System;
 using UnityEngine;
@@ -7,11 +8,12 @@ public class Player : MonoBehaviour, ICombatant
 {
     public int MaxHealth;
     public int Damage;
-    public event EventHandler<TakeTurnEventArgs> TookTurn;
+    public event EventHandler<TurnTakenEventArgs> TurnTaken;
 
     [SerializeField]
     private int _currentHealth;
     public int CurrentHealth { get => _currentHealth; }
+    public ActiveCombat Combat { get; private set; }
 
     public void Awake()
     {
@@ -19,16 +21,21 @@ public class Player : MonoBehaviour, ICombatant
     }
     public void EnterCombat(ActiveCombat combat)
     {
-   //     combat.Attacked += ReceiveAttack;
+        Combat = combat;
+        combat.Enemy.TurnTaken += ReceiveAttack;
     }
 
-    public void ReceiveAttack(TakeTurnEventArgs e)
+    public void ReceiveAttack(object sender, TurnTakenEventArgs e)
     {
-        _currentHealth -= e.Damage; 
+        _currentHealth -= e.Damage;
+
+        if (_currentHealth == 0) Combat.OnDeath(this);
     }
-    public void TakeTurn(TakeTurnEventArgs e)
+    public void ExecuteTurn(TakeTurnEventArgs e)
     {
-        TookTurn?.Invoke(this, e);
+        TurnTakenEventArgs turnTakenEventArgs = new(e.Target, e.Attacker, e.Damage);
+
+        TurnTaken?.Invoke(this, turnTakenEventArgs);
     }
     public void ExitCombat(ActiveCombat combat)
     {

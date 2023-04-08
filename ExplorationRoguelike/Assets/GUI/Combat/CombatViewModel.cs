@@ -12,30 +12,25 @@ namespace ExplortationRoguelike.GUI.Combat
     {
         private ActiveCombat _activeCombat;
 
-        public int SelectedPlayerDamage { get; } = 3;
-        public int SelectedEnemyDamage { get; } = 5;
+        public int SelectedPlayerCard { get { return _activeCombat.Player.Damage;  } }
+        public int SelectedEnemyCard { get { return _activeCombat.Enemy.Damage; } }
+
         public int PlayerHealth { get {  return _activeCombat.Player.CurrentHealth; } }
         public int EnemyHealth { get { return _activeCombat.Enemy.CurrentHealth; } }
+        public string CombatState { get { return _activeCombat.CurrentState.ToString(); } }
 
         [SerializeField]
-        private DelegateCommand _enemyAttackedCommand;
-        public DelegateCommand EnemyAttackedCommand { get => _enemyAttackedCommand; }
+        private DelegateCommand _enemyTurnTakenCommand;
+        public DelegateCommand EnemyTurnTakenCommand { get => _enemyTurnTakenCommand; }
 
         [SerializeField]
-        private DelegateCommand _playerAttackedCommand;
-        public DelegateCommand PlayerAttackedCommand { get => _playerAttackedCommand; }
-
-        /*        private Quest _selectedQuest;
-                public Quest SelectedQuest
-                {
-                    get => _selectedQuest;
-                    set { if (_selectedQuest != value) { _selectedQuest = value; OnPropertyChanged("SelectedQuest"); } }
-                }*/
+        private DelegateCommand _playerTurnTakenCommand;
+        public DelegateCommand PlayerTurnTakenCommand { get => _playerTurnTakenCommand; }
 
         public CombatViewModel()
         {
-            _playerAttackedCommand = new DelegateCommand(OnPlayerAttacked);
-            _enemyAttackedCommand = new DelegateCommand(OnEnemyAttacked);
+            _playerTurnTakenCommand = new DelegateCommand(OnPlayerTurnTaken);
+            _enemyTurnTakenCommand = new DelegateCommand(OnEnemyTurnTaken);
         }
         void Start()
         {
@@ -49,20 +44,20 @@ namespace ExplortationRoguelike.GUI.Combat
         {
         }
 
-        public void OnEnemyAttacked(object parameter)
+        public void OnEnemyTurnTaken(object damage)
         {
-            TakeTurnEventArgs turnEvent = new(_activeCombat.Player, _activeCombat.Enemy, (int)parameter);
+            TakeTurnEventArgs turnEvent = new(_activeCombat.Player, _activeCombat.Enemy, (int)damage);
            
             _activeCombat.HandleTurnEvent(turnEvent);
             OnPropertyChanged("PlayerHealth");
-            OnPropertyChanged("EnemyHealth");
+            OnPropertyChanged("CombatState");
         }
-        public void OnPlayerAttacked(object parameter)
+        public void OnPlayerTurnTaken(object damage)
         {
-            TakeTurnEventArgs turnEvent = new(_activeCombat.Enemy, _activeCombat.Player, (int)parameter);
+            TakeTurnEventArgs turnEvent = new(_activeCombat.Enemy, _activeCombat.Player, (int)damage);
             _activeCombat.HandleTurnEvent(turnEvent);
-            OnPropertyChanged("PlayerHealth");
             OnPropertyChanged("EnemyHealth");
+            OnPropertyChanged("CombatState");
         }
     }
 }
