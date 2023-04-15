@@ -1,0 +1,26 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+
+namespace ExplorationRoguelike
+{
+    public class EventListener : MonoBehaviour
+    {
+        public Event Event;
+        public UnityEvent onEventTriggered;
+        void OnEnable()
+        {
+            Event.AddListener(this);
+        }
+        void OnDisable()
+        {
+            Event.RemoveListener(this);
+        }
+        public void OnEventTriggered()
+        {
+            onEventTriggered.Invoke();
+        }
+    }
+}

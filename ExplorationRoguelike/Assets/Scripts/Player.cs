@@ -4,9 +4,10 @@ using ExplorationRoguelike.Scripts.Combat;
 using System;
 using UnityEngine;
 
-public class Player : MonoBehaviour, ICombatant
+public class Player : Character, ICombatant
 {
-    public int MaxHealth;
+    public HealthComponent HealthComponent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
     public int Damage;
     public event EventHandler<TurnTakenEventArgs> TurnTaken;
 
@@ -17,19 +18,19 @@ public class Player : MonoBehaviour, ICombatant
 
     public void Awake()
     {
-        _currentHealth = MaxHealth;
+     //   _currentHealth = MaxHealth;
     }
     public void EnterCombat(ActiveCombat combat)
     {
         Combat = combat;
-        combat.Enemy.TurnTaken += ReceiveAttack;
+     //   combat.Enemy.TurnTaken += ReceiveAttack;
     }
 
     public void ReceiveAttack(object sender, TurnTakenEventArgs e)
     {
         _currentHealth -= e.Damage;
 
-        if (_currentHealth == 0) Combat.OnDeath(this);
+        //if (_currentHealth == 0) Combat.OnDeath(this);
     }
     public void ExecuteTurn(TakeTurnEventArgs e)
     {

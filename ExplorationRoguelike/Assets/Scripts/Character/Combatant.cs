@@ -4,6 +4,7 @@ using ExplorationRoguelike.Scripts.Combat;
 
 public interface ICombatant
 {
+    public HealthComponent HealthComponent { get; set; }
     public void EnterCombat(ActiveCombat combat);
     public void ExitCombat(ActiveCombat combat);
 

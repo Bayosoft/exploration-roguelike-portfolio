@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace ExplorationRoguelike
 {
-    public class HealthComponent : MonoBehaviour
+    public class Ability : MonoBehaviour
     {
-        public int Health;
+        public AbilityData AbilityData;
     }
 }

@@ -12,12 +12,12 @@ namespace ExplortationRoguelike.GUI.Combat
     {
         private ActiveCombat _activeCombat;
 
-        public int SelectedPlayerCard { get { return _activeCombat.Player.Damage;  } }
-        public int SelectedEnemyCard { get { return _activeCombat.Enemy.Damage; } }
+/*        public int SelectedPlayerCard { get { return _activeCombat.Player.Damage;  } }
+      //  public int SelectedEnemyCard { get { return _activeCombat.Enemy.Damage; } }
 
         public int PlayerHealth { get {  return _activeCombat.Player.CurrentHealth; } }
         public int EnemyHealth { get { return _activeCombat.Enemy.CurrentHealth; } }
-        public string CombatState { get { return _activeCombat.CurrentState.ToString(); } }
+        public string CombatState { get { return _activeCombat.CurrentState.ToString(); } }*/
 
         [SerializeField]
         private DelegateCommand _enemyTurnTakenCommand;
@@ -46,16 +46,16 @@ namespace ExplortationRoguelike.GUI.Combat
 
         public void OnEnemyTurnTaken(object damage)
         {
-            TakeTurnEventArgs turnEvent = new(_activeCombat.Player, _activeCombat.Enemy, (int)damage);
+           // TakeTurnEventArgs turnEvent = new(_activeCombat.Player, _activeCombat.Enemy, (int)damage);
            
-            _activeCombat.HandleTurnEvent(turnEvent);
+          //  _activeCombat.HandleTurnEvent(turnEvent);
             OnPropertyChanged("PlayerHealth");
             OnPropertyChanged("CombatState");
         }
         public void OnPlayerTurnTaken(object damage)
         {
-            TakeTurnEventArgs turnEvent = new(_activeCombat.Enemy, _activeCombat.Player, (int)damage);
-            _activeCombat.HandleTurnEvent(turnEvent);
+          //  TakeTurnEventArgs turnEvent = new(_activeCombat.Enemy, _activeCombat.Player, (int)damage);
+          //  _activeCombat.HandleTurnEvent(turnEvent);
             OnPropertyChanged("EnemyHealth");
             OnPropertyChanged("CombatState");
         }

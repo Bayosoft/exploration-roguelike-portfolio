@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea47326f6d856749a42082085340a29, type: 3}
   m_Name: GoblinThief
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 10
-  <Damage>k__BackingField: 5
-  <Description>k__BackingField: 
-  <EnemyType>k__BackingField: 1
+  _name: Thief
+  _gameImage: {fileID: 0}
+  _uiImage: {fileID: 0}
   RegenerationBonus: 2
