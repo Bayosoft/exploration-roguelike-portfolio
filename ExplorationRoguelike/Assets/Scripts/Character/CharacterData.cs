@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ExplorationRoguelike
 {
-    public class CharacterData : ScriptableObject
+    public abstract class CharacterData : ScriptableObject
     {
         [SerializeField]
         private string _name;
@@ -18,5 +18,9 @@ namespace ExplorationRoguelike
         [SerializeField]
         private Sprite _uiImage;
         public Sprite UiImage { get => _uiImage; }
+
+        [SerializeField]
+        private GameObject _characterObject;
+        public GameObject CharacterObject { get => _characterObject; }
     }
 }

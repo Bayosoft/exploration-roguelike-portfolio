@@ -40,8 +40,8 @@ namespace ExplorationRoguelike
         {
             _currentState = CombatState.START;
 
-            Player.TurnTaken += OnTurnTaken;
-            Enemy.TurnTaken += OnTurnTaken;
+/*            Player.TurnTaken += OnTurnTaken;
+            Enemy.TurnTaken += OnTurnTaken;*/
 
             _currentState = CombatState.PLAYERTURN;
         }
@@ -50,11 +50,11 @@ namespace ExplorationRoguelike
         {
             if (turnEvent.Attacker is Player && _currentState == CombatState.PLAYERTURN)
             {
-                turnEvent.Attacker.ExecuteTurn(turnEvent);
+            //    turnEvent.Attacker.ExecuteTurn(turnEvent);
             }
             else if (turnEvent.Attacker is Enemy && _currentState == CombatState.ENEMYTURN)
             {
-                turnEvent.Attacker.ExecuteTurn(turnEvent);
+             //   turnEvent.Attacker.ExecuteTurn(turnEvent);
             }
             else Debug.Log($"Not {turnEvent.Attacker}'s turn");
         }

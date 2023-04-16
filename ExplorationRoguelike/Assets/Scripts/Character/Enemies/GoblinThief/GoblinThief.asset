@@ -15,4 +15,5 @@ MonoBehaviour:
   _name: Thief
   _gameImage: {fileID: 0}
   _uiImage: {fileID: 0}
+  _characterObject: {fileID: 0}
   RegenerationBonus: 2

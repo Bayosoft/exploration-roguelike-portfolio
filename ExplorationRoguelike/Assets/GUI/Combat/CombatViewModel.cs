@@ -2,7 +2,6 @@ using System.ComponentModel;
 using System;
 using ExplortationRoguelike.GUI.Combat;
 using UnityEngine;
-using ExplorationRoguelike.Scripts.Combat;
 using static UnityEditor.Rendering.CameraUI;
 using ExplorationRoguelike;
 
@@ -10,7 +9,7 @@ namespace ExplortationRoguelike.GUI.Combat
 {
     public class CombatViewModel : ViewModel
     {
-        private ActiveCombat _activeCombat;
+        private CombatStateComponent _combatState;
 
 /*        public int SelectedPlayerCard { get { return _activeCombat.Player.Damage;  } }
       //  public int SelectedEnemyCard { get { return _activeCombat.Enemy.Damage; } }
@@ -38,7 +37,7 @@ namespace ExplortationRoguelike.GUI.Combat
         }
         private void Awake()
         {
-            _activeCombat = GameObject.Find("CombatManager").GetComponent<ActiveCombat>();
+            _combatState = GameObject.Find("CombatManager").GetComponent<CombatStateComponent>();
         }
         private void OnValidate()
         {

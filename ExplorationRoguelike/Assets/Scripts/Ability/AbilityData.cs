@@ -9,5 +9,8 @@ namespace ExplorationRoguelike
     {
         public string Name;
         public string Description;
+
+        // TODO: Move to DamageAbilityData : AbilityData
+        public int minDamage, maxDamage;
     }
 }

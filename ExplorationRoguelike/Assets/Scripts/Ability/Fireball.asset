@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Fireball
   Description: Ball of Fire
+  minDamage: 5
+  maxDamage: 8

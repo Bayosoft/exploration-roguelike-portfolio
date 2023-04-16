@@ -1,44 +1,39 @@
 using ExplorationRoguelike;
 using ExplorationRoguelike.Assets.Scripts.Combat;
-using ExplorationRoguelike.Scripts.Combat;
 using System;
 using UnityEngine;
 
 public class Player : Character, ICombatant
 {
-    public HealthComponent HealthComponent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-    public int Damage;
-    public event EventHandler<TurnTakenEventArgs> TurnTaken;
-
     [SerializeField]
-    private int _currentHealth;
-    public int CurrentHealth { get => _currentHealth; }
-    public ActiveCombat Combat { get; private set; }
+    private HealthComponent _healthComponent;
+    public HealthComponent HealthComponent { get => _healthComponent; }
+
+    public AbilityComponent AbilityComponent => throw new NotImplementedException();
 
     public void Awake()
     {
      //   _currentHealth = MaxHealth;
     }
-    public void EnterCombat(ActiveCombat combat)
+    public void EnterCombat(CombatStateComponent combat)
     {
-        Combat = combat;
+       // Combat = combat;
      //   combat.Enemy.TurnTaken += ReceiveAttack;
     }
 
     public void ReceiveAttack(object sender, TurnTakenEventArgs e)
     {
-        _currentHealth -= e.Damage;
+      //  _currentHealth -= e.Damage;
 
         //if (_currentHealth == 0) Combat.OnDeath(this);
     }
     public void ExecuteTurn(TakeTurnEventArgs e)
     {
-        TurnTakenEventArgs turnTakenEventArgs = new(e.Target, e.Attacker, e.Damage);
+/*        TurnTakenEventArgs turnTakenEventArgs = new(e.Target, e.Attacker, e.Damage);
 
-        TurnTaken?.Invoke(this, turnTakenEventArgs);
+        TurnTaken?.Invoke(this, turnTakenEventArgs);*/
     }
-    public void ExitCombat(ActiveCombat combat)
+    public void ExitCombat(CombatStateComponent combat)
     {
         throw new NotImplementedException();
     }

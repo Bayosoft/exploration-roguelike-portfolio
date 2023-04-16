@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1ab12e5403af4b47abab066ef07b468, type: 3}
-  m_Name: Kobold
+  m_Script: {fileID: 11500000, guid: b405a07a009820d43b835f78e373fe9d, type: 3}
+  m_Name: GoblinThiefAbilities
   m_EditorClassIdentifier: 
-  <EnemyType>k__BackingField: 0
+  Abilities:
+  - {fileID: 11400000, guid: ad74d21efd4bd0a42a32af346e448646, type: 2}

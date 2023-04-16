@@ -7,5 +7,6 @@ namespace ExplorationRoguelike
     public class HealthComponent : MonoBehaviour
     {
         public int Health;
+        public int CurrentHealth;
     }
 }
