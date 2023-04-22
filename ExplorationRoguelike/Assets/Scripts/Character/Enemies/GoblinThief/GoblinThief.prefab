@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterData: {fileID: 11400000, guid: 199510dfdf1ff484ea89e410beafbfd0, type: 2}
-  _abilityComponent: {fileID: 0}
-  _healthComponent: {fileID: 0}
+  _abilityComponent: {fileID: -4050552273276054713}
+  _healthComponent: {fileID: 2304722208397417476}
 --- !u!114 &2304722208397417476
 MonoBehaviour:
   m_ObjectHideFlags: 0

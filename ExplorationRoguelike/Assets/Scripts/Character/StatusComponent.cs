@@ -4,15 +4,12 @@ using UnityEngine;
 
 namespace ExplorationRoguelike
 {
-    public class CombatTurnComponent : MonoBehaviour
+    public class StatusComponent : MonoBehaviour
     {
-        public ScriptableEvent TakeTurnEvent;
         // Start is called before the first frame update
         void Start()
         {
-            TakeTurnEvent.TriggerEvent(new TakeTurnEventArgs(new Enemy(), new Enemy(), 5));
-
-            TakeTurnEvent.TriggerEvent(new BananasEventArgs());
+        
         }
 
         // Update is called once per frame

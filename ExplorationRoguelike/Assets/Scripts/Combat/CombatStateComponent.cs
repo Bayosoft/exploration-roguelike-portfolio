@@ -1,4 +1,3 @@
-using ExplorationRoguelike.Assets.Scripts.Combat;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,11 +19,6 @@ namespace ExplorationRoguelike
         private CombatState _currentState;
         public CombatState CurrentState { get { return _currentState; } }
 
-        public event EventHandler EnemyLost;
-        public event EventHandler PlayerLost;
-
-        public event EventHandler<TurnTakenEventArgs> OnAttacked;
-
         public Player Player;
         public Enemy Enemy;
 
@@ -33,11 +27,13 @@ namespace ExplorationRoguelike
         {
 
             DontDestroyOnLoad(gameObject);
-            StartCombat();
+         //   StartCombat();
         }
 
-        public void StartCombat()
+        public void StartCombat(ConcreteEventArgs args)
         {
+            TakeTurnEventArgs takeTurnEventArgs = args.ValidateEventArgs<TakeTurnEventArgs>(args, this);
+            Debug.Log($"event damage " + takeTurnEventArgs.Damage);
             _currentState = CombatState.START;
 
 /*            Player.TurnTaken += OnTurnTaken;
@@ -58,7 +54,7 @@ namespace ExplorationRoguelike
             }
             else Debug.Log($"Not {turnEvent.Attacker}'s turn");
         }
-        public void OnTurnTaken(object sender, TurnTakenEventArgs e)
+/*        public void OnTurnTaken(object sender, TurnTakenEventArgs e)
         {
             if (CombatState.PLAYERTURN == _currentState)
             {
@@ -68,7 +64,7 @@ namespace ExplorationRoguelike
             {
                 _currentState = CombatState.PLAYERTURN;
             }
-        }
+        }*/
 
         public void OnDeath(ICombatant deadCombatant)
         {

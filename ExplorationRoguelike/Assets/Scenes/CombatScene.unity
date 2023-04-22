@@ -209,6 +209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 407584183}
   - component: {fileID: 407584182}
+  - component: {fileID: 407584185}
   - component: {fileID: 407584184}
   m_Layer: 0
   m_Name: CombatManager
@@ -226,9 +227,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 407584181}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1016746aee9ea3546a961a7966d6b505, type: 3}
+  m_Script: {fileID: 11500000, guid: 594e78dcb88913e4fa4edf10ba745570, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  Enemy: {fileID: 0}
 --- !u!4 &407584183
 Transform:
   m_ObjectHideFlags: 0
@@ -260,18 +263,31 @@ MonoBehaviour:
   onEventTriggered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 407584182}
+        m_TargetAssemblyTypeName: ExplorationRoguelike.CombatStateComponent, Assembly-CSharp
+        m_MethodName: StartCombat
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 0
+        m_CallState: 2
+--- !u!114 &407584185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407584181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20764aa835927f24a8c0ff372bac404a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TakeTurnEvent: {fileID: 11400000, guid: 4bd81bd901c968b4c84908d40d45d7de, type: 2}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

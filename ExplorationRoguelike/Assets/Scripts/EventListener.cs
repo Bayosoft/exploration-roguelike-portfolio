@@ -6,10 +6,10 @@ using UnityEngine.Events;
 
 namespace ExplorationRoguelike
 {
-    public class EventListener : MonoBehaviour
+    public class EventListener : MonoBehaviour 
     {
-        public Event Event;
-        public UnityEvent onEventTriggered;
+        public ScriptableEvent Event;
+        public UnityEvent<ConcreteEventArgs> onEventTriggered;
         void OnEnable()
         {
             Event.AddListener(this);
@@ -18,9 +18,9 @@ namespace ExplorationRoguelike
         {
             Event.RemoveListener(this);
         }
-        public void OnEventTriggered()
+        public void OnEventTriggered(ConcreteEventArgs args)
         {
-            onEventTriggered.Invoke();
+            onEventTriggered.Invoke(args);
         }
     }
 }

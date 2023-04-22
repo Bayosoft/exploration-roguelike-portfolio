@@ -1,18 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace ExplorationRoguelike
 {
-    [CreateAssetMenu(menuName = "Game Event")]
-    public class Event : ScriptableObject
+    [CreateAssetMenu(menuName = "Events/Event", fileName = "Event")]
+    public class ScriptableEvent : ScriptableObject
     {
-        private List<EventListener> listeners = new List<EventListener>();
-        public void TriggerEvent()
+        private List<EventListener> listeners = new();
+        public void TriggerEvent(ConcreteEventArgs eventArgs)
         {
             for (int i = listeners.Count - 1; i >= 0; i--)
             {
-                listeners[i].OnEventTriggered();
+                listeners[i].OnEventTriggered(eventArgs);
             }
         }
         public void AddListener(EventListener listener)

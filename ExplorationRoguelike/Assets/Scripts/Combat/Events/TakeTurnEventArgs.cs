@@ -1,18 +1,17 @@
-﻿using System;
+using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using UnityEngine;
 
-namespace ExplorationRoguelike.Assets.Scripts.Combat
+namespace ExplorationRoguelike
 {
-    public class TurnTakenEventArgs : EventArgs
+    public class TakeTurnEventArgs : ConcreteEventArgs
     {
         public int Damage { get; private set; }
         public ICombatant Target { get; private set; }
         public ICombatant Attacker { get; private set; }
 
-        public TurnTakenEventArgs(ICombatant target, ICombatant attacker, int damage)
+        public TakeTurnEventArgs(ICombatant target, ICombatant attacker, int damage)
         {
             Target = target;
             Attacker = attacker;

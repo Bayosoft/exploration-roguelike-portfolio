@@ -1,5 +1,4 @@
 using ExplorationRoguelike;
-using ExplorationRoguelike.Assets.Scripts.Combat;
 using System;
 using UnityEngine;
 
@@ -21,12 +20,12 @@ public class Player : Character, ICombatant
      //   combat.Enemy.TurnTaken += ReceiveAttack;
     }
 
-    public void ReceiveAttack(object sender, TurnTakenEventArgs e)
+/*    public void ReceiveAttack(object sender, TurnTakenEventArgs e)
     {
       //  _currentHealth -= e.Damage;
 
         //if (_currentHealth == 0) Combat.OnDeath(this);
-    }
+    }*/
     public void ExecuteTurn(TakeTurnEventArgs e)
     {
 /*        TurnTakenEventArgs turnTakenEventArgs = new(e.Target, e.Attacker, e.Damage);
