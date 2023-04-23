@@ -11,8 +11,6 @@ namespace ExplorationRoguelike
         void Start()
         {
             TakeTurnEvent.TriggerEvent(new TakeTurnEventArgs(new Enemy(), new Enemy(), 5));
-
-            TakeTurnEvent.TriggerEvent(new BananasEventArgs());
         }
 
         // Update is called once per frame
