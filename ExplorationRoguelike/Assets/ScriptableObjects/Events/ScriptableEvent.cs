@@ -13,7 +13,7 @@ namespace ExplorationRoguelike
         {
             for (int i = listeners.Count - 1; i >= 0; i--)
             {
-                listeners[i].OnEventTriggered(eventArgs);
+                listeners[i].RaiseEvent(eventArgs);
             }
         }
         public void AddListener(EventListener listener)

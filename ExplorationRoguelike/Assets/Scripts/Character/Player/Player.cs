@@ -8,29 +8,31 @@ public class Player : Character, ICombatant
     private HealthComponent _healthComponent;
     public HealthComponent HealthComponent { get => _healthComponent; }
 
-    public AbilityComponent AbilityComponent => throw new NotImplementedException();
+    [SerializeField]
+    private AbilityComponent _abilityComponent;
+    public AbilityComponent AbilityComponent { get => _abilityComponent; }
 
     public void Awake()
     {
-     //   _currentHealth = MaxHealth;
+        //   _currentHealth = MaxHealth;
     }
     public void EnterCombat(CombatStateComponent combat)
     {
-       // Combat = combat;
-     //   combat.Enemy.TurnTaken += ReceiveAttack;
+        // Combat = combat;
+        //   combat.Enemy.TurnTaken += ReceiveAttack;
     }
 
-/*    public void ReceiveAttack(object sender, TurnTakenEventArgs e)
-    {
-      //  _currentHealth -= e.Damage;
+    /*    public void ReceiveAttack(object sender, TurnTakenEventArgs e)
+        {
+          //  _currentHealth -= e.Damage;
 
-        //if (_currentHealth == 0) Combat.OnDeath(this);
-    }*/
+            //if (_currentHealth == 0) Combat.OnDeath(this);
+        }*/
     public void ExecuteTurn(TakeTurnEventArgs e)
     {
-/*        TurnTakenEventArgs turnTakenEventArgs = new(e.Target, e.Attacker, e.Damage);
+        /*        TurnTakenEventArgs turnTakenEventArgs = new(e.Target, e.Attacker, e.Damage);
 
-        TurnTaken?.Invoke(this, turnTakenEventArgs);*/
+                TurnTaken?.Invoke(this, turnTakenEventArgs);*/
     }
     public void ExitCombat(CombatStateComponent combat)
     {

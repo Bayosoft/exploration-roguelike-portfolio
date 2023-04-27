@@ -18,7 +18,7 @@ namespace ExplorationRoguelike
         {
             Event.RemoveListener(this);
         }
-        public void OnEventTriggered(ConcreteEventArgs args)
+        public void RaiseEvent(ConcreteEventArgs args)
         {
             onEventTriggered.Invoke(args);
         }

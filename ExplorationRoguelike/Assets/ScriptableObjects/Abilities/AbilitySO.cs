@@ -5,7 +5,7 @@ using UnityEngine;
 namespace ExplorationRoguelike
 {
     [CreateAssetMenu(fileName = "Ability", menuName = "ScriptableObjects/Abilities/Ability", order = 1)]
-    public class AbilityData : ScriptableObject
+    public class AbilitySO : ScriptableObject
     {
         public string Name;
         public string Description;

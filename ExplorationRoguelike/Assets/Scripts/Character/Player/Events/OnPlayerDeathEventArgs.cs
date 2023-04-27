@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace ExplorationRoguelike
 {
-    public class Ability : MonoBehaviour
+    public class OnPlayerDeathEventArgs : ConcreteEventArgs
     {
-        public AbilitySO AbilityData;
+
     }
 }

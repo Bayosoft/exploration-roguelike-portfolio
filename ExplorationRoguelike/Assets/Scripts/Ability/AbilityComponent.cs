@@ -7,7 +7,7 @@ namespace ExplorationRoguelike
     public class AbilityComponent : MonoBehaviour
     {
 
-        public KnownAbilitiesData KnownAbilities;
+        public KnownAbilitiesSO KnownAbilities;
         public bool CanActivateAbility(object context, Ability ability)
         {
             // Logic to see if the ability can be used

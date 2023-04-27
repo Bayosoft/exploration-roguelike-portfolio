@@ -5,7 +5,7 @@ namespace ExplorationRoguelike
     public abstract class Character : MonoBehaviour
     {
         [SerializeField]
-        private CharacterData _characterData;
-        public CharacterData CharacterData { get { return _characterData; } }
+        private CharacterSO _characterData;
+        public CharacterSO CharacterData { get { return _characterData; } }
     }
 }
