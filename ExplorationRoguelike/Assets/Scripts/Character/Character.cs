@@ -6,6 +6,10 @@ namespace ExplorationRoguelike
     {
         [SerializeField]
         private CharacterSO _characterData;
-        public CharacterSO CharacterData { get { return _characterData; } }
+        public CharacterSO CharacterData { get => _characterData; }
+
+        [SerializeField]
+        private AbilityComponent _abilityComponent;
+        public AbilityComponent AbilityComponent { get => _abilityComponent; }
     }
 }

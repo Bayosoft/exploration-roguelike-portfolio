@@ -7,7 +7,7 @@ namespace ExplorationRoguelike
         public override void OnDeath()
         {
             OnPlayerDeathEventArgs onPlayerDeathEventArgs = new OnPlayerDeathEventArgs();
-            OnPlayerDeathEvent.TriggerEvent(onPlayerDeathEventArgs);
+            OnPlayerDeathEvent.RaiseEvent(onPlayerDeathEventArgs);
         }
     }
 }

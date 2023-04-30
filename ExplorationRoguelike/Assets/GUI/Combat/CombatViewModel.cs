@@ -1,62 +1,50 @@
-using System.ComponentModel;
-using System;
-using ExplortationRoguelike.GUI.Combat;
 using UnityEngine;
-using static UnityEditor.Rendering.CameraUI;
 using ExplorationRoguelike;
 
 namespace ExplortationRoguelike.GUI.Combat
 {
     public class CombatViewModel : ViewModel
     {
-        private CombatStateComponent _combatState;
+        [SerializeField]
+        private CombatStateComponent _combat;
 
-/*        public int SelectedPlayerCard { get { return _activeCombat.Player.Damage;  } }
-      //  public int SelectedEnemyCard { get { return _activeCombat.Enemy.Damage; } }
+        public AbilitySO SelectedPlayerAbility { get { return _combat.Player.AbilityComponent.KnownAbilities.Abilities[0]; } }
+        public AbilitySO SelectedEnemyAbility { get { return _combat.Enemy.AbilityComponent.KnownAbilities.Abilities[0]; } }
 
-        public int PlayerHealth { get {  return _activeCombat.Player.CurrentHealth; } }
-        public int EnemyHealth { get { return _activeCombat.Enemy.CurrentHealth; } }
-        public string CombatState { get { return _activeCombat.CurrentState.ToString(); } }*/
+        public int PlayerHealth { get {  return _combat.Player.HealthComponent.CurrentHealth; } }
+        public int EnemyHealth { get { return _combat.Enemy.HealthComponent.CurrentHealth; } }
+        public string CombatState { get { return _combat.CurrentState.ToString(); } }
 
         [SerializeField]
-        private DelegateCommand _enemyTurnTakenCommand;
-        public DelegateCommand EnemyTurnTakenCommand { get => _enemyTurnTakenCommand; }
+        private DelegateCommand _enemyTakeTurnCommand;
+        public DelegateCommand EnemyTakeTurnCommand { get => _enemyTakeTurnCommand; }
 
         [SerializeField]
-        private DelegateCommand _playerTurnTakenCommand;
-        public DelegateCommand PlayerTurnTakenCommand { get => _playerTurnTakenCommand; }
+        private DelegateCommand _playerTakeTurnCommand;
+        public DelegateCommand PlayerTakeTurnCommand { get => _playerTakeTurnCommand; }
 
         public CombatViewModel()
         {
-            _playerTurnTakenCommand = new DelegateCommand(OnPlayerTurnTaken);
-            _enemyTurnTakenCommand = new DelegateCommand(OnEnemyTurnTaken);
+            _playerTakeTurnCommand = new DelegateCommand(OnPlayerTakeTurn);
+            _enemyTakeTurnCommand = new DelegateCommand(OnEnemyTakeTurn);
         }
         void Start()
         {
             GetComponent<NoesisView>().Content.DataContext = this;
         }
-        private void Awake()
-        {
-            _combatState = GameObject.Find("CombatManager").GetComponent<CombatStateComponent>();
-        }
+
         private void OnValidate()
         {
         }
 
-        public void OnEnemyTurnTaken(object damage)
+        public void OnEnemyTakeTurn(object damage)
         {
-           // TakeTurnEventArgs turnEvent = new(_activeCombat.Player, _activeCombat.Enemy, (int)damage);
-           
-          //  _activeCombat.HandleTurnEvent(turnEvent);
-            OnPropertyChanged("PlayerHealth");
-            OnPropertyChanged("CombatState");
+           _combat.HandleTurn(_combat.Enemy, _combat.Player, SelectedPlayerAbility);
         }
-        public void OnPlayerTurnTaken(object damage)
+        public void OnPlayerTakeTurn(object damage)
         {
           //  TakeTurnEventArgs turnEvent = new(_activeCombat.Enemy, _activeCombat.Player, (int)damage);
           //  _activeCombat.HandleTurnEvent(turnEvent);
-            OnPropertyChanged("EnemyHealth");
-            OnPropertyChanged("CombatState");
         }
     }
 }

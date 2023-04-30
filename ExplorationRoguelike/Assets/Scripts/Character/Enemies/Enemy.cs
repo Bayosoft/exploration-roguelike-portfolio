@@ -12,26 +12,15 @@ namespace ExplorationRoguelike
         private HealthComponent _healthComponent;
         public HealthComponent HealthComponent { get => _healthComponent; }
 
-        private int _currentHealth;
-
-
-        public int CurrentHealth
-        {
-            get { return _currentHealth; }
-            private set
-            {
-                _currentHealth = value;
-                if (_currentHealth == 0)
-                {
-                    // CombatantDied?.Invoke(); 
-                }
-            }
-        }
-
 
         void Start()
         {
          //   CurrentHealth = MaxHealth;
+        }
+
+        public void Create()
+        {
+
         }
 
     }

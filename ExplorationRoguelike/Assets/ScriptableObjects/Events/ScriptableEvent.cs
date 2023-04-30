@@ -9,7 +9,7 @@ namespace ExplorationRoguelike
     public class ScriptableEvent : ScriptableObject
     {
         private List<EventListener> listeners = new();
-        public void TriggerEvent(ConcreteEventArgs eventArgs)
+        public void RaiseEvent(ConcreteEventArgs eventArgs)
         {
             for (int i = listeners.Count - 1; i >= 0; i--)
             {

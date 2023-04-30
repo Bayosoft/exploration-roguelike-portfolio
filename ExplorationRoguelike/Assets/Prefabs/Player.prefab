@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9206238031483290151}
   - component: {fileID: 9206238031483290150}
-  - component: {fileID: 9206238031483290144}
   - component: {fileID: 7494087647512919820}
+  - component: {fileID: 9206238031483290144}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9206238031483290150
 MonoBehaviour:
@@ -46,22 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c185df2b0d0705e40a062bbb18d738dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterData: {fileID: 0}
+  _characterData: {fileID: 11400000, guid: 3c8a1f72ccf552b43b64b8eb7a5512ab, type: 2}
   _healthComponent: {fileID: 7494087647512919820}
   _abilityComponent: {fileID: 9206238031483290144}
---- !u!114 &9206238031483290144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9206238031483290149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0a04c7ac73c84f4682426adca016fc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  KnownAbilities: {fileID: 11400000, guid: 6e4fad5b3a00651469896000ec94bbe9, type: 2}
 --- !u!114 &7494087647512919820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,3 +63,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 10
   OnPlayerDeathEvent: {fileID: 11400000, guid: 05064ccfd312b4e4ab6a6b924992497b, type: 2}
+--- !u!114 &9206238031483290144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9206238031483290149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0a04c7ac73c84f4682426adca016fc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KnownAbilities: {fileID: 11400000, guid: 6e4fad5b3a00651469896000ec94bbe9, type: 2}
