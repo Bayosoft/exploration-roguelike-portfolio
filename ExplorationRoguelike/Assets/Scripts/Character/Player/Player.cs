@@ -8,14 +8,6 @@ public class Player : Character, ICombatant
     private HealthComponent _healthComponent;
     public HealthComponent HealthComponent { get => _healthComponent; }
 
-    [SerializeField]
-    private AbilityComponent _abilityComponent;
-    public AbilityComponent AbilityComponent { get => _abilityComponent; }
-
-    public void Awake()
-    {
-        //   _currentHealth = MaxHealth;
-    }
     public void EnterCombat(CombatStateComponent combat)
     {
         // Combat = combat;

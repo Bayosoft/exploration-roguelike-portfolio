@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Backstab
   Description: The Goblin stabs your back
-  minDamage: 2
-  maxDamage: 5
+  MinDamage: 2
+  MaxDamage: 4

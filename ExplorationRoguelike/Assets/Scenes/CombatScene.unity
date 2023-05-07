@@ -131,6 +131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2304722208397417476, guid: 3203e32a5bd5d2b46ab82f7e8a6a7239, type: 3}
+      propertyPath: MaxHealth
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2930803315595400043, guid: 3203e32a5bd5d2b46ab82f7e8a6a7239, type: 3}
       propertyPath: m_Name
       value: GoblinThief
@@ -227,7 +231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 1429334192}
   Enemy: {fileID: 191181594}
-  _combatEvent: {fileID: 0}
+  _combatEvent: {fileID: 11400000, guid: d28551156b9d86043874c9a9530a1418, type: 2}
 --- !u!4 &407584183
 Transform:
   m_ObjectHideFlags: 0
@@ -255,22 +259,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3422457e4efdcc4ba3de1c6e6c8d985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 4bd81bd901c968b4c84908d40d45d7de, type: 2}
+  Event: {fileID: 11400000, guid: d28551156b9d86043874c9a9530a1418, type: 2}
   onEventTriggered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 407584182}
-        m_TargetAssemblyTypeName: ExplorationRoguelike.CombatStateComponent, Assembly-CSharp
-        m_MethodName: HandleTurnEvent
+      - m_Target: {fileID: 407584181}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,6 +289,7 @@ GameObject:
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
+  - component: {fileID: 519420035}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -447,6 +452,35 @@ MonoBehaviour:
   _actionsRepeatRate: 0.1
   _xrTrackingOrigin: {fileID: 0}
   _renderPassEvent: 550
+--- !u!114 &519420035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3422457e4efdcc4ba3de1c6e6c8d985, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: d28551156b9d86043874c9a9530a1418, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 519420033}
+        m_TargetAssemblyTypeName: ExplortationRoguelike.GUI.Combat.CombatViewModel,
+          Assembly-CSharp
+        m_MethodName: OnCombatEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0

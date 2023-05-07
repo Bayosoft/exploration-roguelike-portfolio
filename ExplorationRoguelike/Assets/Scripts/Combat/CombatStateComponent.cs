@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -23,7 +24,7 @@ namespace ExplorationRoguelike
         public Player Player;
         public Enemy Enemy;
 
-        public SortedDictionary<ICombatant, bool> CombatantTurns;
+        public Dictionary<ICombatant, bool> CombatantTurns;
 
         public CardDeckComponent CardDeckComponent { get; private set; }
 
@@ -39,7 +40,7 @@ namespace ExplorationRoguelike
 
         public void StartCombat()
         {
-            CardDeckComponent = new(Player.AbilityComponent.KnownAbilities.Abilities);
+            //CardDeckComponent = new(Player.AbilityComponent.KnownAbilities.Abilities);
 
             CombatantTurns = new() {
                 { Player, true },
@@ -53,17 +54,32 @@ namespace ExplorationRoguelike
             _currentState = CombatState.PLAYERTURN;
         }
 
-        public void HandleTurn(ConcreteEventArgs args)
+        public void HandleTurn(ICombatant instigator, IEnumerable<Character> targets, Ability ability)
         {
-            TakeTurnEventArgs takeTurnEventArgs = args.ValidateEventArgs<TakeTurnEventArgs>(args, this);
-
-            if (CombatantTurns[takeTurnEventArgs.Attacker] == false)
+            if (CombatantTurns[instigator] == false)
             {
                 _combatEvent.RaiseEvent(new CombatEventArgs("Cannot play card, it is not your turn", false));
                 return;
             }
 
-            takeTurnEventArgs.Attacker.AbilityComponent.CanActivateAbility(takeTurnEventArgs.Target, takeTurnEventArgs.Ability);
+            var activated = instigator.AbilityComponent.TryActivateAbility(ability, targets, ActivationType.COMBAT);
+
+            if (activated)
+            {
+                CombatantTurns[instigator] = false;
+                var nextCombatant = CombatantTurns.Single(kvp => kvp.Key != instigator).Key;
+
+                CombatantTurns[nextCombatant] = true;
+
+                if ((object)nextCombatant == Player)
+                {
+                    _currentState = CombatState.PLAYERTURN;
+                } 
+                else if ((object)nextCombatant == Enemy)
+                {
+                    _currentState = CombatState.ENEMYTURN;
+                }
+            }
 
             /*            if (turnEvent.Attacker is Player && _currentState == CombatState.PLAYERTURN)
                         {

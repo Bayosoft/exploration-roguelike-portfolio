@@ -21,6 +21,11 @@ namespace ExplorationRoguelike
                 }
             }
         }
+
+        public void Start()
+        {
+            CurrentHealth = MaxHealth;
+        }
         public void ReduceHealthBy(int amount)
         {
             CurrentHealth -= amount;

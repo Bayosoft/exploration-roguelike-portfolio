@@ -11,6 +11,11 @@ namespace ExplorationRoguelike
         public string Description;
 
         // TODO: Move to DamageAbilityData : AbilityData
-        public int minDamage, maxDamage;
+        public int MinDamage, MaxDamage;
+
+        public int DealDamage()
+        {
+            return Random.Range(MinDamage, MaxDamage); 
+        }
     }
 }

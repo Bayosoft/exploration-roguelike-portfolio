@@ -1,5 +1,7 @@
 using UnityEngine;
 using ExplorationRoguelike;
+using System.Collections.Generic;
+using static ExplorationRoguelike.CombatStateComponent;
 
 namespace ExplortationRoguelike.GUI.Combat
 {
@@ -11,9 +13,36 @@ namespace ExplortationRoguelike.GUI.Combat
         public AbilitySO SelectedPlayerAbility { get { return _combat.Player.AbilityComponent.KnownAbilities.Abilities[0]; } }
         public AbilitySO SelectedEnemyAbility { get { return _combat.Enemy.AbilityComponent.KnownAbilities.Abilities[0]; } }
 
-        public int PlayerHealth { get {  return _combat.Player.HealthComponent.CurrentHealth; } }
+        public int PlayerHealth { get { return _combat.Player.HealthComponent.CurrentHealth; } }
         public int EnemyHealth { get { return _combat.Enemy.HealthComponent.CurrentHealth; } }
-        public string CombatState { get { return _combat.CurrentState.ToString(); } }
+
+        private string _combatState;
+        public string CombatState
+        {
+            get
+            {
+                return _combatState;
+            }
+            set
+            {
+                _combatState = value;
+                OnPropertyChanged("CombatState");
+            }
+        }
+
+        private string _message;
+        public string Message
+        {
+            get
+            {
+                return _message;
+            }
+            set
+            {
+                _message = value;
+                OnPropertyChanged("Message");
+            }
+        }
 
         [SerializeField]
         private DelegateCommand _enemyTakeTurnCommand;
@@ -21,6 +50,7 @@ namespace ExplortationRoguelike.GUI.Combat
 
         [SerializeField]
         private DelegateCommand _playerTakeTurnCommand;
+
         public DelegateCommand PlayerTakeTurnCommand { get => _playerTakeTurnCommand; }
 
         public CombatViewModel()
@@ -33,18 +63,24 @@ namespace ExplortationRoguelike.GUI.Combat
             GetComponent<NoesisView>().Content.DataContext = this;
         }
 
-        private void OnValidate()
+        public void OnEnemyTakeTurn(object ability)
         {
+            _combat.HandleTurn(_combat.Enemy, new List<Character>() { _combat.Player }, new Ability(ability as AbilitySO));
+            CombatState = _combat.CurrentState.ToString();
+            OnPropertyChanged("PlayerHealth");
+        }
+        public void OnPlayerTakeTurn(object ability)
+        {
+            _combat.HandleTurn(_combat.Player, new List<Character>() { _combat.Enemy }, new Ability(ability as AbilitySO));
+            CombatState = _combat.CurrentState.ToString();
+            OnPropertyChanged("EnemyHealth");
         }
 
-        public void OnEnemyTakeTurn(object damage)
+        public void OnCombatEvent(ConcreteEventArgs eventArgs)
         {
-           _combat.HandleTurn(_combat.Enemy, _combat.Player, SelectedPlayerAbility);
-        }
-        public void OnPlayerTakeTurn(object damage)
-        {
-          //  TakeTurnEventArgs turnEvent = new(_activeCombat.Enemy, _activeCombat.Player, (int)damage);
-          //  _activeCombat.HandleTurnEvent(turnEvent);
+            var combatEventArgs = eventArgs.ValidateEventArgs<CombatEventArgs>(eventArgs, this);
+
+            Message = combatEventArgs.Message;
         }
     }
 }
