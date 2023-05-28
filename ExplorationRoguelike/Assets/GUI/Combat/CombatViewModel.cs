@@ -1,7 +1,9 @@
 using UnityEngine;
 using ExplorationRoguelike;
 using System.Collections.Generic;
-using static ExplorationRoguelike.CombatStateComponent;
+using System.Collections.ObjectModel;
+using ExplortationRoguelike.GUI.Card;
+using ExplorationRoguelike.GUI.Card;
 
 namespace ExplortationRoguelike.GUI.Combat
 {
@@ -9,7 +11,9 @@ namespace ExplortationRoguelike.GUI.Combat
     {
         [SerializeField]
         private CombatStateComponent _combat;
-
+        
+        public ObservableCollection<CardViewModel> Cards { get; private set; }
+        // public ObservableCollection<AbilitySO> DrawnCards { get { return new ObservableCollection<AbilitySO>(_combat.CardDeckComponent.CardsDrawn); } }
         public AbilitySO SelectedPlayerAbility { get { return _combat.Player.AbilityComponent.KnownAbilities.Abilities[0]; } }
         public AbilitySO SelectedEnemyAbility { get { return _combat.Enemy.AbilityComponent.KnownAbilities.Abilities[0]; } }
 
@@ -61,8 +65,19 @@ namespace ExplortationRoguelike.GUI.Combat
         void Start()
         {
             GetComponent<NoesisView>().Content.DataContext = this;
+            Cards = new ObservableCollection<CardViewModel>();
+            DrawCards();
         }
 
+        public void DrawCards()
+        {
+            // Draw logic
+            foreach (AbilitySO ability in _combat.CardDeckComponent.CardsDrawn)
+            {
+                CardViewModel cardViewModel = new(ability);
+                Cards.Add(cardViewModel);
+            }
+        }
         public void OnEnemyTakeTurn(object ability)
         {
             _combat.HandleTurn(_combat.Enemy, new List<Character>() { _combat.Player }, new Ability(ability as AbilitySO));

@@ -40,7 +40,7 @@ namespace ExplorationRoguelike
 
         public void StartCombat()
         {
-            //CardDeckComponent = new(Player.AbilityComponent.KnownAbilities.Abilities);
+            CardDeckComponent = new(Player.AbilityComponent.KnownAbilities.Abilities);
 
             CombatantTurns = new() {
                 { Player, true },

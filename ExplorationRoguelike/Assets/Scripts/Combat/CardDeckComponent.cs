@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ExplorationRoguelike
 {
-    public class CardDeckComponent : MonoBehaviour
+    public class CardDeckComponent
     {
         public List<AbilitySO> CardsInDeck;
         public List<AbilitySO> CardsDrawn;
