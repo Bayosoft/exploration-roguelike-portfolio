@@ -6,7 +6,7 @@
     using System.Windows.Controls;
 #endif
 
-namespace ExplortationRoguelike.GUI.Card
+namespace ExplorationRoguelike.GUI.Card
 {
     public partial class CardView: UserControl
     {
