@@ -8,14 +8,39 @@ namespace ExplorationRoguelike
     public class AbilitySO : ScriptableObject
     {
         public string Name;
-        public string Description;
+        public List<string> Description;
+
 
         // TODO: Move to DamageAbilityData : AbilityData
         public int MinDamage, MaxDamage;
 
         public int DealDamage()
         {
-            return Random.Range(MinDamage, MaxDamage); 
+            return Random.Range(MinDamage, MaxDamage);
+        }
+
+        // TODO: Remove this disguting piece of shit code and make it something actually usable.
+        public override string ToString()
+        {
+            string abilityDescription = default;
+
+            foreach (var part in Description)
+            {
+                if (part.Equals("@Min"))
+                {
+                    abilityDescription += $"{MinDamage}";
+                }
+                else if (part.Equals("@Max"))
+                {
+                    abilityDescription += $"{MaxDamage}";
+                }
+                else
+                {
+                    abilityDescription += part;
+                }
+            }
+
+            return abilityDescription;
         }
     }
 }

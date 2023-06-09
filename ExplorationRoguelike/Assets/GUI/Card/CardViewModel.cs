@@ -4,33 +4,49 @@ namespace ExplorationRoguelike.GUI.Card
 {
     public class CardViewModel : ViewModel
     {
-        private readonly AbilitySO _ability;
+        public readonly AbilitySO Ability;
 
         private string _description;
         public string Description
         {
             get
             {
-                return "test";
+                return _description;
             }
             set
             {
                 _description = value;
                 OnPropertyChanged("Description");
             }
-        } 
+        }
+
+        private string _name;
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+                OnPropertyChanged("Name");
+            }
+        }
 
         public CardViewModel(AbilitySO ability)
         {
-            _ability = ability;
-            Description = _ability.Description;
+            Ability = ability;
+            
+            Name = Ability.Name;
+            Description = Ability.ToString();
         }
 
-        void Start()
-        {
-            GetComponent<NoesisView>().Content.DataContext = this;
-            Description = _ability.Description;
-        }
+        /*        void Start()
+                {
+
+                    Description = _ability.Description;
+                }*/
 
     }
 }

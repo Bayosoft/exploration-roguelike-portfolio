@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: Fireball
   m_EditorClassIdentifier: 
   Name: Fireball
-  Description: Ball of Fire
+  Description:
+  - 'Launches a ball of fire that deals '
+  - '@Min'
+  - '-'
+  - '@Max'
+  - ' Fire damage.'
   MinDamage: 5
   MaxDamage: 8

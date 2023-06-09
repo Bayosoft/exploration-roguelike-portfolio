@@ -11,10 +11,12 @@ namespace ExplortationRoguelike.GUI.Combat
     {
         [SerializeField]
         private CombatStateComponent _combat;
-        
-        public ObservableCollection<CardViewModel> Cards { get; private set; }
+
+        private ObservableCollection<object> _cardViews;
+        public ObservableCollection<object> CardViews { get { return _cardViews; } set { _cardViews = value; OnPropertyChanged("CardViews"); } }
         // public ObservableCollection<AbilitySO> DrawnCards { get { return new ObservableCollection<AbilitySO>(_combat.CardDeckComponent.CardsDrawn); } }
-        public AbilitySO SelectedPlayerAbility { get { return _combat.Player.AbilityComponent.KnownAbilities.Abilities[0]; } }
+
+        public object SelectedCard { get; set; }
         public AbilitySO SelectedEnemyAbility { get { return _combat.Enemy.AbilityComponent.KnownAbilities.Abilities[0]; } }
 
         public int PlayerHealth { get { return _combat.Player.HealthComponent.CurrentHealth; } }
@@ -65,18 +67,24 @@ namespace ExplortationRoguelike.GUI.Combat
         void Start()
         {
             GetComponent<NoesisView>().Content.DataContext = this;
-            Cards = new ObservableCollection<CardViewModel>();
+            CardViews = new ObservableCollection<object>();
             DrawCards();
         }
 
+        public NoesisXaml CardView;
         public void DrawCards()
         {
             // Draw logic
             foreach (AbilitySO ability in _combat.CardDeckComponent.CardsInDeck)
             {
                 CardViewModel cardViewModel = new(ability);
-                ViewBuilder.CreateCardView(cardViewModel);
-                Cards.Add(cardViewModel);
+                //ViewBuilder.CreateCardView(cardViewModel);
+                
+                object cardView = CardView.Load();          
+                
+                ((CardView)cardView).DataContext = cardViewModel;
+
+                CardViews.Add(cardView);
             }
         }
         public void OnEnemyTakeTurn(object ability)
@@ -85,9 +93,12 @@ namespace ExplortationRoguelike.GUI.Combat
             CombatState = _combat.CurrentState.ToString();
             OnPropertyChanged("PlayerHealth");
         }
-        public void OnPlayerTakeTurn(object ability)
+        public void OnPlayerTakeTurn(object ev)
         {
-            _combat.HandleTurn(_combat.Player, new List<Character>() { _combat.Enemy }, new Ability(ability as AbilitySO));
+            AbilitySO ability = ((CardViewModel)((CardView)SelectedCard).DataContext).Ability;
+
+            _combat.HandleTurn(_combat.Player, new List<Character>() { _combat.Enemy }, new Ability(ability));
+
             CombatState = _combat.CurrentState.ToString();
             OnPropertyChanged("EnemyHealth");
         }

@@ -210,7 +210,6 @@ GameObject:
   - component: {fileID: 407584183}
   - component: {fileID: 407584182}
   - component: {fileID: 407584184}
-  - component: {fileID: 407584185}
   m_Layer: 0
   m_Name: CombatManager
   m_TagString: Untagged
@@ -276,38 +275,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
---- !u!114 &407584185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 407584181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29355477be96127469aed699dd82b4be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _xaml: {fileID: -8414808784256213763, guid: c0aec7075cc89364aaa7ef3dabef2907, type: 3}
-  _texture: {fileID: 0}
-  _isPPAAEnabled: 0
-  _tessellationMaxPixelError: 0.4
-  _renderFlags: 16
-  _dpiScale: 1
-  _continuousRendering: 0
-  _enableExternalUpdate: 0
-  _enableKeyboard: 1
-  _enableMouse: 1
-  _enableTouch: 1
-  _enableActions: 0
-  _emulateTouch: 0
-  _useRealTimeClock: 0
-  _actions: {fileID: -944628639613478452, guid: 9f67088567c2b5040b62090c14e352e3, type: 3}
-  _actionMap: Gamepad
-  _actionsRepeatDelay: 0.5
-  _actionsRepeatRate: 0.1
-  _xrTrackingOrigin: {fileID: 0}
-  _renderPassEvent: 550
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,6 +428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _combat: {fileID: 407584182}
+  CardView: {fileID: -8414808784256213763, guid: c0aec7075cc89364aaa7ef3dabef2907, type: 3}
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0

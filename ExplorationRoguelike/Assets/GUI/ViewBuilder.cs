@@ -5,9 +5,9 @@ namespace ExplorationRoguelike.Assets.GUI
 {
     public class ViewBuilder : MonoBehaviour
     {
-        internal static CardView CreateCardView(CardViewModel cardViewModel)
+        public static CardView CreateCardView(CardViewModel cardViewModel)
         {
-            CardView cardView = new CardView()
+            CardView cardView = new ()
             {
                 DataContext = cardViewModel
             };
