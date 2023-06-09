@@ -2,8 +2,8 @@ using UnityEngine;
 using ExplorationRoguelike;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using ExplortationRoguelike.GUI.Card;
 using ExplorationRoguelike.GUI.Card;
+using ExplorationRoguelike.Assets.GUI;
 
 namespace ExplortationRoguelike.GUI.Combat
 {
@@ -72,9 +72,10 @@ namespace ExplortationRoguelike.GUI.Combat
         public void DrawCards()
         {
             // Draw logic
-            foreach (AbilitySO ability in _combat.CardDeckComponent.CardsDrawn)
+            foreach (AbilitySO ability in _combat.CardDeckComponent.CardsInDeck)
             {
                 CardViewModel cardViewModel = new(ability);
+                ViewBuilder.CreateCardView(cardViewModel);
                 Cards.Add(cardViewModel);
             }
         }

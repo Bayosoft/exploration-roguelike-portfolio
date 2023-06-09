@@ -5,14 +5,14 @@ namespace ExplorationRoguelike.Assets.GUI
 {
     public class ViewBuilder : MonoBehaviour
     {
-/*        internal static CardView CreateCardView(CardViewModel cardViewModel)
+        internal static CardView CreateCardView(CardViewModel cardViewModel)
         {
-            CardView cardView = GameObject.Find("CardView").GetComponent<NoesisView>().Xaml
+            CardView cardView = new CardView()
             {
                 DataContext = cardViewModel
             };
 
             return cardView;
-        }*/
+        }
     }
 }

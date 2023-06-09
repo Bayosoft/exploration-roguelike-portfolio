@@ -15,36 +15,11 @@ namespace ExplorationRoguelike.GUI.Card
             InitializeComponent();
         }
 
-        public int Counter
-        {
-            get { return (int)GetValue(CounterProperty); }
-            set { SetValue(CounterProperty, value); }
-        }
-
-        public static readonly DependencyProperty CounterProperty =  DependencyProperty.Register(
-            "Counter", typeof(int), typeof(CardView), new PropertyMetadata(0));
-
-    #if NOESIS
-        protected override bool ConnectEvent(object source, string eventName, string handlerName)
-        {
-            if (eventName == "Click" && handlerName == "Button_Click")
-            {
-                ((Button)source).Click += this.Button_Click;
-                return true;
-            }
-
-            return false;
-        }
-
+#if NOESIS
         private void InitializeComponent()
         {
             NoesisUnity.LoadComponent(this);
         }
-    #endif
-
-        private void Button_Click(object sender, RoutedEventArgs args)
-        {
-            Counter++;
-        }
+#endif
     };
 }
