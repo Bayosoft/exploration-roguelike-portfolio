@@ -1,3 +1,4 @@
+using ExplorationRoguelike.Assets.Scripts.Combat;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace ExplorationRoguelike
         public Dictionary<ICombatant, bool> CombatantTurns;
 
         public CardDeckComponent CardDeckComponent { get; private set; }
-
+        public NpcTurnComponent NpcTurnComponent { get; private set; } 
         [SerializeField]
         private ScriptableEvent _combatEvent;
 
@@ -41,6 +42,7 @@ namespace ExplorationRoguelike
         public void StartCombat()
         {
             CardDeckComponent = new(Player.AbilityComponent.KnownAbilities.Abilities);
+            NpcTurnComponent = new(Enemy.AbilityComponent.KnownAbilities.Abilities);
 
             CombatantTurns = new() {
                 { Player, true },
@@ -50,6 +52,8 @@ namespace ExplorationRoguelike
             _currentState = CombatState.START;
 
             // Draw cards, determine pre-start modifiers..
+
+            NpcTurnComponent.DeclareIntent();
 
             _currentState = CombatState.PLAYERTURN;
         }
@@ -74,10 +78,12 @@ namespace ExplorationRoguelike
                 if ((object)nextCombatant == Player)
                 {
                     _currentState = CombatState.PLAYERTURN;
+                    NpcTurnComponent.DeclareIntent();
                 } 
                 else if ((object)nextCombatant == Enemy)
                 {
                     _currentState = CombatState.ENEMYTURN;
+                    HandleTurn(Enemy, new List<Character>() { Player }, new Ability(NpcTurnComponent.DeclaredAbility));
                 }
             }
 

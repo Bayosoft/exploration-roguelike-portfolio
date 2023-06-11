@@ -7,6 +7,7 @@ namespace ExplorationRoguelike
 {
     public class AbilityComponent : MonoBehaviour
     {
+        // public List<AbilitySO> KnownAbilities { get => GetComponent<Character>().CharacterData.Abilities; }
         public KnownAbilitiesSO KnownAbilities;
 
         public bool TryActivateAbility(Ability ability, IEnumerable<Character> targets, ActivationType activationType)

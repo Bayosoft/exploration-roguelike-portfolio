@@ -17,7 +17,7 @@ namespace ExplortationRoguelike.GUI.Combat
         // public ObservableCollection<AbilitySO> DrawnCards { get { return new ObservableCollection<AbilitySO>(_combat.CardDeckComponent.CardsDrawn); } }
 
         public object SelectedCard { get; set; }
-        public AbilitySO SelectedEnemyAbility { get { return _combat.Enemy.AbilityComponent.KnownAbilities.Abilities[0]; } }
+        public AbilitySO EnemyIntent { get { return _combat.NpcTurnComponent.DeclaredAbility; } }
 
         public int PlayerHealth { get { return _combat.Player.HealthComponent.CurrentHealth; } }
         public int EnemyHealth { get { return _combat.Enemy.HealthComponent.CurrentHealth; } }
@@ -89,9 +89,9 @@ namespace ExplortationRoguelike.GUI.Combat
         }
         public void OnEnemyTakeTurn(object ability)
         {
-            _combat.HandleTurn(_combat.Enemy, new List<Character>() { _combat.Player }, new Ability(ability as AbilitySO));
+            _combat.HandleTurn(_combat.Enemy, new List<Character>() { _combat.Player }, new Ability(_combat.NpcTurnComponent.DeclaredAbility));
             CombatState = _combat.CurrentState.ToString();
-            OnPropertyChanged("PlayerHealth");
+
         }
         public void OnPlayerTakeTurn(object ev)
         {
@@ -101,6 +101,7 @@ namespace ExplortationRoguelike.GUI.Combat
 
             CombatState = _combat.CurrentState.ToString();
             OnPropertyChanged("EnemyHealth");
+            OnPropertyChanged("PlayerHealth");
         }
 
         public void OnCombatEvent(ConcreteEventArgs eventArgs)
