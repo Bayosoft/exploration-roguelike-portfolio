@@ -58,7 +58,7 @@ namespace ExplorationRoguelike
             _currentState = CombatState.PLAYERTURN;
         }
 
-        public void HandleTurn(ICombatant instigator, IEnumerable<Character> targets, Ability ability)
+        public void HandleTurn(ICombatant instigator, IEnumerable<Character> targets, AbilityData ability)
         {
             if (CombatantTurns[instigator] == false)
             {
@@ -66,7 +66,7 @@ namespace ExplorationRoguelike
                 return;
             }
 
-            var activated = instigator.AbilityComponent.TryActivateAbility(ability, targets, ActivationType.COMBAT);
+            var activated = instigator.AbilityComponent.TryActivateAbility(ability, targets);
 
             if (activated)
             {
@@ -83,7 +83,7 @@ namespace ExplorationRoguelike
                 else if ((object)nextCombatant == Enemy)
                 {
                     _currentState = CombatState.ENEMYTURN;
-                    HandleTurn(Enemy, new List<Character>() { Player }, new Ability(NpcTurnComponent.DeclaredAbility));
+                    HandleTurn(Enemy, new List<Character>() { Player }, NpcTurnComponent.DeclaredAbility);
                 }
             }
 

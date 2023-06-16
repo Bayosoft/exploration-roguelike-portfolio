@@ -7,33 +7,11 @@ namespace ExplorationRoguelike
 {
     public class Ability
     {
-        public AbilitySO AbilityData;
-        public AbilityComponent Instigator;
-        public List<Character> Targets;
+        public AbilityData AbilityData;
 
-        public Ability(AbilitySO abilityData)
+        public Ability(AbilityData abilityData)
         {
             AbilityData = abilityData;
-        }
-
-        /// <summary>
-        /// Overridden by specific abilities
-        /// </summary>
-        /// <param name="instigator"></param>
-        /// <param name="targets"></param>
-        /// <param name="activationType"></param>
-        public void Activate(AbilityComponent instigator, IEnumerable<Character> targets, ActivationType activationType)
-        {
-            // Make generic and take away activation type param
-            if(activationType == ActivationType.COMBAT)
-            {
-                int damage = AbilityData.DealDamage();
-                foreach (Character c in targets)
-                {
-                    var hc = c.GetComponent<HealthComponent>();
-                    hc.ReduceHealthBy(damage);
-                }
-            }
         }
     }
 }

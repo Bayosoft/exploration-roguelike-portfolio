@@ -1,26 +1,34 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace ExplorationRoguelike
 {
-    [CreateAssetMenu(fileName = "Ability", menuName = "ScriptableObjects/Abilities/Ability", order = 1)]
-    public class AbilitySO : ScriptableObject
+
+    [CreateAssetMenu(fileName = "Damage Part", menuName = "ScriptableObjects/Abilities/Parts/Damage Part", order = 1)]
+    public class DamagePartData : AbilityPartData
     {
-        public string Name;
-        public List<string> Description;
 
-
-        // TODO: Move to DamageAbilityData : AbilityData
         public int MinDamage, MaxDamage;
 
-        public int DealDamage()
+        public int GetDamage()
         {
             return Random.Range(MinDamage, MaxDamage);
         }
+        public override void Activate(AbilityComponent instigator, IEnumerable<Character> targets)
+        {
+            foreach (Character c in targets)
+            {
+                var hc = c.GetComponent<HealthComponent>();
+                hc.ReduceHealthBy(GetDamage());
+            }
+        }
 
-        // TODO: Remove this disguting piece of shit code and make it something actually usable.
-        public override string ToString()
+        public override void Activate(AbilityComponent instigator, Character target)
+        {
+            target.GetComponent<HealthComponent>().ReduceHealthBy(GetDamage());
+        }
+
+/*        public override string ToString()
         {
             string abilityDescription = default;
 
@@ -41,6 +49,6 @@ namespace ExplorationRoguelike
             }
 
             return abilityDescription;
-        }
+        }*/
     }
 }

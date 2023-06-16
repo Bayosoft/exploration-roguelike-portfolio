@@ -8,16 +8,16 @@ namespace ExplorationRoguelike
     public class AbilityComponent : MonoBehaviour
     {
         // public List<AbilitySO> KnownAbilities { get => GetComponent<Character>().CharacterData.Abilities; }
-        public KnownAbilitiesSO KnownAbilities;
+        public KnownAbilitiesData KnownAbilities;
 
-        public bool TryActivateAbility(Ability ability, IEnumerable<Character> targets, ActivationType activationType)
+        public bool TryActivateAbility(AbilityData ability, IEnumerable<Character> targets)
         {
             /*if(!CanActivateAbility(ability, ))
               {
                 return false;
              }*/
 
-            ability.Activate(this, targets, activationType);
+            ability.Activate(this, targets);
 
             return true;
         }

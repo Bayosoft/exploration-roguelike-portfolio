@@ -6,8 +6,8 @@ namespace ExplorationRoguelike
 {
 
     [CreateAssetMenu(fileName = "Known Abilities", menuName = "ScriptableObjects/Abilities/Known Abilities", order = 1)]
-    public class KnownAbilitiesSO : ScriptableObject
+    public class KnownAbilitiesData : ScriptableObject
     {
-        public List<AbilitySO> Abilities;
+        public List<AbilityData> Abilities;
     }
 }

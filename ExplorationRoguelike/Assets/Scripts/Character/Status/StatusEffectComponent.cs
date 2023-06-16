@@ -4,10 +4,8 @@ using UnityEngine;
 
 namespace ExplorationRoguelike
 {
-    public enum ActivationType 
+    public class StatusEffectComponent : MonoBehaviour
     {
-        NONE,
-        COMBAT,
-        DIALOGUE
+
     }
 }

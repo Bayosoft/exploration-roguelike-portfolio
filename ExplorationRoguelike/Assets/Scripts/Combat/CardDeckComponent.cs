@@ -6,25 +6,25 @@ namespace ExplorationRoguelike
 {
     public class CardDeckComponent
     {
-        public ObservableCollection<AbilitySO> CardsInDeck;
-        public ObservableCollection<AbilitySO> CardsDrawn;
-        public ObservableCollection<AbilitySO> CardsDiscarded;
-        public ObservableCollection<AbilitySO> CardsShattered;
+        public ObservableCollection<AbilityData> CardsInDeck;
+        public ObservableCollection<AbilityData> CardsDrawn;
+        public ObservableCollection<AbilityData> CardsDiscarded;
+        public ObservableCollection<AbilityData> CardsShattered;
 
-        public CardDeckComponent(List<AbilitySO> abilities)
+        public CardDeckComponent(List<AbilityData> abilities)
         {
-            CardsInDeck = new ObservableCollection<AbilitySO>(abilities);
-            CardsDrawn = new ObservableCollection<AbilitySO>();
-            CardsDiscarded = new ObservableCollection<AbilitySO>();
-            CardsShattered = new ObservableCollection<AbilitySO>();
+            CardsInDeck = new ObservableCollection<AbilityData>(abilities);
+            CardsDrawn = new ObservableCollection<AbilityData>();
+            CardsDiscarded = new ObservableCollection<AbilityData>();
+            CardsShattered = new ObservableCollection<AbilityData>();
         }
 
         public void DrawCards(int amountOfCards)
         {
             // TODO: Probably should loop through in case individual cards trigger abilities as they are drawn.
-            List<AbilitySO> cards = CardsInDeck.ToList().GetRange(0, amountOfCards);
+            List<AbilityData> cards = CardsInDeck.ToList().GetRange(0, amountOfCards);
 
-            foreach(AbilitySO card in cards)
+            foreach(AbilityData card in cards)
             {
                 CardsInDeck.Remove(card);
                 CardsDrawn.Add(card);
@@ -44,7 +44,7 @@ namespace ExplorationRoguelike
         {
             for(int i = 0; i < amountOfCards; i++)
             {
-                AbilitySO card = CardsDrawn[0];
+                AbilityData card = CardsDrawn[0];
                 CardsDrawn.Remove(card);
                 CardsDiscarded.Add(card);
             }
@@ -54,9 +54,9 @@ namespace ExplorationRoguelike
         /// Discard specific cards in hand.
         /// </summary>
         /// <param name="cards"></param>
-        public void DiscardCards(List<AbilitySO> cards) 
+        public void DiscardCards(List<AbilityData> cards) 
         {
-            foreach(AbilitySO card in cards)
+            foreach(AbilityData card in cards)
             {
                 CardsDrawn.Remove(card);
                 CardsDiscarded.Add(card);
@@ -65,7 +65,7 @@ namespace ExplorationRoguelike
 
         public void Shuffle()
         {
-            foreach (AbilitySO card in CardsDiscarded)
+            foreach (AbilityData card in CardsDiscarded)
             {
                 CardsDiscarded.Remove(card);
                 CardsInDeck.Add(card);

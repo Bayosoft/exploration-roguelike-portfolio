@@ -4,8 +4,11 @@ using UnityEngine;
 
 namespace ExplorationRoguelike
 {
-    public class PlayerCharacterSO : CharacterSO
+    public class StatusEffect : MonoBehaviour
     {
+        public void Apply()
+        {
 
+        }
     }
 }

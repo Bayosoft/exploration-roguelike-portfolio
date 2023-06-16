@@ -9,16 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d1c6ccf330eff9459502c6f1be8463c, type: 3}
-  m_Name: Backstab
+  m_Script: {fileID: 11500000, guid: ce1e522a4f753324f86850cba849dec5, type: 3}
+  m_Name: Backstab Damage Part
   m_EditorClassIdentifier: 
-  Name: Backstab
-  Description:
-  - 'Stab the back for '
-  - '@Min'
-  - '-'
-  - '@Max'
-  - ' Damage.'
-  - ' Deals bonus damage to exposed targets.'
+  Order: 1
   MinDamage: 2
   MaxDamage: 4
