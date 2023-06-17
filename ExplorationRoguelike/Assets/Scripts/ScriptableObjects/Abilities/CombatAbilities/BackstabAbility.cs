@@ -1,0 +1,27 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace ExplorationRoguelike
+{
+
+    [CreateAssetMenu(fileName = "Backstab", menuName = "Abilities/Combat/Backstab")]
+    public class BackstabAbility : AbilityData
+    {
+        public int MinDamage, MaxDamage;
+        // property indicating its a card/combat ability.
+        // tags for determining status modifiers.
+
+        public override void Activate(Character instigator, IEnumerable<Character> targets)
+        {
+            // TODO:  instigator.StatusComponent.ApplyModifiers(this); or does this happen sooner?
+
+            AbilityExtensions.DamageMultipleTargets(instigator, targets, AbilityExtensions.GetRandomDamage(MinDamage, MaxDamage));
+        }
+
+        public override void Activate(Character instigator, Character target)
+        {
+            AbilityExtensions.DamageSingleTarget(instigator, target, AbilityExtensions.GetRandomDamage(MinDamage, MaxDamage));
+        }
+    }
+}

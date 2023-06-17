@@ -1,7 +1,7 @@
 ﻿using ExplorationRoguelike;
 
 public interface ICombatant
-{
-    public AbilityComponent AbilityComponent { get; }
+{ 
+    public AbilitySystemComponent AbilitySystemComponent { get; }
     public HealthComponent HealthComponent { get; }
 }

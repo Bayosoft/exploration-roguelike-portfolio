@@ -5,35 +5,26 @@ using UnityEngine;
 
 namespace ExplorationRoguelike
 {
-    [CreateAssetMenu(fileName = "Ability", menuName = "ScriptableObjects/Abilities/Ability", order = 1)]
-    public class AbilityData : ScriptableObject
+    [CreateAssetMenu(menuName = "Abilities")]
+    public abstract class AbilityData : ScriptableObject
     {
         public string Name;
         public List<string> Description;
-        public List<AbilityPartData> AbilityParts;
 
         /// <summary>
-        /// Overridden by specific ability types
+        /// Overridden by specific ability implementations.
         /// </summary>
         /// <param name="instigator"></param>
         /// <param name="targets"></param>
         /// <param name="activationType"></param>
-        public void Activate(AbilityComponent instigator, IEnumerable<Character> targets)
-        {
-            foreach (AbilityPartData part in AbilityParts)
-            {
-                part.Activate(instigator, targets);
-            }
-        }
+        public abstract void Activate(Character instigator, IEnumerable<Character> targets);
 
-        public void Activate(AbilityComponent instigator, Character target)
-        {
-            // TODO: What to do with different effect orders?
-            foreach (AbilityPartData part in AbilityParts)
-            {
-                part.Activate(instigator, target);
-            }
-        }
-     
+        /// <summary>
+        /// Overridden by specific ability implementations.
+        /// </summary>
+        /// <param name="instigator"></param>
+        /// <param name="targets"></param>
+        /// <param name="activationType"></param>
+        public abstract void Activate(Character instigator, Character target);
     }
 }

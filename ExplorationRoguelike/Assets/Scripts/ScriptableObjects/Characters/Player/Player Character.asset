@@ -16,3 +16,6 @@ MonoBehaviour:
   _gameImage: {fileID: 0}
   _uiImage: {fileID: 0}
   _characterObject: {fileID: 9206238031483290149, guid: d83f280b8af725446be4ddba59ac6e7e, type: 3}
+  _grantedAbilities:
+  - {fileID: 11400000, guid: 2fa971af94b29ae45aab6f1dc5b88ecc, type: 2}
+  - {fileID: 11400000, guid: ad74d21efd4bd0a42a32af346e448646, type: 2}

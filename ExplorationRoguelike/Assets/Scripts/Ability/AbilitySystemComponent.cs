@@ -1,14 +1,14 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static ExplorationRoguelike.CombatStateComponent;
 
 namespace ExplorationRoguelike
 {
-    public class AbilityComponent : MonoBehaviour
+    public class AbilitySystemComponent : MonoBehaviour
     {
-        // public List<AbilitySO> KnownAbilities { get => GetComponent<Character>().CharacterData.Abilities; }
-        public KnownAbilitiesData KnownAbilities;
+        [SerializeField]
+        private Character _owner;
+
+        public List<AbilityData> GrantedAbilities { get => _owner.CharacterData.GrantedAbilities; }
 
         public bool TryActivateAbility(AbilityData ability, IEnumerable<Character> targets)
         {
@@ -17,7 +17,7 @@ namespace ExplorationRoguelike
                 return false;
              }*/
 
-            ability.Activate(this, targets);
+            ability.Activate(_owner, targets);
 
             return true;
         }

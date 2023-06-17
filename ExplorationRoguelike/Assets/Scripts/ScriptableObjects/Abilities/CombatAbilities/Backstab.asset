@@ -9,15 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d1c6ccf330eff9459502c6f1be8463c, type: 3}
-  m_Name: Fireball
+  m_Script: {fileID: 11500000, guid: 336d998a3af4fe54a89d76489b9aedfc, type: 3}
+  m_Name: Backstab
   m_EditorClassIdentifier: 
-  Name: Fireball
-  Description:
-  - 'Launches a ball of fire that deals '
-  - '@Min'
-  - '-'
-  - '@Max'
-  - ' Fire damage.'
-  MinDamage: 5
-  MaxDamage: 8
+  Name: Backstab
+  Description: []
+  MinDamage: 2
+  MaxDamage: 4

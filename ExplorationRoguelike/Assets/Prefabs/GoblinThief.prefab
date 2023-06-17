@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2930803315595400043
+--- !u!1 &5999180174552909455
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5753117290655098796}
-  - component: {fileID: 9021128305087213842}
-  - component: {fileID: 2304722208397417476}
-  - component: {fileID: -4050552273276054713}
+  - component: {fileID: 6439832742432144910}
+  - component: {fileID: 920921058426865970}
+  - component: {fileID: 249769532101328409}
+  - component: {fileID: 354210894917572135}
   m_Layer: 0
   m_Name: GoblinThief
   m_TagString: Untagged
@@ -19,13 +19,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5753117290655098796
+--- !u!4 &6439832742432144910
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2930803315595400043}
+  m_GameObject: {fileID: 5999180174552909455}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -34,44 +34,44 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9021128305087213842
+--- !u!114 &920921058426865970
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2930803315595400043}
+  m_GameObject: {fileID: 5999180174552909455}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1aae89838a8232745bc556cf1573d37f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _characterData: {fileID: 11400000, guid: 199510dfdf1ff484ea89e410beafbfd0, type: 2}
-  _abilityComponent: {fileID: -4050552273276054713}
-  _healthComponent: {fileID: 2304722208397417476}
---- !u!114 &2304722208397417476
+  _abilitySystemComponent: {fileID: 354210894917572135}
+  _healthComponent: {fileID: 249769532101328409}
+--- !u!114 &249769532101328409
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2930803315595400043}
+  m_GameObject: {fileID: 5999180174552909455}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea3ea8451b3c94540bb9fe8537cd373b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 10
---- !u!114 &-4050552273276054713
+  MaxHealth: 20
+--- !u!114 &354210894917572135
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2930803315595400043}
+  m_GameObject: {fileID: 5999180174552909455}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0a04c7ac73c84f4682426adca016fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KnownAbilities: {fileID: 11400000, guid: 41f943135ecd6994eb2bb48aec5bda5b, type: 2}
+  _owner: {fileID: 920921058426865970}

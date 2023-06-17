@@ -41,8 +41,8 @@ namespace ExplorationRoguelike
 
         public void StartCombat()
         {
-            CardDeckComponent = new(Player.AbilityComponent.KnownAbilities.Abilities);
-            NpcTurnComponent = new(Enemy.AbilityComponent.KnownAbilities.Abilities);
+            CardDeckComponent = new(Player.AbilitySystemComponent.GrantedAbilities);
+            NpcTurnComponent = new(Enemy.AbilitySystemComponent.GrantedAbilities);
 
             CombatantTurns = new() {
                 { Player, true },
@@ -66,7 +66,7 @@ namespace ExplorationRoguelike
                 return;
             }
 
-            var activated = instigator.AbilityComponent.TryActivateAbility(ability, targets);
+            var activated = instigator.AbilitySystemComponent.TryActivateAbility(ability, targets);
 
             if (activated)
             {

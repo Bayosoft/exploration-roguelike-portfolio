@@ -23,6 +23,8 @@ namespace ExplorationRoguelike
         private GameObject _characterObject;
         public GameObject CharacterObject { get => _characterObject; }
 
-      //  public List<AbilitySO> Abilities;
+        [SerializeField]
+        private List<AbilityData> _grantedAbilities;
+        public List<AbilityData> GrantedAbilities { get => _grantedAbilities; }
     }
 }

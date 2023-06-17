@@ -9,7 +9,7 @@ namespace ExplorationRoguelike
         public CharacterData CharacterData { get => _characterData; }
 
         [SerializeField]
-        private AbilityComponent _abilityComponent;
-        public AbilityComponent AbilityComponent { get => _abilityComponent; }
+        private AbilitySystemComponent _abilitySystemComponent;
+        public AbilitySystemComponent AbilitySystemComponent { get => _abilitySystemComponent; }
     }
 }
