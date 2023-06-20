@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b2e5517d43255b4399cc141c109b70b, type: 3}
-  m_Name: Distract
+  m_Script: {fileID: 11500000, guid: 4d9ca0fb8f96c6440a6c3ac76efe528a, type: 3}
+  m_Name: Damage.Magic.Fire
   m_EditorClassIdentifier: 
-  Name: Distract
-  Tags:
-  - {fileID: 11400000, guid: 1abe8549361e3a044a1ffbbd69bf440a, type: 2}
-  Description: []
-  _durationInTurns: 2
+  Parent: {fileID: 11400000, guid: b8d63b5494a5b21409a7fff929c6d684, type: 2}

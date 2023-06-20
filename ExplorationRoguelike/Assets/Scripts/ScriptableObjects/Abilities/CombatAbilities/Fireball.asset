@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Fireball
   m_EditorClassIdentifier: 
   Name: Fireball
+  Tags:
+  - {fileID: 11400000, guid: 3711f25615f168a45a30e32b0ba9a6f0, type: 2}
   Description: []
   MinDamage: 4
   MaxDamage: 8

@@ -9,6 +9,7 @@ namespace ExplorationRoguelike
     public abstract class AbilityData : ScriptableObject
     {
         public string Name;
+        public List<GameplayTag> Tags;
         public List<string> Description;
 
         /// <summary>

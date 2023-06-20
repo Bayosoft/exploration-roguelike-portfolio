@@ -8,7 +8,8 @@ namespace ExplorationRoguelike
         [SerializeField]
         private Character _owner;
 
-        public List<AbilityData> GrantedAbilities { get => _owner.CharacterData.GrantedAbilities; }
+        public Dictionary<GameplayTag, List<StatusEffect>> ActiveStatusEffectsByTag;
+        public List<AbilityData> GrantedAbilities { get => _owner.CharacterData.Abilities; }
 
         public bool TryActivateAbility(AbilityData ability, IEnumerable<Character> targets)
         {
@@ -22,7 +23,7 @@ namespace ExplorationRoguelike
             return true;
         }
 
-        public bool CanActivateAbility(Character target, Ability ability)
+        public bool CanActivateAbility(Character target, AbilityData ability)
         {
             // Logic to see if the ability can be used
 

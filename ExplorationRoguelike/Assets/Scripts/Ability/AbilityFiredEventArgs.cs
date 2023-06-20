@@ -10,9 +10,9 @@ namespace ExplorationRoguelike
 
         public List<Character> Targets { get; }
 
-        public Ability Ability { get; }
+        public AbilityData Ability { get; }
 
-        public AbilityFiredEventArgs(Character instigator, List<Character> targets, Ability ability)
+        public AbilityFiredEventArgs(Character instigator, List<Character> targets, AbilityData ability)
         {
             Instigator = instigator;
             Targets = targets;
