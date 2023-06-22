@@ -8,7 +8,7 @@ namespace ExplorationRoguelike
         [SerializeField]
         private Character _owner;
 
-        public Dictionary<GameplayTag, List<StatusEffect>> ActiveStatusEffectsByTag;
+        public Dictionary<GameplayTag, List<StatusEffectData>> ActiveStatusEffectsByTag;
         public List<AbilityData> GrantedAbilities { get => _owner.CharacterData.Abilities; }
 
         public bool TryActivateAbility(AbilityData ability, IEnumerable<Character> targets)

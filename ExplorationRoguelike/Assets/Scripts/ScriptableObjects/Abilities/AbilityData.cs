@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace ExplorationRoguelike
 {
-    [CreateAssetMenu(menuName = "Abilities")]
     public abstract class AbilityData : ScriptableObject
     {
         public string Name;
