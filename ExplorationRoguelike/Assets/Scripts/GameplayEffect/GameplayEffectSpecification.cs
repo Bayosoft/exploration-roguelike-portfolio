@@ -8,9 +8,9 @@ namespace ExplorationRoguelike
     public class GameplayEffectSpecification 
     {
         public GameplayEffect GameplayEffect { get; private set; }
-        public int Stacks { get; private set; }
-        public int Duration { get; private set; }
-        public bool IsDurationLocked { get; private set; }
+        public int Stacks { get; set; }
+        public int Duration { get; set; }
+        public bool IsDurationLocked { get; set; }
         public GameplayEffectContext Context { get; private set; }
 
         public GameplayEffectSpecification(GameplayEffect effect, GameplayEffectContext context)

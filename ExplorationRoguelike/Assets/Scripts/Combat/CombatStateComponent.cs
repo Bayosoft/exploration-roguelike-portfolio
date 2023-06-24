@@ -58,7 +58,7 @@ namespace ExplorationRoguelike
             _currentState = CombatState.PLAYERTURN;
         }
 
-        public void HandleTurn(ICombatant instigator, IEnumerable<Character> targets, AbilityData ability)
+        public void HandleTurn(ICombatant instigator, IEnumerable<AbilitySystemComponent> targets, AbilityData ability)
         {
             if (CombatantTurns[instigator] == false)
             {
@@ -83,7 +83,7 @@ namespace ExplorationRoguelike
                 else if ((object)nextCombatant == Enemy)
                 {
                     _currentState = CombatState.ENEMYTURN;
-                    HandleTurn(Enemy, new List<Character>() { Player }, NpcTurnComponent.DeclaredAbility);
+                    HandleTurn(Enemy, new List<AbilitySystemComponent>() { Player.AbilitySystemComponent }, NpcTurnComponent.DeclaredAbility);
                 }
             }
 

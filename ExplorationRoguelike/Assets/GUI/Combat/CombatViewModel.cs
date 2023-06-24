@@ -89,7 +89,7 @@ namespace ExplortationRoguelike.GUI.Combat
         }
         public void OnEnemyTakeTurn(object ability)
         {
-            _combat.HandleTurn(_combat.Enemy, new List<Character>() { _combat.Player }, _combat.NpcTurnComponent.DeclaredAbility);
+            _combat.HandleTurn(_combat.Enemy, new List<AbilitySystemComponent>() { _combat.Player.AbilitySystemComponent }, _combat.NpcTurnComponent.DeclaredAbility);
             CombatState = _combat.CurrentState.ToString();
 
         }
@@ -97,7 +97,7 @@ namespace ExplortationRoguelike.GUI.Combat
         {
             AbilityData ability = ((CardViewModel)((CardView)SelectedCard).DataContext).Ability;
 
-            _combat.HandleTurn(_combat.Player, new List<Character>() { _combat.Enemy }, ability);
+            _combat.HandleTurn(_combat.Player, new List<AbilitySystemComponent>() { _combat.Enemy.AbilitySystemComponent }, ability);
 
             CombatState = _combat.CurrentState.ToString();
             OnPropertyChanged("EnemyHealth");

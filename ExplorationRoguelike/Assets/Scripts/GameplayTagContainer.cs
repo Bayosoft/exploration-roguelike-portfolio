@@ -28,7 +28,6 @@ namespace ExplorationRoguelike
             return true;
         }
 
-
         public bool HasAllExact(GameplayTagContainer tagsToCheck)
         {
             if (_tags != null || _tags.Count != 0)

@@ -1,3 +1,4 @@
+using Noesis;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,20 +8,30 @@ namespace ExplorationRoguelike
     [CreateAssetMenu(fileName = "Fireball", menuName = "Abilities/Combat/Fireball")]
     public class FireballAbility : AbilityData
     {
-        public int MinDamage, MaxDamage;
-        // property indicating its a card/combat ability.
-        // tags for determining status modifiers.
+        // Added in designer
+        [SerializeField]
+        private GameplayTagContainer _ignitedTagContainer;
 
-        public override void Activate(Character instigator, IEnumerable<Character> targets)
+        public GameplayEffect GameplayEffect;
+
+        public override void Activate(AbilitySystemComponent instigator, IEnumerable<AbilitySystemComponent> targets)
         {
-            // TODO:  instigator.StatusComponent.ApplyModifiers(this); or does this happen sooner?
+            GameplayEffectSpecification spec = new (GameplayEffect, instigator.MakeEffectContext());
 
-            AbilityExtensions.DamageMultipleTargets(instigator, targets, AbilityExtensions.GetRandomDamage(MinDamage, MaxDamage));
+            foreach(AbilitySystemComponent target in targets)
+            {
+                if (target.HasAll(_ignitedTagContainer))
+                {
+                    spec.Duration += 5;
+                }
+                instigator.ApplyGameplayEffectSpecToTarget(spec, target);
+            }
+            // Ability Fired event.
         }
 
-        public override void Activate(Character instigator, Character target)
+        public override void Activate(AbilitySystemComponent instigator, AbilitySystemComponent target)
         {
-            AbilityExtensions.DamageSingleTarget(instigator, target, AbilityExtensions.GetRandomDamage(MinDamage, MaxDamage));
+         //   AbilityExtensions.DamageSingleTarget(instigator, target, AbilityExtensions.GetRandomDamage(MinDamage, MaxDamage));
         }
     }
 }

@@ -17,7 +17,7 @@ namespace ExplorationRoguelike
         /// <param name="instigator"></param>
         /// <param name="targets"></param>
         /// <param name="activationType"></param>
-        public abstract void Activate(Character instigator, IEnumerable<Character> targets);
+        public abstract void Activate(AbilitySystemComponent instigator, IEnumerable<AbilitySystemComponent> targets);
 
         /// <summary>
         /// Overridden by specific ability implementations.
@@ -25,6 +25,6 @@ namespace ExplorationRoguelike
         /// <param name="instigator"></param>
         /// <param name="targets"></param>
         /// <param name="activationType"></param>
-        public abstract void Activate(Character instigator, Character target);
+        public abstract void Activate(AbilitySystemComponent instigator, AbilitySystemComponent target);
     }
 }

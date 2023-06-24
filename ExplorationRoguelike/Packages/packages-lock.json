@@ -1,9 +1,9 @@
 {
   "dependencies": {
     "com.noesis.noesisgui": {
-      "version": "file:C:/Users/rapha/Downloads/NoesisGUI-Unity-3.2.0-Indie",
+      "version": "file:NoesisGUI-Unity-3.2.1-Indie",
       "depth": 0,
-      "source": "local",
+      "source": "embedded",
       "dependencies": {
         "com.unity.inputsystem": "1.1.1"
       }

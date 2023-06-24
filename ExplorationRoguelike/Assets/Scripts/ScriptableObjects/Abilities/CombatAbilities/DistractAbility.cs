@@ -13,14 +13,14 @@ namespace ExplorationRoguelike
         // property indicating its a card/combat ability.
         // tags for determining status modifiers.
 
-        public override void Activate(Character instigator, IEnumerable<Character> targets)
+        public override void Activate(AbilitySystemComponent instigator, IEnumerable<AbilitySystemComponent> targets)
         {
             // TODO:  instigator.StatusComponent.ApplyModifiers(this); or does this happen sooner?
 
           //  AbilityExtensions.ApplyStatusEffect(instigator, targets, effect);
         }
 
-        public override void Activate(Character instigator, Character target)
+        public override void Activate(AbilitySystemComponent instigator, AbilitySystemComponent target)
         {
             //  AbilityExtensions.ApplyStatusEffect(instigator, target, effect);
         }

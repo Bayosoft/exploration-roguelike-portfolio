@@ -12,16 +12,16 @@ namespace ExplorationRoguelike
         // property indicating its a card/combat ability.
         // tags for determining status modifiers.
 
-        public override void Activate(Character instigator, IEnumerable<Character> targets)
+        public override void Activate(AbilitySystemComponent instigator, IEnumerable<AbilitySystemComponent> targets)
         {
             // TODO:  instigator.StatusComponent.ApplyModifiers(this); or does this happen sooner?
 
-            AbilityExtensions.DamageMultipleTargets(instigator, targets, AbilityExtensions.GetRandomDamage(MinDamage, MaxDamage));
+          //  AbilityExtensions.DamageMultipleTargets(instigator, targets, AbilityExtensions.GetRandomDamage(MinDamage, MaxDamage));
         }
 
-        public override void Activate(Character instigator, Character target)
+        public override void Activate(AbilitySystemComponent instigator, AbilitySystemComponent target)
         {
-            AbilityExtensions.DamageSingleTarget(instigator, target, AbilityExtensions.GetRandomDamage(MinDamage, MaxDamage));
+         //   AbilityExtensions.DamageSingleTarget(instigator, target, AbilityExtensions.GetRandomDamage(MinDamage, MaxDamage));
         }
     }
 }

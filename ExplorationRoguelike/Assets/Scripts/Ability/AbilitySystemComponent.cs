@@ -12,14 +12,14 @@ namespace ExplorationRoguelike
         public List<AbilityData> GrantedAbilities { get => _owner.CharacterData.Abilities; }
         public GameplayTagContainer ActiveGameplayTags { get; }
         public ActiveGameplayEffectContainer ActiveGameplayEffectContainer { get; private set; }
-        public bool TryActivateAbility(AbilityData ability, IEnumerable<Character> targets)
+        public bool TryActivateAbility(AbilityData ability, IEnumerable<AbilitySystemComponent> targets)
         {
             /*if(!CanActivateAbility(ability, ))
               {
                 return false;
              }*/
 
-            ability.Activate(_owner, targets);
+            ability.Activate(this, targets);
 
             return true;
         }
