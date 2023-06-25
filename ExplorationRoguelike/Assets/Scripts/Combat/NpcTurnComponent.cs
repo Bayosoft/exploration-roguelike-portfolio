@@ -16,8 +16,16 @@ namespace ExplorationRoguelike.Assets.Scripts.Combat
 
         public GameplayAbility DeclareIntent()
         {
-           DeclaredAbility = CombatAbilities[new Random().Next(CombatAbilities.Count)];
-           return DeclaredAbility;
+            if (CombatAbilities.Count > 0)
+            {
+                DeclaredAbility = CombatAbilities[new Random().Next(CombatAbilities.Count)];
+            }
+            else
+            {
+                DeclaredAbility = null;
+            }
+
+            return DeclaredAbility;
         }
     }
 }
