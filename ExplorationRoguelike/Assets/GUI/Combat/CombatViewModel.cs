@@ -95,9 +95,12 @@ namespace ExplortationRoguelike.GUI.Combat
         }
         public void OnPlayerTakeTurn(object ev)
         {
-            GameplayAbility ability = ((CardViewModel)((CardView)SelectedCard).DataContext).Ability;
+            if(SelectedCard != null)
+            {
+                GameplayAbility ability = ((CardViewModel)((CardView)SelectedCard).DataContext).Ability;
 
-            _combat.HandleTurn(_combat.Player, new List<AbilitySystemComponent>() { _combat.Enemy.AbilitySystemComponent }, ability);
+                _combat.HandleTurn(_combat.Player, new List<AbilitySystemComponent>() { _combat.Enemy.AbilitySystemComponent }, ability);
+            }
 
             CombatState = _combat.CurrentState.ToString();
             OnPropertyChanged("EnemyHealth");
