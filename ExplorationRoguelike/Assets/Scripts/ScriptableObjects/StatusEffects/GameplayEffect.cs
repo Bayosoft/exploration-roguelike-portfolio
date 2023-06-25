@@ -5,14 +5,24 @@ using UnityEngine;
 
 namespace ExplorationRoguelike
 {
+    [Serializable]
+    public enum GameplayDurationType
+    {
+        Instant,
+        Duration,
+        Infinite
+    }
+
+    public static class GameplayEffectConstants
+    {
+        public const float InfiniteDuration = -1f;
+        public const float InstantApplication = 0f;
+    }
+
     [CreateAssetMenu(fileName = "Gameplay Effect", menuName = "Gameplay Effect")]
     public class GameplayEffect : ScriptableObject
     {
-        enum DurationPolicy {
-            Instant,
-            Duration,
-            Infinite
-        }
+        public GameplayDurationType DurationType;
 
         public int Duration; // Duration of the effect in turns
         public bool IsPeriodic; // Not relevant on instant effects

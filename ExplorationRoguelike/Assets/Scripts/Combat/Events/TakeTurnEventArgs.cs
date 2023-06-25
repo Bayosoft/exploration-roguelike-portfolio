@@ -7,7 +7,7 @@ namespace ExplorationRoguelike
 {
     public class TakeTurnEventArgs : ConcreteEventArgs
     {
-        public AbilityData Ability { get; private set; }
+        public GameplayAbility Ability { get; private set; }
         public ICombatant Target { get; private set; }
         public ICombatant Attacker { get; private set; }
 

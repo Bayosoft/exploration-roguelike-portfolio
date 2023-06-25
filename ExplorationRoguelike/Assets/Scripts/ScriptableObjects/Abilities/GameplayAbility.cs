@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ExplorationRoguelike
 {
-    public abstract class AbilityData : ScriptableObject
+    public abstract class GameplayAbility : ScriptableObject
     {
         public string Name;
         public List<GameplayTag> Tags;

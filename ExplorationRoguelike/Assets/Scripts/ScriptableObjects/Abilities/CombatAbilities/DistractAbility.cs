@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ExplorationRoguelike
 {
-    public class DistractAbility : AbilityData
+    public class DistractAbility : GameplayAbility
     {
         // StatusEffect 
         [SerializeField]

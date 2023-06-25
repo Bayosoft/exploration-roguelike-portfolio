@@ -19,7 +19,7 @@ namespace ExplorationRoguelike
         public Sprite UiImage { get => _uiImage; }
 
         [SerializeField]
-        private List<AbilityData> _abilities;
-        public List<AbilityData> Abilities { get => _abilities; }
+        private List<GameplayAbility> _abilities;
+        public List<GameplayAbility> Abilities { get => _abilities; }
     }
 }

@@ -6,7 +6,7 @@ namespace ExplorationRoguelike
 {
 
     [CreateAssetMenu(fileName = "Backstab", menuName = "Abilities/Combat/Backstab")]
-    public class BackstabAbility : AbilityData
+    public class BackstabAbility : GameplayAbility
     {
         public int MinDamage, MaxDamage;
         // property indicating its a card/combat ability.

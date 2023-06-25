@@ -6,7 +6,7 @@ namespace ExplorationRoguelike
 {
 
     [CreateAssetMenu(fileName = "Fireball", menuName = "Abilities/Combat/Fireball")]
-    public class FireballAbility : AbilityData
+    public class FireballAbility : GameplayAbility
     {
         // Added in designer
         [SerializeField]
@@ -16,7 +16,7 @@ namespace ExplorationRoguelike
 
         public override void Activate(AbilitySystemComponent instigator, IEnumerable<AbilitySystemComponent> targets)
         {
-            GameplayEffectSpecification spec = new (GameplayEffect, instigator.MakeEffectContext());
+            GameplayEffectSpecification spec = instigator.MakeOutgoingEffectSpec(GameplayEffect);
 
             foreach(AbilitySystemComponent target in targets)
             {

@@ -58,7 +58,7 @@ namespace ExplorationRoguelike
             _currentState = CombatState.PLAYERTURN;
         }
 
-        public void HandleTurn(ICombatant instigator, IEnumerable<AbilitySystemComponent> targets, AbilityData ability)
+        public void HandleTurn(ICombatant instigator, IEnumerable<AbilitySystemComponent> targets, GameplayAbility ability)
         {
             if (CombatantTurns[instigator] == false)
             {

@@ -4,7 +4,7 @@ namespace ExplorationRoguelike.GUI.Card
 {
     public class CardViewModel : ViewModel
     {
-        public readonly AbilityData Ability;
+        public readonly GameplayAbility Ability;
 
         private string _description;
         public string Description
@@ -34,7 +34,7 @@ namespace ExplorationRoguelike.GUI.Card
             }
         }
 
-        public CardViewModel(AbilityData ability)
+        public CardViewModel(GameplayAbility ability)
         {
             Ability = ability;
             

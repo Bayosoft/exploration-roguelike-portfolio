@@ -17,7 +17,7 @@ namespace ExplortationRoguelike.GUI.Combat
         // public ObservableCollection<AbilitySO> DrawnCards { get { return new ObservableCollection<AbilitySO>(_combat.CardDeckComponent.CardsDrawn); } }
 
         public object SelectedCard { get; set; }
-        public AbilityData EnemyIntent { get { return _combat.NpcTurnComponent.DeclaredAbility; } }
+        public GameplayAbility EnemyIntent { get { return _combat.NpcTurnComponent.DeclaredAbility; } }
 
         public int PlayerHealth { get { return _combat.Player.HealthComponent.CurrentHealth; } }
         public int EnemyHealth { get { return _combat.Enemy.HealthComponent.CurrentHealth; } }
@@ -75,7 +75,7 @@ namespace ExplortationRoguelike.GUI.Combat
         public void DrawCards()
         {
             // Draw logic
-            foreach (AbilityData ability in _combat.CardDeckComponent.CardsInDeck)
+            foreach (GameplayAbility ability in _combat.CardDeckComponent.CardsInDeck)
             {
                 CardViewModel cardViewModel = new(ability);
                 //ViewBuilder.CreateCardView(cardViewModel);
@@ -95,7 +95,7 @@ namespace ExplortationRoguelike.GUI.Combat
         }
         public void OnPlayerTakeTurn(object ev)
         {
-            AbilityData ability = ((CardViewModel)((CardView)SelectedCard).DataContext).Ability;
+            GameplayAbility ability = ((CardViewModel)((CardView)SelectedCard).DataContext).Ability;
 
             _combat.HandleTurn(_combat.Player, new List<AbilitySystemComponent>() { _combat.Enemy.AbilitySystemComponent }, ability);
 

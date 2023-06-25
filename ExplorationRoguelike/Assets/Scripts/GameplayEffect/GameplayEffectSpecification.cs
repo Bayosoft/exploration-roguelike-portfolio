@@ -7,17 +7,21 @@ namespace ExplorationRoguelike
     // Holds data about the effect that is applied, like the GameplayEffect, stacks, duration, isDurationLocked, GameplayEffectContext.
     public class GameplayEffectSpecification 
     {
-        public GameplayEffect GameplayEffect { get; private set; }
+        public GameplayEffect EffectSO { get; private set; }
         public int Stacks { get; set; }
         public int Duration { get; set; }
         public bool IsDurationLocked { get; set; }
+        public int Level { get; set; }
         public GameplayEffectContext Context { get; private set; }
 
-        public GameplayEffectSpecification(GameplayEffect effect, GameplayEffectContext context)
+        public GameplayEffectSpecification(GameplayEffect effect, GameplayEffectContext context, int level = 1)
         {
-            GameplayEffect = effect;
-            Context = context;
+            EffectSO = effect;
 
+            Duration = effect.Duration;
+
+            Context = context;
+            Level = level;
         }
     }
 }

@@ -4,12 +4,15 @@ namespace ExplorationRoguelike
     public class GameplayEffectContext
     {
         public AbilitySystemComponent Instigator { get; private set; }
-        public AbilityData Ability { get; private set; }
 
-        public GameplayEffectContext(AbilitySystemComponent instigator, AbilityData ability)
+        public GameplayEffectContext(AbilitySystemComponent instigator)
         {
             Instigator = instigator;
-            Ability = ability;
+        }
+
+        public bool IsValid()
+        {
+            return Instigator != null;
         }
     }
 }
