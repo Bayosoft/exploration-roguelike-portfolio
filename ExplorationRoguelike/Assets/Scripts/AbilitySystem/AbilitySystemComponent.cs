@@ -164,6 +164,11 @@ namespace ExplorationRoguelike
         public void ExecuteActiveGameplayEffect(GameplayEffectSpecification effectSpec)
         {
             // 1) Apply modifiers
+            foreach(GameplayModifierSpec modifierSpec in effectSpec.Modifiers)
+            {
+                // TODO: Figure out how to execute modifiers to affect desired values (Health, resource, stats)
+            }
+
             // 2) Apply executions
         }
 
@@ -178,11 +183,15 @@ namespace ExplorationRoguelike
 
         public GameplayEffectSpecification MakeOutgoingEffectSpec(GameplayEffect effect)
         {
-            return MakeOutgoingEffectSpec(effect, MakeOutgoingEffectContext());
+            if(effect != null)
+            {
+                return MakeOutgoingEffectSpec(effect, MakeOutgoingEffectContext());
+            }
+            return null;
         }
         public GameplayEffectSpecification MakeOutgoingEffectSpec(GameplayEffect effect, GameplayEffectContext context)
         {
-            if (effect != null && context != null)
+            if (effect != null)
             {
                 return new(effect, context, GetLevel());
             }

@@ -24,6 +24,13 @@ namespace ExplorationRoguelike
 
             Context = context;
             Level = level;
+
+            Modifiers = new List<GameplayModifierSpec>();
+
+            foreach(GameplayModifier modifier in effect.Modifiers)
+            {
+                Modifiers.Add(new GameplayModifierSpec(modifier, context.Instigator));
+            }
         }
     }
 }

@@ -47,23 +47,24 @@ namespace ExplorationRoguelike
         private float _snapshottedMagnitude;
         private bool _didSnapshotInstigator;
 
-        public static GameplayModifierSpec Create(GameplayModifier modifier, AbilitySystemComponent instigator)
+        public GameplayModifierSpec(GameplayModifier modifier, AbilitySystemComponent instigator)
         {
-            var newSpec = new GameplayModifierSpec();
-            
-            newSpec._modifierBase = modifier;
+            _modifierBase = modifier;
 
             if(modifier.SnapshotInstigator)
             {
-                newSpec._snapshottedMagnitude = modifier.ModifierMagnitude;
+                _snapshottedMagnitude = modifier.ModifierMagnitude;
 
                 GameplayTag outgoingTag = null;
-                instigator.CalculateAggregatedModifiers(ref newSpec._snapshottedMagnitude, modifier.ModifierTags, outgoingTag.ToSingleTagContainer());
+                instigator.CalculateAggregatedModifiers(ref _snapshottedMagnitude, modifier.ModifierTags, outgoingTag.ToSingleTagContainer());
 
-                newSpec._didSnapshotInstigator = true;
+                _didSnapshotInstigator = true;
             }
-
-            return newSpec;
+            else
+            {
+                _snapshottedMagnitude = 0f;
+                _didSnapshotInstigator = false;
+            }
         }
         
         // Return true if it passed the required tags to modify the value
