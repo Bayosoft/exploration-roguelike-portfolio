@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb499093bdd06794fbdcd3a4f2c698e9, type: 3}
-  m_Name: Gameplay Effect
+  m_Name: TestGameplayEffect
   m_EditorClassIdentifier: 
+  DurationType: 0
   Duration: 0
   IsPeriodic: 0
   PeriodicDelay: 0

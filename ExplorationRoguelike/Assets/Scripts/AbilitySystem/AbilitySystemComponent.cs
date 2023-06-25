@@ -16,7 +16,7 @@ namespace ExplorationRoguelike
 
         public GameplayTagContainer OwnedGameplayTags { get; private set; }
 
-        public void OnEnable()
+        void Start()
         {
             ActiveGameplayEffects = new(this);
         }
