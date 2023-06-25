@@ -15,8 +15,8 @@ namespace ExplorationRoguelike
 
     public static class GameplayEffectConstants
     {
-        public const float InfiniteDuration = -1f;
-        public const float InstantApplication = 0f;
+        public const int InfiniteDuration = -1;
+        public const int InstantApplication = 0;
     }
 
     [CreateAssetMenu(fileName = "Gameplay Effect", menuName = "Gameplay Effect")]

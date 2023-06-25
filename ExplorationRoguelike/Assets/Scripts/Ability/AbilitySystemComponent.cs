@@ -16,9 +16,9 @@ namespace ExplorationRoguelike
 
         public GameplayTagContainer OwnedGameplayTags { get; private set; }
 
-        public void OnEnabled()
+        public void OnEnable()
         {
-            ActiveGameplayEffects.Initialize(this);
+            ActiveGameplayEffects = new(this);
         }
 
         // In case levels are a thing
@@ -149,7 +149,7 @@ namespace ExplorationRoguelike
             RemoveGameplayEffectsWithAssetTags(OwnedGameplayTags);
 
             // Actually apply the gameplay effect spec
-            return null;
+            return appliedHandle;
         }
 
         // Removes all active gameplay effects with given asset tags.
@@ -182,7 +182,7 @@ namespace ExplorationRoguelike
         {
             if (effect != null && context != null)
             {
-                return new GameplayEffectSpecification(effect, context, GetLevel());
+                return new(effect, context, GetLevel());
             }
 
             return null;
@@ -191,7 +191,7 @@ namespace ExplorationRoguelike
         public GameplayEffectContext MakeOutgoingEffectContext()
         {
             // Get context from ASC including instigator
-            GameplayEffectContext context = new GameplayEffectContext(this);
+            GameplayEffectContext context = new(this);
 
             return context;
         }

@@ -10,7 +10,7 @@ namespace ExplorationRoguelike
         public List<ActiveGameplayEffect> ActiveEffects { get; private set; }
         private AbilitySystemComponent _owner;
 
-        public void Initialize(AbilitySystemComponent owner)
+        public ActiveGameplayEffectContainer(AbilitySystemComponent owner)
         {
             _owner = owner;
         }
