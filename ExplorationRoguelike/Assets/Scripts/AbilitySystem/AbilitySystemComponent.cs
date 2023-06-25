@@ -55,9 +55,11 @@ namespace ExplorationRoguelike
                     continue;
                 }
 
-                foreach (Modifier modifier in activeEffect.Specification.EffectSO.Modifiers)
+                AbilitySystemComponent instigator = activeEffect.Specification.Context.Instigator;
+
+                foreach (GameplayModifierSpec modifier in activeEffect.Specification.Modifiers)
                 {
-                    modifier.TryApply(ref value, valueTags, dynamicTags);
+                    modifier.TryApply(ref value, valueTags, dynamicTags, instigator, this);
                 }
             }
 

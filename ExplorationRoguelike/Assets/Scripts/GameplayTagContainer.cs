@@ -6,40 +6,54 @@ using UnityEngine;
 namespace ExplorationRoguelike
 {
     [Serializable]
-    public class GameplayTagContainer
+    public class GameplayTagContainer : IEnumerable
     {
         [SerializeField]
         private List<GameplayTag> _tags;
 
-        public List<GameplayTag> Tags { get { return _tags; } }
+        GameplayTagContainer()
+        {
+            _tags = new();
+        }
+
+        public GameplayTagContainer(GameplayTag tag)
+        {
+            _tags = new() { tag };
+        }
 
         public bool HasAll(GameplayTagContainer tagsToCheck)
         {
-            if (_tags != null || _tags.Count != 0)
+            if (_tags == null)
             {
-                foreach (GameplayTag tagToCheck in tagsToCheck.Tags)
+                return tagsToCheck.IsEmpty();
+            }
+
+            foreach (GameplayTag tagToCheck in tagsToCheck)
+            {
+                if (!HasTag(tagToCheck))
                 {
-                    if (!HasTag(tagToCheck))
-                    {
-                        return false;
-                    }
+                    return false;
                 }
             }
+
             return true;
         }
 
         public bool HasAllExact(GameplayTagContainer tagsToCheck)
         {
-            if (_tags != null || _tags.Count != 0)
+            if(_tags == null)
             {
-                foreach (GameplayTag tagToCheck in tagsToCheck.Tags)
+                return tagsToCheck.IsEmpty();
+            }
+
+            foreach (GameplayTag tagToCheck in tagsToCheck)
+            {
+                if (!HasTagExact(tagToCheck))
                 {
-                    if (!HasTagExact(tagToCheck))
-                    {
-                        return false;
-                    }
+                    return false;
                 }
             }
+
             return true;
         }
 
@@ -47,7 +61,7 @@ namespace ExplorationRoguelike
         {
             if (_tags != null || _tags.Count != 0)
             {
-                foreach (GameplayTag tagToCheck in tagsToCheck.Tags)
+                foreach (GameplayTag tagToCheck in tagsToCheck)
                 {
                     if (HasTag(tagToCheck))
                     {
@@ -62,7 +76,7 @@ namespace ExplorationRoguelike
         {
             if (_tags != null || _tags.Count != 0)
             {
-                foreach (GameplayTag tagToCheck in tagsToCheck.Tags)
+                foreach (GameplayTag tagToCheck in tagsToCheck)
                 {
                     if (HasTagExact(tagToCheck))
                     {
@@ -76,6 +90,11 @@ namespace ExplorationRoguelike
 
         public bool HasTag(GameplayTag tagToCheck)
         {
+            if(tagToCheck == null)
+            {
+                return false;
+            }
+
             foreach (GameplayTag tag in _tags)
             {
                 return tag.Matches(tagToCheck);
@@ -85,16 +104,20 @@ namespace ExplorationRoguelike
 
         public bool HasTagExact(GameplayTag tagToCheck)
         {
-            foreach (GameplayTag tag in _tags)
+            if(tagToCheck == null)
             {
-                return tag.MatchesExact(tagToCheck);
+                return false;
             }
-            return false;
+
+            return _tags.Contains(tagToCheck);
         }
 
         public void Add(GameplayTag tag)
         {
-            _tags.Add(tag);
+            if(tag != null)
+            {
+                _tags.Add(tag);
+            }
         }
 
         public void Remove(GameplayTag tag)
@@ -108,12 +131,55 @@ namespace ExplorationRoguelike
 
         public void RemoveExact(GameplayTag tag)
         {
-            _tags.Remove(tag);
+            if(tag != null)
+            {
+                _tags.Remove(tag);
+            }
         }
 
         public bool IsEmpty()
         {
             return _tags.Count == 0;
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return _tags.GetEnumerator();
+        }
+    }
+
+    [Serializable]
+    public struct GameplayTagRequirements
+    {
+        public GameplayTagContainer RequiredTags;
+        public GameplayTagContainer BlockingTags;
+
+        public bool HasRequirements()
+        {
+            return RequiredTags.IsEmpty() && BlockingTags.IsEmpty();
+        }
+
+        public bool RequirementsMet(GameplayTagContainer tags)
+        {
+            return tags.HasAll(RequiredTags) && !tags.HasAny(BlockingTags);
+        }
+
+        public bool RequirementsMet(GameplayTagContainer tags, GameplayTagContainer dynamicTags)
+        {
+            foreach (GameplayTag requiredTag in RequiredTags)
+            {
+                if (!tags.HasTag(requiredTag) && !dynamicTags.HasTag(requiredTag))
+                {
+                    return false;
+                }
+            }
+
+            if (tags.HasAny(BlockingTags) || dynamicTags.HasAny(BlockingTags))
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

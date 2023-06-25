@@ -11,6 +11,7 @@ namespace ExplorationRoguelike
         {
             Handle = ActiveGameplayEffectHandle.GenerateNew();
             Specification = effectSpec;
+            IsInhibited = false;
         }
 
         public ActiveGameplayEffectHandle Handle { get; private set; }

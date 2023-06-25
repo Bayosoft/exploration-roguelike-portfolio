@@ -14,6 +14,8 @@ namespace ExplorationRoguelike
         public int Level { get; set; }
         public GameplayEffectContext Context { get; private set; }
 
+        public List<GameplayModifierSpec> Modifiers { get; private set; }
+
         public GameplayEffectSpecification(GameplayEffect effect, GameplayEffectContext context, int level = 1)
         {
             EffectSO = effect;

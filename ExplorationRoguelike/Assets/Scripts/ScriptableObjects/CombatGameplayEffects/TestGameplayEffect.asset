@@ -26,11 +26,13 @@ MonoBehaviour:
       BlockingTags:
         _tags:
         - {fileID: 11400000, guid: bc3df637670c1414a80010fe16dad400, type: 2}
+    _additiveValue: 0
   - _tagRequirements:
       RequiredTags:
         _tags: []
       BlockingTags:
         _tags: []
+    _additiveValue: 0
   ConditionalEffects:
   - GameplayEffect: {fileID: 11400000}
     ApplicationTagRequirements:
@@ -42,7 +44,10 @@ MonoBehaviour:
   OnEarlyRemoval: []
   OnExpirationEffects: []
   AssetTags:
-    _tags: []
+    _tags:
+    - {fileID: 11400000, guid: b8d63b5494a5b21409a7fff929c6d684, type: 2}
+    - {fileID: 11400000, guid: b4014d3fc4e302b44a0aa5be783f0dd6, type: 2}
+    - {fileID: 11400000, guid: e7317398925934b479e03c408215649b, type: 2}
   GrantedTags:
     _tags: []
   GrantedBlockedAbilityTags:

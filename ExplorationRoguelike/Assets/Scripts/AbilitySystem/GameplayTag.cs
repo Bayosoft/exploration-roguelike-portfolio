@@ -17,5 +17,9 @@ namespace ExplorationRoguelike
             return tagToCompare == this;
         }
 
+        public GameplayTagContainer ToSingleTagContainer()
+        {
+            return new GameplayTagContainer(this);
+        }
     }
 }

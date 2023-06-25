@@ -15,8 +15,9 @@ namespace ExplorationRoguelike
             set
             {
                 _currentHealth = value; 
-                if (_currentHealth == 0)
+                if (_currentHealth <= 0)
                 {
+                    _currentHealth = 0;
                     OnDeath();
                 }
             }
@@ -28,7 +29,7 @@ namespace ExplorationRoguelike
         }
         public void ReduceHealthBy(int amount)
         {
-            CurrentHealth -= amount;
+            CurrentHealth = Mathf.Max(0, CurrentHealth - amount);
         }
 
         public virtual void OnDeath()
