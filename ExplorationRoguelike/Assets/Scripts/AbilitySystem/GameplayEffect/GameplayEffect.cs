@@ -38,8 +38,8 @@ namespace ExplorationRoguelike
         public List<GameplayModifier> Modifiers; // List of modifiers to apply. (For non-periodic and non-instant, this is applied while active and removed after)
         public List<ConditionalGameplayEffect> ConditionalEffects; // List of conditional effects to apply if this effect is applied and their individual tag requirements are met
 
-        public List<ConditionalGameplayEffect> OnEarlyRemoval; // Effects applied if this effect ends before it expired.
-        public List<ConditionalGameplayEffect> OnExpirationEffects; // Effects applied to target when this effect expires.
+        public List<ConditionalGameplayEffect> EarlyRemovalEffects; // Effects applied if this effect ends before it expired.
+        public List<ConditionalGameplayEffect> ExpirationEffects; // Effects applied to target when this effect expires.
 
         [Header("Tags")]
         public GameplayTagContainer AssetTags; // Tags this effect has, but do not grant
@@ -49,6 +49,31 @@ namespace ExplorationRoguelike
         public GameplayTagRequirements OngoingTagRequirements; // Ongoing target tag requirements, effect is inactive while met, but not removed.
         public GameplayTagRequirements RemovalTagRequirements; // Remove the effect when these are met
         public GameplayTagContainer RemoveEffectsWithTags; // Remove any effects with these tags
+        
+        private GameplayEffect()
+        {
+            DurationType = GameplayDurationType.Instant;
+            Duration = 0;
+
+            IsPeriodic = false;
+            PeriodicDelay = 0;
+            ExecutePeriodicImmediately = false;
+
+            Executions = new List<GameplayExecution>();
+            Modifiers = new List<GameplayModifier>();
+            ConditionalEffects = new List<ConditionalGameplayEffect>();
+
+            EarlyRemovalEffects = new List<ConditionalGameplayEffect>();
+            ExpirationEffects = new List<ConditionalGameplayEffect>();
+
+            AssetTags = new GameplayTagContainer();
+            GrantedTags = new GameplayTagContainer();
+            GrantedBlockedAbilityTags = new GameplayTagContainer();
+            ApplicationTagRequirements = new GameplayTagRequirements();
+            OngoingTagRequirements = new GameplayTagRequirements();
+            RemovalTagRequirements = new GameplayTagRequirements();
+            RemoveEffectsWithTags = new GameplayTagContainer();
+        }
 
         public void Apply(AbilitySystemComponent target)
         {
@@ -60,8 +85,8 @@ namespace ExplorationRoguelike
     public struct ConditionalGameplayEffect
     {
         public GameplayEffect GameplayEffect;
-        public GameplayTagRequirements ApplicationTagRequirements;
         public bool IsPersistent;
+        public GameplayTagRequirements ApplicationTagRequirements;
     }
 
     public class GameplayExecution

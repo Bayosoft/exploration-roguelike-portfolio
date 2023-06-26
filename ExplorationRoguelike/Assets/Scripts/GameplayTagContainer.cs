@@ -11,7 +11,7 @@ namespace ExplorationRoguelike
         [SerializeField]
         private List<GameplayTag> _tags;
 
-        GameplayTagContainer()
+        public GameplayTagContainer()
         {
             _tags = new();
         }
@@ -59,7 +59,7 @@ namespace ExplorationRoguelike
 
         public bool HasAny(GameplayTagContainer tagsToCheck)
         {
-            if (_tags != null || _tags.Count != 0)
+            if(tagsToCheck != null)
             {
                 foreach (GameplayTag tagToCheck in tagsToCheck)
                 {
@@ -74,7 +74,7 @@ namespace ExplorationRoguelike
 
         public bool HasAnyExact(GameplayTagContainer tagsToCheck)
         {
-            if (_tags != null || _tags.Count != 0)
+            if(tagsToCheck != null)
             {
                 foreach (GameplayTag tagToCheck in tagsToCheck)
                 {
@@ -83,33 +83,33 @@ namespace ExplorationRoguelike
                         return true;
                     }
                 }
-            }
-
+            }        
             return false;
         }
 
         public bool HasTag(GameplayTag tagToCheck)
         {
-            if(tagToCheck == null)
+            if(tagToCheck != null)
             {
-                return false;
-            }
-
-            foreach (GameplayTag tag in _tags)
-            {
-                return tag.Matches(tagToCheck);
+                foreach (GameplayTag tag in _tags)
+                {
+                    if(tag.Matches(tagToCheck))
+                    {
+                        return true;
+                    }
+                }
             }
             return false;
         }
 
         public bool HasTagExact(GameplayTag tagToCheck)
         {
-            if(tagToCheck == null)
+            if(tagToCheck != null)
             {
-                return false;
+                return _tags.Contains(tagToCheck);
             }
 
-            return _tags.Contains(tagToCheck);
+            return false;
         }
 
         public void Add(GameplayTag tag)
@@ -122,19 +122,7 @@ namespace ExplorationRoguelike
 
         public void Remove(GameplayTag tag)
         {
-            if (HasTag(tag))
-            {
-                // TODO: Make it remove tag that has partial match.
-                _tags.Remove(tag);
-            }
-        }
-
-        public void RemoveExact(GameplayTag tag)
-        {
-            if(tag != null)
-            {
-                _tags.Remove(tag);
-            }
+            _tags.Remove(tag);
         }
 
         public bool IsEmpty()
@@ -161,11 +149,21 @@ namespace ExplorationRoguelike
 
         public bool RequirementsMet(GameplayTagContainer tags)
         {
+            if(tags == null)
+            {
+                return RequiredTags.IsEmpty();
+            }
+
             return tags.HasAll(RequiredTags) && !tags.HasAny(BlockingTags);
         }
 
         public bool RequirementsMet(GameplayTagContainer tags, GameplayTagContainer dynamicTags)
         {
+            if(tags == null)
+            {
+                return false;
+            }
+
             foreach (GameplayTag requiredTag in RequiredTags)
             {
                 if (!tags.HasTag(requiredTag) && !dynamicTags.HasTag(requiredTag))

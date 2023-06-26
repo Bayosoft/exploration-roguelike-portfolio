@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace ExplortationRoguelike.GUI
 {
-
-    public class ViewModel : MonoBehaviour, INotifyPropertyChanged
+    public class ViewModel : INotifyPropertyChanged
     {
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged(string name)

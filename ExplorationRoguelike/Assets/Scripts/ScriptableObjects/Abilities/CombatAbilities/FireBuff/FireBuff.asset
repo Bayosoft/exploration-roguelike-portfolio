@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b3bc6edbb74d1c478dedc14072f7153, type: 3}
-  m_Name: Fireball
+  m_Script: {fileID: 11500000, guid: ef1f79f146387f449ac123a1e79eccf5, type: 3}
+  m_Name: FireBuff
   m_EditorClassIdentifier: 
-  Name: Fireball
-  Tags:
-  - {fileID: 11400000, guid: 3711f25615f168a45a30e32b0ba9a6f0, type: 2}
+  Name: Fire Buff
+  Tags: []
   Description: []
-  MinDamage: 4
-  MaxDamage: 8
+  GameplayEffect: {fileID: 11400000, guid: 854a0f3f30605914f9be8af8e08ee6bf, type: 2}

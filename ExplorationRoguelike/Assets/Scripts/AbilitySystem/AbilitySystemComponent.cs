@@ -12,9 +12,15 @@ namespace ExplorationRoguelike
         private Character _owner;
         public List<GameplayAbility> GrantedAbilities { get => _owner.CharacterData.Abilities; }
         public GameplayTagContainer ActiveGameplayTags { get; }
-        public ActiveGameplayEffectContainer ActiveGameplayEffects { get; private set; }
-
         public GameplayTagContainer OwnedGameplayTags { get; private set; }
+
+        private ActiveGameplayEffectContainer ActiveGameplayEffects;
+
+        AbilitySystemComponent() 
+        {
+            ActiveGameplayTags = new();
+            OwnedGameplayTags = new();
+        }
 
         void Start()
         {
@@ -29,6 +35,11 @@ namespace ExplorationRoguelike
 
         public bool TryActivateAbility(GameplayAbility ability, IEnumerable<AbilitySystemComponent> targets)
         {
+            if(ability == null)
+            {
+                return false;
+            }
+
             if(!CanActivateAbility(ability))
             {
                 return false;
@@ -43,12 +54,12 @@ namespace ExplorationRoguelike
         {
             // Logic to see if the ability can be used
 
-            return false;
+            return true;
         }
 
-        public float CalculateAggregatedModifiers(ref float value, in GameplayTagContainer valueTags, in GameplayTagContainer dynamicTags)
+        public float CalculateAggregatedModifiers(float value, in GameplayTagContainer valueTags, GameplayTagContainer dynamicTags = null)
         {
-            foreach (ActiveGameplayEffect activeEffect in ActiveGameplayEffects.ActiveEffects)
+            foreach (ActiveGameplayEffect activeEffect in ActiveGameplayEffects)
             {
                 if (activeEffect.IsInhibited)
                 {

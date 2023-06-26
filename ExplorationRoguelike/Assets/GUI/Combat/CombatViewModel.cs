@@ -9,18 +9,34 @@ namespace ExplortationRoguelike.GUI.Combat
 {
     public class CombatViewModel : ViewModel
     {
-        [SerializeField]
         private CombatStateComponent _combat;
 
         private ObservableCollection<object> _cardViews;
-        public ObservableCollection<object> CardViews { get { return _cardViews; } set { _cardViews = value; OnPropertyChanged("CardViews"); } }
+        public ObservableCollection<object> CardViews 
+        { 
+            get { return _cardViews; } 
+            set { _cardViews = value; OnPropertyChanged("CardViews"); } 
+        }
+
         // public ObservableCollection<AbilitySO> DrawnCards { get { return new ObservableCollection<AbilitySO>(_combat.CardDeckComponent.CardsDrawn); } }
 
         public object SelectedCard { get; set; }
         public GameplayAbility EnemyIntent { get { return _combat.NpcTurnComponent.DeclaredAbility; } }
 
-        public int PlayerHealth { get { return _combat.Player.HealthComponent.CurrentHealth; } }
-        public int EnemyHealth { get { return _combat.Enemy.HealthComponent.CurrentHealth; } }
+        public int PlayerHealth 
+        { 
+            get { return Mathf.CeilToInt(_combat.Player.HealthComponent.CurrentHealth); } 
+        }
+
+        public int EnemyHealth 
+        { 
+            get { return Mathf.CeilToInt(_combat.Enemy.HealthComponent.CurrentHealth); }
+        }
+
+        public string EnemyName 
+        { 
+            get { return _combat.Enemy.CharacterData.Name.Length > 0 ? _combat.Enemy.CharacterData.Name : "Enemy"; }
+        }
 
         private string _combatState;
         public string CombatState
@@ -61,17 +77,21 @@ namespace ExplortationRoguelike.GUI.Combat
 
         public CombatViewModel()
         {
+            CardViews = new ObservableCollection<object>();
             _playerTakeTurnCommand = new DelegateCommand(OnPlayerTakeTurn);
             _enemyTakeTurnCommand = new DelegateCommand(OnEnemyTakeTurn);
         }
-        void Start()
+
+        public void SetCombatStateComponent(CombatStateComponent component)
         {
-            GetComponent<NoesisView>().Content.DataContext = this;
-            CardViews = new ObservableCollection<object>();
+            _combat = component;
+        }
+
+        public void Start()
+        {
             DrawCards();
         }
 
-        public NoesisXaml CardView;
         public void DrawCards()
         {
             // Draw logic
@@ -80,9 +100,9 @@ namespace ExplortationRoguelike.GUI.Combat
                 CardViewModel cardViewModel = new(ability);
                 //ViewBuilder.CreateCardView(cardViewModel);
                 
-                object cardView = CardView.Load();          
+                CardView cardView = ViewModelComponent.CardXamlView.Load() as CardView;          
                 
-                ((CardView)cardView).DataContext = cardViewModel;
+                cardView.DataContext = cardViewModel;
 
                 CardViews.Add(cardView);
             }

@@ -26,9 +26,16 @@ namespace ExplorationRoguelike
         // True if the instigator modifiers are added to the magnitude are snapshotted
         public bool SnapshotInstigator;
 
-        public bool DoesMeetRequirements(in GameplayTagContainer tags, in GameplayTagContainer dynamicTags)
+        public bool DoesMeetRequirements(GameplayTagContainer tags, GameplayTagContainer dynamicTags = null)
         {
-            return TagRequirements.RequirementsMet(tags, dynamicTags);
+            if(dynamicTags == null)
+            {
+                return TagRequirements.RequirementsMet(tags);
+            }
+            else
+            {
+                return TagRequirements.RequirementsMet(tags, dynamicTags);
+            }
         }
 
         public GameplayModifierSpec MakeModifierSpec()
@@ -55,8 +62,9 @@ namespace ExplorationRoguelike
             {
                 _snapshottedMagnitude = modifier.ModifierMagnitude;
 
+                // @TODO: access GameplayTagsLibrary to retrieve IncomingTag for dynamic tags
                 GameplayTag outgoingTag = null;
-                instigator.CalculateAggregatedModifiers(ref _snapshottedMagnitude, modifier.ModifierTags, outgoingTag.ToSingleTagContainer());
+//                _snapshottedMagnitude = instigator.CalculateAggregatedModifiers(_snapshottedMagnitude, modifier.ModifierTags);
 
                 _didSnapshotInstigator = true;
             }
@@ -95,18 +103,18 @@ namespace ExplorationRoguelike
                 // Apply instigator mods
                 if(instigator != null)
                 {
-                    // @TODO: access GameplayTagsLibrary to retrieve OutgoingTag
+                    // @TODO: access GameplayTagsLibrary to retrieve OutgoingTag for dynamic tags
                     GameplayTag outgoingTag = null;
-                    instigator.CalculateAggregatedModifiers(ref magnitude, _modifierBase.ModifierTags, outgoingTag.ToSingleTagContainer());
+//                    magnitude = instigator.CalculateAggregatedModifiers(magnitude, _modifierBase.ModifierTags);
                 }
             }
 
             // Apply target mods
             if(target != null)
             {
-                // @TODO: access GameplayTagsLibrary to retrieve IncomingTag
+                // @TODO: access GameplayTagsLibrary to retrieve IncomingTag for dynamic tags
                 GameplayTag incomingTag = null;
-                target.CalculateAggregatedModifiers(ref magnitude, _modifierBase.ModifierTags, incomingTag.ToSingleTagContainer());
+//                magnitude = target.CalculateAggregatedModifiers(magnitude, _modifierBase.ModifierTags);
             }
 
             switch (_modifierBase.Operator)

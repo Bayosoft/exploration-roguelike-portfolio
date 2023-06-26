@@ -6,26 +6,30 @@ namespace ExplorationRoguelike
 {
     public class AbilityExtensions
     {
-        public static int GetRandomDamage(int min, int max)
+        public static float GetRandomDamage(float min, float max)
         {
            return Random.Range(min, max);
         }
 
-        public static void DamageMultipleTargets(Character instigator, IEnumerable<Character> targets, int damage)
+        public static void DamageMultipleTargets(AbilitySystemComponent instigator, IEnumerable<AbilitySystemComponent> targets, int damage)
         {
-            foreach (Character target in targets)
+            foreach (AbilitySystemComponent target in targets)
             {
-                var hc = (target as ICombatant).HealthComponent;
-                hc.ReduceHealthBy(damage);
+                var healthComponent = target.GetComponent<HealthComponent>();
+                if (healthComponent)
+                {
+                    healthComponent.ReduceHealthBy(damage);
+                }
             }
         }
 
-        public static void DamageSingleTarget(Character instigator, Character target, int damage)
+        public static void DamageSingleTarget(AbilitySystemComponent instigator, AbilitySystemComponent target, float damage)
         {
-            var hc = (target as ICombatant).HealthComponent;
-            hc.ReduceHealthBy(damage);
+            var healthComponent = target.GetComponent<HealthComponent>();
+            if(healthComponent)
+            {
+                healthComponent.ReduceHealthBy(damage);
+            }
         }
-
-
     }
 }

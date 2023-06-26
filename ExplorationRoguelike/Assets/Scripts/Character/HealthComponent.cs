@@ -6,10 +6,10 @@ namespace ExplorationRoguelike
 {
     public class HealthComponent : MonoBehaviour
     {
-        public int MaxHealth;
+        public float MaxHealth;
 
-        private int _currentHealth;
-        public int CurrentHealth
+        private float _currentHealth;
+        public float CurrentHealth
         {
             get => _currentHealth;
             set
@@ -27,14 +27,17 @@ namespace ExplorationRoguelike
         {
             CurrentHealth = MaxHealth;
         }
-        public void ReduceHealthBy(int amount)
+        public void ReduceHealthBy(float amount)
         {
             CurrentHealth = Mathf.Max(0, CurrentHealth - amount);
         }
 
         public virtual void OnDeath()
         {
-            Debug.Log($"{this.gameObject.name} died.");
+            Character character = GetComponent<Character>();
+
+            string characterName = (character ? character.CharacterData.Name : gameObject.name);
+            Debug.Log($"{characterName} died.");
             // die
         }
     }
