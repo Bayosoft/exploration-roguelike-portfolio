@@ -7,17 +7,5 @@ namespace ExplorationRoguelike
         [SerializeField]
         private HealthComponent _healthComponent;
         public HealthComponent HealthComponent { get => _healthComponent; }
-
-
-        void Start()
-        {
-         //   CurrentHealth = MaxHealth;
-        }
-
-        public void Create()
-        {
-
-        }
-
     }
 }

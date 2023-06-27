@@ -67,10 +67,6 @@ namespace ExplortationRoguelike.GUI.Combat
         }
 
         [SerializeField]
-        private DelegateCommand _enemyTakeTurnCommand;
-        public DelegateCommand EnemyTakeTurnCommand { get => _enemyTakeTurnCommand; }
-
-        [SerializeField]
         private DelegateCommand _playerTakeTurnCommand;
 
         public DelegateCommand PlayerTakeTurnCommand { get => _playerTakeTurnCommand; }
@@ -79,7 +75,6 @@ namespace ExplortationRoguelike.GUI.Combat
         {
             CardViews = new ObservableCollection<object>();
             _playerTakeTurnCommand = new DelegateCommand(OnPlayerTakeTurn);
-            _enemyTakeTurnCommand = new DelegateCommand(OnEnemyTakeTurn);
         }
 
         public void SetCombatStateComponent(CombatStateComponent component)
@@ -111,6 +106,7 @@ namespace ExplortationRoguelike.GUI.Combat
         {
             _combat.HandleTurn(_combat.Enemy, new List<AbilitySystemComponent>() { _combat.Player.AbilitySystemComponent }, _combat.NpcTurnComponent.DeclaredAbility);
             CombatState = _combat.CurrentState.ToString();
+            OnPropertyChanged("EnemyIntent");
 
         }
         public void OnPlayerTakeTurn(object ev)
@@ -125,6 +121,7 @@ namespace ExplortationRoguelike.GUI.Combat
             CombatState = _combat.CurrentState.ToString();
             OnPropertyChanged("EnemyHealth");
             OnPropertyChanged("PlayerHealth");
+            OnPropertyChanged("EnemyIntent");
         }
 
         public void OnCombatEvent(ConcreteEventArgs eventArgs)
