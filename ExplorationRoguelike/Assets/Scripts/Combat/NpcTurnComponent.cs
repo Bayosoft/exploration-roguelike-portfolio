@@ -4,28 +4,22 @@ using System.Collections.ObjectModel;
 
 namespace ExplorationRoguelike.Assets.Scripts.Combat
 {
-    public class NpcTurnComponent
+    public class NpcTurnComponent : TurnComponent<NpcCombatComponent>
     {
-        public ObservableCollection<GameplayAbility> CombatAbilities;
-        public GameplayAbility DeclaredAbility { get; private set; }
-
-        public NpcTurnComponent(List<GameplayAbility> abilities)
+        public NpcTurnComponent()
         {
-            CombatAbilities = new(abilities);
         }
 
-        public GameplayAbility DeclareIntent()
+        public override void TakeAction()
         {
-            if (CombatAbilities.Count > 0)
-            {
-                DeclaredAbility = CombatAbilities[new Random().Next(CombatAbilities.Count)];
-            }
-            else
-            {
-                DeclaredAbility = null;
-            }
+            CombatPlayComponent.ExecuteIntent();
+            throw new NotImplementedException();
+        }
 
-            return DeclaredAbility;
+        public override void EndTurn()
+        {
+            CombatPlayComponent.DeclareIntent();
+            throw new NotImplementedException();
         }
     }
 }

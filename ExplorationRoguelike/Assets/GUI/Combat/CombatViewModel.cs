@@ -67,14 +67,14 @@ namespace ExplortationRoguelike.GUI.Combat
         }
 
         [SerializeField]
-        private DelegateCommand _playerTakeTurnCommand;
+        private DelegateCommand _tryPlayCardCommand;
 
-        public DelegateCommand PlayerTakeTurnCommand { get => _playerTakeTurnCommand; }
+        public DelegateCommand TryPlayTurnCommand { get => _tryPlayCardCommand; }
 
         public CombatViewModel()
         {
             CardViews = new ObservableCollection<object>();
-            _playerTakeTurnCommand = new DelegateCommand(OnPlayerTakeTurn);
+            _tryPlayCardCommand = new DelegateCommand(OnTryPlayCard);
         }
 
         public void SetCombatStateComponent(CombatStateComponent component)
@@ -102,20 +102,14 @@ namespace ExplortationRoguelike.GUI.Combat
                 CardViews.Add(cardView);
             }
         }
-        public void OnEnemyTakeTurn(object ability)
-        {
-            _combat.HandleTurn(_combat.Enemy, new List<AbilitySystemComponent>() { _combat.Player.AbilitySystemComponent }, _combat.NpcTurnComponent.DeclaredAbility);
-            CombatState = _combat.CurrentState.ToString();
-            OnPropertyChanged("EnemyIntent");
 
-        }
-        public void OnPlayerTakeTurn(object ev)
+        public void OnTryPlayCard(object _)
         {
-            if(SelectedCard != null)
+            if(SelectedCard != null && _combat.CombatantTurns[_combat.Player])
             {
                 GameplayAbility ability = ((CardViewModel)((CardView)SelectedCard).DataContext).Ability;
 
-                _combat.HandleTurn(_combat.Player, new List<AbilitySystemComponent>() { _combat.Enemy.AbilitySystemComponent }, ability);
+                _combat.CardDeckComponent.PlayCard(ability, new List<AbilitySystemComponent>() { _combat.Enemy.AbilitySystemComponent });
             }
 
             CombatState = _combat.CurrentState.ToString();

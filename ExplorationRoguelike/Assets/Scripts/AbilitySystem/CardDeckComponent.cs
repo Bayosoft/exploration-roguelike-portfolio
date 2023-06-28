@@ -35,6 +35,10 @@ namespace ExplorationRoguelike
                 }
             }            
         }
+        public void PlayCard(GameplayAbility card, List<AbilitySystemComponent> targets)
+        {
+            
+        }
 
         /// <summary>
         /// Discard an amount of cards from the start of the hand to the end.

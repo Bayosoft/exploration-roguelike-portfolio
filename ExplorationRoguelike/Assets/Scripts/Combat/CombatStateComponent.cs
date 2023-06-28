@@ -58,9 +58,10 @@ namespace ExplorationRoguelike
             _currentState = CombatState.PLAYERTURN;
         }
 
-        public void HandleTurn(ICombatant instigator, IEnumerable<AbilitySystemComponent> targets, GameplayAbility ability)
+        public void OnPlayerTurnFinished()
         {
-            if (CombatantTurns[instigator] == false)
+            // Execute enemy turn.
+/*            if (CombatantTurns[instigator] == false)
             {
                 _combatEvent.RaiseEvent(new CombatEventArgs("Cannot play card, it is not your turn", false));
                 return;
@@ -85,29 +86,8 @@ namespace ExplorationRoguelike
                     _currentState = CombatState.ENEMYTURN;
                     HandleTurn(Enemy, new List<AbilitySystemComponent>() { Player.AbilitySystemComponent }, NpcTurnComponent.DeclaredAbility);
                 }
-            }
-
-            /*            if (turnEvent.Attacker is Player && _currentState == CombatState.PLAYERTURN)
-                        {
-                        //    turnEvent.Attacker.ExecuteTurn(turnEvent);
-                        }
-                        else if (turnEvent.Attacker is Enemy && _currentState == CombatState.ENEMYTURN)
-                        {
-                         //   turnEvent.Attacker.ExecuteTurn(turnEvent);
-                        }
-                        else Debug.Log($"Not {turnEvent.Attacker}'s turn");*/
+            }*/
         }
-        /*        public void OnTurnTaken(object sender, TurnTakenEventArgs e)
-                {
-                    if (CombatState.PLAYERTURN == _currentState)
-                    {
-                        _currentState = CombatState.ENEMYTURN;
-                    }
-                    else if (_currentState == CombatState.ENEMYTURN)
-                    {
-                        _currentState = CombatState.PLAYERTURN;
-                    }
-                }*/
 
         public void OnDeath(ICombatant deadCombatant)
         {

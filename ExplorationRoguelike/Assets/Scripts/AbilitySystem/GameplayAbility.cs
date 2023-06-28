@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
@@ -5,9 +6,20 @@ using UnityEngine;
 
 namespace ExplorationRoguelike
 {
+    [Serializable]
+    public enum AbilityType
+    {
+        Unspecified,
+        Combat,
+        Dialogue,
+        GameplayEvent,
+        GameplayAction
+    }
+
     public abstract class GameplayAbility : ScriptableObject
     {
         public string Name;
+        public AbilityType AbilityType;
         public List<GameplayTag> Tags;
         public List<string> Description;
 
