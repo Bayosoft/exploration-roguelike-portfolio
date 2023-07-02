@@ -6,10 +6,12 @@ namespace ExplorationRoguelike
 {
     public class PlayerTurnComponent : TurnComponent<CardDeckComponent>
     {
-        public override void TakeAction()
+        public override void Act(GameplayAbility action, List<AbilitySystemComponent> targets)
         {
-           // CombatPlayComponent.PlayCard();
-            throw new System.NotImplementedException();
+            if (MyTurn)
+            {
+                CombatPlayComponent.PlayCard(action, targets);
+            }
         }
         public override void EndTurn()
         {

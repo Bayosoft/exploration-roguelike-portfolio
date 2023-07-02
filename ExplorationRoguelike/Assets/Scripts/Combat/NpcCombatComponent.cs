@@ -1,27 +1,31 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using UnityEngine;
 
 namespace ExplorationRoguelike
 {
-    public class NpcCombatComponent
+    public class NpcCombatComponent : MonoBehaviour
     {
-        public ObservableCollection<GameplayAbility> CombatAbilities;
+        private AbilitySystemComponent _npc;
+        public List<GameplayAbility> Abilities;
         public GameplayAbility DeclaredAbility { get; private set; }
 
-        public NpcCombatComponent(List<GameplayAbility> combatAbilities)
+
+        public void Start()
         {
-            CombatAbilities = combatAbilities;   
+            _npc = GetComponent<AbilitySystemComponent>();
+            Abilities = _npc.GrantedAbilities;
         }
-        internal void ExecuteIntent()
+        internal void ExecuteIntent(GameplayAbility declaredAbility, List<AbilitySystemComponent> targets)
         {
-            throw new NotImplementedException();
+            _npc.TryActivateAbility(declaredAbility, targets);
         }
         public GameplayAbility DeclareIntent()
         {
-            if (CombatAbilities.Count > 0)
+            if (_npc.GrantedAbilities.Count > 0)
             {
-                DeclaredAbility = CombatAbilities[new Random().Next(CombatAbilities.Count)];
+                DeclaredAbility = Abilities[new System.Random().Next(Abilities.Count)];
             }
             else
             {

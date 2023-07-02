@@ -1,19 +1,24 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Numerics;
+using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace ExplorationRoguelike
 {
-    public class CardDeckComponent
+    public class CardDeckComponent : MonoBehaviour
     {
         public ObservableCollection<GameplayAbility> CardsInDeck;
         public ObservableCollection<GameplayAbility> CardsDrawn;
         public ObservableCollection<GameplayAbility> CardsDiscarded;
         public ObservableCollection<GameplayAbility> CardsShattered;
+        private AbilitySystemComponent _player;
 
-        public CardDeckComponent(List<GameplayAbility> abilities)
+        public void Start()
         {
-            CardsInDeck = new ObservableCollection<GameplayAbility>(abilities);
+            _player = GetComponent<AbilitySystemComponent>();
+            CardsInDeck = new ObservableCollection<GameplayAbility>(_player.GrantedAbilities);
             CardsDrawn = new ObservableCollection<GameplayAbility>();
             CardsDiscarded = new ObservableCollection<GameplayAbility>();
             CardsShattered = new ObservableCollection<GameplayAbility>();
@@ -37,7 +42,7 @@ namespace ExplorationRoguelike
         }
         public void PlayCard(GameplayAbility card, List<AbilitySystemComponent> targets)
         {
-            
+            _player.TryActivateAbility(card, targets);
         }
 
         /// <summary>

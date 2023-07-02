@@ -22,13 +22,13 @@ namespace ExplorationRoguelike
         private CombatState _currentState;
         public CombatState CurrentState { get { return _currentState; } }
 
+      //  public List<Enemy> Allies; Probably not implementing this.
+        public List<CombatNpc> Enemies;
         public Player Player;
-        public Enemy Enemy;
+        public NpcTurnComponent EnemyTurnComponent;
+        public PlayerTurnComponent PlayerTurnComponent;
 
-        public Dictionary<ICombatant, bool> CombatantTurns;
 
-        public CardDeckComponent CardDeckComponent { get; private set; }
-        public NpcTurnComponent NpcTurnComponent { get; private set; } 
         [SerializeField]
         private ScriptableEvent _combatEvent;
 
@@ -40,22 +40,8 @@ namespace ExplorationRoguelike
         }
 
         public void StartCombat()
-        {
-            CardDeckComponent = new(Player.AbilitySystemComponent.GrantedAbilities);
-            NpcTurnComponent = new(Enemy.AbilitySystemComponent.GrantedAbilities);
-
-            CombatantTurns = new() {
-                { Player, true },
-                { Enemy, false }
-            };
-
+        { 
             _currentState = CombatState.START;
-
-            // Draw cards, determine pre-start modifiers..
-
-            NpcTurnComponent.DeclareIntent();
-
-            _currentState = CombatState.PLAYERTURN;
         }
 
         public void OnPlayerTurnFinished()
@@ -89,13 +75,13 @@ namespace ExplorationRoguelike
             }*/
         }
 
-        public void OnDeath(ICombatant deadCombatant)
+        public void OnDeath<T>(T deadCombatant)
         {
-            if (deadCombatant is Player)
+            if (deadCombatant is INpcCombatant)
             {
                 _currentState = CombatState.LOST;
             }
-            else if (deadCombatant is Enemy)
+            else if (deadCombatant is IPlayerCombatant)
             {
                 _currentState = CombatState.WON;
             }

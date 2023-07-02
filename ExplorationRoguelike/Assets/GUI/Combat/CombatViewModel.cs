@@ -21,7 +21,7 @@ namespace ExplortationRoguelike.GUI.Combat
         // public ObservableCollection<AbilitySO> DrawnCards { get { return new ObservableCollection<AbilitySO>(_combat.CardDeckComponent.CardsDrawn); } }
 
         public object SelectedCard { get; set; }
-        public GameplayAbility EnemyIntent { get { return _combat.NpcTurnComponent.DeclaredAbility; } }
+        public GameplayAbility EnemyIntent { get { return _combat.EnemyTurnComponent.CombatPlayComponent.DeclaredAbility; } } 
 
         public int PlayerHealth 
         { 
@@ -30,12 +30,12 @@ namespace ExplortationRoguelike.GUI.Combat
 
         public int EnemyHealth 
         { 
-            get { return Mathf.CeilToInt(_combat.Enemy.HealthComponent.CurrentHealth); }
+            get { return Mathf.CeilToInt(_combat.Enemies[0].HealthComponent.CurrentHealth); }
         }
 
         public string EnemyName 
         { 
-            get { return _combat.Enemy.CharacterData.Name.Length > 0 ? _combat.Enemy.CharacterData.Name : "Enemy"; }
+            get { return _combat.Enemies[0].CharacterData.Name.Length > 0 ? _combat.Enemies[0].CharacterData.Name : "Enemy"; }
         }
 
         private string _combatState;
@@ -69,7 +69,7 @@ namespace ExplortationRoguelike.GUI.Combat
         [SerializeField]
         private DelegateCommand _tryPlayCardCommand;
 
-        public DelegateCommand TryPlayTurnCommand { get => _tryPlayCardCommand; }
+        public DelegateCommand TryPlayCardCommand { get => _tryPlayCardCommand; }
 
         public CombatViewModel()
         {
@@ -90,7 +90,7 @@ namespace ExplortationRoguelike.GUI.Combat
         public void DrawCards()
         {
             // Draw logic
-            foreach (GameplayAbility ability in _combat.CardDeckComponent.CardsInDeck)
+            foreach (GameplayAbility ability in _combat.PlayerTurnComponent.CombatPlayComponent.CardsInDeck)
             {
                 CardViewModel cardViewModel = new(ability);
                 //ViewBuilder.CreateCardView(cardViewModel);
@@ -103,13 +103,13 @@ namespace ExplortationRoguelike.GUI.Combat
             }
         }
 
-        public void OnTryPlayCard(object _)
+        public void OnTryPlayCard(object evt)
         {
-            if(SelectedCard != null && _combat.CombatantTurns[_combat.Player])
+            if(SelectedCard != null && _combat.PlayerTurnComponent.MyTurn)
             {
                 GameplayAbility ability = ((CardViewModel)((CardView)SelectedCard).DataContext).Ability;
 
-                _combat.CardDeckComponent.PlayCard(ability, new List<AbilitySystemComponent>() { _combat.Enemy.AbilitySystemComponent });
+                _combat.PlayerTurnComponent.CombatPlayComponent.PlayCard(ability, new List<AbilitySystemComponent>() { _combat.Enemies[0].AbilitySystemComponent });
             }
 
             CombatState = _combat.CurrentState.ToString();

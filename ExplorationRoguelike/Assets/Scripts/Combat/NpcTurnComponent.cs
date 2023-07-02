@@ -6,20 +6,17 @@ namespace ExplorationRoguelike.Assets.Scripts.Combat
 {
     public class NpcTurnComponent : TurnComponent<NpcCombatComponent>
     {
-        public NpcTurnComponent()
+        public override void Act(GameplayAbility action, List<AbilitySystemComponent> targets)
         {
-        }
-
-        public override void TakeAction()
-        {
-            CombatPlayComponent.ExecuteIntent();
-            throw new NotImplementedException();
+            if (MyTurn)
+            {
+                CombatPlayComponent.ExecuteIntent(action, targets);
+            }
         }
 
         public override void EndTurn()
         {
             CombatPlayComponent.DeclareIntent();
-            throw new NotImplementedException();
         }
     }
 }
