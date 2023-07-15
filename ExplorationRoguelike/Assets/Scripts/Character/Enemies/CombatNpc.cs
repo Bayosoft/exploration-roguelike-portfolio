@@ -3,15 +3,14 @@ using UnityEngine;
 
 namespace ExplorationRoguelike
 {
-    public class CombatNpc : Character, INpcCombatant
+    public class CombatNpc : Character, ICombatant
     {
         [SerializeField]
         private HealthComponent _healthComponent;
         public HealthComponent HealthComponent { get => _healthComponent; }
         [SerializeField]
         private NpcTurnComponent _turnComponent;
-        public TurnComponent<NpcCombatComponent> TurnComponent{ get; private set; }
-
+        public TurnComponent TurnComponent{ get; private set; }
         public NpcCombatComponent NpcCombatComponent { get; private set; }
     }
 }

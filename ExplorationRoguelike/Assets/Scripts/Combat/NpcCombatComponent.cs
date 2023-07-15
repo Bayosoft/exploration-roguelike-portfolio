@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using UnityEngine;
 
 namespace ExplorationRoguelike
@@ -10,7 +9,6 @@ namespace ExplorationRoguelike
         private AbilitySystemComponent _npc;
         public List<GameplayAbility> Abilities;
         public GameplayAbility DeclaredAbility { get; private set; }
-
 
         public void Start()
         {

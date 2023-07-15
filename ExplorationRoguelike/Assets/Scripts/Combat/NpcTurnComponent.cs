@@ -1,22 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace ExplorationRoguelike.Assets.Scripts.Combat
 {
-    public class NpcTurnComponent : TurnComponent<NpcCombatComponent>
+    public class NpcTurnComponent : TurnComponent
     {
+        [SerializeField]
+        private NpcCombatComponent _npcCombatComponent;
+        public NpcCombatComponent NpcCombatComponent { get => _npcCombatComponent; }
+
+        public override void StartTurn()
+        {
+            MyTurn = true;
+        }
+
         public override void Act(GameplayAbility action, List<AbilitySystemComponent> targets)
         {
             if (MyTurn)
             {
-                CombatPlayComponent.ExecuteIntent(action, targets);
+                NpcCombatComponent.ExecuteIntent(action, targets);
+
+                EndTurn();
             }
         }
 
         public override void EndTurn()
         {
-            CombatPlayComponent.DeclareIntent();
+            NpcCombatComponent.DeclareIntent();
+            MyTurn = false;
+            EndTurnEvent.RaiseEvent(new EndTurnEventArgs(this));
         }
+
     }
 }

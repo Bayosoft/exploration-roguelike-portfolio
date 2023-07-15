@@ -4,10 +4,12 @@ using UnityEngine;
 
 namespace ExplorationRoguelike
 {
-    public abstract class TurnComponent<T> : MonoBehaviour where T : MonoBehaviour
+    public abstract class TurnComponent : MonoBehaviour
     {
-        public bool MyTurn { get; set; }
-        public T CombatPlayComponent { get => GetComponent<T>(); }
+        public bool MyTurn { get; set; } = false;
+
+        public ScriptableEvent EndTurnEvent;
+        public abstract void StartTurn();
         public abstract void Act(GameplayAbility action, List<AbilitySystemComponent> targets);
         public abstract void EndTurn();
     }

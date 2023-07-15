@@ -20,9 +20,9 @@ namespace ExplorationRoguelike
         };
 
         private CombatState _currentState;
-        public CombatState CurrentState { get { return _currentState; } }
+        public CombatState CurrentState { get { return _currentState; } private set { _currentState = value; } }
 
-      //  public List<Enemy> Allies; Probably not implementing this.
+        //  public List<Enemy> Allies; Probably not implementing this.
         public List<CombatNpc> Enemies;
         public Player Player;
         public NpcTurnComponent EnemyTurnComponent;
@@ -40,48 +40,37 @@ namespace ExplorationRoguelike
         }
 
         public void StartCombat()
-        { 
-            _currentState = CombatState.START;
+        {
+            CurrentState = CombatState.START;
+            EnemyTurnComponent.NpcCombatComponent.DeclareIntent();
+            PlayerTurnComponent.StartTurn();
         }
 
-        public void OnPlayerTurnFinished()
+        public void OnTurnEnded(ConcreteEventArgs eventArgs)
         {
-            // Execute enemy turn.
-/*            if (CombatantTurns[instigator] == false)
+            var endTurnEventArgs = eventArgs.ValidateEventArgs<EndTurnEventArgs>(eventArgs);
+
+            if (endTurnEventArgs.Initiator is PlayerTurnComponent)
             {
-                _combatEvent.RaiseEvent(new CombatEventArgs("Cannot play card, it is not your turn", false));
-                return;
+                EnemyTurnComponent.StartTurn();
+                EnemyTurnComponent.Act(EnemyTurnComponent.NpcCombatComponent.DeclaredAbility, new List<AbilitySystemComponent>() { Player.AbilitySystemComponent });
+
+                CurrentState = CombatState.ENEMYTURN;
             }
-
-            var activated = instigator.AbilitySystemComponent.TryActivateAbility(ability, targets);
-
-            if (activated)
+            else if (endTurnEventArgs.Initiator is NpcTurnComponent)
             {
-                CombatantTurns[instigator] = false;
-                var nextCombatant = CombatantTurns.Single(kvp => kvp.Key != instigator).Key;
-
-                CombatantTurns[nextCombatant] = true;
-
-                if ((object)nextCombatant == Player)
-                {
-                    _currentState = CombatState.PLAYERTURN;
-                    NpcTurnComponent.DeclareIntent();
-                } 
-                else if ((object)nextCombatant == Enemy)
-                {
-                    _currentState = CombatState.ENEMYTURN;
-                    HandleTurn(Enemy, new List<AbilitySystemComponent>() { Player.AbilitySystemComponent }, NpcTurnComponent.DeclaredAbility);
-                }
-            }*/
+                PlayerTurnComponent.StartTurn();
+                CurrentState = CombatState.PLAYERTURN;
+            }
         }
 
         public void OnDeath<T>(T deadCombatant)
         {
-            if (deadCombatant is INpcCombatant)
+            if (deadCombatant is CombatNpc)
             {
                 _currentState = CombatState.LOST;
             }
-            else if (deadCombatant is IPlayerCombatant)
+            else if (deadCombatant is Player)
             {
                 _currentState = CombatState.WON;
             }

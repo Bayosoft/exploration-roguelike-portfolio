@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using ExplorationRoguelike.GUI.Card;
 using ExplorationRoguelike.Assets.GUI;
+using System;
 
 namespace ExplortationRoguelike.GUI.Combat
 {
@@ -21,7 +22,7 @@ namespace ExplortationRoguelike.GUI.Combat
         // public ObservableCollection<AbilitySO> DrawnCards { get { return new ObservableCollection<AbilitySO>(_combat.CardDeckComponent.CardsDrawn); } }
 
         public object SelectedCard { get; set; }
-        public GameplayAbility EnemyIntent { get { return _combat.EnemyTurnComponent.CombatPlayComponent.DeclaredAbility; } } 
+        public GameplayAbility EnemyIntent { get { return _combat.EnemyTurnComponent.NpcCombatComponent.DeclaredAbility; } } 
 
         public int PlayerHealth 
         { 
@@ -37,18 +38,11 @@ namespace ExplortationRoguelike.GUI.Combat
         { 
             get { return _combat.Enemies[0].CharacterData.Name.Length > 0 ? _combat.Enemies[0].CharacterData.Name : "Enemy"; }
         }
-
-        private string _combatState;
         public string CombatState
         {
             get
             {
-                return _combatState;
-            }
-            set
-            {
-                _combatState = value;
-                OnPropertyChanged("CombatState");
+                return _combat.CurrentState.ToString();
             }
         }
 
@@ -71,10 +65,17 @@ namespace ExplortationRoguelike.GUI.Combat
 
         public DelegateCommand TryPlayCardCommand { get => _tryPlayCardCommand; }
 
+
+        [SerializeField]
+        private DelegateCommand _endTurnCommand;
+
+        public DelegateCommand EndTurnCommand { get => _endTurnCommand; }
+
         public CombatViewModel()
         {
             CardViews = new ObservableCollection<object>();
             _tryPlayCardCommand = new DelegateCommand(OnTryPlayCard);
+            _endTurnCommand = new DelegateCommand(OnEndTurnCommand);
         }
 
         public void SetCombatStateComponent(CombatStateComponent component)
@@ -90,7 +91,7 @@ namespace ExplortationRoguelike.GUI.Combat
         public void DrawCards()
         {
             // Draw logic
-            foreach (GameplayAbility ability in _combat.PlayerTurnComponent.CombatPlayComponent.CardsInDeck)
+            foreach (GameplayAbility ability in _combat.PlayerTurnComponent.CardDeckComponent.CardsInDeck)
             {
                 CardViewModel cardViewModel = new(ability);
                 //ViewBuilder.CreateCardView(cardViewModel);
@@ -109,13 +110,24 @@ namespace ExplortationRoguelike.GUI.Combat
             {
                 GameplayAbility ability = ((CardViewModel)((CardView)SelectedCard).DataContext).Ability;
 
-                _combat.PlayerTurnComponent.CombatPlayComponent.PlayCard(ability, new List<AbilitySystemComponent>() { _combat.Enemies[0].AbilitySystemComponent });
+                _combat.PlayerTurnComponent.Act(ability, new List<AbilitySystemComponent>() { _combat.Enemies[0].AbilitySystemComponent });
             }
 
-            CombatState = _combat.CurrentState.ToString();
             OnPropertyChanged("EnemyHealth");
             OnPropertyChanged("PlayerHealth");
-            OnPropertyChanged("EnemyIntent");
+        }
+
+        public void OnEndTurnCommand(object evt)
+        {
+            if (_combat.PlayerTurnComponent.MyTurn)
+            {
+                _combat.PlayerTurnComponent.EndTurn();
+
+                OnPropertyChanged("EnemyIntent");
+                OnPropertyChanged("CombatState");
+
+                OnPropertyChanged("PlayerHealth");
+            }
         }
 
         public void OnCombatEvent(ConcreteEventArgs eventArgs)

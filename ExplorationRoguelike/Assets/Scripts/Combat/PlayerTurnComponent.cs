@@ -1,22 +1,30 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace ExplorationRoguelike
 {
-    public class PlayerTurnComponent : TurnComponent<CardDeckComponent>
+    public class PlayerTurnComponent : TurnComponent
     {
+        [SerializeField]
+        private CardDeckComponent _cardDeckComponent;
+        public CardDeckComponent CardDeckComponent { get => _cardDeckComponent; }
+
+        public override void StartTurn()
+        {
+            MyTurn = true;
+        }
+
         public override void Act(GameplayAbility action, List<AbilitySystemComponent> targets)
         {
             if (MyTurn)
             {
-                CombatPlayComponent.PlayCard(action, targets);
+                CardDeckComponent.PlayCard(action, targets);
             }
         }
         public override void EndTurn()
         {
-            throw new System.NotImplementedException();
+            MyTurn = false;
+            EndTurnEvent.RaiseEvent(new EndTurnEventArgs(this));
         }
-
     }
 }
