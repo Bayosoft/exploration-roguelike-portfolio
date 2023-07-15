@@ -10,7 +10,7 @@ namespace ExplorationRoguelike
         public List<GameplayAbility> Abilities;
         public GameplayAbility DeclaredAbility { get; private set; }
 
-        public void Start()
+        public void Awake()
         {
             _npc = GetComponent<AbilitySystemComponent>();
             Abilities = _npc.GrantedAbilities;

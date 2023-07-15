@@ -125,7 +125,6 @@ namespace ExplortationRoguelike.GUI.Combat
 
                 OnPropertyChanged("EnemyIntent");
                 OnPropertyChanged("CombatState");
-
                 OnPropertyChanged("PlayerHealth");
             }
         }

@@ -15,7 +15,7 @@ namespace ExplorationRoguelike
         public ObservableCollection<GameplayAbility> CardsShattered;
         private AbilitySystemComponent _player;
 
-        public void Start()
+        public void Awake()
         {
             _player = GetComponent<AbilitySystemComponent>();
             CardsInDeck = new ObservableCollection<GameplayAbility>(_player.GrantedAbilities);
