@@ -1,13 +1,12 @@
 using Noesis;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 namespace ExplorationRoguelike
 {
 
     [CreateAssetMenu(fileName = "Fireball", menuName = "Abilities/Combat/Fireball")]
-    public class FireballAbility : GameplayAbility
+    public class FireballAbility : CardAbility
     {
         // Added in designer
         [SerializeField]

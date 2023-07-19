@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Numerics;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace ExplorationRoguelike
 {
     public class CardDeckComponent : MonoBehaviour
     {
+        public int MaxMana { get; private set; }
+        public int Mana { get; private set; } = 4;
         public ObservableCollection<GameplayAbility> CardsInDeck;
         public ObservableCollection<GameplayAbility> CardsDrawn;
         public ObservableCollection<GameplayAbility> CardsDiscarded;
@@ -40,9 +40,17 @@ namespace ExplorationRoguelike
                 }
             }            
         }
-        public void PlayCard(GameplayAbility card, List<AbilitySystemComponent> targets)
+        public void PlayCard(CardAbility card, List<AbilitySystemComponent> targets)
         {
-            _player.TryActivateAbility(card, targets);
+            if(Mana >= card.ManaCost)
+            {
+                bool activated = _player.TryActivateAbility(card, targets);
+
+                if (activated)
+                {
+                    Mana -= card.ManaCost;
+                }
+            }
         }
 
         /// <summary>

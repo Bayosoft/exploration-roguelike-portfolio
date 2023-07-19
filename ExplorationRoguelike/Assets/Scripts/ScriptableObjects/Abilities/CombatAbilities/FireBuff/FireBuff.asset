@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: FireBuff
   m_EditorClassIdentifier: 
   Name: Fire Buff
+  AbilityType: 1
   Tags: []
   Description: []
+  _manaCost: 0
   GameplayEffect: {fileID: 11400000, guid: 854a0f3f30605914f9be8af8e08ee6bf, type: 2}

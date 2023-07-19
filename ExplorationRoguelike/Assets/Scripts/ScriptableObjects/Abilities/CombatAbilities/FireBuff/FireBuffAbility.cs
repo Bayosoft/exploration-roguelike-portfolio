@@ -7,7 +7,7 @@ namespace ExplorationRoguelike
 {
 
     [CreateAssetMenu(fileName = "FireBuff", menuName = "Abilities/Combat/FireBuff")]
-    public class FireBuffAbility : GameplayAbility
+    public class FireBuffAbility : CardAbility
     {
         public GameplayEffect GameplayEffect;
 

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Backstab
   m_EditorClassIdentifier: 
   Name: Backstab
+  AbilityType: 1
   Tags:
   - {fileID: 11400000, guid: 7ad1df40796497e488b5dca971492b9a, type: 2}
   Description: []

@@ -16,9 +16,9 @@ namespace ExplorationRoguelike
 
         public override void Act(GameplayAbility action, List<AbilitySystemComponent> targets)
         {
-            if (MyTurn)
+            if (MyTurn && action is CardAbility card)
             {
-                CardDeckComponent.PlayCard(action, targets);
+                CardDeckComponent.PlayCard(card, targets);
             }
         }
         public override void EndTurn()
