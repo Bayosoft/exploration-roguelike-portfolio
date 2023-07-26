@@ -11,6 +11,7 @@ namespace ExplorationRoguelike
 
         public override void StartTurn()
         {
+            CardDeckComponent.DrawCards(4);
             MyTurn = true;
         }
 
@@ -24,6 +25,8 @@ namespace ExplorationRoguelike
         public override void EndTurn()
         {
             MyTurn = false;
+            CardDeckComponent.DiscardCards(CardDeckComponent.CardsDrawn.Count);
+            CardDeckComponent.RefreshMana(CardDeckComponent.MaxMana);
             EndTurnEvent.RaiseEvent(new EndTurnEventArgs(this));
         }
     }

@@ -5,6 +5,9 @@ using System.Collections.ObjectModel;
 using ExplorationRoguelike.GUI.Card;
 using ExplorationRoguelike.Assets.GUI;
 using System;
+using System.Collections.Specialized;
+using UnityEditor.Playables;
+using System.Linq;
 
 namespace ExplortationRoguelike.GUI.Combat
 {
@@ -28,6 +31,12 @@ namespace ExplortationRoguelike.GUI.Combat
         { 
             get { return Mathf.CeilToInt(_combat.Player.HealthComponent.CurrentHealth); } 
         }
+
+        public int PlayerMana
+        {
+            get { return _combat.Player.CardDeckComponent.Mana; }
+        }
+
 
         public int EnemyHealth 
         { 
@@ -85,22 +94,34 @@ namespace ExplortationRoguelike.GUI.Combat
 
         public void Start()
         {
-            DrawCards();
+            _combat.PlayerTurnComponent.CardDeckComponent.CardsDrawn.CollectionChanged += new NotifyCollectionChangedEventHandler(UpdateCards);
         }
 
-        public void DrawCards()
+        public void UpdateCards(object sender, NotifyCollectionChangedEventArgs e)
         {
-            // Draw logic
-            foreach (GameplayAbility ability in _combat.PlayerTurnComponent.CardDeckComponent.CardsInDeck)
+            //different kind of changes that may have occurred in collection
+            if (e.Action == NotifyCollectionChangedAction.Add)
             {
-                CardViewModel cardViewModel = new(ability);
-                //ViewBuilder.CreateCardView(cardViewModel);
-                
-                CardView cardView = ViewModelComponent.CardXamlView.Load() as CardView;          
-                
+                CardViewModel cardViewModel = new((GameplayAbility)e.NewItems[0]);
+
+                CardView cardView = ViewModelComponent.CardXamlView.Load() as CardView;
                 cardView.DataContext = cardViewModel;
 
                 CardViews.Add(cardView);
+            }
+            if (e.Action == NotifyCollectionChangedAction.Remove)
+            {
+                foreach(GameplayAbility removedCard in e.OldItems)
+                {
+                    foreach(CardView cardView in CardViews.ToList())
+                    {
+                        if(((CardViewModel)cardView.DataContext).Ability == removedCard)
+                        {
+                            CardViews.Remove(cardView);
+                            return;
+                        }
+                    }
+                }
             }
         }
 
@@ -113,8 +134,7 @@ namespace ExplortationRoguelike.GUI.Combat
                 _combat.PlayerTurnComponent.Act(ability, new List<AbilitySystemComponent>() { _combat.Enemies[0].AbilitySystemComponent });
             }
 
-            OnPropertyChanged("EnemyHealth");
-            OnPropertyChanged("PlayerHealth");
+            UpdateUI();
         }
 
         public void OnEndTurnCommand(object evt)
@@ -123,9 +143,7 @@ namespace ExplortationRoguelike.GUI.Combat
             {
                 _combat.PlayerTurnComponent.EndTurn();
 
-                OnPropertyChanged("EnemyIntent");
-                OnPropertyChanged("CombatState");
-                OnPropertyChanged("PlayerHealth");
+                UpdateUI();
             }
         }
 
@@ -134,6 +152,15 @@ namespace ExplortationRoguelike.GUI.Combat
             var combatEventArgs = eventArgs.ValidateEventArgs<CombatEventArgs>(eventArgs, this);
 
             Message = combatEventArgs.Message;
+        }
+
+        public void UpdateUI()
+        {
+            OnPropertyChanged("EnemyIntent");
+            OnPropertyChanged("CombatState");
+            OnPropertyChanged("PlayerHealth");
+            OnPropertyChanged("PlayerMana");
+            OnPropertyChanged("EnemyHealth");
         }
     }
 }

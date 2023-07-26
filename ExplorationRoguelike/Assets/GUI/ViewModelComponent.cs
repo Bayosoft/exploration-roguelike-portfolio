@@ -22,8 +22,7 @@ namespace ExplorationRoguelike
 
             GetComponent<NoesisView>().Content.DataContext = viewModel;
 
-            viewModel.Start();
-            
+            viewModel.Start();         
         }
 
         private void InitializeStaticViews()

@@ -8,6 +8,10 @@
                 <Run Text="{Binding PlayerHealth}"/>
             </TextBlock>
             <TextBlock FontSize="30" Foreground="White">
+                <Run Text="Mana:"/>
+                <Run Text="{Binding PlayerMana}"/>
+            </TextBlock>
+            <TextBlock FontSize="30" Foreground="White">
                 <Run Text="{Binding EnemyName}"/>
                 <Run Text="HP:"/>
                 <Run Text="{Binding EnemyHealth}"/>
