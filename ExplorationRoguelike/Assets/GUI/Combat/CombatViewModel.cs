@@ -1,12 +1,8 @@
 using UnityEngine;
 using ExplorationRoguelike;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using ExplorationRoguelike.GUI.Card;
-using ExplorationRoguelike.Assets.GUI;
-using System;
 using System.Collections.Specialized;
-using UnityEditor.Playables;
 using System.Linq;
 
 namespace ExplortationRoguelike.GUI.Combat
@@ -15,8 +11,10 @@ namespace ExplortationRoguelike.GUI.Combat
     {
         private CombatStateComponent _combat;
 
-        private ObservableCollection<object> _cardViews;
-        public ObservableCollection<object> CardViews 
+        public GameObject CardPrefab;
+
+        private ObservableCollection<GameObject> _cardViews;
+        public ObservableCollection<GameObject> CardViews 
         { 
             get { return _cardViews; } 
             set { _cardViews = value; OnPropertyChanged("CardViews"); } 
@@ -80,20 +78,13 @@ namespace ExplortationRoguelike.GUI.Combat
 
         public DelegateCommand EndTurnCommand { get => _endTurnCommand; }
 
-        public CombatViewModel()
-        {
-            CardViews = new ObservableCollection<object>();
-            _tryPlayCardCommand = new DelegateCommand(OnTryPlayCard);
-            _endTurnCommand = new DelegateCommand(OnEndTurnCommand);
-        }
-
-        public void SetCombatStateComponent(CombatStateComponent component)
-        {
-            _combat = component;
-        }
-
         public void Start()
         {
+            CardViews = new ObservableCollection<GameObject>();
+            _tryPlayCardCommand = new DelegateCommand(OnTryPlayCard);
+            _endTurnCommand = new DelegateCommand(OnEndTurnCommand);
+
+            _combat = GameObject.Find("CombatManager").GetComponent<CombatStateComponent>();
             _combat.PlayerTurnComponent.CardDeckComponent.CardsDrawn.CollectionChanged += new NotifyCollectionChangedEventHandler(UpdateCards);
         }
 
@@ -102,21 +93,23 @@ namespace ExplortationRoguelike.GUI.Combat
             //different kind of changes that may have occurred in collection
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
-                CardViewModel cardViewModel = new((GameplayAbility)e.NewItems[0]);
-
-                CardView cardView = ViewModelComponent.CardXamlView.Load() as CardView;
-                cardView.DataContext = cardViewModel;
-
+                CardPrefab.GetComponent<CardViewModel>().Initialize((CardAbility)e.NewItems[0]);
+                // Create card prefab in world
+                GameObject cardView = Instantiate(CardPrefab);
+                cardView.transform.parent = gameObject.transform;
+                cardView.transform.localPosition = new Vector2(CardViews.Count * 100, 0);
+                cardView.transform.localScale = Vector2.one;
                 CardViews.Add(cardView);
             }
             if (e.Action == NotifyCollectionChangedAction.Remove)
             {
                 foreach(GameplayAbility removedCard in e.OldItems)
                 {
-                    foreach(CardView cardView in CardViews.ToList())
+                    foreach(GameObject cardView in CardViews.ToList())
                     {
-                        if(((CardViewModel)cardView.DataContext).Ability == removedCard)
+                        if(cardView.GetComponent<CardViewModel>().Ability == removedCard)
                         {
+                            Destroy(cardView);
                             CardViews.Remove(cardView);
                             return;
                         }
@@ -129,9 +122,9 @@ namespace ExplortationRoguelike.GUI.Combat
         {
             if(SelectedCard != null && _combat.PlayerTurnComponent.MyTurn)
             {
-                GameplayAbility ability = ((CardViewModel)((CardView)SelectedCard).DataContext).Ability;
+                // GameplayAbility ability = ((CardViewModel)((CardView)SelectedCard).DataContext).Ability;
 
-                _combat.PlayerTurnComponent.Act(ability, new List<AbilitySystemComponent>() { _combat.Enemies[0].AbilitySystemComponent });
+                // _combat.PlayerTurnComponent.Act(ability, new List<AbilitySystemComponent>() { _combat.Enemies[0].AbilitySystemComponent });
             }
 
             UpdateUI();

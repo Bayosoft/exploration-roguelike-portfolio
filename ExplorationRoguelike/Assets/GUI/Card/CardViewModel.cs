@@ -1,10 +1,16 @@
 ﻿using ExplortationRoguelike.GUI;
+using TMPro;
+using UnityEditor.Playables;
 
 namespace ExplorationRoguelike.GUI.Card
 {
     public class CardViewModel : ViewModel
     {
-        public readonly GameplayAbility Ability;
+        public CardAbility Ability;
+
+        public TextMeshProUGUI CardNameText;
+        public TextMeshProUGUI CardDescriptionText;
+        public TextMeshProUGUI ManaCostText;
 
         private string _description;
         public string Description
@@ -34,19 +40,12 @@ namespace ExplorationRoguelike.GUI.Card
             }
         }
 
-        public CardViewModel(GameplayAbility ability)
+        public void Initialize(CardAbility ability)
         {
             Ability = ability;
-            
-            Name = Ability.Name;
-            Description = Ability.ToString();
+            CardNameText.text = Ability.Name;
+            CardDescriptionText.text = Ability.ToString();
+            ManaCostText.text = Ability.ManaCost.ToString();
         }
-
-        /*        void Start()
-                {
-
-                    Description = _ability.Description;
-                }*/
-
     }
 }

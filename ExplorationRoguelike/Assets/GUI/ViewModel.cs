@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ExplortationRoguelike.GUI
 {
-    public class ViewModel : INotifyPropertyChanged
+    public class ViewModel : MonoBehaviour, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
