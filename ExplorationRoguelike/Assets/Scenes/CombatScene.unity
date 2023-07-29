@@ -187,6 +187,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Event: {fileID: 11400000, guid: cb09d1e190322134fb63c3158a1c7d5c, type: 2}
+  onArgsEventTriggered:
+    m_PersistentCalls:
+      m_Calls: []
   onEventTriggered:
     m_PersistentCalls:
       m_Calls:
@@ -434,6 +437,7 @@ GameObject:
   - component: {fileID: 1000540534}
   - component: {fileID: 1000540533}
   - component: {fileID: 1000540537}
+  - component: {fileID: 1000540538}
   m_Layer: 5
   m_Name: CombatView
   m_TagString: Untagged
@@ -537,6 +541,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CardPrefab: {fileID: 2796258955135256527, guid: 6c2997fd00c048147961645af76a8b2f, type: 3}
+--- !u!114 &1000540538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000540532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3422457e4efdcc4ba3de1c6e6c8d985, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 9d38fa15e2e2b8144b39c731f628dab8, type: 2}
+  onArgsEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1000540537}
+        m_TargetAssemblyTypeName: ExplortationRoguelike.GUI.Combat.CombatViewModel,
+          Assembly-CSharp
+        m_MethodName: OnTryPlayCard
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1429334191
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -734,11 +770,11 @@ PrefabInstance:
     - target: {fileID: 594199252236119613, guid: 4f14c8c8f8961074fa334e3dd1776d80, type: 3}
       propertyPath: Abilities.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: ad74d21efd4bd0a42a32af346e448646, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 594199252236119613, guid: 4f14c8c8f8961074fa334e3dd1776d80, type: 3}
       propertyPath: Abilities.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 309fee7195cd6c64abff5ef40e85dd79, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 5612204403386450629, guid: 4f14c8c8f8961074fa334e3dd1776d80, type: 3}
       propertyPath: m_Name
       value: Enemy

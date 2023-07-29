@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using ExplorationRoguelike.GUI.Card;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace ExplortationRoguelike.GUI.Combat
 {
@@ -66,13 +67,6 @@ namespace ExplortationRoguelike.GUI.Combat
                 OnPropertyChanged("Message");
             }
         }
-
-        [SerializeField]
-        private EventListener _tryPlayCardEvent;
-
-        public EventListener TryPlayCardEvent { get => _tryPlayCardEvent; }
-
-
         [SerializeField]
         private DelegateCommand _endTurnCommand;
 
@@ -82,7 +76,6 @@ namespace ExplortationRoguelike.GUI.Combat
         {
             CardViews = new ObservableCollection<GameObject>();
             _endTurnCommand = new DelegateCommand(OnEndTurnCommand);
-            TryPlayCardEvent.onArgsEventTriggered += OnTryPlayCard;
             _combat = GameObject.Find("CombatManager").GetComponent<CombatStateComponent>();
             _combat.PlayerTurnComponent.CardDeckComponent.CardsDrawn.CollectionChanged += new NotifyCollectionChangedEventHandler(UpdateCards);
         }
@@ -119,11 +112,10 @@ namespace ExplortationRoguelike.GUI.Combat
 
         public void OnTryPlayCard(ConcreteEventArgs args)
         {
-            if(SelectedCard != null && _combat.PlayerTurnComponent.MyTurn)
+            var eventArgs = args.ValidateEventArgs<TryPlayCardEventArgs>();
+            if(eventArgs.Card != null && _combat.PlayerTurnComponent.MyTurn)
             {
-                // GameplayAbility ability = ((CardViewModel)((CardView)SelectedCard).DataContext).Ability;
-
-                // _combat.PlayerTurnComponent.Act(ability, new List<AbilitySystemComponent>() { _combat.Enemies[0].AbilitySystemComponent });
+                _combat.PlayerTurnComponent.Act(eventArgs.Card, new List<AbilitySystemComponent>() { _combat.Enemies[0].AbilitySystemComponent });
             }
 
             UpdateUI();
@@ -141,7 +133,7 @@ namespace ExplortationRoguelike.GUI.Combat
 
         public void OnCombatEvent(ConcreteEventArgs eventArgs)
         {
-            var combatEventArgs = eventArgs.ValidateEventArgs<CombatEventArgs>(eventArgs, this);
+            var combatEventArgs = eventArgs.ValidateEventArgs<CombatEventArgs>(this);
 
             Message = combatEventArgs.Message;
         }

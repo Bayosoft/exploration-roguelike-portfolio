@@ -22,7 +22,7 @@ namespace ExplorationRoguelike
             OwnedGameplayTags = new();
         }
 
-        void Start()
+        void Awake()
         {
             ActiveGameplayEffects = new(this);
         }

@@ -16,7 +16,7 @@ MonoBehaviour:
   AbilityType: 1
   Tags: []
   Description: []
-  ManaCost: 1
+  ManaCost: 2
   damageTags:
     _tags:
     - {fileID: 11400000, guid: 3e7a7c094386be846b0238dc14cb8c23, type: 2}

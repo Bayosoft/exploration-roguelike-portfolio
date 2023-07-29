@@ -7,9 +7,9 @@ namespace ExplorationRoguelike
 {
     public class ConcreteEventArgs : EventArgs
     {
-        public TEventArgs ValidateEventArgs<TEventArgs>(EventArgs eventArgs, object caller = null)
+        public TEventArgs ValidateEventArgs<TEventArgs>(object caller = null)
         {
-            if(eventArgs is TEventArgs eventArgsType)
+            if(this is TEventArgs eventArgsType)
             {
                 return eventArgsType;
             }
