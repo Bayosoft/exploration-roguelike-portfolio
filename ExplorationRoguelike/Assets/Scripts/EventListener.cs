@@ -9,7 +9,9 @@ namespace ExplorationRoguelike
     public class EventListener : MonoBehaviour 
     {
         public ScriptableEvent Event;
-        public UnityEvent<ConcreteEventArgs> onEventTriggered;
+        public UnityEvent<ConcreteEventArgs> onArgsEventTriggered;
+        public UnityEvent onEventTriggered;
+
         void OnEnable()
         {
             Event.AddListener(this);
@@ -20,7 +22,12 @@ namespace ExplorationRoguelike
         }
         public void RaiseEvent(ConcreteEventArgs args)
         {
-            onEventTriggered.Invoke(args);
+            onArgsEventTriggered.Invoke(args);
+        }
+
+        public void RaiseEvent()
+        {
+            onEventTriggered.Invoke();
         }
     }
 }

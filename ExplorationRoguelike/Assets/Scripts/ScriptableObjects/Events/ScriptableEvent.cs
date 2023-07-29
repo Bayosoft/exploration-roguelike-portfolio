@@ -16,6 +16,14 @@ namespace ExplorationRoguelike
                 listeners[i].RaiseEvent(eventArgs);
             }
         }
+
+        public void RaiseEvent()
+        {
+            for (int i = listeners.Count - 1; i >= 0; i--)
+            {
+                listeners[i].RaiseEvent();
+            }
+        }
         public void AddListener(EventListener listener)
         {
             listeners.Add(listener);

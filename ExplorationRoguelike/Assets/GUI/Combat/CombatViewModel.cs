@@ -68,9 +68,9 @@ namespace ExplortationRoguelike.GUI.Combat
         }
 
         [SerializeField]
-        private DelegateCommand _tryPlayCardCommand;
+        private EventListener _tryPlayCardEvent;
 
-        public DelegateCommand TryPlayCardCommand { get => _tryPlayCardCommand; }
+        public EventListener TryPlayCardEvent { get => _tryPlayCardEvent; }
 
 
         [SerializeField]
@@ -78,12 +78,11 @@ namespace ExplortationRoguelike.GUI.Combat
 
         public DelegateCommand EndTurnCommand { get => _endTurnCommand; }
 
-        public void Start()
+        public void Awake()
         {
             CardViews = new ObservableCollection<GameObject>();
-            _tryPlayCardCommand = new DelegateCommand(OnTryPlayCard);
             _endTurnCommand = new DelegateCommand(OnEndTurnCommand);
-
+            TryPlayCardEvent.onArgsEventTriggered += OnTryPlayCard;
             _combat = GameObject.Find("CombatManager").GetComponent<CombatStateComponent>();
             _combat.PlayerTurnComponent.CardDeckComponent.CardsDrawn.CollectionChanged += new NotifyCollectionChangedEventHandler(UpdateCards);
         }
@@ -118,7 +117,7 @@ namespace ExplortationRoguelike.GUI.Combat
             }
         }
 
-        public void OnTryPlayCard(object evt)
+        public void OnTryPlayCard(ConcreteEventArgs args)
         {
             if(SelectedCard != null && _combat.PlayerTurnComponent.MyTurn)
             {

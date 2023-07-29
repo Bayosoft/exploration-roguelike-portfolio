@@ -1,6 +1,7 @@
 ﻿using ExplortationRoguelike.GUI;
 using TMPro;
 using UnityEditor.Playables;
+using UnityEngine;
 
 namespace ExplorationRoguelike.GUI.Card
 {
@@ -11,6 +12,9 @@ namespace ExplorationRoguelike.GUI.Card
         public TextMeshProUGUI CardNameText;
         public TextMeshProUGUI CardDescriptionText;
         public TextMeshProUGUI ManaCostText;
+
+        [SerializeField]
+        private ScriptableEvent _playCardEvent;
 
         private string _description;
         public string Description
@@ -46,6 +50,11 @@ namespace ExplorationRoguelike.GUI.Card
             CardNameText.text = Ability.Name;
             CardDescriptionText.text = Ability.ToString();
             ManaCostText.text = Ability.ManaCost.ToString();
+        }
+
+        public void TryPlayCard()
+        {
+            _playCardEvent.RaiseEvent(new TryPlayCardEventArgs(Ability));
         }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace ExplorationRoguelike
@@ -9,20 +10,17 @@ namespace ExplorationRoguelike
     {
         public int MaxMana { get; private set; } = 4;
         public int Mana { get; private set; }
-        public ObservableCollection<GameplayAbility> CardsInDeck;
-        public ObservableCollection<GameplayAbility> CardsDrawn;
-        public ObservableCollection<GameplayAbility> CardsDiscarded;
-        public ObservableCollection<GameplayAbility> CardsShattered;
+        public ObservableCollection<GameplayAbility> CardsInDeck = new();
+        public ObservableCollection<GameplayAbility> CardsDrawn = new ();
+        public ObservableCollection<GameplayAbility> CardsDiscarded = new();
+        public ObservableCollection<GameplayAbility> CardsShattered = new();
         private AbilitySystemComponent _player;
 
         public void Awake()
         {
             _player = GetComponent<AbilitySystemComponent>();
             Mana = MaxMana;
-            CardsInDeck = new ObservableCollection<GameplayAbility>(_player.GrantedAbilities);
-            CardsDrawn = new ObservableCollection<GameplayAbility>();
-            CardsDiscarded = new ObservableCollection<GameplayAbility>();
-            CardsShattered = new ObservableCollection<GameplayAbility>();
+            CardsInDeck.AddRange(_player.GrantedAbilities);
         }
 
         public void DrawCards(int amountOfCards)
