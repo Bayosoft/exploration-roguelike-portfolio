@@ -9,6 +9,7 @@ namespace ExplorationRoguelike
         private AbilitySystemComponent _npc;
         public List<GameplayAbility> Abilities;
         public GameplayAbility DeclaredAbility { get; private set; }
+        public event EventHandler<GameplayAbility> OnDeclaredIntent;
 
         public void Awake()
         {
@@ -29,6 +30,8 @@ namespace ExplorationRoguelike
             {
                 DeclaredAbility = null;
             }
+            
+            OnDeclaredIntent?.Invoke(this, DeclaredAbility);
 
             return DeclaredAbility;
         }

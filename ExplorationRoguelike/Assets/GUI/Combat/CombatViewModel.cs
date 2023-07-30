@@ -5,6 +5,9 @@ using ExplorationRoguelike.GUI.Card;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Collections.Generic;
+using System;
+using UnityEngine.Events;
+using TMPro;
 
 namespace ExplortationRoguelike.GUI.Combat
 {
@@ -13,39 +16,16 @@ namespace ExplortationRoguelike.GUI.Combat
         private CombatStateComponent _combat;
 
         public GameObject CardPrefab;
-
-        private ObservableCollection<GameObject> _cardViews;
-        public ObservableCollection<GameObject> CardViews 
-        { 
-            get { return _cardViews; } 
-            set { _cardViews = value; OnPropertyChanged("CardViews"); } 
-        }
+        public GameObject HealthPrefab;
+        public TextMeshProUGUI ManaText;
+        public ObservableCollection<GameObject> HealthViews { get; set; }
+        public ObservableCollection<GameObject> CardViews { get; set; }
 
         // public ObservableCollection<AbilitySO> DrawnCards { get { return new ObservableCollection<AbilitySO>(_combat.CardDeckComponent.CardsDrawn); } }
 
         public object SelectedCard { get; set; }
-        public GameplayAbility EnemyIntent { get { return _combat.EnemyTurnComponent.NpcCombatComponent.DeclaredAbility; } } 
+        public TextMeshProUGUI EnemyIntentText;
 
-        public int PlayerHealth 
-        { 
-            get { return Mathf.CeilToInt(_combat.Player.HealthComponent.CurrentHealth); } 
-        }
-
-        public int PlayerMana
-        {
-            get { return _combat.Player.CardDeckComponent.Mana; }
-        }
-
-
-        public int EnemyHealth 
-        { 
-            get { return Mathf.CeilToInt(_combat.Enemies[0].HealthComponent.CurrentHealth); }
-        }
-
-        public string EnemyName 
-        { 
-            get { return _combat.Enemies[0].CharacterData.Name.Length > 0 ? _combat.Enemies[0].CharacterData.Name : "Enemy"; }
-        }
         public string CombatState
         {
             get
@@ -67,17 +47,55 @@ namespace ExplortationRoguelike.GUI.Combat
                 OnPropertyChanged("Message");
             }
         }
-        [SerializeField]
-        private DelegateCommand _endTurnCommand;
-
-        public DelegateCommand EndTurnCommand { get => _endTurnCommand; }
 
         public void Awake()
         {
             CardViews = new ObservableCollection<GameObject>();
-            _endTurnCommand = new DelegateCommand(OnEndTurnCommand);
+            HealthViews = new ObservableCollection<GameObject>();
             _combat = GameObject.Find("CombatManager").GetComponent<CombatStateComponent>();
             _combat.PlayerTurnComponent.CardDeckComponent.CardsDrawn.CollectionChanged += new NotifyCollectionChangedEventHandler(UpdateCards);
+            _combat.PlayerTurnComponent.CardDeckComponent.OnManaChanged += UpdateMana;
+            _combat.EnemyTurnComponent.NpcCombatComponent.OnDeclaredIntent += UpdateEnemyIntent;
+        }
+
+        public void Start()
+        {
+
+            SpawnHealthViews();
+        }
+
+        private void UpdateMana(object sender, int newMana)
+        {
+            ManaText.text = $"Mana: {newMana}/4"; 
+        }
+
+        private void UpdateEnemyIntent(object sender, GameplayAbility intent)
+        {
+            EnemyIntentText.text = $"Enemy Intent: {intent.Tags.First().ToString()}";
+        }
+        private void SpawnHealthViews()
+        {
+            List<ICombatant> combatants = new(_combat.Enemies);
+
+            // Player
+            GameObject healthView = Instantiate(HealthPrefab);
+            healthView.GetComponent<HealthViewModel>().Initialize(_combat.Player.HealthComponent);
+            healthView.transform.parent = gameObject.transform;
+            healthView.transform.localPosition = new Vector2(-400, 0);
+            healthView.transform.localScale = Vector2.one;
+
+            HealthViews.Add(healthView);
+
+            // Enemies
+            foreach (ICombatant combatant in combatants)
+            {
+                GameObject eHealthView = Instantiate(HealthPrefab);
+                eHealthView.GetComponent<HealthViewModel>().Initialize(combatant.HealthComponent);
+                eHealthView.transform.parent = gameObject.transform;
+                eHealthView.transform.localPosition = new Vector2(400, 0);
+                eHealthView.transform.localScale = Vector2.one;
+                HealthViews.Add(eHealthView);
+            }
         }
 
         public void UpdateCards(object sender, NotifyCollectionChangedEventArgs e)
@@ -89,17 +107,17 @@ namespace ExplortationRoguelike.GUI.Combat
                 // Create card prefab in world
                 GameObject cardView = Instantiate(CardPrefab);
                 cardView.transform.parent = gameObject.transform;
-                cardView.transform.localPosition = new Vector2(CardViews.Count * 100, 0);
+                cardView.transform.localPosition = new Vector2(-300 + (CardViews.Count * 100), -350f);
                 cardView.transform.localScale = Vector2.one;
                 CardViews.Add(cardView);
             }
             if (e.Action == NotifyCollectionChangedAction.Remove)
             {
-                foreach(GameplayAbility removedCard in e.OldItems)
+                foreach (GameplayAbility removedCard in e.OldItems)
                 {
-                    foreach(GameObject cardView in CardViews.ToList())
+                    foreach (GameObject cardView in CardViews.ToList())
                     {
-                        if(cardView.GetComponent<CardViewModel>().Ability == removedCard)
+                        if (cardView.GetComponent<CardViewModel>().Ability == removedCard)
                         {
                             Destroy(cardView);
                             CardViews.Remove(cardView);
@@ -113,21 +131,17 @@ namespace ExplortationRoguelike.GUI.Combat
         public void OnTryPlayCard(ConcreteEventArgs args)
         {
             var eventArgs = args.ValidateEventArgs<TryPlayCardEventArgs>();
-            if(eventArgs.Card != null && _combat.PlayerTurnComponent.MyTurn)
+            if (eventArgs.Card != null && _combat.PlayerTurnComponent.MyTurn)
             {
                 _combat.PlayerTurnComponent.Act(eventArgs.Card, new List<AbilitySystemComponent>() { _combat.Enemies[0].AbilitySystemComponent });
             }
-
-            UpdateUI();
         }
 
-        public void OnEndTurnCommand(object evt)
+        public void OnEndTurn()
         {
             if (_combat.PlayerTurnComponent.MyTurn)
             {
                 _combat.PlayerTurnComponent.EndTurn();
-
-                UpdateUI();
             }
         }
 
@@ -136,15 +150,6 @@ namespace ExplortationRoguelike.GUI.Combat
             var combatEventArgs = eventArgs.ValidateEventArgs<CombatEventArgs>(this);
 
             Message = combatEventArgs.Message;
-        }
-
-        public void UpdateUI()
-        {
-            OnPropertyChanged("EnemyIntent");
-            OnPropertyChanged("CombatState");
-            OnPropertyChanged("PlayerHealth");
-            OnPropertyChanged("PlayerMana");
-            OnPropertyChanged("EnemyHealth");
         }
     }
 }

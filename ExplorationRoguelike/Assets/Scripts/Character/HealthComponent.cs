@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,8 @@ namespace ExplorationRoguelike
     public class HealthComponent : MonoBehaviour
     {
         public float MaxHealth;
+
+        public event EventHandler<float> OnHealthChanged;
 
         private float _currentHealth;
         public float CurrentHealth
@@ -19,7 +22,9 @@ namespace ExplorationRoguelike
                 {
                     _currentHealth = 0;
                     OnDeath();
+                    return;
                 }
+                OnHealthChanged?.Invoke(this, _currentHealth);
             }
         }
 

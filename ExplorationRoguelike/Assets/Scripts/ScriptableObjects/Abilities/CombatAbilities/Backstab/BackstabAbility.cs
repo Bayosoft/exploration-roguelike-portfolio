@@ -16,12 +16,12 @@ namespace ExplorationRoguelike
         {
             // TODO:  instigator.StatusComponent.ApplyModifiers(this); or does this happen sooner?
 
-          //  AbilityExtensions.DamageMultipleTargets(instigator, targets, AbilityExtensions.GetRandomDamage(MinDamage, MaxDamage));
+            AbilityExtensions.DamageMultipleTargets(instigator, targets, AbilityExtensions.GetRandomDamage(MinDamage, MaxDamage));
         }
 
         public override void Activate(AbilitySystemComponent instigator, AbilitySystemComponent target)
         {
-         //   AbilityExtensions.DamageSingleTarget(instigator, target, AbilityExtensions.GetRandomDamage(MinDamage, MaxDamage));
+            AbilityExtensions.DamageSingleTarget(instigator, target, AbilityExtensions.GetRandomDamage(MinDamage, MaxDamage));
         }
     }
 }

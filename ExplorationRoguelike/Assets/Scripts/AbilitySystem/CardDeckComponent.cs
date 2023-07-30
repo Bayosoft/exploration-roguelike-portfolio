@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -9,12 +10,17 @@ namespace ExplorationRoguelike
     public class CardDeckComponent : MonoBehaviour
     {
         public int MaxMana { get; private set; } = 4;
-        public int Mana { get; private set; }
+
+        private int _mana;
+        public int Mana { get { return _mana; } private set { _mana = value; OnManaChanged(this, _mana); } }
+        public event EventHandler<int> OnManaChanged;
+
         public ObservableCollection<GameplayAbility> CardsInDeck = new();
         public ObservableCollection<GameplayAbility> CardsDrawn = new ();
         public ObservableCollection<GameplayAbility> CardsDiscarded = new();
         public ObservableCollection<GameplayAbility> CardsShattered = new();
         private AbilitySystemComponent _player;
+
 
         public void Awake()
         {

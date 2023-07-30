@@ -6,7 +6,7 @@ namespace ExplorationRoguelike
 {
     public class AbilityExtensions
     {
-        public static float GetRandomDamage(float min, float max)
+        public static int GetRandomDamage(int min, int max)
         {
            return Random.Range(min, max);
         }
