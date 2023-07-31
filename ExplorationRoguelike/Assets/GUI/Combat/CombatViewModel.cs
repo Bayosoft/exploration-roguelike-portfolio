@@ -5,8 +5,6 @@ using ExplorationRoguelike.GUI.Card;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Collections.Generic;
-using System;
-using UnityEngine.Events;
 using TMPro;
 
 namespace ExplortationRoguelike.GUI.Combat
@@ -26,28 +24,6 @@ namespace ExplortationRoguelike.GUI.Combat
         public object SelectedCard { get; set; }
         public TextMeshProUGUI EnemyIntentText;
 
-        public string CombatState
-        {
-            get
-            {
-                return _combat.CurrentState.ToString();
-            }
-        }
-
-        private string _message;
-        public string Message
-        {
-            get
-            {
-                return _message;
-            }
-            set
-            {
-                _message = value;
-                OnPropertyChanged("Message");
-            }
-        }
-
         public void Awake()
         {
             CardViews = new ObservableCollection<GameObject>();
@@ -60,13 +36,12 @@ namespace ExplortationRoguelike.GUI.Combat
 
         public void Start()
         {
-
             SpawnHealthViews();
         }
 
         private void UpdateMana(object sender, int newMana)
         {
-            ManaText.text = $"Mana: {newMana}/4"; 
+            ManaText.text = $"Mana: {newMana}/4";
         }
 
         private void UpdateEnemyIntent(object sender, GameplayAbility intent)
@@ -78,20 +53,18 @@ namespace ExplortationRoguelike.GUI.Combat
             List<ICombatant> combatants = new(_combat.Enemies);
 
             // Player
-            GameObject healthView = Instantiate(HealthPrefab);
-            healthView.GetComponent<HealthViewModel>().Initialize(_combat.Player.HealthComponent);
-            healthView.transform.parent = gameObject.transform;
-            healthView.transform.localPosition = new Vector2(-400, 0);
-            healthView.transform.localScale = Vector2.one;
+            GameObject healthView = Instantiate(HealthPrefab, this.transform);
 
+            healthView.GetComponent<HealthViewModel>().Initialize(_combat.Player.HealthComponent);
+            healthView.transform.localPosition = new Vector2(400, 0);
+            healthView.transform.localScale = Vector2.one;
             HealthViews.Add(healthView);
 
             // Enemies
             foreach (ICombatant combatant in combatants)
             {
-                GameObject eHealthView = Instantiate(HealthPrefab);
+                GameObject eHealthView = Instantiate(HealthPrefab, this.transform);
                 eHealthView.GetComponent<HealthViewModel>().Initialize(combatant.HealthComponent);
-                eHealthView.transform.parent = gameObject.transform;
                 eHealthView.transform.localPosition = new Vector2(400, 0);
                 eHealthView.transform.localScale = Vector2.one;
                 HealthViews.Add(eHealthView);
@@ -103,12 +76,13 @@ namespace ExplortationRoguelike.GUI.Combat
             //different kind of changes that may have occurred in collection
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
-                CardPrefab.GetComponent<CardViewModel>().Initialize((CardAbility)e.NewItems[0]);
-                // Create card prefab in world
                 GameObject cardView = Instantiate(CardPrefab);
+                cardView.GetComponent<CardViewModel>().Initialize((CardAbility)e.NewItems[0]);
                 cardView.transform.parent = gameObject.transform;
+                cardView.transform.localPosition = new Vector2(CardViews.Count * 100, 0);
                 cardView.transform.localPosition = new Vector2(-300 + (CardViews.Count * 100), -350f);
                 cardView.transform.localScale = Vector2.one;
+
                 CardViews.Add(cardView);
             }
             if (e.Action == NotifyCollectionChangedAction.Remove)

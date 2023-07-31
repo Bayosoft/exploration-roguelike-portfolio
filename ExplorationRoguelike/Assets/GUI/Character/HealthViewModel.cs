@@ -16,6 +16,7 @@ namespace ExplorationRoguelike
         public void Initialize(HealthComponent healthComponent)
         {
             HealthComponent = healthComponent;
+
             HealthComponent.OnHealthChanged += UpdateHealth;
             MaxHealthText.text = $"/{HealthComponent.MaxHealth}";
             CurrentHealthText.text = Mathf.CeilToInt(HealthComponent.MaxHealth).ToString();

@@ -15,7 +15,8 @@ MonoBehaviour:
   Name: Frostbolt
   AbilityType: 1
   Tags: []
-  Description: []
+  Description:
+  - Shoot a bolt of frost dealing 2 Ice damage.
   ManaCost: 2
   damageTags:
     _tags:

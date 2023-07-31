@@ -16,7 +16,7 @@ namespace ExplorationRoguelike
         public event EventHandler<int> OnManaChanged;
 
         public ObservableCollection<GameplayAbility> CardsInDeck = new();
-        public ObservableCollection<GameplayAbility> CardsDrawn = new ();
+        public ObservableCollection<GameplayAbility> CardsDrawn = new();
         public ObservableCollection<GameplayAbility> CardsDiscarded = new();
         public ObservableCollection<GameplayAbility> CardsShattered = new();
         private AbilitySystemComponent _player;
