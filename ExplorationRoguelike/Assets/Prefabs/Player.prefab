@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9206238031483290150
 MonoBehaviour:
@@ -52,6 +52,7 @@ MonoBehaviour:
   _abilitySystemComponent: {fileID: 9206238031483290144}
   _healthComponent: {fileID: 7494087647512919820}
   _turnComponent: {fileID: 7861583019040378717}
+  _cardDeckComponent: {fileID: 0}
 --- !u!114 &7494087647512919820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,6 +92,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7feb8b4ddf87d24fb93706594fb731e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EndTurnEvent: {fileID: 11400000, guid: cb09d1e190322134fb63c3158a1c7d5c, type: 2}
+  _cardDeckComponent: {fileID: 9183813431817207782}
 --- !u!114 &9183813431817207782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,3 +106,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6702c018fba5ca9468319e75a33c3bca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Printer: {fileID: 11400000, guid: 2157d38e25b53c14a9c44035dcd38d8c, type: 2}

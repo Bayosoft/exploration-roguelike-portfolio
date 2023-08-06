@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 namespace ExplorationRoguelike.GUI.Card
 {
-    public class CardViewModel : ViewModel, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler
+    public class Card : ViewModel, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler, IPointerClickHandler
     {
         public CardAbility Ability;
 
@@ -47,7 +47,7 @@ namespace ExplorationRoguelike.GUI.Card
 
         public void TryPlayCard()
         {
-            _playCardEvent.RaiseEvent(new TryPlayCardEventArgs(Ability));
+            _playCardEvent.RaiseEvent(new TryPlayCardEventArgs(this));
         }
 
         private IEnumerator HighlightCard(bool startingAnimation)
@@ -105,5 +105,9 @@ namespace ExplorationRoguelike.GUI.Card
             StartCoroutine(HighlightCard(false));
         }
 
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            TryPlayCard();
+        }
     }
 }

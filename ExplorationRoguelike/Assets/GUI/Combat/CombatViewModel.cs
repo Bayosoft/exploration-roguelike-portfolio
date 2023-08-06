@@ -56,7 +56,7 @@ namespace ExplortationRoguelike.GUI.Combat
             GameObject healthView = Instantiate(HealthPrefab, this.transform);
 
             healthView.GetComponent<HealthViewModel>().Initialize(_combat.Player.HealthComponent);
-            healthView.transform.localPosition = new Vector2(400, 0);
+            healthView.transform.localPosition = new Vector2(-400, 0);
             healthView.transform.localScale = Vector2.one;
             HealthViews.Add(healthView);
 
@@ -76,24 +76,26 @@ namespace ExplortationRoguelike.GUI.Combat
             //different kind of changes that may have occurred in collection
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
-                GameObject cardView = Instantiate(CardPrefab);
-                cardView.GetComponent<CardViewModel>().Initialize((CardAbility)e.NewItems[0]);
+                Card c = (Card)e.NewItems[0];
+                GameObject cardView = c.gameObject;
                 cardView.transform.parent = gameObject.transform;
                 cardView.transform.localPosition = new Vector2(CardViews.Count * 100, 0);
                 cardView.transform.localPosition = new Vector2(-300 + (CardViews.Count * 100), -350f);
                 cardView.transform.localScale = Vector2.one;
+                cardView.transform.SetAsLastSibling();
 
+                cardView.SetActive(true);
                 CardViews.Add(cardView);
             }
             if (e.Action == NotifyCollectionChangedAction.Remove)
             {
-                foreach (GameplayAbility removedCard in e.OldItems)
+                foreach (Card removedCard in e.OldItems)
                 {
                     foreach (GameObject cardView in CardViews.ToList())
                     {
-                        if (cardView.GetComponent<CardViewModel>().Ability == removedCard)
+                        if (cardView.GetComponent<Card>() == removedCard)
                         {
-                            Destroy(cardView);
+                            cardView.SetActive(false);
                             CardViews.Remove(cardView);
                             return;
                         }
@@ -107,7 +109,7 @@ namespace ExplortationRoguelike.GUI.Combat
             var eventArgs = args.ValidateEventArgs<TryPlayCardEventArgs>();
             if (eventArgs.Card != null && _combat.PlayerTurnComponent.MyTurn)
             {
-                _combat.PlayerTurnComponent.Act(eventArgs.Card, new List<AbilitySystemComponent>() { _combat.Enemies[0].AbilitySystemComponent });
+                _combat.PlayerTurnComponent.CardDeckComponent.PlayCard(eventArgs.Card, new List<AbilitySystemComponent>() { _combat.Enemies[0].AbilitySystemComponent });
             }
         }
 
@@ -123,7 +125,6 @@ namespace ExplortationRoguelike.GUI.Combat
         {
             var combatEventArgs = eventArgs.ValidateEventArgs<CombatEventArgs>(this);
 
-            Message = combatEventArgs.Message;
         }
     }
 }

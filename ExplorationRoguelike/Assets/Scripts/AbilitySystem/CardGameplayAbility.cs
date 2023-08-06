@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+
+using ExplorationRoguelike.GUI.Card;
 
 namespace ExplorationRoguelike
 {
