@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace ExplorationRoguelike
@@ -22,6 +21,9 @@ namespace ExplorationRoguelike
     [CreateAssetMenu(fileName = "Gameplay Effect", menuName = "Gameplay Effect")]
     public class GameplayEffect : ScriptableObject
     {
+        public string Name;
+        public string Description; // Should be of same type as card description.
+
         public GameplayDurationType DurationType;
 
         public int Duration; // Duration of the effect in turns
