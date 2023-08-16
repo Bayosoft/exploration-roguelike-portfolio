@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using UnityEngine;
 
 namespace ExplorationRoguelike
@@ -7,7 +9,7 @@ namespace ExplorationRoguelike
     //  A container with accessors specific to active gameplay effects, such as telling it to remove effects by application of a given effect
     public class ActiveGameplayEffectContainer : IEnumerable
     {
-        private List<ActiveGameplayEffect> ActiveEffects;
+        public ObservableCollection<ActiveGameplayEffect> ActiveEffects;
         private AbilitySystemComponent _owner;
 
         public ActiveGameplayEffectContainer(AbilitySystemComponent owner)
@@ -36,7 +38,13 @@ namespace ExplorationRoguelike
 
         public void RemoveGameplayEffectsWithAssetTags(GameplayTagContainer tags)
         {
-            ActiveEffects.RemoveAll(effect => { return effect.Specification.EffectSO.AssetTags.HasAny(tags); });
+            foreach(ActiveGameplayEffect activeEffect in ActiveEffects.ToList())
+            {
+                if (activeEffect.Specification.EffectSO.AssetTags.HasAny(tags))
+                {
+                    ActiveEffects.Remove(activeEffect);
+                }
+            }
         }
 
         public ActiveGameplayEffect GetActiveGameplayEffectByEffectSO(GameplayEffect effectSO)

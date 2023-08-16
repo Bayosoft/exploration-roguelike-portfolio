@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb499093bdd06794fbdcd3a4f2c698e9, type: 3}
   m_Name: FireBuffEffect
   m_EditorClassIdentifier: 
+  Name: Combustion
+  Description: Fire spell damage is multiplied by 5.
   DurationType: 1
   Duration: 5
   IsPeriodic: 0

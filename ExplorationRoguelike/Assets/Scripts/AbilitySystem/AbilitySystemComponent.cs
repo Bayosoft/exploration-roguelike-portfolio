@@ -14,7 +14,7 @@ namespace ExplorationRoguelike
         public GameplayTagContainer ActiveGameplayTags { get; }
         public GameplayTagContainer OwnedGameplayTags { get; private set; }
 
-        private ActiveGameplayEffectContainer ActiveGameplayEffects;
+        public ActiveGameplayEffectContainer ActiveGameplayEffects;
 
         AbilitySystemComponent() 
         {

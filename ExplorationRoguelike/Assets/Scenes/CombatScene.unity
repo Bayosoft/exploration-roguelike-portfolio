@@ -749,7 +749,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -326, y: -130}
+  m_AnchoredPosition: {x: -529.98035, y: -135}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1194741969
@@ -806,7 +806,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -861,8 +861,6 @@ GameObject:
   - component: {fileID: 1243287193}
   - component: {fileID: 1243287192}
   - component: {fileID: 1243287191}
-  - component: {fileID: 1243287190}
-  - component: {fileID: 1243287189}
   m_Layer: 5
   m_Name: MainCanvas
   m_TagString: Untagged
@@ -870,54 +868,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1243287189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1243287188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3422457e4efdcc4ba3de1c6e6c8d985, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 9d38fa15e2e2b8144b39c731f628dab8, type: 2}
-  onArgsEventTriggered:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1243287190}
-        m_TargetAssemblyTypeName: ExplortationRoguelike.GUI.Combat.CombatViewModel,
-          Assembly-CSharp
-        m_MethodName: OnTryPlayCard
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onEventTriggered:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &1243287190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1243287188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1de0a915a21a8fc4e8e28aee5d67072c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CardPrefab: {fileID: 2796258955135256527, guid: 6c2997fd00c048147961645af76a8b2f, type: 3}
-  HealthPrefab: {fileID: 9191561106690347280, guid: c2e70258d05c0064c9df492cc61dab4b, type: 3}
-  ManaText: {fileID: 0}
-  EnemyIntentText: {fileID: 0}
 --- !u!114 &1243287191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1118,9 +1068,9 @@ RectTransform:
   m_Father: {fileID: 1243287194}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -737.36, y: -328.67}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 231.64001, y: -206.35}
   m_SizeDelta: {x: 469.79, y: 409.26}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1485922303
@@ -1132,9 +1082,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1485922301}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e624f132477148408aa580b896f54fc, type: 3}
+  m_Script: {fileID: 11500000, guid: 354764da0af434b459280eb69e8c1ef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _statusEffectPrefab: {fileID: 6386920992207720147, guid: 1bcefe4646897ed4b92f2b33ab622737, type: 3}
+  _characterAbilitySystem: {fileID: 1810495297}
 --- !u!1 &1762163823
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,7 +1124,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 646.25, y: 298}
+  m_AnchoredPosition: {x: 412.54, y: 307}
   m_SizeDelta: {x: 259.46, y: 89.35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1762163825
@@ -1358,6 +1310,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6702c018fba5ca9468319e75a33c3bca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1810495297 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9206238031483290144, guid: d83f280b8af725446be4ddba59ac6e7e, type: 3}
+  m_PrefabInstance: {fileID: 1429334191}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0a04c7ac73c84f4682426adca016fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1926773756

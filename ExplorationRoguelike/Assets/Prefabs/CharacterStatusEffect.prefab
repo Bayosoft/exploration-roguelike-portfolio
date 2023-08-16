@@ -144,6 +144,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 527565747284604978}
+  - component: {fileID: 7885346974078794823}
   m_Layer: 0
   m_Name: CharacterStatusEffect
   m_TagString: Untagged
@@ -167,8 +168,23 @@ Transform:
   - {fileID: 5424031194738611470}
   - {fileID: 5485684780160185815}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7885346974078794823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6386920992207720147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cb783260a7a8c2448700a1fe923b543, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameplayEffect: {fileID: 0}
+  _effectNameText: {fileID: 5185493746968189185}
+  _effectDescriptionText: {fileID: 6958897181557612836}
 --- !u!1 &8598964662198098073
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 354764da0af434b459280eb69e8c1ef1, type: 3}
   m_Name: Status Effect Printer
   m_EditorClassIdentifier: 
-  StatusEffectPrefab: {fileID: 0}
+  _statusEffectPrefab: {fileID: 0}
+  _characterAbilitySystem: {fileID: 0}
