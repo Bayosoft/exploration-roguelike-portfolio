@@ -20,9 +20,9 @@ namespace ExplorationRoguelike
     public abstract class GameplayAbility : ScriptableObject
     {
         public string Name;
+        public DescriptionText Description;
         public AbilityType AbilityType;
         public List<GameplayTag> Tags;
-        public List<string> Description;
 
         /// <summary>
         /// Overridden by specific ability implementations.
