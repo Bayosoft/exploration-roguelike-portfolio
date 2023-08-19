@@ -14,7 +14,15 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
         public int MaxMana { get; private set; } = 4;
 
         private int _mana;
-        public int Mana { get { return _mana; } private set { _mana = value; OnManaChanged(this, _mana); } }
+        public int Mana 
+        { 
+            get { return _mana; } 
+            private set 
+            { 
+                _mana = value; 
+                OnManaChanged(this, _mana); 
+            } 
+        }
         public event EventHandler<int> OnManaChanged;
 
         public ObservableCollection<Card> CardsInDeck = new();
@@ -27,9 +35,13 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
         public void Awake()
         {
             _player = GetComponent<AbilitySystemComponent>();
-            Mana = MaxMana;
 
             CardsInDeck.AddRange(Printer.PrintStackFromAbilities(_player.GrantedAbilities));
+        }
+
+        public void Start()
+        {
+            Mana = MaxMana;
         }
 
         public void DrawCards(int amountOfCards)
