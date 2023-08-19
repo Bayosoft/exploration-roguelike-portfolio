@@ -1,8 +1,8 @@
-using System.Collections;
+using ExplorationRoguelike.Characters;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ExplorationRoguelike
+namespace ExplorationRoguelike.AbilitySystem
 {
     public class AbilityExtensions
     {

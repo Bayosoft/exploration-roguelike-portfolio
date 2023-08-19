@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using ExplorationRoguelike.AbilitySystem;
+using ExplorationRoguelike.AbilitySystem.Abilities;
+using ExplorationRoguelike.Combat.Events;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace ExplorationRoguelike.Assets.Scripts.Combat
+namespace ExplorationRoguelike.Combat
 {
     public class NpcTurnComponent : TurnComponent
     {

@@ -1,15 +1,21 @@
 using UnityEngine;
-using ExplorationRoguelike;
 using System.Collections.ObjectModel;
 using ExplorationRoguelike.GUI.Card;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Collections.Generic;
 using TMPro;
+using ExplorationRoguelike.GUI.Character;
+using ExplorationRoguelike.Combat;
+using ExplorationRoguelike.AbilitySystem.Abilities;
+using ExplorationRoguelike.Characters;
+using ExplorationRoguelike.Scripts;
+using ExplorationRoguelike.Combat.Events;
+using ExplorationRoguelike.AbilitySystem;
 
 namespace ExplortationRoguelike.GUI.Combat
 {
-    public class CombatViewModel : ViewModel
+    public class CombatViewModel : MonoBehaviour
     {
         private CombatStateComponent _combat;
 

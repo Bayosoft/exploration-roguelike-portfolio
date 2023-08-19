@@ -1,6 +1,7 @@
 using ExplorationRoguelike.GUI.Card;
+using ExplorationRoguelike.Scripts;
 
-namespace ExplorationRoguelike
+namespace ExplorationRoguelike.Combat.Events
 {
     public class TryPlayCardEventArgs : ConcreteEventArgs
     {

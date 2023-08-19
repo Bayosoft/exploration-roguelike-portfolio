@@ -1,10 +1,12 @@
 using ExplorationRoguelike;
+using ExplorationRoguelike.AbilitySystem.Abilities;
+using ExplorationRoguelike.Characters;
+using ExplorationRoguelike.GameplayEffects;
+using ExplorationRoguelike.Scripts.GameplayEffects;
+using ExplorationRoguelike.Scripts.GameplayTags;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Rendering;
-
-namespace ExplorationRoguelike
+namespace ExplorationRoguelike.AbilitySystem
 {
     public class AbilitySystemComponent : MonoBehaviour
     {
@@ -16,7 +18,7 @@ namespace ExplorationRoguelike
 
         public ActiveGameplayEffectContainer ActiveGameplayEffects;
 
-        AbilitySystemComponent() 
+        AbilitySystemComponent()
         {
             ActiveGameplayTags = new();
             OwnedGameplayTags = new();
@@ -35,12 +37,12 @@ namespace ExplorationRoguelike
 
         public bool TryActivateAbility(GameplayAbility ability, IEnumerable<AbilitySystemComponent> targets)
         {
-            if(ability == null)
+            if (ability == null)
             {
                 return false;
             }
 
-            if(!CanActivateAbility(ability))
+            if (!CanActivateAbility(ability))
             {
                 return false;
             }
@@ -95,7 +97,7 @@ namespace ExplorationRoguelike
 
         public ActiveGameplayEffectHandle ApplyGameplayEffectToTarget(GameplayEffect effect, ref AbilitySystemComponent target)
         {
-            if(effect == null || target == null)
+            if (effect == null || target == null)
             {
                 return new ActiveGameplayEffectHandle();
             }
@@ -109,7 +111,7 @@ namespace ExplorationRoguelike
             {
                 return new ActiveGameplayEffectHandle();
             }
-            
+
             return target.ApplyGameplayEffectSpecToSelf(effectSpec);
         }
 
@@ -121,7 +123,7 @@ namespace ExplorationRoguelike
 
         public ActiveGameplayEffectHandle ApplyGameplayEffectSpecToSelf(GameplayEffectSpecification effectSpec)
         {
-            if(effectSpec == null)
+            if (effectSpec == null)
             {
                 return null;
             }
@@ -133,7 +135,7 @@ namespace ExplorationRoguelike
             }
 
             // Cannot apply when removal tag requirements are met
-            if(!effectSpec.EffectSO.RemovalTagRequirements.RequirementsMet(OwnedGameplayTags))
+            if (!effectSpec.EffectSO.RemovalTagRequirements.RequirementsMet(OwnedGameplayTags))
             {
                 return null;
             }
@@ -153,7 +155,7 @@ namespace ExplorationRoguelike
                 appliedHandle = ActiveGameplayEffects.ApplyGameplayEffectSpec(effectSpec);
                 // If it's periodic and should execute periodics immediately, do so
 
-                if(effectSpec.EffectSO.IsPeriodic && effectSpec.EffectSO.ExecutePeriodicImmediately)
+                if (effectSpec.EffectSO.IsPeriodic && effectSpec.EffectSO.ExecutePeriodicImmediately)
                 {
                     ExecuteActivePeriodicEffect(appliedHandle);
                 }
@@ -175,7 +177,7 @@ namespace ExplorationRoguelike
         public void ExecuteActiveGameplayEffect(GameplayEffectSpecification effectSpec)
         {
             // 1) Apply modifiers
-            foreach(GameplayModifierSpec modifierSpec in effectSpec.Modifiers)
+            foreach (GameplayModifierSpec modifierSpec in effectSpec.Modifiers)
             {
                 // TODO: Figure out how to execute modifiers to affect desired values (Health, resource, stats)
             }
@@ -194,7 +196,7 @@ namespace ExplorationRoguelike
 
         public GameplayEffectSpecification MakeOutgoingEffectSpec(GameplayEffect effect)
         {
-            if(effect != null)
+            if (effect != null)
             {
                 return MakeOutgoingEffectSpec(effect, MakeOutgoingEffectContext());
             }

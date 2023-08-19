@@ -1,7 +1,11 @@
+using ExplorationRoguelike.AbilitySystem;
+using ExplorationRoguelike.AbilitySystem.Abilities;
+using ExplorationRoguelike.AbilitySystem.CardSystem;
+using ExplorationRoguelike.Combat.Events;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ExplorationRoguelike
+namespace ExplorationRoguelike.Combat
 {
     public class PlayerTurnComponent : TurnComponent
     {

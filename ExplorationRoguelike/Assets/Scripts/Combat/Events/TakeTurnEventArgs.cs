@@ -1,9 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using ExplorationRoguelike.AbilitySystem;
+using ExplorationRoguelike.AbilitySystem.Abilities;
+using ExplorationRoguelike.Scripts;
 
-namespace ExplorationRoguelike
+namespace ExplorationRoguelike.Combat.Events
 {
     public class TakeTurnEventArgs : ConcreteEventArgs
     {

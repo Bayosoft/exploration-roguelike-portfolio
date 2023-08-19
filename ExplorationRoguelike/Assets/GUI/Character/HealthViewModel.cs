@@ -1,30 +1,27 @@
-using ExplortationRoguelike.GUI;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using ExplorationRoguelike.Characters;
 using TMPro;
 using UnityEngine;
 
-namespace ExplorationRoguelike
+namespace ExplorationRoguelike.GUI.Character
 {
-    public class HealthViewModel : ViewModel
+    public class HealthViewModel : MonoBehaviour
     {
-        public HealthComponent HealthComponent;
+        private HealthComponent _healthComponent;
 
         public TextMeshProUGUI CurrentHealthText;
         public TextMeshProUGUI MaxHealthText;
         public void Initialize(HealthComponent healthComponent)
         {
-            HealthComponent = healthComponent;
+            _healthComponent = healthComponent;
 
-            HealthComponent.OnHealthChanged += UpdateHealth;
-            MaxHealthText.text = $"/{HealthComponent.MaxHealth}";
-            CurrentHealthText.text = Mathf.CeilToInt(HealthComponent.MaxHealth).ToString();
+            _healthComponent.OnHealthChanged += UpdateHealth;
+            MaxHealthText.text = $"/{_healthComponent.MaxHealth}";
+            CurrentHealthText.text = Mathf.CeilToInt(_healthComponent.MaxHealth).ToString();
         }
 
         public void UpdateHealth(object sender, float newHealth)
         {
-            if(HealthComponent != (HealthComponent)sender)
+            if(_healthComponent != (HealthComponent)sender)
             {
                 return;
             }

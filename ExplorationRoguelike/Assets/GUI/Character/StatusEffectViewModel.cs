@@ -1,13 +1,13 @@
-using ExplorationRoguelike.GUI.Card;
-using ExplortationRoguelike.GUI;
+using ExplorationRoguelike.AbilitySystem;
+using ExplorationRoguelike.GameplayEffects;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using UnityEngine;
 
-namespace ExplorationRoguelike
+namespace ExplorationRoguelike.GUI.StatusEffect
 {
-    public class StatusEffectViewModel : ViewModel
+    public class StatusEffectViewModel : MonoBehaviour
     {
         [SerializeField]
         private GameObject _statusEffectPrefab;

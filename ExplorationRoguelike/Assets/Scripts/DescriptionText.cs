@@ -1,11 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using ExplorationRoguelike.AbilitySystem;
+using System;
 
-namespace ExplorationRoguelike
+namespace ExplorationRoguelike.Scripts
 {
-    public class DescriptionText : ScriptableObject
+    [Serializable]
+    public class DescriptionText
     {
+
+        public DescriptionText(IDescribable owner)
+        {
+            if(owner is IModifiable modifiable)
+            {
+                modifiable.OnModifiersCalculated += UpdateText;
+            }
+        }
+
+        private void UpdateText(float modifiedValue)
+        {
+            throw new NotImplementedException();
+        }
+
         // TODO: Add a way to build a description 
         public override string ToString()
         {

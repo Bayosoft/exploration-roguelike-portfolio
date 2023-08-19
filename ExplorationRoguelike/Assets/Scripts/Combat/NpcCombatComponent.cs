@@ -1,8 +1,10 @@
+using ExplorationRoguelike.AbilitySystem;
+using ExplorationRoguelike.AbilitySystem.Abilities;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ExplorationRoguelike
+namespace ExplorationRoguelike.Combat
 {
     public class NpcCombatComponent : MonoBehaviour
     {

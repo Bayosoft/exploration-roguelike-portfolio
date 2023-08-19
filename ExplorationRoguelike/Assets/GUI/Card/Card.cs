@@ -1,4 +1,6 @@
-﻿using ExplortationRoguelike.GUI;
+﻿using ExplorationRoguelike.AbilitySystem.Abilities;
+using ExplorationRoguelike.Combat.Events;
+using ExplorationRoguelike.Scripts;
 using System;
 using System.Collections;
 using TMPro;
@@ -7,7 +9,7 @@ using UnityEngine.EventSystems;
 
 namespace ExplorationRoguelike.GUI.Card
 {
-    public class Card : ViewModel, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler, IPointerClickHandler
+    public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler, IPointerClickHandler
     {
         public CardAbility Ability;
 

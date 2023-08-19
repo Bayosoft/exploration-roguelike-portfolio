@@ -1,14 +1,11 @@
-using ExplortationRoguelike.GUI;
-using System.Collections;
-using System.Collections.Generic;
+using ExplorationRoguelike.GameplayEffects;
 using TMPro;
-using UnityEditor.Playables;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace ExplorationRoguelike
+namespace ExplorationRoguelike.GUI.StatusEffect
 {
-    public class StatusEffect : ViewModel, IPointerEnterHandler, IPointerExitHandler
+    public class StatusEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         public GameplayEffect GameplayEffect;
 

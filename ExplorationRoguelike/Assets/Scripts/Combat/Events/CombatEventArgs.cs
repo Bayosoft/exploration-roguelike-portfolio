@@ -1,4 +1,6 @@
-namespace ExplorationRoguelike
+using ExplorationRoguelike.Scripts;
+
+namespace ExplorationRoguelike.Combat.Events
 {
     public class CombatEventArgs : ConcreteEventArgs
     {

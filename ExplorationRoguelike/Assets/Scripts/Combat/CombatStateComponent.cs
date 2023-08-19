@@ -1,12 +1,13 @@
-using ExplorationRoguelike.Assets.Scripts.Combat;
-using System;
-using System.Collections;
+using ExplorationRoguelike.AbilitySystem;
+using ExplorationRoguelike.Characters;
+using ExplorationRoguelike.Characters.NonPlayerCharacters;
+using ExplorationRoguelike.Characters.PlayerCharacter;
+using ExplorationRoguelike.Combat.Events;
+using ExplorationRoguelike.Scripts;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
-namespace ExplorationRoguelike
+namespace ExplorationRoguelike.Combat
 {
     public class CombatStateComponent : MonoBehaviour
     {
@@ -66,13 +67,9 @@ namespace ExplorationRoguelike
 
         public void OnDeath<T>(T deadCombatant)
         {
-            if (deadCombatant is CombatNpc)
+            if (deadCombatant is Player)
             {
                 _currentState = CombatState.LOST;
-            }
-            else if (deadCombatant is Player)
-            {
-                _currentState = CombatState.WON;
             }
         }
     }

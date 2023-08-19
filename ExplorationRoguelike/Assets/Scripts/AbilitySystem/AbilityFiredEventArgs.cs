@@ -1,8 +1,11 @@
+using ExplorationRoguelike.AbilitySystem.Abilities;
+using ExplorationRoguelike.Characters;
+using ExplorationRoguelike.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ExplorationRoguelike
+namespace ExplorationRoguelike.AbilitySystem
 {
     public class AbilityFiredEventArgs : ConcreteEventArgs
     {

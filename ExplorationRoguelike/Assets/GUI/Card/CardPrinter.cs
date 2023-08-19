@@ -1,10 +1,9 @@
-using ExplorationRoguelike.GUI.Card;
+using ExplorationRoguelike.AbilitySystem.Abilities;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Linq;
 using UnityEngine;
 
-namespace ExplorationRoguelike
+namespace ExplorationRoguelike.GUI.Card
 {
     [CreateAssetMenu(fileName = "Card Printer", menuName = "Utility/Card Printer")]
     public class CardPrinter : ScriptableObject

@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7593707704744041619
 MonoBehaviour:
@@ -90,6 +90,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d554934b891a06645971569ce666f0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EndTurnEvent: {fileID: 11400000, guid: cb09d1e190322134fb63c3158a1c7d5c, type: 2}
+  _npcCombatComponent: {fileID: 594199252236119613}
 --- !u!114 &594199252236119613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,3 +104,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a6960a9e91aef84da62da13b4ce083a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Abilities: []

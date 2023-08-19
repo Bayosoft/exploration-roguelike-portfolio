@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using ExplorationRoguelike.Scripts;
 
-namespace ExplorationRoguelike
+namespace ExplorationRoguelike.Combat.Events
 {
     public class EndTurnEventArgs : ConcreteEventArgs
     {
