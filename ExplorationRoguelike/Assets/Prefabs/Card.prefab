@@ -401,14 +401,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e5ff045a3d9379488eab68f32a575e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Ability: {fileID: 11400000, guid: 65f0094aa3e2aea40b9aa40cfaf5a3c4, type: 2}
-  _cardNameText: {fileID: 3628423103659726509}
-  _cardDescriptionText: {fileID: 9078748444600749638}
-  _manaCostText: {fileID: 2117614427386046293}
-  _verticalMoveAmount: 30
-  _moveTime: 0.1
-  _scaleAmount: 1.1
-  _playCardEvent: {fileID: 11400000, guid: 9d38fa15e2e2b8144b39c731f628dab8, type: 2}
+  cardNameText: {fileID: 3628423103659726509}
+  cardDescriptionText: {fileID: 9078748444600749638}
+  manaCostText: {fileID: 2117614427386046293}
+  verticalMoveAmount: 30
+  moveTime: 0.1
+  scaleAmount: 1.1
+  playCardEvent: {fileID: 11400000, guid: 9d38fa15e2e2b8144b39c731f628dab8, type: 2}
 --- !u!114 &7189007905484694347
 MonoBehaviour:
   m_ObjectHideFlags: 0

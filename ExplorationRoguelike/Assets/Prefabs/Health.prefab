@@ -462,6 +462,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecd6e3ee0b3145941a0985b06abb65cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthComponent: {fileID: 0}
-  CurrentHealthText: {fileID: 6562868744690648018}
-  MaxHealthText: {fileID: 1658962950743374634}
+  currentHealthText: {fileID: 6562868744690648018}
+  maxHealthText: {fileID: 1658962950743374634}

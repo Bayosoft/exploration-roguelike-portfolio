@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5660111992492341691
 MonoBehaviour:
@@ -48,11 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c77aac11788184f9f73bd21568f10f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterData: {fileID: 11400000, guid: 3c8a1f72ccf552b43b64b8eb7a5512ab, type: 2}
-  _abilitySystemComponent: {fileID: 9206238031483290144}
-  _healthComponent: {fileID: 7494087647512919820}
-  _turnComponent: {fileID: 7861583019040378717}
-  _cardDeckComponent: {fileID: 9183813431817207782}
+  characterData: {fileID: 11400000, guid: 3c8a1f72ccf552b43b64b8eb7a5512ab, type: 2}
+  abilitySystemComponent: {fileID: 9206238031483290144}
+  healthComponent: {fileID: 7494087647512919820}
+  turnComponent: {fileID: 7861583019040378717}
+  cardDeckComponent: {fileID: 9183813431817207782}
 --- !u!114 &7494087647512919820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,8 +65,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d4f80f75c4a30478c9c3f4cccc5414, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100
-  OnPlayerDeathEvent: {fileID: 11400000, guid: 05064ccfd312b4e4ab6a6b924992497b, type: 2}
+  maxHealth: 0
+  onPlayerDeathEvent: {fileID: 11400000, guid: 05064ccfd312b4e4ab6a6b924992497b, type: 2}
 --- !u!114 &9206238031483290144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0a04c7ac73c84f4682426adca016fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _owner: {fileID: 5660111992492341691}
+  owner: {fileID: 5660111992492341691}
 --- !u!114 &7861583019040378717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,8 +92,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7feb8b4ddf87d24fb93706594fb731e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EndTurnEvent: {fileID: 11400000, guid: cb09d1e190322134fb63c3158a1c7d5c, type: 2}
-  _cardDeckComponent: {fileID: 9183813431817207782}
+  endTurnEvent: {fileID: 11400000, guid: cb09d1e190322134fb63c3158a1c7d5c, type: 2}
+  cardDeckComponent: {fileID: 9183813431817207782}
 --- !u!114 &9183813431817207782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,4 +106,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6702c018fba5ca9468319e75a33c3bca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Printer: {fileID: 11400000, guid: 2157d38e25b53c14a9c44035dcd38d8c, type: 2}
+  printer: {fileID: 11400000, guid: 2157d38e25b53c14a9c44035dcd38d8c, type: 2}

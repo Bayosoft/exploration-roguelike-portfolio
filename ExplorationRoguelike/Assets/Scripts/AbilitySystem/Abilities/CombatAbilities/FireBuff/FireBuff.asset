@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1f79f146387f449ac123a1e79eccf5, type: 3}
   m_Name: FireBuff
   m_EditorClassIdentifier: 
-  Name: Fire Buff
-  AbilityType: 1
-  Tags: []
-  Description:
-  - Multiply the potency of your fire spells by 5.
-  ManaCost: 0
-  GameplayEffect: {fileID: 11400000, guid: 854a0f3f30605914f9be8af8e08ee6bf, type: 2}
+  name: Fire Buff
+  abilityType: 1
+  tags:
+  - {fileID: 11400000, guid: afabe38204f53724388bd1f123ba6b54, type: 2}
+  manaCost: 0
+  gameplayEffect: {fileID: 11400000, guid: 854a0f3f30605914f9be8af8e08ee6bf, type: 2}

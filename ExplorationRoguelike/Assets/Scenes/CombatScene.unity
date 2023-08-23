@@ -288,12 +288,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 594e78dcb88913e4fa4edf10ba745570, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemies:
+  enemies:
   - {fileID: 7581904501940367446}
-  Player: {fileID: 1810495298}
-  EnemyTurnComponent: {fileID: 9021128305232101904}
-  PlayerTurnComponent: {fileID: 1810495294}
-  _combatEvent: {fileID: 11400000, guid: d28551156b9d86043874c9a9530a1418, type: 2}
+  player: {fileID: 1810495298}
+  enemyTurnComponent: {fileID: 9021128305232101904}
+  playerTurnComponent: {fileID: 1810495294}
+  combatEvent: {fileID: 11400000, guid: d28551156b9d86043874c9a9530a1418, type: 2}
 --- !u!4 &407584183
 Transform:
   m_ObjectHideFlags: 0
@@ -321,7 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3422457e4efdcc4ba3de1c6e6c8d985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: cb09d1e190322134fb63c3158a1c7d5c, type: 2}
+  event: {fileID: 11400000, guid: cb09d1e190322134fb63c3158a1c7d5c, type: 2}
   onArgsEventTriggered:
     m_PersistentCalls:
       m_Calls:
@@ -678,10 +678,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1de0a915a21a8fc4e8e28aee5d67072c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CardPrefab: {fileID: 2796258955135256527, guid: 6c2997fd00c048147961645af76a8b2f, type: 3}
-  HealthPrefab: {fileID: 9191561106690347280, guid: c2e70258d05c0064c9df492cc61dab4b, type: 3}
-  ManaText: {fileID: 1194741969}
-  EnemyIntentText: {fileID: 1926773758}
+  cardPrefab: {fileID: 2796258955135256527, guid: 6c2997fd00c048147961645af76a8b2f, type: 3}
+  healthPrefab: {fileID: 9191561106690347280, guid: c2e70258d05c0064c9df492cc61dab4b, type: 3}
+  manaText: {fileID: 1194741969}
+  enemyIntentText: {fileID: 1926773758}
 --- !u!114 &1000540538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -694,7 +694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3422457e4efdcc4ba3de1c6e6c8d985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 9d38fa15e2e2b8144b39c731f628dab8, type: 2}
+  event: {fileID: 11400000, guid: 9d38fa15e2e2b8144b39c731f628dab8, type: 2}
   onArgsEventTriggered:
     m_PersistentCalls:
       m_Calls:
@@ -960,6 +960,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7494087647512919820, guid: d83f280b8af725446be4ddba59ac6e7e, type: 3}
+      propertyPath: maxHealth
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 9206238031483290149, guid: d83f280b8af725446be4ddba59ac6e7e, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1062,8 +1066,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 354764da0af434b459280eb69e8c1ef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _statusEffectPrefab: {fileID: 6386920992207720147, guid: 1bcefe4646897ed4b92f2b33ab622737, type: 3}
-  _characterAbilitySystem: {fileID: 1810495297}
+  statusEffectPrefab: {fileID: 6386920992207720147, guid: 1bcefe4646897ed4b92f2b33ab622737, type: 3}
+  characterAbilitySystem: {fileID: 1810495297}
 --- !u!1 &1762163823
 GameObject:
   m_ObjectHideFlags: 0
@@ -1467,6 +1471,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7391135013950234280, guid: 4f14c8c8f8961074fa334e3dd1776d80, type: 3}
+      propertyPath: maxHealth
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7593707704744041619, guid: 4f14c8c8f8961074fa334e3dd1776d80, type: 3}
+      propertyPath: characterData
+      value: 
+      objectReference: {fileID: 11400000, guid: 199510dfdf1ff484ea89e410beafbfd0, type: 2}
     - target: {fileID: 7893553937852730077, guid: 4f14c8c8f8961074fa334e3dd1776d80, type: 3}
       propertyPath: m_RootOrder
       value: 3

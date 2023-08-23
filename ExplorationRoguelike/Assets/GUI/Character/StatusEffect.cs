@@ -1,13 +1,14 @@
+using System;
 using ExplorationRoguelike.GameplayEffects;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace ExplorationRoguelike.GUI.StatusEffect
+namespace ExplorationRoguelike.GUI.Character
 {
     public class StatusEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        public GameplayEffect gameplayEffect;
+        [NonSerialized] public GameplayEffect GameplayEffect;
 
         [SerializeField]
         private TextMeshProUGUI effectNameText;
@@ -15,7 +16,7 @@ namespace ExplorationRoguelike.GUI.StatusEffect
         private TextMeshProUGUI effectDescriptionText;
         public void Initialize(GameplayEffect effect)
         {
-            gameplayEffect = effect;
+            GameplayEffect = effect;
             effectNameText.text = effect.name;
             effectDescriptionText.text = effect.description;
         }

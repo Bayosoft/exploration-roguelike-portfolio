@@ -17,10 +17,10 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
         public int Mana 
         { 
             get { return _mana; } 
-            private set 
-            { 
-                _mana = value; 
-                OnManaChanged(this, _mana); 
+            private set
+            {
+                _mana = value;
+                OnManaChanged?.Invoke(this, _mana);
             } 
         }
         public event EventHandler<int> OnManaChanged;

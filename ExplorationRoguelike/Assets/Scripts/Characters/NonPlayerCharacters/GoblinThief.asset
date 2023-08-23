@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea47326f6d856749a42082085340a29, type: 3}
   m_Name: GoblinThief
   m_EditorClassIdentifier: 
-  _name: Goblin Thief
-  _gameImage: {fileID: 0}
-  _uiImage: {fileID: 0}
-  _abilities:
-  - {fileID: 11400000, guid: 309fee7195cd6c64abff5ef40e85dd79, type: 2}
+  name: Goblin Thief
+  gameImage: {fileID: 0}
+  uiImage: {fileID: 0}
+  abilities:
   - {fileID: 11400000, guid: ad74d21efd4bd0a42a32af346e448646, type: 2}
-  RegenerationBonus: 2
+  - {fileID: 11400000, guid: 309fee7195cd6c64abff5ef40e85dd79, type: 2}
+  regenerationBonus: 2

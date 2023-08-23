@@ -12,49 +12,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb499093bdd06794fbdcd3a4f2c698e9, type: 3}
   m_Name: FireBuffEffect
   m_EditorClassIdentifier: 
-  Name: Combustion
-  Description: Fire spell damage is multiplied by 5.
-  DurationType: 1
-  Duration: 5
-  IsPeriodic: 0
-  PeriodicDelay: 0
-  ExecutePeriodicImmediately: 0
-  Modifiers:
-  - TagRequirements:
-      RequiredTags:
-        _tags:
-        - {fileID: 11400000, guid: 3711f25615f168a45a30e32b0ba9a6f0, type: 2}
-        - {fileID: 11400000, guid: 97af3b0ddf2bb394a85ce0988e00b2df, type: 2}
-      BlockingTags:
-        _tags: []
-    Operator: 2
-    ModifierMagnitude: 5
-    ModifierTags:
-      _tags: []
-    SnapshotInstigator: 0
-  ConditionalEffects: []
-  EarlyRemovalEffects: []
-  ExpirationEffects: []
-  AssetTags:
-    _tags: []
-  GrantedTags:
-    _tags: []
-  GrantedBlockedAbilityTags:
-    _tags: []
-  ApplicationTagRequirements:
-    RequiredTags:
-      _tags: []
-    BlockingTags:
-      _tags: []
-  OngoingTagRequirements:
-    RequiredTags:
-      _tags: []
-    BlockingTags:
-      _tags: []
-  RemovalTagRequirements:
-    RequiredTags:
-      _tags: []
-    BlockingTags:
-      _tags: []
-  RemoveEffectsWithTags:
-    _tags: []
+  name: Fire Buff
+  description: 
+  durationType: 1
+  duration: 5
+  isPeriodic: 0
+  periodicDelay: 0
+  executePeriodicImmediately: 0
+  modifiers: []
+  conditionalEffects: []
+  earlyRemovalEffects: []
+  expirationEffects: []
+  assetTags:
+    tags: []
+  grantedTags:
+    tags: []
+  grantedBlockedAbilityTags:
+    tags: []
+  applicationTagRequirements:
+    requiredTags:
+      tags: []
+    blockingTags:
+      tags: []
+  ongoingTagRequirements:
+    requiredTags:
+      tags: []
+    blockingTags:
+      tags: []
+  removalTagRequirements:
+    requiredTags:
+      tags: []
+    blockingTags:
+      tags: []
+  removeEffectsWithTags:
+    tags: []

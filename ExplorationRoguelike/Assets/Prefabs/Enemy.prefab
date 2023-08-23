@@ -48,10 +48,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aae89838a8232745bc556cf1573d37f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterData: {fileID: 11400000, guid: 199510dfdf1ff484ea89e410beafbfd0, type: 2}
-  _abilitySystemComponent: {fileID: 3116688327760132695}
-  _healthComponent: {fileID: 7391135013950234280}
-  _turnComponent: {fileID: 95701396686375421}
+  characterData: {fileID: 0}
+  abilitySystemComponent: {fileID: 3116688327760132695}
+  healthComponent: {fileID: 7391135013950234280}
+  turnComponent: {fileID: 95701396686375421}
 --- !u!114 &7391135013950234280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea3ea8451b3c94540bb9fe8537cd373b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 213
+  maxHealth: 0
 --- !u!114 &3116688327760132695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0a04c7ac73c84f4682426adca016fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _owner: {fileID: 7593707704744041619}
+  owner: {fileID: 7593707704744041619}
 --- !u!114 &95701396686375421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,8 +90,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d554934b891a06645971569ce666f0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EndTurnEvent: {fileID: 11400000, guid: cb09d1e190322134fb63c3158a1c7d5c, type: 2}
-  _npcCombatComponent: {fileID: 594199252236119613}
+  endTurnEvent: {fileID: 11400000, guid: cb09d1e190322134fb63c3158a1c7d5c, type: 2}
+  npcCombatComponent: {fileID: 594199252236119613}
 --- !u!114 &594199252236119613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,4 +104,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a6960a9e91aef84da62da13b4ce083a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Abilities: []
+  abilities: []

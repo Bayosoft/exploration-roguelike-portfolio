@@ -35,7 +35,7 @@ namespace ExplorationRoguelike.GUI.StatusEffect
                 effectView.transform.localScale = Vector2.one;
                 effectView.transform.localPosition = Vector2.one;
                 effectView.transform.SetAsLastSibling();
-                StatusEffect effectComponent = effectView.GetComponent<StatusEffect>();
+                Character.StatusEffect effectComponent = effectView.GetComponent<Character.StatusEffect>();
                 effectComponent.Initialize(((ActiveGameplayEffect)e.NewItems[0]).Specification.EffectSo);
 
                 StatusEffectViews.Add(effectView);

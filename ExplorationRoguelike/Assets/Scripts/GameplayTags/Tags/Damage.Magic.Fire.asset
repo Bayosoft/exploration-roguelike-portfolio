@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d9ca0fb8f96c6440a6c3ac76efe528a, type: 3}
   m_Name: Damage.Magic.Fire
   m_EditorClassIdentifier: 
-  Parent: {fileID: 11400000, guid: b8d63b5494a5b21409a7fff929c6d684, type: 2}
+  parent: {fileID: 11400000, guid: b8d63b5494a5b21409a7fff929c6d684, type: 2}

@@ -182,9 +182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb783260a7a8c2448700a1fe923b543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameplayEffect: {fileID: 0}
-  _effectNameText: {fileID: 5185493746968189185}
-  _effectDescriptionText: {fileID: 6958897181557612836}
+  effectNameText: {fileID: 5185493746968189185}
+  effectDescriptionText: {fileID: 6958897181557612836}
 --- !u!1 &8598964662198098073
 GameObject:
   m_ObjectHideFlags: 0

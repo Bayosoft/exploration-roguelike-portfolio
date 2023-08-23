@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d833bc02d2255e4d914d16b813fbcc9, type: 3}
   m_Name: Player Character
   m_EditorClassIdentifier: 
-  _name: Jaina
-  _gameImage: {fileID: 0}
-  _uiImage: {fileID: 0}
-  _abilities:
+  name: Jaina
+  gameImage: {fileID: 0}
+  uiImage: {fileID: 0}
+  abilities:
+  - {fileID: 11400000, guid: 2fa971af94b29ae45aab6f1dc5b88ecc, type: 2}
+  - {fileID: 11400000, guid: 2fa971af94b29ae45aab6f1dc5b88ecc, type: 2}
   - {fileID: 11400000, guid: 65f0094aa3e2aea40b9aa40cfaf5a3c4, type: 2}
   - {fileID: 11400000, guid: b6674a32240e6364ba6e84a46d2aaffa, type: 2}
   - {fileID: 11400000, guid: b6674a32240e6364ba6e84a46d2aaffa, type: 2}
   - {fileID: 11400000, guid: b6674a32240e6364ba6e84a46d2aaffa, type: 2}
   - {fileID: 11400000, guid: b6674a32240e6364ba6e84a46d2aaffa, type: 2}
-  - {fileID: 11400000, guid: b6674a32240e6364ba6e84a46d2aaffa, type: 2}
-  - {fileID: 11400000, guid: 2fa971af94b29ae45aab6f1dc5b88ecc, type: 2}

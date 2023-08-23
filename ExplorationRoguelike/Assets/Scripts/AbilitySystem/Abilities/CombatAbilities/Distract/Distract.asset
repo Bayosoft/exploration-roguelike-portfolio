@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b2e5517d43255b4399cc141c109b70b, type: 3}
   m_Name: Distract
   m_EditorClassIdentifier: 
-  Name: Distract
-  Tags:
+  name: Distract
+  abilityType: 1
+  tags:
   - {fileID: 11400000, guid: 1abe8549361e3a044a1ffbbd69bf440a, type: 2}
-  Description: []
-  _durationInTurns: 2
+  durationInTurns: 3
