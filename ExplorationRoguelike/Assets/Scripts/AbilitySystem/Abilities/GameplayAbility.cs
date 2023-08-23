@@ -19,13 +19,13 @@ namespace ExplorationRoguelike.AbilitySystem.Abilities
 
     public abstract class GameplayAbility : ScriptableObject, IDescribable
     {
-        public string Name;
-        public AbilityType AbilityType;
-        public List<GameplayTag> Tags;
+        public new string name;
+        public AbilityType abilityType;
+        public List<GameplayTag> tags;
 
         [SerializeField]
-        private DescriptionText _description;
-        public DescriptionText Description => _description;
+        private DescriptionText description;
+        public DescriptionText Description => description;
 
         /// <summary>
         /// Overridden by specific ability implementations.

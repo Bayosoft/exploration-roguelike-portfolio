@@ -1,7 +1,7 @@
-﻿using ExplorationRoguelike.AbilitySystem.Abilities;
+﻿using System;
+using ExplorationRoguelike.AbilitySystem.Abilities;
 using ExplorationRoguelike.Combat.Events;
 using ExplorationRoguelike.Scripts;
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -11,29 +11,29 @@ namespace ExplorationRoguelike.GUI.Card
 {
     public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler, IPointerClickHandler
     {
-        public CardAbility Ability;
+        [NonSerialized] public CardAbility Ability;
 
         [SerializeField]
-        private TextMeshProUGUI _cardNameText;
+        private TextMeshProUGUI cardNameText;
         [SerializeField]
-        private TextMeshProUGUI _cardDescriptionText;
+        private TextMeshProUGUI cardDescriptionText;
         [SerializeField]
-        private TextMeshProUGUI _manaCostText;
+        private TextMeshProUGUI manaCostText;
 
         [SerializeField]
-        private float _verticalMoveAmount = 30f;
+        private float verticalMoveAmount = 30f;
         [SerializeField]
-        private float _moveTime = 0.1f;
+        private float moveTime = 0.1f;
         [Range(0f, 2f), SerializeField]
-        private float _scaleAmount = 1.1f;
+        private float scaleAmount = 1.1f;
 
         private Vector3 _startPosition;
         private Vector3 _startScale;
 
-        private int index;
+        private int _index;
 
         [SerializeField]
-        private ScriptableEvent _playCardEvent;
+        private ScriptableEvent playCardEvent;
 
         public void Initialize(CardAbility ability)
         {
@@ -42,14 +42,14 @@ namespace ExplorationRoguelike.GUI.Card
             _startPosition = transform.position;
             _startScale = transform.localScale;
 
-            _cardNameText.text = Ability.Name;
-            _cardDescriptionText.text = Ability.ToString();
-            _manaCostText.text = Ability.ManaCost.ToString();
+            cardNameText.text = Ability.name;
+            cardDescriptionText.text = Ability.ToString();
+            manaCostText.text = Ability.manaCost.ToString();
         }
 
         public void TryPlayCard()
         {
-            _playCardEvent.RaiseEvent(new TryPlayCardEventArgs(this));
+            playCardEvent.RaiseEvent(new TryPlayCardEventArgs(this));
         }
 
         private IEnumerator HighlightCard(bool startingAnimation)
@@ -58,13 +58,13 @@ namespace ExplorationRoguelike.GUI.Card
             Vector3 endScale;
 
             float elapsedTime = 0f;
-            while(elapsedTime < _moveTime)
+            while(elapsedTime < moveTime)
             {
                 elapsedTime += Time.deltaTime;
                 if(startingAnimation)
                 {
                     //endPosition = _startPosition + new Vector3(0, _verticalMoveAmount, 0);
-                    endScale = _startScale * _scaleAmount;
+                    endScale = _startScale * scaleAmount;
                 }
                 else
                 {
@@ -72,8 +72,8 @@ namespace ExplorationRoguelike.GUI.Card
                     endScale = _startScale;
                 }
 
-             //   Vector3 lerpedPos = Vector3.Lerp(transform.position, endPosition, (elapsedTime / _moveTime));
-                Vector3 lerpedScale = Vector3.Lerp(transform.localScale, endScale, (elapsedTime / _moveTime));
+                //   Vector3 lerpedPos = Vector3.Lerp(transform.position, endPosition, (elapsedTime / _moveTime));
+                Vector3 lerpedScale = Vector3.Lerp(transform.localScale, endScale, (elapsedTime / moveTime));
 
              //   transform.position = lerpedPos;
                 transform.localScale = lerpedScale;
@@ -91,22 +91,18 @@ namespace ExplorationRoguelike.GUI.Card
         {
             eventData.selectedObject = null;
         }
-
-
         public void OnSelect(BaseEventData eventData)
         {
-            index = gameObject.transform.GetSiblingIndex();
+            _index = gameObject.transform.GetSiblingIndex();
             gameObject.transform.SetAsLastSibling();
 
             StartCoroutine(HighlightCard(true));
         }
-
         public void OnDeselect(BaseEventData eventData)
         {
-            gameObject.transform.SetSiblingIndex(index);
+            gameObject.transform.SetSiblingIndex(_index);
             StartCoroutine(HighlightCard(false));
         }
-
         public void OnPointerClick(PointerEventData eventData)
         {
             TryPlayCard();

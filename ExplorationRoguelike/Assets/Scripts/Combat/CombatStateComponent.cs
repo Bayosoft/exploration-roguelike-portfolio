@@ -13,25 +13,25 @@ namespace ExplorationRoguelike.Combat
     {
         public enum CombatState
         {
-            START,
-            PLAYERTURN,
-            ENEMYTURN,
-            WON,
-            LOST
+            Start,
+            Playerturn,
+            Enemyturn,
+            Won,
+            Lost
         };
 
         private CombatState _currentState;
         public CombatState CurrentState { get { return _currentState; } private set { _currentState = value; } }
 
         //  public List<Enemy> Allies; Probably not implementing this.
-        public List<CombatNpc> Enemies;
-        public Player Player;
-        public NpcTurnComponent EnemyTurnComponent;
-        public PlayerTurnComponent PlayerTurnComponent;
+        public List<CombatNpc> enemies;
+        public Player player;
+        public NpcTurnComponent enemyTurnComponent;
+        public PlayerTurnComponent playerTurnComponent;
 
 
         [SerializeField]
-        private ScriptableEvent _combatEvent;
+        private ScriptableEvent combatEvent;
 
         // Start is called before the first frame update
         void Start()
@@ -42,9 +42,9 @@ namespace ExplorationRoguelike.Combat
 
         public void StartCombat()
         {
-            CurrentState = CombatState.START;
-            EnemyTurnComponent.NpcCombatComponent.DeclareIntent();
-            PlayerTurnComponent.StartTurn();
+            CurrentState = CombatState.Start;
+            enemyTurnComponent.NpcCombatComponent.DeclareIntent();
+            playerTurnComponent.StartTurn();
         }
 
         public void OnTurnEnded(ConcreteEventArgs eventArgs)
@@ -53,15 +53,15 @@ namespace ExplorationRoguelike.Combat
 
             if (endTurnEventArgs.Initiator is PlayerTurnComponent)
             {
-                EnemyTurnComponent.StartTurn();
-                EnemyTurnComponent.Act(EnemyTurnComponent.NpcCombatComponent.DeclaredAbility, new List<AbilitySystemComponent>() { Player.AbilitySystemComponent });
+                enemyTurnComponent.StartTurn();
+                enemyTurnComponent.Act(enemyTurnComponent.NpcCombatComponent.DeclaredAbility, new List<AbilitySystemComponent>() { player.AbilitySystemComponent });
 
-                CurrentState = CombatState.ENEMYTURN;
+                CurrentState = CombatState.Enemyturn;
             }
             else if (endTurnEventArgs.Initiator is NpcTurnComponent)
             {
-                PlayerTurnComponent.StartTurn();
-                CurrentState = CombatState.PLAYERTURN;
+                playerTurnComponent.StartTurn();
+                CurrentState = CombatState.Playerturn;
             }
         }
 
@@ -69,7 +69,7 @@ namespace ExplorationRoguelike.Combat
         {
             if (deadCombatant is Player)
             {
-                _currentState = CombatState.LOST;
+                _currentState = CombatState.Lost;
             }
         }
     }

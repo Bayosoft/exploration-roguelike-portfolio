@@ -10,7 +10,7 @@ namespace ExplorationRoguelike.Combat
     {
         public bool MyTurn { get; set; } = false;
 
-        public ScriptableEvent EndTurnEvent;
+        public ScriptableEvent endTurnEvent;
         public abstract void StartTurn();
         public abstract void Act(GameplayAbility action, List<AbilitySystemComponent> targets);
         public abstract void EndTurn();

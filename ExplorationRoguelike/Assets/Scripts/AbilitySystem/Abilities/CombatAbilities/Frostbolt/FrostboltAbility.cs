@@ -15,11 +15,11 @@ namespace ExplorationRoguelike.AbilitySystem.Abilities
         [SerializeField]
         private float damage = 0f;
 
-        public GameplayEffect GameplayEffect;
+        public GameplayEffect gameplayEffect;
 
         public override void Activate(AbilitySystemComponent instigator, IEnumerable<AbilitySystemComponent> targets)
         {
-            GameplayEffectSpecification spec = instigator.MakeOutgoingEffectSpec(GameplayEffect);
+            GameplayEffectSpecification spec = instigator.MakeOutgoingEffectSpec(gameplayEffect);
 
             //             if(spec != null)
             //             {

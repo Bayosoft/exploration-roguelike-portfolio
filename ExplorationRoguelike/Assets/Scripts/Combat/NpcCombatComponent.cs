@@ -9,14 +9,14 @@ namespace ExplorationRoguelike.Combat
     public class NpcCombatComponent : MonoBehaviour
     {
         private AbilitySystemComponent _npc;
-        public List<GameplayAbility> Abilities;
+        public List<GameplayAbility> abilities;
         public GameplayAbility DeclaredAbility { get; private set; }
         public event EventHandler<GameplayAbility> OnDeclaredIntent;
 
         public void Awake()
         {
             _npc = GetComponent<AbilitySystemComponent>();
-            Abilities = _npc.GrantedAbilities;
+            abilities = _npc.GrantedAbilities;
         }
         internal void ExecuteIntent(GameplayAbility declaredAbility, List<AbilitySystemComponent> targets)
         {
@@ -26,7 +26,7 @@ namespace ExplorationRoguelike.Combat
         {
             if (_npc.GrantedAbilities.Count > 0)
             {
-                DeclaredAbility = Abilities[new System.Random().Next(Abilities.Count)];
+                DeclaredAbility = abilities[new System.Random().Next(abilities.Count)];
             }
             else
             {

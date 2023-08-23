@@ -7,11 +7,11 @@ namespace ExplorationRoguelike.AbilitySystem.Abilities
     [CreateAssetMenu(fileName = "FireBuff", menuName = "Abilities/Combat/FireBuff")]
     public class FireBuffAbility : CardAbility
     {
-        public GameplayEffect GameplayEffect;
+        public GameplayEffect gameplayEffect;
 
         public override void Activate(AbilitySystemComponent instigator, IEnumerable<AbilitySystemComponent> targets)
         {
-            GameplayEffectSpecification spec = instigator.MakeOutgoingEffectSpec(GameplayEffect);
+            GameplayEffectSpecification spec = instigator.MakeOutgoingEffectSpec(gameplayEffect);
 
             if(spec != null)
             {
@@ -22,7 +22,7 @@ namespace ExplorationRoguelike.AbilitySystem.Abilities
 
         public override void Activate(AbilitySystemComponent instigator, AbilitySystemComponent target)
         {
-            GameplayEffectSpecification spec = instigator.MakeOutgoingEffectSpec(GameplayEffect);
+            GameplayEffectSpecification spec = instigator.MakeOutgoingEffectSpec(gameplayEffect);
             instigator.ApplyGameplayEffectSpecToSelf(spec);
         }
     }

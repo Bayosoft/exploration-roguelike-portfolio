@@ -5,17 +5,17 @@ namespace ExplorationRoguelike.Scripts
 {
     public class EventListener : MonoBehaviour 
     {
-        public ScriptableEvent Event;
+        public ScriptableEvent @event;
         public UnityEvent<ConcreteEventArgs> onArgsEventTriggered;
         public UnityEvent onEventTriggered;
 
         void OnEnable()
         {
-            Event.AddListener(this);
+            @event.AddListener(this);
         }
         void OnDisable()
         {
-            Event.RemoveListener(this);
+            @event.RemoveListener(this);
         }
         public void RaiseEvent(ConcreteEventArgs args)
         {

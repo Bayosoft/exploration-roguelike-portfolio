@@ -8,19 +8,19 @@ namespace ExplorationRoguelike.Characters
     public abstract class CharacterData : ScriptableObject
     {
         [SerializeField]
-        private string _name;
-        public string Name { get => _name; }
+        private new string name;
+        public string Name { get => name; }
 
         [SerializeField]
-        private Sprite _gameImage;
-        public Sprite GameImage { get => _gameImage; }
+        private Sprite gameImage;
+        public Sprite GameImage { get => gameImage; }
 
         [SerializeField]
-        private Sprite _uiImage;
-        public Sprite UiImage { get => _uiImage; }
+        private Sprite uiImage;
+        public Sprite UiImage { get => uiImage; }
 
         [SerializeField]
-        private List<GameplayAbility> _abilities;
-        public List<GameplayAbility> Abilities { get => _abilities; }
+        private List<GameplayAbility> abilities;
+        public List<GameplayAbility> Abilities { get => abilities; }
     }
 }

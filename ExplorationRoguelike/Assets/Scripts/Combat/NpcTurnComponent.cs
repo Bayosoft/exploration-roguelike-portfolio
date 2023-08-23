@@ -9,8 +9,8 @@ namespace ExplorationRoguelike.Combat
     public class NpcTurnComponent : TurnComponent
     {
         [SerializeField]
-        private NpcCombatComponent _npcCombatComponent;
-        public NpcCombatComponent NpcCombatComponent { get => _npcCombatComponent; }
+        private NpcCombatComponent npcCombatComponent;
+        public NpcCombatComponent NpcCombatComponent { get => npcCombatComponent; }
 
         public override void StartTurn()
         {
@@ -31,7 +31,7 @@ namespace ExplorationRoguelike.Combat
         {
             NpcCombatComponent.DeclareIntent();
             MyTurn = false;
-            EndTurnEvent.RaiseEvent(new EndTurnEventArgs(this));
+            endTurnEvent.RaiseEvent(new EndTurnEventArgs(this));
         }
 
     }

@@ -18,23 +18,23 @@ namespace ExplorationRoguelike.Scripts.GameplayEffects
     [Serializable]
     public struct GameplayModifier
     {
-        public GameplayTagRequirements TagRequirements;
-        public GameplayModifierOperator Operator;
-        public float ModifierMagnitude;
-        public GameplayTagContainer ModifierTags;
+        public GameplayTagRequirements tagRequirements;
+        public GameplayModifierOperator @operator;
+        public float modifierMagnitude;
+        public GameplayTagContainer modifierTags;
 
         // True if the instigator modifiers are added to the magnitude are snapshotted
-        public bool SnapshotInstigator;
+        public bool snapshotInstigator;
 
         public bool DoesMeetRequirements(GameplayTagContainer tags, GameplayTagContainer dynamicTags = null)
         {
             if(dynamicTags == null)
             {
-                return TagRequirements.RequirementsMet(tags);
+                return tagRequirements.RequirementsMet(tags);
             }
             else
             {
-                return TagRequirements.RequirementsMet(tags, dynamicTags);
+                return tagRequirements.RequirementsMet(tags, dynamicTags);
             }
         }
 
@@ -58,9 +58,9 @@ namespace ExplorationRoguelike.Scripts.GameplayEffects
         {
             _modifierBase = modifier;
 
-            if(modifier.SnapshotInstigator)
+            if(modifier.snapshotInstigator)
             {
-                _snapshottedMagnitude = modifier.ModifierMagnitude;
+                _snapshottedMagnitude = modifier.modifierMagnitude;
 
                 // @TODO: access GameplayTagsLibrary to retrieve IncomingTag for dynamic tags
                 GameplayTag outgoingTag = null;
@@ -98,7 +98,7 @@ namespace ExplorationRoguelike.Scripts.GameplayEffects
             else
             {
                 // base magnitude
-                magnitude = _modifierBase.ModifierMagnitude;
+                magnitude = _modifierBase.modifierMagnitude;
 
                 // Apply instigator mods
                 if(instigator != null)
@@ -117,7 +117,7 @@ namespace ExplorationRoguelike.Scripts.GameplayEffects
 //                magnitude = target.CalculateAggregatedModifiers(magnitude, _modifierBase.ModifierTags);
             }
 
-            switch (_modifierBase.Operator)
+            switch (_modifierBase.@operator)
             {
                 case GameplayModifierOperator.Override:
                     break;

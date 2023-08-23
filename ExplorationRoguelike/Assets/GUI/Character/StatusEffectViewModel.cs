@@ -10,10 +10,10 @@ namespace ExplorationRoguelike.GUI.StatusEffect
     public class StatusEffectViewModel : MonoBehaviour
     {
         [SerializeField]
-        private GameObject _statusEffectPrefab;
+        private GameObject statusEffectPrefab;
 
         [SerializeField]
-        private AbilitySystemComponent _characterAbilitySystem;
+        private AbilitySystemComponent characterAbilitySystem;
 
         public ObservableCollection<GameObject> StatusEffectViews { get; set; }
 
@@ -24,19 +24,19 @@ namespace ExplorationRoguelike.GUI.StatusEffect
 
         public void Start()
         {
-            _characterAbilitySystem.ActiveGameplayEffects.ActiveEffects.CollectionChanged += new NotifyCollectionChangedEventHandler(PrintStatusEffect);
+            characterAbilitySystem.ActiveGameplayEffects.ActiveEffects.CollectionChanged += new NotifyCollectionChangedEventHandler(PrintStatusEffect);
         }
         public void PrintStatusEffect(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
-                GameObject effectView = Instantiate(_statusEffectPrefab);
+                GameObject effectView = Instantiate(statusEffectPrefab);
                 effectView.transform.parent = gameObject.transform;
                 effectView.transform.localScale = Vector2.one;
                 effectView.transform.localPosition = Vector2.one;
                 effectView.transform.SetAsLastSibling();
                 StatusEffect effectComponent = effectView.GetComponent<StatusEffect>();
-                effectComponent.Initialize(((ActiveGameplayEffect)e.NewItems[0]).Specification.EffectSO);
+                effectComponent.Initialize(((ActiveGameplayEffect)e.NewItems[0]).Specification.EffectSo);
 
                 StatusEffectViews.Add(effectView);
             }

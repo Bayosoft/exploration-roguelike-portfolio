@@ -6,11 +6,11 @@ namespace ExplorationRoguelike.GameplayTags
     [CreateAssetMenu(fileName = "Tag", menuName = "Tag", order = 1)]
     public class GameplayTag : ScriptableObject
     {
-        public GameplayTag Parent;
+        public GameplayTag parent;
 
         public bool Matches(GameplayTag tagToCompare)
         {
-            return tagToCompare == this || (Parent && Parent.Matches(tagToCompare));
+            return tagToCompare == this || (parent && parent.Matches(tagToCompare));
         }
 
         public bool MatchesExact(GameplayTag tagToCompare)

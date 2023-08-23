@@ -5,7 +5,7 @@ namespace ExplorationRoguelike.Scripts
 {
     public class GameState : MonoBehaviour
     {
-        public CombatStateComponent CombatStateComponent;
+        public CombatStateComponent combatStateComponent;
         // Start is called before the first frame update
         void Start()
         {

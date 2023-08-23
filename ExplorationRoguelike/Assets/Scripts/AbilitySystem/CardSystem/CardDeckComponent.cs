@@ -10,7 +10,7 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
 {
     public class CardDeckComponent : MonoBehaviour
     {
-        public CardPrinter Printer;
+        public CardPrinter printer;
         public int MaxMana { get; private set; } = 4;
 
         private int _mana;
@@ -36,7 +36,7 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
         {
             _player = GetComponent<AbilitySystemComponent>();
 
-            CardsInDeck.AddRange(Printer.PrintStackFromAbilities(_player.GrantedAbilities));
+            CardsInDeck.AddRange(printer.PrintStackFromAbilities(_player.GrantedAbilities));
         }
 
         public void Start()
@@ -71,13 +71,13 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
         }
         public void PlayCard(Card card, List<AbilitySystemComponent> targets)
         {
-            if (Mana >= card.Ability.ManaCost)
+            if (Mana >= card.Ability.manaCost)
             {
                 bool activated = _player.TryActivateAbility(card.Ability, targets);
 
                 if (activated)
                 {
-                    Mana -= card.Ability.ManaCost;
+                    Mana -= card.Ability.manaCost;
                     DiscardCard(card);
                 }
             }

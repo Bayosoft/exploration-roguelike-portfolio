@@ -8,15 +8,15 @@ namespace ExplorationRoguelike.GUI.Character
     {
         private HealthComponent _healthComponent;
 
-        public TextMeshProUGUI CurrentHealthText;
-        public TextMeshProUGUI MaxHealthText;
+        public TextMeshProUGUI currentHealthText;
+        public TextMeshProUGUI maxHealthText;
         public void Initialize(HealthComponent healthComponent)
         {
             _healthComponent = healthComponent;
 
             _healthComponent.OnHealthChanged += UpdateHealth;
-            MaxHealthText.text = $"/{_healthComponent.MaxHealth}";
-            CurrentHealthText.text = Mathf.CeilToInt(_healthComponent.MaxHealth).ToString();
+            maxHealthText.text = $"/{_healthComponent.maxHealth}";
+            currentHealthText.text = Mathf.CeilToInt(_healthComponent.maxHealth).ToString();
         }
 
         public void UpdateHealth(object sender, float newHealth)
@@ -26,7 +26,7 @@ namespace ExplorationRoguelike.GUI.Character
                 return;
             }
 
-            CurrentHealthText.text = Mathf.CeilToInt(newHealth).ToString();
+            currentHealthText.text = Mathf.CeilToInt(newHealth).ToString();
         }
     }
 }

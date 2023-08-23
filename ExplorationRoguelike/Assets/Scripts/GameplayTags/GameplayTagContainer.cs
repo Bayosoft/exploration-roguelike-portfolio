@@ -10,21 +10,21 @@ namespace ExplorationRoguelike.Scripts.GameplayTags
     public class GameplayTagContainer : IEnumerable
     {
         [SerializeField]
-        private List<GameplayTag> _tags;
+        private List<GameplayTag> tags;
 
         public GameplayTagContainer()
         {
-            _tags = new();
+            tags = new();
         }
 
         public GameplayTagContainer(GameplayTag tag)
         {
-            _tags = new() { tag };
+            tags = new() { tag };
         }
 
         public bool HasAll(GameplayTagContainer tagsToCheck)
         {
-            if (_tags == null)
+            if (tags == null)
             {
                 return tagsToCheck.IsEmpty();
             }
@@ -42,7 +42,7 @@ namespace ExplorationRoguelike.Scripts.GameplayTags
 
         public bool HasAllExact(GameplayTagContainer tagsToCheck)
         {
-            if(_tags == null)
+            if(tags == null)
             {
                 return tagsToCheck.IsEmpty();
             }
@@ -92,7 +92,7 @@ namespace ExplorationRoguelike.Scripts.GameplayTags
         {
             if(tagToCheck != null)
             {
-                foreach (GameplayTag tag in _tags)
+                foreach (GameplayTag tag in tags)
                 {
                     if(tag.Matches(tagToCheck))
                     {
@@ -107,7 +107,7 @@ namespace ExplorationRoguelike.Scripts.GameplayTags
         {
             if(tagToCheck != null)
             {
-                return _tags.Contains(tagToCheck);
+                return tags.Contains(tagToCheck);
             }
 
             return false;
@@ -117,45 +117,45 @@ namespace ExplorationRoguelike.Scripts.GameplayTags
         {
             if(tag != null)
             {
-                _tags.Add(tag);
+                tags.Add(tag);
             }
         }
 
         public void Remove(GameplayTag tag)
         {
-            _tags.Remove(tag);
+            tags.Remove(tag);
         }
 
         public bool IsEmpty()
         {
-            return _tags.Count == 0;
+            return tags.Count == 0;
         }
 
         public IEnumerator GetEnumerator()
         {
-            return _tags.GetEnumerator();
+            return tags.GetEnumerator();
         }
     }
 
     [Serializable]
     public struct GameplayTagRequirements
     {
-        public GameplayTagContainer RequiredTags;
-        public GameplayTagContainer BlockingTags;
+        public GameplayTagContainer requiredTags;
+        public GameplayTagContainer blockingTags;
 
         public bool HasRequirements()
         {
-            return RequiredTags.IsEmpty() && BlockingTags.IsEmpty();
+            return requiredTags.IsEmpty() && blockingTags.IsEmpty();
         }
 
         public bool RequirementsMet(GameplayTagContainer tags)
         {
             if(tags == null)
             {
-                return RequiredTags.IsEmpty();
+                return requiredTags.IsEmpty();
             }
 
-            return tags.HasAll(RequiredTags) && !tags.HasAny(BlockingTags);
+            return tags.HasAll(requiredTags) && !tags.HasAny(blockingTags);
         }
 
         public bool RequirementsMet(GameplayTagContainer tags, GameplayTagContainer dynamicTags)
@@ -165,7 +165,7 @@ namespace ExplorationRoguelike.Scripts.GameplayTags
                 return false;
             }
 
-            foreach (GameplayTag requiredTag in RequiredTags)
+            foreach (GameplayTag requiredTag in requiredTags)
             {
                 if (!tags.HasTag(requiredTag) && !dynamicTags.HasTag(requiredTag))
                 {
@@ -173,7 +173,7 @@ namespace ExplorationRoguelike.Scripts.GameplayTags
                 }
             }
 
-            if (tags.HasAny(BlockingTags) || dynamicTags.HasAny(BlockingTags))
+            if (tags.HasAny(blockingTags) || dynamicTags.HasAny(blockingTags))
             {
                 return false;
             }

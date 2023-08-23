@@ -7,15 +7,15 @@ namespace ExplorationRoguelike.Characters
     public class Player : Character, ICombatant
     {
         [SerializeField]
-        private HealthComponent _healthComponent;
-        public HealthComponent HealthComponent => _healthComponent;
+        private HealthComponent healthComponent;
+        public HealthComponent HealthComponent => healthComponent;
 
         [SerializeField]
-        private TurnComponent _turnComponent;
-        public TurnComponent TurnComponent => _turnComponent;
+        private TurnComponent turnComponent;
+        public TurnComponent TurnComponent => turnComponent;
 
         [SerializeField]
-        private CardDeckComponent _cardDeckComponent;
-        public CardDeckComponent CardDeckComponent => _cardDeckComponent;
+        private CardDeckComponent cardDeckComponent;
+        public CardDeckComponent CardDeckComponent => cardDeckComponent;
     }
 }

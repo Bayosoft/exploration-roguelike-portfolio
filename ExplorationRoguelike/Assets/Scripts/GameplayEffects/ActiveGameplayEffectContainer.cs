@@ -24,8 +24,8 @@ namespace ExplorationRoguelike.GameplayEffects
         {
             ActiveGameplayEffect effect = new ActiveGameplayEffect(effectSpec);
 
-            ActiveGameplayEffect ExistingActiveEffect = GetActiveGameplayEffectByEffectSO(effectSpec.EffectSO);
-            if(ExistingActiveEffect != null)
+            ActiveGameplayEffect existingActiveEffect = GetActiveGameplayEffectByEffectSo(effectSpec.EffectSo);
+            if(existingActiveEffect != null)
             {
                 
             }
@@ -42,18 +42,18 @@ namespace ExplorationRoguelike.GameplayEffects
         {
             foreach(ActiveGameplayEffect activeEffect in ActiveEffects.ToList())
             {
-                if (activeEffect.Specification.EffectSO.AssetTags.HasAny(tags))
+                if (activeEffect.Specification.EffectSo.assetTags.HasAny(tags))
                 {
                     ActiveEffects.Remove(activeEffect);
                 }
             }
         }
 
-        public ActiveGameplayEffect GetActiveGameplayEffectByEffectSO(GameplayEffect effectSO)
+        public ActiveGameplayEffect GetActiveGameplayEffectByEffectSo(GameplayEffect effectSo)
         {
             foreach(ActiveGameplayEffect activeEffect in ActiveEffects)
             {
-                if(activeEffect.Specification.EffectSO == effectSO)
+                if(activeEffect.Specification.EffectSo == effectSo)
                 {
                     return activeEffect;
                 }

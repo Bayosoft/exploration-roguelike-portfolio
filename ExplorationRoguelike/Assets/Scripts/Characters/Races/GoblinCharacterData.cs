@@ -7,7 +7,7 @@ namespace ExplorationRoguelike.Characters.Races
     public class GoblinCharacterData : CharacterData
     {
         // Unique racial properties that isnt shared among other races.
-        public int RegenerationBonus = 2;
+        public int regenerationBonus = 2;
     }
 }
 

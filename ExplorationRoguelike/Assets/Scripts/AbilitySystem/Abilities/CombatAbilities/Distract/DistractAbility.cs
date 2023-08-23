@@ -8,7 +8,7 @@ namespace ExplorationRoguelike.AbilitySystem.Abilities
     {
         // StatusEffect 
         [SerializeField]
-        private int _durationInTurns;
+        private int durationInTurns;
         //
         // property indicating its a card/combat ability.
         // tags for determining status modifiers.

@@ -8,7 +8,7 @@ namespace ExplorationRoguelike.GUI.Card
     [CreateAssetMenu(fileName = "Card Printer", menuName = "Utility/Card Printer")]
     public class CardPrinter : ScriptableObject
     {
-        public GameObject CardPrefab;
+        public GameObject cardPrefab;
 
         public List<Card> PrintStackFromAbilities(List<GameplayAbility> abilities)
         {
@@ -16,7 +16,7 @@ namespace ExplorationRoguelike.GUI.Card
 
             foreach(CardAbility ability in abilities.Cast<CardAbility>())
             {
-                GameObject cardView = Instantiate(CardPrefab);
+                GameObject cardView = Instantiate(cardPrefab);
 
                 Card cardComponent = cardView.GetComponent<Card>();
                 cardComponent.Initialize(ability);

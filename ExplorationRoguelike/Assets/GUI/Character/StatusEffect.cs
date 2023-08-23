@@ -7,27 +7,27 @@ namespace ExplorationRoguelike.GUI.StatusEffect
 {
     public class StatusEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        public GameplayEffect GameplayEffect;
+        public GameplayEffect gameplayEffect;
 
         [SerializeField]
-        private TextMeshProUGUI _effectNameText;
+        private TextMeshProUGUI effectNameText;
         [SerializeField]
-        private TextMeshProUGUI _effectDescriptionText;
+        private TextMeshProUGUI effectDescriptionText;
         public void Initialize(GameplayEffect effect)
         {
-            GameplayEffect = effect;
-            _effectNameText.text = effect.Name;
-            _effectDescriptionText.text = effect.Description;
+            gameplayEffect = effect;
+            effectNameText.text = effect.name;
+            effectDescriptionText.text = effect.description;
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            _effectDescriptionText.gameObject.SetActive(true);
+            effectDescriptionText.gameObject.SetActive(true);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            _effectDescriptionText.gameObject.SetActive(false);
+            effectDescriptionText.gameObject.SetActive(false);
         }
     }
 }

@@ -11,8 +11,8 @@ namespace ExplorationRoguelike.AbilitySystem
     public class AbilitySystemComponent : MonoBehaviour
     {
         [SerializeField]
-        private Character _owner;
-        public List<GameplayAbility> GrantedAbilities { get => _owner.CharacterData.Abilities; }
+        private Character owner;
+        public List<GameplayAbility> GrantedAbilities { get => owner.CharacterData.Abilities; }
         public GameplayTagContainer ActiveGameplayTags { get; }
         public GameplayTagContainer OwnedGameplayTags { get; private set; }
 
@@ -81,7 +81,7 @@ namespace ExplorationRoguelike.AbilitySystem
 
         public bool MeetsTagRequirements(GameplayEffect effect)
         {
-            return HasAll(effect.ApplicationTagRequirements.RequiredTags) && !HasAny(effect.ApplicationTagRequirements.BlockingTags);
+            return HasAll(effect.applicationTagRequirements.requiredTags) && !HasAny(effect.applicationTagRequirements.blockingTags);
         }
 
         public bool HasAll(GameplayTagContainer tags)
@@ -129,13 +129,13 @@ namespace ExplorationRoguelike.AbilitySystem
             }
 
             // Application tag requirements must be met to apply
-            if (!effectSpec.EffectSO.ApplicationTagRequirements.RequirementsMet(OwnedGameplayTags))
+            if (!effectSpec.EffectSo.applicationTagRequirements.RequirementsMet(OwnedGameplayTags))
             {
                 return null;
             }
 
             // Cannot apply when removal tag requirements are met
-            if (!effectSpec.EffectSO.RemovalTagRequirements.RequirementsMet(OwnedGameplayTags))
+            if (!effectSpec.EffectSo.removalTagRequirements.RequirementsMet(OwnedGameplayTags))
             {
                 return null;
             }
@@ -144,7 +144,7 @@ namespace ExplorationRoguelike.AbilitySystem
 
             ActiveGameplayEffectHandle appliedHandle = new ActiveGameplayEffectHandle(-1);
 
-            if (effectSpec.EffectSO.DurationType == GameplayDurationType.Instant)
+            if (effectSpec.EffectSo.durationType == GameplayDurationType.Instant)
             {
                 // Execute gameplay effect once
                 ExecuteActiveGameplayEffect(effectSpec);
@@ -155,7 +155,7 @@ namespace ExplorationRoguelike.AbilitySystem
                 appliedHandle = ActiveGameplayEffects.ApplyGameplayEffectSpec(effectSpec);
                 // If it's periodic and should execute periodics immediately, do so
 
-                if (effectSpec.EffectSO.IsPeriodic && effectSpec.EffectSO.ExecutePeriodicImmediately)
+                if (effectSpec.EffectSo.isPeriodic && effectSpec.EffectSo.executePeriodicImmediately)
                 {
                     ExecuteActivePeriodicEffect(appliedHandle);
                 }

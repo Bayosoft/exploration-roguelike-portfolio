@@ -19,25 +19,25 @@ namespace ExplortationRoguelike.GUI.Combat
     {
         private CombatStateComponent _combat;
 
-        public GameObject CardPrefab;
-        public GameObject HealthPrefab;
-        public TextMeshProUGUI ManaText;
+        public GameObject cardPrefab;
+        public GameObject healthPrefab;
+        public TextMeshProUGUI manaText;
         public ObservableCollection<GameObject> HealthViews { get; set; }
         public ObservableCollection<GameObject> CardViews { get; set; }
 
         // public ObservableCollection<AbilitySO> DrawnCards { get { return new ObservableCollection<AbilitySO>(_combat.CardDeckComponent.CardsDrawn); } }
 
         public object SelectedCard { get; set; }
-        public TextMeshProUGUI EnemyIntentText;
+        public TextMeshProUGUI enemyIntentText;
 
         public void Awake()
         {
             CardViews = new ObservableCollection<GameObject>();
             HealthViews = new ObservableCollection<GameObject>();
             _combat = GameObject.Find("CombatManager").GetComponent<CombatStateComponent>();
-            _combat.PlayerTurnComponent.CardDeckComponent.CardsDrawn.CollectionChanged += new NotifyCollectionChangedEventHandler(UpdateCards);
-            _combat.PlayerTurnComponent.CardDeckComponent.OnManaChanged += UpdateMana;
-            _combat.EnemyTurnComponent.NpcCombatComponent.OnDeclaredIntent += UpdateEnemyIntent;
+            _combat.playerTurnComponent.CardDeckComponent.CardsDrawn.CollectionChanged += new NotifyCollectionChangedEventHandler(UpdateCards);
+            _combat.playerTurnComponent.CardDeckComponent.OnManaChanged += UpdateMana;
+            _combat.enemyTurnComponent.NpcCombatComponent.OnDeclaredIntent += UpdateEnemyIntent;
         }
 
         public void Start()
@@ -47,21 +47,21 @@ namespace ExplortationRoguelike.GUI.Combat
 
         private void UpdateMana(object sender, int newMana)
         {
-            ManaText.text = $"Mana: {newMana}/4";
+            manaText.text = $"Mana: {newMana}/4";
         }
 
         private void UpdateEnemyIntent(object sender, GameplayAbility intent)
         {
-            EnemyIntentText.text = $"Enemy Intent: {intent.Tags.First().ToString()}";
+            enemyIntentText.text = $"Enemy Intent: {intent.tags.First().ToString()}";
         }
         private void SpawnHealthViews()
         {
-            List<ICombatant> combatants = new(_combat.Enemies);
+            List<ICombatant> combatants = new(_combat.enemies);
 
             // Player
-            GameObject healthView = Instantiate(HealthPrefab, this.transform);
+            GameObject healthView = Instantiate(healthPrefab, this.transform);
 
-            healthView.GetComponent<HealthViewModel>().Initialize(_combat.Player.HealthComponent);
+            healthView.GetComponent<HealthViewModel>().Initialize(_combat.player.HealthComponent);
             healthView.transform.localPosition = new Vector2(-400, 0);
             healthView.transform.localScale = Vector2.one;
             HealthViews.Add(healthView);
@@ -69,7 +69,7 @@ namespace ExplortationRoguelike.GUI.Combat
             // Enemies
             foreach (ICombatant combatant in combatants)
             {
-                GameObject eHealthView = Instantiate(HealthPrefab, this.transform);
+                GameObject eHealthView = Instantiate(healthPrefab, this.transform);
                 eHealthView.GetComponent<HealthViewModel>().Initialize(combatant.HealthComponent);
                 eHealthView.transform.localPosition = new Vector2(400, 0);
                 eHealthView.transform.localScale = Vector2.one;
@@ -113,17 +113,17 @@ namespace ExplortationRoguelike.GUI.Combat
         public void OnTryPlayCard(ConcreteEventArgs args)
         {
             var eventArgs = args.ValidateEventArgs<TryPlayCardEventArgs>();
-            if (eventArgs.Card != null && _combat.PlayerTurnComponent.MyTurn)
+            if (eventArgs.Card != null && _combat.playerTurnComponent.MyTurn)
             {
-                _combat.PlayerTurnComponent.CardDeckComponent.PlayCard(eventArgs.Card, new List<AbilitySystemComponent>() { _combat.Enemies[0].AbilitySystemComponent });
+                _combat.playerTurnComponent.CardDeckComponent.PlayCard(eventArgs.Card, new List<AbilitySystemComponent>() { _combat.enemies[0].AbilitySystemComponent });
             }
         }
 
         public void OnEndTurn()
         {
-            if (_combat.PlayerTurnComponent.MyTurn)
+            if (_combat.playerTurnComponent.MyTurn)
             {
-                _combat.PlayerTurnComponent.EndTurn();
+                _combat.playerTurnComponent.EndTurn();
             }
         }
 

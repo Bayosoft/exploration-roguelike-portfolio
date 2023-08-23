@@ -5,12 +5,12 @@ namespace ExplorationRoguelike.Characters.PlayerCharacter
 {
     public class PlayerHealthComponent : HealthComponent
     {
-        public ScriptableEvent OnPlayerDeathEvent;
+        public ScriptableEvent onPlayerDeathEvent;
 
         public override void OnDeath()
         {
             OnPlayerDeathEventArgs onPlayerDeathEventArgs = new OnPlayerDeathEventArgs();
-            OnPlayerDeathEvent.RaiseEvent(onPlayerDeathEventArgs);
+            onPlayerDeathEvent.RaiseEvent(onPlayerDeathEventArgs);
         }
     }
 }

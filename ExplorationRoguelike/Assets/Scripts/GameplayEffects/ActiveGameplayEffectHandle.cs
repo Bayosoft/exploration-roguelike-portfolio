@@ -6,36 +6,36 @@ namespace ExplorationRoguelike.GameplayEffects
 {
     public class ActiveGameplayEffectHandle
     {
-        private bool wasAppliedSuccessfully = false;
-        private int handleID = -1;
+        private bool _wasAppliedSuccessfully = false;
+        private int _handleID = -1;
 
-        private static int globalNextValidHandle = 0;
+        private static int _globalNextValidHandle = 0;
 
         public ActiveGameplayEffectHandle()
         {
-            handleID = -1;
-            wasAppliedSuccessfully = false;
+            _handleID = -1;
+            _wasAppliedSuccessfully = false;
         }
 
         public ActiveGameplayEffectHandle(int inHandle) 
         {
-            handleID = inHandle;
-            wasAppliedSuccessfully = true;
+            _handleID = inHandle;
+            _wasAppliedSuccessfully = true;
         }
 
         public bool IsValid()
         {
-            return handleID > -1;
+            return _handleID > -1;
         }
 
         public bool WasAppliedSuccessfully()
         {
-            return wasAppliedSuccessfully;
+            return _wasAppliedSuccessfully;
         }
 
         public static ActiveGameplayEffectHandle GenerateNew()
         {
-            return new ActiveGameplayEffectHandle(globalNextValidHandle++);
+            return new ActiveGameplayEffectHandle(_globalNextValidHandle++);
         }
     }
 }

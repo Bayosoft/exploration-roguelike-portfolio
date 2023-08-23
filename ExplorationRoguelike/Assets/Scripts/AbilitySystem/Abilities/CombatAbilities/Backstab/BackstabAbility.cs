@@ -8,7 +8,7 @@ namespace ExplorationRoguelike.AbilitySystem.Abilities
     [CreateAssetMenu(fileName = "Backstab", menuName = "Abilities/Combat/Backstab")]
     public class BackstabAbility : GameplayAbility
     {
-        public int MinDamage, MaxDamage;
+        public int minDamage, maxDamage;
         // property indicating its a card/combat ability.
         // tags for determining status modifiers.
 
@@ -16,12 +16,12 @@ namespace ExplorationRoguelike.AbilitySystem.Abilities
         {
             // TODO:  instigator.StatusComponent.ApplyModifiers(this); or does this happen sooner?
 
-            AbilityExtensions.DamageMultipleTargets(instigator, targets, AbilityExtensions.GetRandomDamage(MinDamage, MaxDamage));
+            AbilityExtensions.DamageMultipleTargets(instigator, targets, AbilityExtensions.GetRandomDamage(minDamage, maxDamage));
         }
 
         public override void Activate(AbilitySystemComponent instigator, AbilitySystemComponent target)
         {
-            AbilityExtensions.DamageSingleTarget(instigator, target, AbilityExtensions.GetRandomDamage(MinDamage, MaxDamage));
+            AbilityExtensions.DamageSingleTarget(instigator, target, AbilityExtensions.GetRandomDamage(minDamage, maxDamage));
         }
     }
 }

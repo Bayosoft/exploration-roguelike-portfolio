@@ -8,7 +8,7 @@ namespace ExplorationRoguelike.GameplayEffects
     // Holds data about the effect that is applied, like the GameplayEffect, stacks, duration, isDurationLocked, GameplayEffectContext.
     public class GameplayEffectSpecification 
     {
-        public GameplayEffect EffectSO { get; private set; }
+        public GameplayEffect EffectSo { get; private set; }
         public int Stacks { get; set; }
         public int Duration { get; set; }
         public bool IsDurationLocked { get; set; }
@@ -19,16 +19,16 @@ namespace ExplorationRoguelike.GameplayEffects
 
         public GameplayEffectSpecification(GameplayEffect effect, GameplayEffectContext context, int level = 1)
         {
-            EffectSO = effect;
+            EffectSo = effect;
 
-            Duration = effect.Duration;
+            Duration = effect.duration;
 
             Context = context;
             Level = level;
 
             Modifiers = new List<GameplayModifierSpec>();
 
-            foreach(GameplayModifier modifier in effect.Modifiers)
+            foreach(GameplayModifier modifier in effect.modifiers)
             {
                 Modifiers.Add(new GameplayModifierSpec(modifier, context.Instigator));
             }

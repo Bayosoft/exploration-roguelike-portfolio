@@ -7,7 +7,7 @@ namespace ExplorationRoguelike.Characters
 {
     public class HealthComponent : MonoBehaviour
     {
-        public float MaxHealth;
+        public float maxHealth;
 
         public event EventHandler<float> OnHealthChanged;
 
@@ -30,7 +30,7 @@ namespace ExplorationRoguelike.Characters
 
         public void Start()
         {
-            CurrentHealth = MaxHealth;
+            CurrentHealth = maxHealth;
         }
         public void ReduceHealthBy(float amount)
         {
