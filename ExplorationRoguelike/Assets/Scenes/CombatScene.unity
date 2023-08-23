@@ -962,7 +962,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7494087647512919820, guid: d83f280b8af725446be4ddba59ac6e7e, type: 3}
       propertyPath: maxHealth
-      value: 5
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 9206238031483290149, guid: d83f280b8af725446be4ddba59ac6e7e, type: 3}
       propertyPath: m_Name
@@ -1473,7 +1473,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7391135013950234280, guid: 4f14c8c8f8961074fa334e3dd1776d80, type: 3}
       propertyPath: maxHealth
-      value: 6
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7593707704744041619, guid: 4f14c8c8f8961074fa334e3dd1776d80, type: 3}
       propertyPath: characterData

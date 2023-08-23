@@ -21,6 +21,7 @@ namespace ExplorationRoguelike.Characters
                 if (_currentHealth <= 0)
                 {
                     _currentHealth = 0;
+                    OnHealthChanged?.Invoke(this, _currentHealth);
                     OnDeath();
                     return;
                 }
