@@ -35,7 +35,7 @@ namespace ExplortationRoguelike.GUI.Combat
             CardViews = new ObservableCollection<GameObject>();
             HealthViews = new ObservableCollection<GameObject>();
             _combat = GameObject.Find("CombatManager").GetComponent<CombatStateComponent>();
-            _combat.playerTurnComponent.CardDeckComponent.CardsDrawn.CollectionChanged += new NotifyCollectionChangedEventHandler(UpdateCards);
+            _combat.playerTurnComponent.CardDeckComponent.CardsDrawn.CollectionChanged += UpdateCards;
             _combat.playerTurnComponent.CardDeckComponent.OnManaChanged += UpdateMana;
             _combat.enemyTurnComponent.NpcCombatComponent.OnDeclaredIntent += UpdateEnemyIntent;
         }

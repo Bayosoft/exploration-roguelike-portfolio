@@ -18,22 +18,24 @@ namespace ExplorationRoguelike.AbilitySystem
 
         public ActiveGameplayEffectContainer ActiveGameplayEffects;
 
-        AbilitySystemComponent()
+        private AbilitySystemComponent()
         {
-            ActiveGameplayTags = new();
-            OwnedGameplayTags = new();
+            ActiveGameplayTags = new GameplayTagContainer();
+            OwnedGameplayTags = new GameplayTagContainer();
         }
 
-        void Awake()
+        private void Awake()
         {
-            ActiveGameplayEffects = new(this);
+            ActiveGameplayEffects = new ActiveGameplayEffectContainer(this);
         }
 
         // In case levels are a thing
+        /*
         public int GetLevel()
         {
             return 1;
         }
+        */
 
         public bool TryActivateAbility(GameplayAbility ability, IEnumerable<AbilitySystemComponent> targets)
         {
@@ -68,7 +70,7 @@ namespace ExplorationRoguelike.AbilitySystem
                     continue;
                 }
 
-                AbilitySystemComponent instigator = activeEffect.Specification.Context.Instigator;
+                AbilitySystemComponent instigator = activeEffect.Specification.Instigator;
 
                 foreach (GameplayModifierSpec modifier in activeEffect.Specification.Modifiers)
                 {
@@ -198,26 +200,18 @@ namespace ExplorationRoguelike.AbilitySystem
         {
             if (effect != null)
             {
-                return MakeOutgoingEffectSpec(effect, MakeOutgoingEffectContext());
+                return MakeOutgoingEffectSpec(effect, this);
             }
             return null;
         }
-        public GameplayEffectSpecification MakeOutgoingEffectSpec(GameplayEffect effect, GameplayEffectContext context)
+        public GameplayEffectSpecification MakeOutgoingEffectSpec(GameplayEffect effect, AbilitySystemComponent instigator)
         {
             if (effect != null)
             {
-                return new(effect, context, GetLevel());
+                return new GameplayEffectSpecification(effect, instigator/*, GetLevel()*/);
             }
 
             return null;
-        }
-
-        public GameplayEffectContext MakeOutgoingEffectContext()
-        {
-            // Get context from ASC including instigator
-            GameplayEffectContext context = new(this);
-
-            return context;
         }
     }
 }

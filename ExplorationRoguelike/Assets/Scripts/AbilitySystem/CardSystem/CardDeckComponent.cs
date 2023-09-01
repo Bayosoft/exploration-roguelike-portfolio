@@ -71,16 +71,20 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
         }
         public void PlayCard(Card card, List<AbilitySystemComponent> targets)
         {
-            if (Mana >= card.Ability.manaCost)
+            if (Mana < card.Ability.manaCost)
             {
-                bool activated = _player.TryActivateAbility(card.Ability, targets);
-
-                if (activated)
-                {
-                    Mana -= card.Ability.manaCost;
-                    DiscardCard(card);
-                }
+                return;
             }
+            
+            var successfullyPlayed = _player.TryActivateAbility(card.Ability, targets);
+
+            if (!successfullyPlayed)
+            {
+                return;
+            }
+            
+            Mana -= card.Ability.manaCost;
+            DiscardCard(card);
         }
         /// <summary>
         /// Discard a specific card from hand.

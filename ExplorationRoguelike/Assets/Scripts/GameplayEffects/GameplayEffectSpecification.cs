@@ -1,6 +1,7 @@
 using ExplorationRoguelike.Scripts.GameplayEffects;
 using System.Collections;
 using System.Collections.Generic;
+using ExplorationRoguelike.AbilitySystem;
 using UnityEngine;
 
 namespace ExplorationRoguelike.GameplayEffects
@@ -12,25 +13,25 @@ namespace ExplorationRoguelike.GameplayEffects
         public int Stacks { get; set; }
         public int Duration { get; set; }
         public bool IsDurationLocked { get; set; }
-        public int Level { get; set; }
-        public GameplayEffectContext Context { get; private set; }
+        // public int Level { get; set; }
+        public AbilitySystemComponent Instigator { get; private set; }
 
-        public List<GameplayModifierSpec> Modifiers { get; private set; }
+        public List<GameplayModifierSpec> Modifiers { get; }
 
-        public GameplayEffectSpecification(GameplayEffect effect, GameplayEffectContext context, int level = 1)
+        public GameplayEffectSpecification(GameplayEffect effect, AbilitySystemComponent instigator /*, int level = 1*/)
         {
             EffectSo = effect;
 
             Duration = effect.duration;
 
-            Context = context;
-            Level = level;
+            Instigator = instigator;
+            // Level = level;
 
             Modifiers = new List<GameplayModifierSpec>();
 
-            foreach(GameplayModifier modifier in effect.modifiers)
+            foreach(var modifier in effect.modifiers)
             {
-                Modifiers.Add(new GameplayModifierSpec(modifier, context.Instigator));
+                Modifiers.Add(new GameplayModifierSpec(modifier, instigator));
             }
         }
     }
