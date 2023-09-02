@@ -2,7 +2,7 @@ using ExplorationRoguelike.AbilitySystem.CardSystem;
 using ExplorationRoguelike.Combat;
 using UnityEngine;
 
-namespace ExplorationRoguelike.Characters
+namespace ExplorationRoguelike.Characters.PlayerCharacter
 {
     public class Player : Character, ICombatant
     {

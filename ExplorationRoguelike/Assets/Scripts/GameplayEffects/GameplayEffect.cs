@@ -1,8 +1,7 @@
 using ExplorationRoguelike.AbilitySystem;
-using ExplorationRoguelike.Scripts.GameplayEffects;
-using ExplorationRoguelike.Scripts.GameplayTags;
 using System;
 using System.Collections.Generic;
+using ExplorationRoguelike.GameplayTags;
 using UnityEngine;
 
 namespace ExplorationRoguelike.GameplayEffects
@@ -11,7 +10,8 @@ namespace ExplorationRoguelike.GameplayEffects
     public enum GameplayDurationType
     {
         Instant,
-        Duration,
+        Turns,
+        Time,
         Infinite
     }
 

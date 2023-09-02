@@ -1,8 +1,6 @@
-using ExplorationRoguelike.Scripts;
-
 namespace ExplorationRoguelike.Combat.Events
 {
-    public class EndTurnEventArgs : ConcreteEventArgs
+    public class EndTurnEventArgs : TimeEventArgs
     {
         public TurnComponent Initiator { get; }
         public EndTurnEventArgs(TurnComponent initiator)

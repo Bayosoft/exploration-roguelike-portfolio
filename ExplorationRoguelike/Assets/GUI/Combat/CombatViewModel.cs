@@ -1,19 +1,17 @@
-using UnityEngine;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using ExplorationRoguelike.GUI.Card;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Collections.Generic;
-using TMPro;
-using ExplorationRoguelike.GUI.Character;
-using ExplorationRoguelike.Combat;
+using ExplorationRoguelike.AbilitySystem;
 using ExplorationRoguelike.AbilitySystem.Abilities;
 using ExplorationRoguelike.Characters;
-using ExplorationRoguelike.Scripts;
+using ExplorationRoguelike.Combat;
 using ExplorationRoguelike.Combat.Events;
-using ExplorationRoguelike.AbilitySystem;
+using ExplorationRoguelike.GUI.Character;
+using TMPro;
+using UnityEngine;
 
-namespace ExplortationRoguelike.GUI.Combat
+namespace ExplorationRoguelike.GUI.Combat
 {
     public class CombatViewModel : MonoBehaviour
     {
@@ -82,7 +80,7 @@ namespace ExplortationRoguelike.GUI.Combat
             //different kind of changes that may have occurred in collection
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
-                Card c = (Card)e.NewItems[0];
+                Card.Card c = (Card.Card)e.NewItems[0];
                 GameObject cardView = c.gameObject;
                 cardView.transform.parent = gameObject.transform;
                 cardView.transform.localPosition = new Vector2(CardViews.Count * 100, 0);
@@ -95,11 +93,11 @@ namespace ExplortationRoguelike.GUI.Combat
             }
             if (e.Action == NotifyCollectionChangedAction.Remove)
             {
-                foreach (Card removedCard in e.OldItems)
+                foreach (Card.Card removedCard in e.OldItems)
                 {
                     foreach (GameObject cardView in CardViews.ToList())
                     {
-                        if (cardView.GetComponent<Card>() == removedCard)
+                        if (cardView.GetComponent<Card.Card>() == removedCard)
                         {
                             cardView.SetActive(false);
                             CardViews.Remove(cardView);

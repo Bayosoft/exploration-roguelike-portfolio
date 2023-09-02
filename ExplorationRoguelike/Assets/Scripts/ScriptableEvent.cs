@@ -1,9 +1,7 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ExplorationRoguelike.Scripts
+namespace ExplorationRoguelike
 {
     [CreateAssetMenu(menuName = "Events/Event", fileName = "Event")]
     public class ScriptableEvent : ScriptableObject

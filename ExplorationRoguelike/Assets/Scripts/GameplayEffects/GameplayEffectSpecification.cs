@@ -1,4 +1,3 @@
-using ExplorationRoguelike.Scripts.GameplayEffects;
 using System.Collections;
 using System.Collections.Generic;
 using ExplorationRoguelike.AbilitySystem;

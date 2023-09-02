@@ -1,10 +1,9 @@
-using ExplorationRoguelike.GameplayTags;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ExplorationRoguelike.Scripts.GameplayTags
+namespace ExplorationRoguelike.GameplayTags
 {
     [Serializable]
     public class GameplayTagContainer : IEnumerable

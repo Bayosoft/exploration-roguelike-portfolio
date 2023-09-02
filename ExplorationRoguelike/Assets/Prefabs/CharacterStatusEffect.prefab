@@ -491,7 +491,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1891152804599911725}
   - component: {fileID: 949661842107169407}
-  - component: {fileID: 6475425134032971995}
   m_Layer: 0
   m_Name: CharacterStatusEffect
   m_TagString: Untagged
@@ -535,25 +534,6 @@ MonoBehaviour:
   effectDescriptionText: {fileID: 3647149587606118622}
   effectDurationText: {fileID: 4373212983930327911}
   effectStacksText: {fileID: 338999422126107261}
---- !u!114 &6475425134032971995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8097500327302776517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3422457e4efdcc4ba3de1c6e6c8d985, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  event: {fileID: 0}
-  onArgsEventTriggered:
-    m_PersistentCalls:
-      m_Calls: []
-  onEventTriggered:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &8989392127260034834
 GameObject:
   m_ObjectHideFlags: 0

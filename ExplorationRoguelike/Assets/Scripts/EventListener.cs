@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace ExplorationRoguelike.Scripts
+namespace ExplorationRoguelike
 {
     public class EventListener : MonoBehaviour 
     {

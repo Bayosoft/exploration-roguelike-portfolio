@@ -1,9 +1,10 @@
 using ExplorationRoguelike.AbilitySystem;
-using ExplorationRoguelike.Scripts.GameplayTags;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using ExplorationRoguelike.Combat.Events;
+using ExplorationRoguelike.GameplayTags;
 using UnityEngine;
 
 namespace ExplorationRoguelike.GameplayEffects
@@ -61,7 +62,16 @@ namespace ExplorationRoguelike.GameplayEffects
 
             return null;
         }
-
+        
+        public void OnTimeChanged(ConcreteEventArgs eventArgs)
+        {
+            foreach (var activeEffect in ActiveEffects)
+            {
+                activeEffect.TickDuration(eventArgs, _owner);
+            }
+         
+        }
+        
         public IEnumerator GetEnumerator()
         {
             return ActiveEffects.GetEnumerator();

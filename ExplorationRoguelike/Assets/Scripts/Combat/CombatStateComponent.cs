@@ -3,7 +3,6 @@ using ExplorationRoguelike.Characters;
 using ExplorationRoguelike.Characters.NonPlayerCharacters;
 using ExplorationRoguelike.Characters.PlayerCharacter;
 using ExplorationRoguelike.Combat.Events;
-using ExplorationRoguelike.Scripts;
 using System.Collections.Generic;
 using UnityEngine;
 

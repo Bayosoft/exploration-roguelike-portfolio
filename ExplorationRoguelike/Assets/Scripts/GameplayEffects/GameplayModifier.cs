@@ -1,9 +1,8 @@
+using System;
 using ExplorationRoguelike.AbilitySystem;
 using ExplorationRoguelike.GameplayTags;
-using ExplorationRoguelike.Scripts.GameplayTags;
-using System;
 
-namespace ExplorationRoguelike.Scripts.GameplayEffects
+namespace ExplorationRoguelike.GameplayEffects
 {
     public enum GameplayModifierOperator
     {

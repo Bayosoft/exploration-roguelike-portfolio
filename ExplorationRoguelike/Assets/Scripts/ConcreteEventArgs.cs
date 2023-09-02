@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace ExplorationRoguelike.Scripts
+namespace ExplorationRoguelike
 {
     public class ConcreteEventArgs : EventArgs
     {

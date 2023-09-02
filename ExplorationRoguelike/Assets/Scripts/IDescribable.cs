@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace ExplorationRoguelike.Scripts
+namespace ExplorationRoguelike
 {
     public interface IDescribable 
     {

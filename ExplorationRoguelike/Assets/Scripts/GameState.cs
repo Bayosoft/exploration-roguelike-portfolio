@@ -1,7 +1,7 @@
 using ExplorationRoguelike.Combat;
 using UnityEngine;
 
-namespace ExplorationRoguelike.Scripts
+namespace ExplorationRoguelike
 {
     public class GameState : MonoBehaviour
     {

@@ -321,7 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3422457e4efdcc4ba3de1c6e6c8d985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  event: {fileID: 11400000, guid: cb09d1e190322134fb63c3158a1c7d5c, type: 2}
+  event: {fileID: 11400000, guid: 4bd81bd901c968b4c84908d40d45d7de, type: 2}
   onArgsEventTriggered:
     m_PersistentCalls:
       m_Calls:
@@ -964,6 +964,10 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 7861583019040378717, guid: d83f280b8af725446be4ddba59ac6e7e, type: 3}
+      propertyPath: endTurnEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 4bd81bd901c968b4c84908d40d45d7de, type: 2}
     - target: {fileID: 9206238031483290149, guid: d83f280b8af725446be4ddba59ac6e7e, type: 3}
       propertyPath: m_Name
       value: Player

@@ -11,7 +11,7 @@ namespace ExplorationRoguelike.Combat
     {
         [SerializeField]
         private CardDeckComponent cardDeckComponent;
-        public CardDeckComponent CardDeckComponent { get => cardDeckComponent; }
+        public CardDeckComponent CardDeckComponent => cardDeckComponent;
 
         public override void StartTurn()
         {
@@ -31,7 +31,10 @@ namespace ExplorationRoguelike.Combat
             MyTurn = false;
             CardDeckComponent.DiscardCards(CardDeckComponent.CardsDrawn.Count);
             CardDeckComponent.RefreshMana(CardDeckComponent.MaxMana);
-            endTurnEvent.RaiseEvent(new EndTurnEventArgs(this));
+
+            var endTurnEventArgs = new EndTurnEventArgs(this);
+            endTurnEvent.RaiseEvent(endTurnEventArgs);
+            Owner.ActiveGameplayEffects.OnTimeChanged(endTurnEventArgs);
         }
     }
 }

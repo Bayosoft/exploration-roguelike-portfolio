@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7feb8b4ddf87d24fb93706594fb731e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endTurnEvent: {fileID: 11400000, guid: cb09d1e190322134fb63c3158a1c7d5c, type: 2}
+  endTurnEvent: {fileID: 11400000, guid: 4bd81bd901c968b4c84908d40d45d7de, type: 2}
   cardDeckComponent: {fileID: 9183813431817207782}
 --- !u!114 &9183813431817207782
 MonoBehaviour:

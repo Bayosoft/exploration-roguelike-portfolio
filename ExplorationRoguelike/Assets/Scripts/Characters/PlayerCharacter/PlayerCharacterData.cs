@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace ExplorationRoguelike.Characters.PlayerCharacter.Player
+namespace ExplorationRoguelike.Characters.PlayerCharacter
 {
     public class PlayerCharacterData : CharacterData
     {

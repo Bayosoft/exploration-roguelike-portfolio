@@ -1,5 +1,4 @@
 using ExplorationRoguelike.GUI.Card;
-using ExplorationRoguelike.Scripts;
 
 namespace ExplorationRoguelike.Combat.Events
 {

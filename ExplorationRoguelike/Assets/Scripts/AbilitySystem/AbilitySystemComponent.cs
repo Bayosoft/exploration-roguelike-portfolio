@@ -2,9 +2,8 @@ using ExplorationRoguelike;
 using ExplorationRoguelike.AbilitySystem.Abilities;
 using ExplorationRoguelike.Characters;
 using ExplorationRoguelike.GameplayEffects;
-using ExplorationRoguelike.Scripts.GameplayEffects;
-using ExplorationRoguelike.Scripts.GameplayTags;
 using System.Collections.Generic;
+using ExplorationRoguelike.GameplayTags;
 using UnityEngine;
 namespace ExplorationRoguelike.AbilitySystem
 {

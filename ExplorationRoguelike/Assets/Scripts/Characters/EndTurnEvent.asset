@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74f211ef352d8494c8cc33fa6758f625, type: 3}
-  m_Name: TakeTurnEvent
+  m_Name: EndTurnEvent
   m_EditorClassIdentifier: 

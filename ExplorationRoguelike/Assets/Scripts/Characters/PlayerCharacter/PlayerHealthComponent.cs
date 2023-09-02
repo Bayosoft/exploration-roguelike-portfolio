@@ -1,5 +1,4 @@
 using ExplorationRoguelike.Characters.PlayerCharacter.Events;
-using ExplorationRoguelike.Scripts;
 
 namespace ExplorationRoguelike.Characters.PlayerCharacter
 {

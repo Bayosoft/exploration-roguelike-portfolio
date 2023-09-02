@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ExplorationRoguelike.AbilitySystem.Abilities
+namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities.Distract
 {
     public class DistractAbility : GameplayAbility
     {

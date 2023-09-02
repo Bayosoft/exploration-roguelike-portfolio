@@ -1,19 +1,17 @@
-using ExplorationRoguelike.AbilitySystem;
-using ExplorationRoguelike.GameplayEffects;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
+using ExplorationRoguelike.AbilitySystem;
+using ExplorationRoguelike.GameplayEffects;
 using UnityEngine;
 
-namespace ExplorationRoguelike.GUI.StatusEffect
+namespace ExplorationRoguelike.GUI.Character
 {
     public class StatusEffectViewModel : MonoBehaviour
     {
-        [SerializeField]
-        private GameObject statusEffectPrefab;
+        [SerializeField] private GameObject statusEffectPrefab;
 
-        [SerializeField]
-        private AbilitySystemComponent characterAbilitySystem;
+        [SerializeField] private AbilitySystemComponent characterAbilitySystem;
 
         public ObservableCollection<GameObject> StatusEffectViews { get; set; }
 
@@ -24,34 +22,34 @@ namespace ExplorationRoguelike.GUI.StatusEffect
 
         public void Start()
         {
-            characterAbilitySystem.ActiveGameplayEffects.ActiveEffects.CollectionChanged += new NotifyCollectionChangedEventHandler(PrintStatusEffect);
+            characterAbilitySystem.ActiveGameplayEffects.ActiveEffects.CollectionChanged +=
+                PrintStatusEffect;
         }
+
         public void PrintStatusEffect(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
-                GameObject effectView = Instantiate(statusEffectPrefab);
-                effectView.transform.parent = gameObject.transform;
+                var effectView = Instantiate(statusEffectPrefab, gameObject.transform, true);
                 effectView.transform.localScale = Vector2.one;
                 effectView.transform.localPosition = Vector2.one;
                 effectView.transform.SetAsLastSibling();
-                Character.StatusEffect effectComponent = effectView.GetComponent<Character.StatusEffect>();
-                effectComponent.Initialize(((ActiveGameplayEffect)e.NewItems[0]).Specification.EffectSo);
+                var effectComponent = effectView.GetComponent<StatusEffect>();
+                effectComponent.Initialize((ActiveGameplayEffect)e.NewItems[0]);
 
                 StatusEffectViews.Add(effectView);
             }
             else if (e.Action == NotifyCollectionChangedAction.Remove)
             {
-                GameplayEffect removedEffect = (GameplayEffect)e.OldItems[0];
+                var removedEffect = (GameplayEffect)e.OldItems[0];
 
-                foreach (GameObject effectView in StatusEffectViews.ToList())
+                foreach (var effectView in
+                         StatusEffectViews.ToList()
+                             .Where(effectView => effectView.GetComponent<GameplayEffect>() == removedEffect))
                 {
-                    if (effectView.GetComponent<GameplayEffect>() == removedEffect)
-                    {
-                        StatusEffectViews.Remove(effectView);
-                        Destroy(effectView);
-                        return;
-                    }
+                    StatusEffectViews.Remove(effectView);
+                    Destroy(effectView);
+                    return;
                 }
             }
         }

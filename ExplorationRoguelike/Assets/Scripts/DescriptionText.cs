@@ -1,7 +1,7 @@
-using ExplorationRoguelike.AbilitySystem;
 using System;
+using ExplorationRoguelike.AbilitySystem;
 
-namespace ExplorationRoguelike.Scripts
+namespace ExplorationRoguelike
 {
     [Serializable]
     public class DescriptionText

@@ -1,7 +1,8 @@
-using ExplorationRoguelike.GameplayEffects;
 using System.Collections.Generic;
+using ExplorationRoguelike.GameplayEffects;
 using UnityEngine;
-namespace ExplorationRoguelike.AbilitySystem.Abilities
+
+namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities.FireBuff
 {
 
     [CreateAssetMenu(fileName = "FireBuff", menuName = "Abilities/Combat/FireBuff")]

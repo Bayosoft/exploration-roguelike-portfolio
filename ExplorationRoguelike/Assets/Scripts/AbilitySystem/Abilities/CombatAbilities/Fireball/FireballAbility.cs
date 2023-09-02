@@ -1,9 +1,9 @@
-using ExplorationRoguelike.GameplayEffects;
-using ExplorationRoguelike.Scripts.GameplayTags;
 using System.Collections.Generic;
+using ExplorationRoguelike.GameplayEffects;
+using ExplorationRoguelike.GameplayTags;
 using UnityEngine;
 
-namespace ExplorationRoguelike.AbilitySystem.Abilities
+namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities.Fireball
 {
 
     [CreateAssetMenu(fileName = "Fireball", menuName = "Abilities/Combat/Fireball")]

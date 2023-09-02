@@ -1,4 +1,3 @@
-using ExplorationRoguelike.Scripts.GameplayTags;
 using UnityEngine;
 
 namespace ExplorationRoguelike.GameplayTags

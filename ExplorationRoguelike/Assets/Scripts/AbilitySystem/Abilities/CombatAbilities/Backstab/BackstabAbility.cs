@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ExplorationRoguelike.AbilitySystem.Abilities
+namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities.Backstab
 {
 
     [CreateAssetMenu(fileName = "Backstab", menuName = "Abilities/Combat/Backstab")]

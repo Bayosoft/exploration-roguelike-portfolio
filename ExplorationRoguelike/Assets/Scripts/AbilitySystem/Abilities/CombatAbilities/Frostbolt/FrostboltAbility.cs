@@ -1,10 +1,9 @@
-using ExplorationRoguelike.GameplayEffects;
-using ExplorationRoguelike.Scripts.GameplayTags;
-using System.Collections;
 using System.Collections.Generic;
+using ExplorationRoguelike.GameplayEffects;
+using ExplorationRoguelike.GameplayTags;
 using UnityEngine;
 
-namespace ExplorationRoguelike.AbilitySystem.Abilities
+namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities.Frostbolt
 {
 
     [CreateAssetMenu(fileName = "Frostbolt", menuName = "Abilities/Combat/Frostbolt")]
