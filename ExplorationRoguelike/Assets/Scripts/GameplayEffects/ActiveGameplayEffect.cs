@@ -32,7 +32,6 @@ namespace ExplorationRoguelike.GameplayEffects
                 DurationChanged?.Invoke(this, EventArgs.Empty);
             } 
         }
-
         public bool IsInhibited { get; private set; }
 
         public void TickDuration(ConcreteEventArgs eventArgs, AbilitySystemComponent owner)

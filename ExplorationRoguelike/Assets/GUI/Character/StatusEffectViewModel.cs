@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
@@ -28,30 +29,54 @@ namespace ExplorationRoguelike.GUI.Character
 
         public void PrintStatusEffect(object sender, NotifyCollectionChangedEventArgs e)
         {
-            if (e.Action == NotifyCollectionChangedAction.Add)
+            switch (e.Action)
             {
-                var effectView = Instantiate(statusEffectPrefab, gameObject.transform, true);
-                effectView.transform.localScale = Vector2.one;
-                effectView.transform.localPosition = Vector2.one;
-                effectView.transform.SetAsLastSibling();
-                var effectComponent = effectView.GetComponent<StatusEffect>();
-                effectComponent.Initialize((ActiveGameplayEffect)e.NewItems[0]);
-
-                StatusEffectViews.Add(effectView);
-            }
-            else if (e.Action == NotifyCollectionChangedAction.Remove)
-            {
-                var removedEffect = (GameplayEffect)e.OldItems[0];
-
-                foreach (var effectView in
-                         StatusEffectViews.ToList()
-                             .Where(effectView => effectView.GetComponent<GameplayEffect>() == removedEffect))
+                case NotifyCollectionChangedAction.Add:
                 {
-                    StatusEffectViews.Remove(effectView);
-                    Destroy(effectView);
-                    return;
+                    AddStatusEffectView((ActiveGameplayEffect)e.NewItems[0]);
+                    break;
                 }
+                case NotifyCollectionChangedAction.Remove:
+                {
+                    RemoveStatusEffectView((ActiveGameplayEffect)e.OldItems[0]);
+                    break;
+                }
+                case NotifyCollectionChangedAction.Move:
+                    break;
+                case NotifyCollectionChangedAction.Replace:
+                    RemoveStatusEffectView((ActiveGameplayEffect)e.OldItems[0]);
+                    AddStatusEffectView((ActiveGameplayEffect)e.NewItems[0]);
+                    break;
+                case NotifyCollectionChangedAction.Reset:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
+        }
+
+        private void AddStatusEffectView(ActiveGameplayEffect addedEffect)
+        {
+            var effectView = Instantiate(statusEffectPrefab, gameObject.transform, true);
+            effectView.transform.localScale = Vector2.one;
+            effectView.transform.localPosition = Vector2.one;
+            effectView.transform.SetAsLastSibling();
+            var effectComponent = effectView.GetComponent<StatusEffect>();
+            effectComponent.Initialize(addedEffect);
+
+            StatusEffectViews.Add(effectView);
+        }
+
+        private void RemoveStatusEffectView(ActiveGameplayEffect removedEffect)
+        {
+            foreach (var effectView in
+                     StatusEffectViews.ToList()
+                         .Where(effectView => effectView.GetComponent<StatusEffect>().GameplayEffect == removedEffect))
+            {
+                StatusEffectViews.Remove(effectView);
+                Destroy(effectView);
+                return;
+            }
+
         }
     }
 }

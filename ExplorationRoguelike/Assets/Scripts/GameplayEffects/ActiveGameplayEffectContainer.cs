@@ -13,35 +13,35 @@ namespace ExplorationRoguelike.GameplayEffects
     public class ActiveGameplayEffectContainer : IEnumerable
     {
         public ObservableCollection<ActiveGameplayEffect> ActiveEffects;
-        private AbilitySystemComponent _owner;
+        private readonly AbilitySystemComponent _owner;
 
         public ActiveGameplayEffectContainer(AbilitySystemComponent owner)
         {
-            ActiveEffects = new();
+            ActiveEffects = new ObservableCollection<ActiveGameplayEffect>();
             _owner = owner;
         }
 
         public ActiveGameplayEffectHandle ApplyGameplayEffectSpec(GameplayEffectSpecification effectSpec)
         {
-            ActiveGameplayEffect effect = new ActiveGameplayEffect(effectSpec);
+            var effect = new ActiveGameplayEffect(effectSpec);
 
-            ActiveGameplayEffect existingActiveEffect = GetActiveGameplayEffectByEffectSo(effectSpec.EffectSo);
-            if(existingActiveEffect != null)
+            var existingActiveEffect = GetActiveGameplayEffectByEffectSo(effectSpec.EffectSo);
+            
+            if(existingActiveEffect != null) // Replace effect. (Probably need to add logic for stackable effects)
             {
-                
+                ActiveEffects[ActiveEffects.IndexOf(existingActiveEffect)] = effect;
             }
             else
             {
                 ActiveEffects.Add(effect);
             }
 
-
             return effect.Handle;
         }
 
         public void RemoveGameplayEffectsWithAssetTags(GameplayTagContainer tags)
         {
-            foreach(ActiveGameplayEffect activeEffect in ActiveEffects.ToList())
+            foreach(var activeEffect in ActiveEffects.ToList())
             {
                 if (activeEffect.Specification.EffectSo.assetTags.HasAny(tags))
                 {
@@ -52,7 +52,7 @@ namespace ExplorationRoguelike.GameplayEffects
 
         public ActiveGameplayEffect GetActiveGameplayEffectByEffectSo(GameplayEffect effectSo)
         {
-            foreach(ActiveGameplayEffect activeEffect in ActiveEffects)
+            foreach(var activeEffect in ActiveEffects)
             {
                 if(activeEffect.Specification.EffectSo == effectSo)
                 {
@@ -65,11 +65,22 @@ namespace ExplorationRoguelike.GameplayEffects
         
         public void OnTimeChanged(ConcreteEventArgs eventArgs)
         {
+            var expiredEffects = new List<ActiveGameplayEffect>();
+            
             foreach (var activeEffect in ActiveEffects)
             {
                 activeEffect.TickDuration(eventArgs, _owner);
+
+                if (activeEffect.RemainingDuration <= 0)
+                {
+                    expiredEffects.Add(activeEffect);
+                }
             }
-         
+
+            foreach (var expiredEffect in expiredEffects)
+            {
+                ActiveEffects.Remove(expiredEffect);
+            }
         }
         
         public IEnumerator GetEnumerator()

@@ -11,7 +11,7 @@ namespace ExplorationRoguelike.AbilitySystem
     {
         [SerializeField]
         private Character owner;
-        public List<GameplayAbility> GrantedAbilities { get => owner.CharacterData.Abilities; }
+        public List<GameplayAbility> GrantedAbilities => owner.CharacterData.Abilities;
         public GameplayTagContainer ActiveGameplayTags { get; }
         public GameplayTagContainer OwnedGameplayTags { get; private set; }
 
@@ -69,9 +69,9 @@ namespace ExplorationRoguelike.AbilitySystem
                     continue;
                 }
 
-                AbilitySystemComponent instigator = activeEffect.Specification.Instigator;
+                var instigator = activeEffect.Specification.Instigator;
 
-                foreach (GameplayModifierSpec modifier in activeEffect.Specification.Modifiers)
+                foreach (var modifier in activeEffect.Specification.Modifiers)
                 {
                     modifier.TryApply(ref value, valueTags, dynamicTags, instigator, this);
                 }

@@ -7,7 +7,7 @@ namespace ExplorationRoguelike.Combat
 {
     public abstract class TurnComponent : MonoBehaviour
     {
-        public bool MyTurn { get; set; } = false;
+        public bool MyTurn { get; protected set; } 
 
         public ScriptableEvent endTurnEvent;
         public abstract void StartTurn();
