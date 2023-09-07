@@ -1,14 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ExplorationRoguelike.Characters.PlayerCharacter;
 using UnityEngine;
 
 namespace ExplorationRoguelike.Characters
 {
     public class HealthComponent : MonoBehaviour
     {
-        public float maxHealth;
-
+        protected float maxHealth;
+        public float MaxHealth => maxHealth;
         public event EventHandler<float> OnHealthChanged;
 
         private float _currentHealth;
@@ -29,10 +30,13 @@ namespace ExplorationRoguelike.Characters
             }
         }
 
-        public void Start()
+        public virtual void Start()
         {
-            CurrentHealth = maxHealth;
+            var health = GetComponent<Character>().CharacterData.Health;
+            maxHealth = health.maxHealth;
+            _currentHealth = health.maxHealth;
         }
+        
         public void ReduceHealthBy(float amount)
         {
             CurrentHealth = Mathf.Max(0, CurrentHealth - amount);
@@ -40,9 +44,9 @@ namespace ExplorationRoguelike.Characters
 
         public virtual void OnDeath()
         {
-            Character character = GetComponent<Character>();
+            var character = GetComponent<Character>();
 
-            string characterName = (character ? character.CharacterData.Name : gameObject.name);
+            var characterName = (character ? character.CharacterData.Name : gameObject.name);
             Debug.Log($"{characterName} died.");
             // die
         }

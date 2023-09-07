@@ -1,6 +1,7 @@
 using ExplorationRoguelike.AbilitySystem.Abilities;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace ExplorationRoguelike.Characters
@@ -22,5 +23,9 @@ namespace ExplorationRoguelike.Characters
         [SerializeField]
         private List<GameplayAbility> abilities;
         public List<GameplayAbility> Abilities => abilities;
+
+        [SerializeField][CanBeNull]
+        private HealthData health;
+        public virtual HealthData Health => health;
     }
 }

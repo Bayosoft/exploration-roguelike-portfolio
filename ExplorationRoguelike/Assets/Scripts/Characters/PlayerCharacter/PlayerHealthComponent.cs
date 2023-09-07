@@ -6,9 +6,15 @@ namespace ExplorationRoguelike.Characters.PlayerCharacter
     {
         public ScriptableEvent onPlayerDeathEvent;
 
+        public override void Start()
+        {
+            var health = GetComponent<Character>().CharacterData.Health;
+            maxHealth = health.maxHealth;
+            CurrentHealth = ((PlayerHealthData)health).currentHealth;
+        }
         public override void OnDeath()
         {
-            OnPlayerDeathEventArgs onPlayerDeathEventArgs = new OnPlayerDeathEventArgs();
+            var onPlayerDeathEventArgs = new OnPlayerDeathEventArgs();
             onPlayerDeathEvent.RaiseEvent(onPlayerDeathEventArgs);
         }
     }

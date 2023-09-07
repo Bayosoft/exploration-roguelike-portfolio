@@ -15,8 +15,8 @@ namespace ExplorationRoguelike.GUI.Character
             _healthComponent = healthComponent;
 
             _healthComponent.OnHealthChanged += UpdateHealth;
-            maxHealthText.text = $"/{_healthComponent.maxHealth}";
-            currentHealthText.text = Mathf.CeilToInt(_healthComponent.maxHealth).ToString();
+            maxHealthText.text = $"/{_healthComponent.MaxHealth}";
+            currentHealthText.text = Mathf.CeilToInt(_healthComponent.MaxHealth).ToString();
         }
 
         public void UpdateHealth(object sender, float newHealth)

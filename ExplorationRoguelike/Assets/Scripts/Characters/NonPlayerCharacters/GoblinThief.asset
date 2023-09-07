@@ -18,4 +18,5 @@ MonoBehaviour:
   abilities:
   - {fileID: 11400000, guid: ad74d21efd4bd0a42a32af346e448646, type: 2}
   - {fileID: 11400000, guid: 309fee7195cd6c64abff5ef40e85dd79, type: 2}
+  health: {fileID: 11400000, guid: 9dfcb92377af65b4ba84d3bcafa3ac46, type: 2}
   regenerationBonus: 2

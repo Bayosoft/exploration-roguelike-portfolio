@@ -1,21 +1,27 @@
+using System.Collections.Generic;
+using ExplorationRoguelike.Characters.NonPlayerCharacters;
+using ExplorationRoguelike.Characters.PlayerCharacter;
 using ExplorationRoguelike.Combat;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace ExplorationRoguelike
 {
     public class GameState : MonoBehaviour
     {
-        public CombatStateComponent combatStateComponent;
+        public GameObject combatStateObject;
         // Start is called before the first frame update
         void Start()
         {
             DontDestroyOnLoad(this);
         }
 
-        // Update is called once per frame
-        void Update()
+        public void InitializeCombat(Player player, CombatNpc enemy)
         {
-        
+            combatStateObject.GetComponent<CombatStateComponent>().player = player;
+            combatStateObject.GetComponent<CombatStateComponent>().enemies = new List<CombatNpc>{enemy};
+            
+            var go = Instantiate(combatStateObject);
         }
     }
 }

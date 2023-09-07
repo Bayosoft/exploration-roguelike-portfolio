@@ -35,6 +35,8 @@ namespace ExplorationRoguelike.Combat
         // Start is called before the first frame update
         void Start()
         {
+            playerTurnComponent = (PlayerTurnComponent)player.TurnComponent;
+            enemyTurnComponent = (NpcTurnComponent)enemies[0].TurnComponent;
             DontDestroyOnLoad(gameObject);
             StartCombat();
         }
