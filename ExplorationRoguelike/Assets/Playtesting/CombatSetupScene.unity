@@ -249,8 +249,8 @@ MonoBehaviour:
   deckButtons: {fileID: 1736298835}
   enemyButtons: {fileID: 1488961675}
   gameState: {fileID: 747129934}
-  player: {fileID: 5660111992492341691, guid: d83f280b8af725446be4ddba59ac6e7e, type: 3}
-  enemy: {fileID: 7593707704744041619, guid: 4f14c8c8f8961074fa334e3dd1776d80, type: 3}
+  playerPrefab: {fileID: 9206238031483290149, guid: d83f280b8af725446be4ddba59ac6e7e, type: 3}
+  enemyPrefab: {fileID: 5612204403386450629, guid: 4f14c8c8f8961074fa334e3dd1776d80, type: 3}
 --- !u!1 &103479768
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,7 +954,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f484d290ee9a449b1bd4d6dc541ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combatStateObject: {fileID: 5535945184415185032, guid: 5042ab40a20e69641958514a11d2503f, type: 3}
+  player: {fileID: 0}
+  enemy: {fileID: 0}
 --- !u!4 &747129935
 Transform:
   m_ObjectHideFlags: 0

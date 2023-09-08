@@ -6,7 +6,7 @@ namespace ExplorationRoguelike.Characters.PlayerCharacter
     {
         public ScriptableEvent onPlayerDeathEvent;
 
-        public override void Start()
+        public override void Awake()
         {
             var health = GetComponent<Character>().CharacterData.Health;
             maxHealth = health.maxHealth;

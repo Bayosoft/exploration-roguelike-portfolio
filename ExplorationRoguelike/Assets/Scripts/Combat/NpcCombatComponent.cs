@@ -18,7 +18,7 @@ namespace ExplorationRoguelike.Combat
             _npc = GetComponent<AbilitySystemComponent>();
             abilities = _npc.GrantedAbilities;
         }
-        internal void ExecuteIntent(GameplayAbility declaredAbility, List<AbilitySystemComponent> targets)
+        internal void ExecuteIntent(GameplayAbility declaredAbility, IEnumerable<AbilitySystemComponent> targets)
         {
             _npc.TryActivateAbility(declaredAbility, targets);
         }

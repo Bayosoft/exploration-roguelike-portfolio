@@ -20,24 +20,41 @@ namespace ExplorationRoguelike.Combat
         };
 
         private CombatState _currentState;
-        public CombatState CurrentState { get { return _currentState; } private set { _currentState = value; } }
-
+        public CombatState CurrentState 
+        { 
+            get => _currentState;
+            private set => _currentState = value;
+        }
+        
         //  public List<Enemy> Allies; Probably not implementing this.
         public List<CombatNpc> enemies;
         public Player player;
         public NpcTurnComponent enemyTurnComponent;
         public PlayerTurnComponent playerTurnComponent;
-
-
+        
         [SerializeField]
         private ScriptableEvent combatEvent;
 
+
+        public void Awake()
+        {
+            enemies = new List<CombatNpc>();
+        }
+
+        public void Initialize(GameObject playerPrefab, GameObject enemyPrefab)
+        {
+            var playerInstance = Instantiate(playerPrefab);
+            var enemyInstance = Instantiate(enemyPrefab);
+
+            player = playerInstance.GetComponent<Player>();
+            enemies.Add(enemyInstance.GetComponent<CombatNpc>());
+            
+            playerTurnComponent = (PlayerTurnComponent)player.TurnComponent;
+            enemyTurnComponent = (NpcTurnComponent)enemies[0].TurnComponent;
+        }
         // Start is called before the first frame update
         void Start()
         {
-            playerTurnComponent = (PlayerTurnComponent)player.TurnComponent;
-            enemyTurnComponent = (NpcTurnComponent)enemies[0].TurnComponent;
-            DontDestroyOnLoad(gameObject);
             StartCombat();
         }
 

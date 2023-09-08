@@ -30,7 +30,7 @@ namespace ExplorationRoguelike.Characters
             }
         }
 
-        public virtual void Start()
+        public virtual void Awake()
         {
             var health = GetComponent<Character>().CharacterData.Health;
             maxHealth = health.maxHealth;

@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using ExplorationRoguelike.AbilitySystem;
+using ExplorationRoguelike.Characters.PlayerCharacter;
 using ExplorationRoguelike.GameplayEffects;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ namespace ExplorationRoguelike.GUI.Character
     {
         [SerializeField] private GameObject statusEffectPrefab;
 
-        [SerializeField] private AbilitySystemComponent characterAbilitySystem;
+        private AbilitySystemComponent _characterAbilitySystem;
 
         public ObservableCollection<GameObject> StatusEffectViews { get; set; }
 
@@ -20,10 +21,14 @@ namespace ExplorationRoguelike.GUI.Character
         {
             StatusEffectViews = new ObservableCollection<GameObject>();
         }
-
+        
         public void Start()
         {
-            characterAbilitySystem.ActiveGameplayEffects.ActiveEffects.CollectionChanged +=
+            if (_characterAbilitySystem == null)
+            {
+                _characterAbilitySystem = GameObject.FindObjectOfType<Player>().AbilitySystemComponent;
+            }
+            _characterAbilitySystem.ActiveGameplayEffects.ActiveEffects.CollectionChanged +=
                 PrintStatusEffect;
         }
 

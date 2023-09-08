@@ -52,6 +52,7 @@ MonoBehaviour:
   abilitySystemComponent: {fileID: 3116688327760132695}
   healthComponent: {fileID: 7391135013950234280}
   turnComponent: {fileID: 95701396686375421}
+  npcCombatComponent: {fileID: 594199252236119613}
 --- !u!114 &7391135013950234280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,7 +65,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea3ea8451b3c94540bb9fe8537cd373b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
 --- !u!114 &3116688327760132695
 MonoBehaviour:
   m_ObjectHideFlags: 0

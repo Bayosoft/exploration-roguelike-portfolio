@@ -20,4 +20,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2fa971af94b29ae45aab6f1dc5b88ecc, type: 2}
   - {fileID: 11400000, guid: 2fa971af94b29ae45aab6f1dc5b88ecc, type: 2}
   - {fileID: 11400000, guid: 65f0094aa3e2aea40b9aa40cfaf5a3c4, type: 2}
+  health: {fileID: 11400000, guid: 8fa96845e47344f48b290d1eb2aaa1ad, type: 2}
   regenerationBonus: 2

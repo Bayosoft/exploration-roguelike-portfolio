@@ -9,19 +9,35 @@ namespace ExplorationRoguelike
 {
     public class GameState : MonoBehaviour
     {
-        public GameObject combatStateObject;
-        // Start is called before the first frame update
-        void Start()
+        private CombatStateComponent _combatStateComponent;
+        public GameObject player;
+        public GameObject enemy;
+        void Awake()
         {
             DontDestroyOnLoad(this);
+            UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+        
+        public void SetCombatants(GameObject playerPrefab, GameObject enemyPrefab)
+        {
+            player = playerPrefab;
+            enemy = enemyPrefab;
+        }
+        
+        // called second
+        void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            if (scene.name == "CombatScene")
+            {
+                _combatStateComponent = FindObjectOfType<CombatStateComponent>();
+                InitializeCombat();
+            }
+        }
+        private void InitializeCombat()
+        {
+            _combatStateComponent.Initialize(player, enemy);
         }
 
-        public void InitializeCombat(Player player, CombatNpc enemy)
-        {
-            combatStateObject.GetComponent<CombatStateComponent>().player = player;
-            combatStateObject.GetComponent<CombatStateComponent>().enemies = new List<CombatNpc>{enemy};
-            
-            var go = Instantiate(combatStateObject);
-        }
+
     }
 }

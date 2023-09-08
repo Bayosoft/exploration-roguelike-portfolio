@@ -32,14 +32,14 @@ namespace ExplorationRoguelike.GUI.Combat
         {
             CardViews = new ObservableCollection<GameObject>();
             HealthViews = new ObservableCollection<GameObject>();
+        }
+        public void Start()
+        {
             _combat = GameObject.Find("CombatManager").GetComponent<CombatStateComponent>();
             _combat.playerTurnComponent.CardDeckComponent.CardsDrawn.CollectionChanged += UpdateCards;
             _combat.playerTurnComponent.CardDeckComponent.OnManaChanged += UpdateMana;
             _combat.enemyTurnComponent.NpcCombatComponent.OnDeclaredIntent += UpdateEnemyIntent;
-        }
-
-        public void Start()
-        {
+            
             SpawnHealthViews();
         }
 
@@ -57,7 +57,7 @@ namespace ExplorationRoguelike.GUI.Combat
             List<ICombatant> combatants = new(_combat.enemies);
 
             // Player
-            GameObject healthView = Instantiate(healthPrefab, this.transform);
+            var healthView = Instantiate(healthPrefab, this.transform);
 
             healthView.GetComponent<HealthViewModel>().Initialize(_combat.player.HealthComponent);
             healthView.transform.localPosition = new Vector2(-400, 0);
@@ -65,7 +65,7 @@ namespace ExplorationRoguelike.GUI.Combat
             HealthViews.Add(healthView);
 
             // Enemies
-            foreach (ICombatant combatant in combatants)
+            foreach (var combatant in combatants)
             {
                 GameObject eHealthView = Instantiate(healthPrefab, this.transform);
                 eHealthView.GetComponent<HealthViewModel>().Initialize(combatant.HealthComponent);
