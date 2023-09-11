@@ -25,10 +25,10 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
         }
         public event EventHandler<int> OnManaChanged;
 
-        public ObservableCollection<Card> CardsInDeck = new();
-        public ObservableCollection<Card> CardsDrawn = new();
-        public ObservableCollection<Card> CardsDiscarded = new();
-        public ObservableCollection<Card> CardsShattered = new();
+        public ObservableCollection<CardView> CardsInDeck = new();
+        public ObservableCollection<CardView> CardsDrawn = new();
+        public ObservableCollection<CardView> CardsDiscarded = new();
+        public ObservableCollection<CardView> CardsShattered = new();
         private AbilitySystemComponent _player;
 
 
@@ -46,7 +46,7 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
 
         public void DrawCards(int amountOfCards)
         {
-            Card card;
+            CardView cardView;
             // TODO: Probably should loop through in case individual cards trigger abilities as they are drawn.
 
             for (int amountDrawn = 0; amountDrawn < amountOfCards;)
@@ -61,39 +61,39 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
                     }
                 }
 
-                card = CardsInDeck.First();
+                cardView = CardsInDeck.First();
 
-                CardsInDeck.Remove(card);
-                CardsDrawn.Add(card);
+                CardsInDeck.Remove(cardView);
+                CardsDrawn.Add(cardView);
 
                 ++amountDrawn;
             }
         }
-        public void PlayCard(Card card, List<AbilitySystemComponent> targets)
+        public void PlayCard(CardView cardView, IEnumerable<AbilitySystemComponent> targets)
         {
-            if (Mana < card.Ability.manaCost)
+            if (Mana < cardView.playableCard.ManaCost)
             {
                 return;
             }
             
-            var successfullyPlayed = _player.TryActivateAbility(card.Ability, targets);
+            var successfullyPlayed = _player.TryActivateAbility(cardView.playableCard.GameplayAbility, targets);
 
             if (!successfullyPlayed)
             {
                 return;
             }
             
-            Mana -= card.Ability.manaCost;
-            DiscardCard(card);
+            Mana -= cardView.playableCard.ManaCost; // replace with event on IPlayableCard that fires on Activate entry.
+            DiscardCard(cardView);
         }
         /// <summary>
         /// Discard a specific card from hand.
         /// </summary>
-        /// <param name="card"></param>
-        public void DiscardCard(Card card)
+        /// <param name="cardView"></param>
+        public void DiscardCard(CardView cardView)
         {
-            CardsDrawn.Remove(card);
-            CardsDiscarded.Add(card);
+            CardsDrawn.Remove(cardView);
+            CardsDiscarded.Add(cardView);
         }
 
         /// <summary>
@@ -104,9 +104,9 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
         {
             for (int i = 0; i < amountOfCards; i++)
             {
-                Card card = CardsDrawn[0];
-                CardsDrawn.Remove(card);
-                CardsDiscarded.Add(card);
+                CardView cardView = CardsDrawn[0];
+                CardsDrawn.Remove(cardView);
+                CardsDiscarded.Add(cardView);
             }
         }
 
@@ -114,9 +114,9 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
         /// Discard specific cards in hand.
         /// </summary>
         /// <param name="cards"></param>
-        public void DiscardCards(List<Card> cards)
+        public void DiscardCards(List<CardView> cards)
         {
-            foreach (Card card in cards)
+            foreach (CardView card in cards)
             {
                 CardsDrawn.Remove(card);
                 CardsDiscarded.Add(card);
@@ -130,7 +130,7 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
                 return false;
             }
 
-            foreach (Card card in CardsDiscarded.ToList())
+            foreach (CardView card in CardsDiscarded.ToList())
             {
                 CardsDiscarded.Remove(card);
                 CardsInDeck.Add(card);

@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace ExplorationRoguelike.AbilitySystem.Abilities
 {
@@ -20,7 +21,9 @@ namespace ExplorationRoguelike.AbilitySystem.Abilities
     {
         public new string name;
         public AbilityType abilityType;
-        public List<GameplayTag> tags;
+        
+        [FormerlySerializedAs("tags")]
+        public List<GameplayTag> generalTags;
 
         [SerializeField]
         private DescriptionText description;

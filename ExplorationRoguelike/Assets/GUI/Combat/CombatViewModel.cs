@@ -50,7 +50,7 @@ namespace ExplorationRoguelike.GUI.Combat
 
         private void UpdateEnemyIntent(object sender, GameplayAbility intent)
         {
-            enemyIntentText.text = $"Enemy Intent: {intent.tags.First().ToString()}";
+            enemyIntentText.text = $"Enemy Intent: {intent.generalTags.First().ToString()}";
         }
         private void SpawnHealthViews()
         {
@@ -80,7 +80,7 @@ namespace ExplorationRoguelike.GUI.Combat
             //different kind of changes that may have occurred in collection
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
-                Card.Card c = (Card.Card)e.NewItems[0];
+                Card.CardView c = (Card.CardView)e.NewItems[0];
                 GameObject cardView = c.gameObject;
                 cardView.transform.parent = gameObject.transform;
                 cardView.transform.localPosition = new Vector2(CardViews.Count * 100, 0);
@@ -93,11 +93,11 @@ namespace ExplorationRoguelike.GUI.Combat
             }
             if (e.Action == NotifyCollectionChangedAction.Remove)
             {
-                foreach (Card.Card removedCard in e.OldItems)
+                foreach (Card.CardView removedCard in e.OldItems)
                 {
                     foreach (GameObject cardView in CardViews.ToList())
                     {
-                        if (cardView.GetComponent<Card.Card>() == removedCard)
+                        if (cardView.GetComponent<Card.CardView>() == removedCard)
                         {
                             cardView.SetActive(false);
                             CardViews.Remove(cardView);
@@ -111,9 +111,9 @@ namespace ExplorationRoguelike.GUI.Combat
         public void OnTryPlayCard(ConcreteEventArgs args)
         {
             var eventArgs = args.ValidateEventArgs<TryPlayCardEventArgs>();
-            if (eventArgs.Card != null && _combat.playerTurnComponent.MyTurn)
+            if (eventArgs.CardView != null && _combat.playerTurnComponent.MyTurn)
             {
-                _combat.playerTurnComponent.CardDeckComponent.PlayCard(eventArgs.Card, new List<AbilitySystemComponent>() { _combat.enemies[0].AbilitySystemComponent });
+                _combat.playerTurnComponent.CardDeckComponent.PlayCard(eventArgs.CardView, new List<AbilitySystemComponent>() { _combat.enemies[0].AbilitySystemComponent });
             }
         }
 

@@ -5,20 +5,16 @@ using UnityEngine;
 
 namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities.Frostbolt
 {
-
-    [CreateAssetMenu(fileName = "Frostbolt", menuName = "Abilities/Combat/Frostbolt")]
-    public class FrostboltAbility : CardAbility
+    public class FrostboltAbility : InstantDamageAbility, IPlayableCard
     { 
-        [SerializeField]
-        private GameplayTagContainer damageTags = new();
-        [SerializeField]
-        private float damage = 0f;
-
         public GameplayEffect gameplayEffect;
-
+        
+        [field: SerializeField]
+        public int ManaCost { get; private set; }
+        
         public override void Activate(AbilitySystemComponent instigator, IEnumerable<AbilitySystemComponent> targets)
         {
-            GameplayEffectSpecification spec = instigator.MakeOutgoingEffectSpec(gameplayEffect);
+            var spec = instigator.MakeOutgoingEffectSpec(gameplayEffect);
 
             //             if(spec != null)
             //             {
@@ -33,21 +29,17 @@ namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities.Frostbolt
             //             }
 
             // Temp damage testing
-            foreach (AbilitySystemComponent target in targets)
-            {
-                float damageMagnitude = instigator.CalculateAggregatedModifiers(damage, damageTags);
-
-                AbilityExtensions.DamageSingleTarget(instigator, target, damageMagnitude);
-            }
+            base.Activate(instigator, targets);
             // Ability Fired event.
         }
 
         public override void Activate(AbilitySystemComponent instigator, AbilitySystemComponent target)
         {
-            // Temp damage testing
-            float damageMagnitude = instigator.CalculateAggregatedModifiers(damage, damageTags);
+            var spec = instigator.MakeOutgoingEffectSpec(gameplayEffect);
 
-            AbilityExtensions.DamageSingleTarget(instigator, target, damageMagnitude);
+            // Temp damage testing
+            base.Activate(instigator, target);
         }
+
     }
 }

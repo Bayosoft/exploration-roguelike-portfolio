@@ -5,34 +5,20 @@ using UnityEngine;
 
 namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities.Fireball
 {
-
-    [CreateAssetMenu(fileName = "Fireball", menuName = "Abilities/Combat/Fireball")]
-    public class FireballAbility : CardAbility, IModifiable
+    public class FireballAbility : InstantDamageAbility, IPlayableCard
     {
         // Added in designer
         [SerializeField]
         private GameplayTagContainer ignitedTagContainer = new();
 
-        [SerializeField]
-        private GameplayTagContainer damageTags = new();
-        [SerializeField]
-        private float damage = 0f;
-
         public GameplayEffect gameplayEffect;
-
-        public event OnModifiersCalculated OnModifiersCalculated;
-
-        public float CalculateModifiers(AbilitySystemComponent source)
-        {
-            float modifiedDamage = source.CalculateAggregatedModifiers(damage, damageTags);
-
-            OnModifiersCalculated?.Invoke(modifiedDamage);
-
-            return modifiedDamage;
-        }
+        
+        [field: SerializeField]
+        public int ManaCost { get; private set; }
+        
         public override void Activate(AbilitySystemComponent instigator, IEnumerable<AbilitySystemComponent> targets)
         {
-            GameplayEffectSpecification spec = instigator.MakeOutgoingEffectSpec(gameplayEffect);
+            var spec = instigator.MakeOutgoingEffectSpec(gameplayEffect);
 
 //             if(spec != null)
 //             {
@@ -47,20 +33,15 @@ namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities.Fireball
 //             }
 
             // Temp damage testing
-            foreach (AbilitySystemComponent target in targets)
-            {
-                float damageMagnitude = CalculateModifiers(instigator);
-                AbilityExtensions.DamageSingleTarget(instigator, target, damageMagnitude);
-            }
+            base.Activate(instigator, targets);
             // Ability Fired event.
         }
 
         public override void Activate(AbilitySystemComponent instigator, AbilitySystemComponent target)
         {
+            var spec = instigator.MakeOutgoingEffectSpec(gameplayEffect);
             // Temp damage testing
-            float damageMagnitude = instigator.CalculateAggregatedModifiers(damage, damageTags);
-
-            AbilityExtensions.DamageSingleTarget(instigator, target, damageMagnitude);
+            base.Activate(instigator, target);
         }
     }
 }

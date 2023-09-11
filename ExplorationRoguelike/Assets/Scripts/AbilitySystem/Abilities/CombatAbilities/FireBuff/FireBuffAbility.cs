@@ -4,12 +4,13 @@ using UnityEngine;
 
 namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities.FireBuff
 {
-
-    [CreateAssetMenu(fileName = "FireBuff", menuName = "Abilities/Combat/FireBuff")]
-    public class FireBuffAbility : CardAbility
+    public class FireBuffAbility : GameplayAbility, IPlayableCard
     {
         public GameplayEffect gameplayEffect;
-
+        
+        [field: SerializeField]
+        public int ManaCost { get; private set; }
+        
         public override void Activate(AbilitySystemComponent instigator, IEnumerable<AbilitySystemComponent> targets)
         {
             GameplayEffectSpecification spec = instigator.MakeOutgoingEffectSpec(gameplayEffect);

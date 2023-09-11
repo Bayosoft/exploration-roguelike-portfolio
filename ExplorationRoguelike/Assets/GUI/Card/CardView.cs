@@ -8,9 +8,9 @@ using UnityEngine.EventSystems;
 
 namespace ExplorationRoguelike.GUI.Card
 {
-    public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler, IPointerClickHandler
+    public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler, IPointerClickHandler
     {
-        [NonSerialized] public CardAbility Ability;
+        [NonSerialized] public IPlayableCard playableCard;
 
         [SerializeField]
         private TextMeshProUGUI cardNameText;
@@ -34,16 +34,16 @@ namespace ExplorationRoguelike.GUI.Card
         [SerializeField]
         private ScriptableEvent playCardEvent;
 
-        public void Initialize(CardAbility ability)
+        public void Initialize(IPlayableCard playableCard)
         {
-            Ability = ability;
+            this.playableCard = playableCard;
 
             _startPosition = transform.position;
             _startScale = transform.localScale;
 
-            cardNameText.text = Ability.name;
-            cardDescriptionText.text = Ability.ToString();
-            manaCostText.text = Ability.manaCost.ToString();
+            cardNameText.text = this.playableCard.GameplayAbility.name;
+            cardDescriptionText.text = this.playableCard.ToString();
+            manaCostText.text = this.playableCard.ManaCost.ToString();
         }
 
         public void TryPlayCard()
