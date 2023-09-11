@@ -9,13 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 336d998a3af4fe54a89d76489b9aedfc, type: 3}
+  m_Script: {fileID: 11500000, guid: 77bdb2afb58544243aeac82094085b11, type: 3}
   m_Name: Backstab
   m_EditorClassIdentifier: 
   name: Backstab
   abilityType: 1
-  tags:
+  generalTags:
   - {fileID: 11400000, guid: 7ad1df40796497e488b5dca971492b9a, type: 2}
-  - {fileID: 11400000, guid: 97af3b0ddf2bb394a85ce0988e00b2df, type: 2}
-  minDamage: 2
-  maxDamage: 3
+  damageTags:
+    tags:
+    - {fileID: 11400000, guid: 7ad1df40796497e488b5dca971492b9a, type: 2}
+    - {fileID: 11400000, guid: 97af3b0ddf2bb394a85ce0988e00b2df, type: 2}
+  damage: 2

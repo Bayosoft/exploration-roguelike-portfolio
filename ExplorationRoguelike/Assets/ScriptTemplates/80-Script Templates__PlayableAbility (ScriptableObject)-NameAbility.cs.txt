@@ -1,0 +1,16 @@
+using System.Collections;
+using System.Collections.Generic;
+using ExplorationRoguelike.AbilitySystem.Abilities;
+using UnityEngine;
+
+    #ROOTNAMESPACEBEGIN#
+[CreateAssetMenu(fileName = "#SCRIPTNAME#", menuName = "#SCRIPTNAME#")]
+public class #SCRIPTNAME# : IPlayableCard
+{
+        [field: SerializeField]
+        public TargetType TargetType { get; private set; }
+        
+        [field: SerializeField]
+        public int ManaCost { get; private set; }
+}
+#ROOTNAMESPACEEND#

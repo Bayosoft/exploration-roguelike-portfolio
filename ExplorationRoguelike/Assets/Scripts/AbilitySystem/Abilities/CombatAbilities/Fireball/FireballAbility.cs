@@ -7,6 +7,9 @@ namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities.Fireball
 {
     public class FireballAbility : InstantDamageAbility, IPlayableCard
     {
+        [field: SerializeField]
+        public TargetType TargetType { get; private set; }
+        
         // Added in designer
         [SerializeField]
         private GameplayTagContainer ignitedTagContainer = new();

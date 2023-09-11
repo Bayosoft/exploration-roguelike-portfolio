@@ -29,6 +29,8 @@ namespace ExplorationRoguelike.AbilitySystem.Abilities
         private DescriptionText description;
         public DescriptionText Description => description;
 
+        // OnAbilityActivated event 
+        
         /// <summary>
         /// Overridden by specific ability implementations.
         /// </summary>

@@ -9,19 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46540daa44a44d642988bd2fcae2312c, type: 3}
-  m_Name: Frostbolt
+  m_Script: {fileID: 11500000, guid: e8468f0eb84861047b9c72a41257e0d5, type: 3}
+  m_Name: Arcane Missiles
   m_EditorClassIdentifier: 
-  name: Frostbolt
+  name: Arcane Missiles
   abilityType: 1
   generalTags:
-  - {fileID: 11400000, guid: 3e7a7c094386be846b0238dc14cb8c23, type: 2}
-  - {fileID: 11400000, guid: 97af3b0ddf2bb394a85ce0988e00b2df, type: 2}
+  - {fileID: 11400000, guid: 3f578cd34669816479d4a7ab5f68db6f, type: 2}
   damageTags:
     tags:
-    - {fileID: 11400000, guid: 3e7a7c094386be846b0238dc14cb8c23, type: 2}
+    - {fileID: 11400000, guid: 3f578cd34669816479d4a7ab5f68db6f, type: 2}
     - {fileID: 11400000, guid: 97af3b0ddf2bb394a85ce0988e00b2df, type: 2}
-  damage: 2
-  gameplayEffect: {fileID: 0}
+  damage: 1
   <TargetType>k__BackingField: 1
-  <ManaCost>k__BackingField: 2
+  <ManaCost>k__BackingField: 3
+  missileCount: 3

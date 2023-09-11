@@ -10,6 +10,9 @@ namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities.Frostbolt
         public GameplayEffect gameplayEffect;
         
         [field: SerializeField]
+        public TargetType TargetType { get; private set; }
+
+        [field: SerializeField]
         public int ManaCost { get; private set; }
         
         public override void Activate(AbilitySystemComponent instigator, IEnumerable<AbilitySystemComponent> targets)
