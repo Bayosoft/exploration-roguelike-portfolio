@@ -42,7 +42,7 @@ namespace ExplorationRoguelike.GUI.Card
             _startScale = transform.localScale;
 
             cardNameText.text = this.playableCard.GameplayAbility.name;
-            cardDescriptionText.text = this.playableCard.ToString();
+            cardDescriptionText.text = this.playableCard.GameplayAbility.Description.ToString();
             manaCostText.text = this.playableCard.ManaCost.ToString();
         }
 

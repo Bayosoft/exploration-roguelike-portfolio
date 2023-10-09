@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Distract
   abilityType: 1
-  tags:
+  generalTags:
   - {fileID: 11400000, guid: 1abe8549361e3a044a1ffbbd69bf440a, type: 2}
+  description:
+    description: Leave the enemy exposed.
   durationInTurns: 3

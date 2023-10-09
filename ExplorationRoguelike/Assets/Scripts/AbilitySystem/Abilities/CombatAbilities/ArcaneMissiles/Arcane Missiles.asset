@@ -16,6 +16,8 @@ MonoBehaviour:
   abilityType: 1
   generalTags:
   - {fileID: 11400000, guid: 3f578cd34669816479d4a7ab5f68db6f, type: 2}
+  description:
+    description: Deal 1 arcane damage 3 times.
   damageTags:
     tags:
     - {fileID: 11400000, guid: 3f578cd34669816479d4a7ab5f68db6f, type: 2}

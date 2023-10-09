@@ -1,3 +1,4 @@
+using System;
 using ExplorationRoguelike;
 using ExplorationRoguelike.AbilitySystem.Abilities;
 using ExplorationRoguelike.Characters;
@@ -60,7 +61,7 @@ namespace ExplorationRoguelike.AbilitySystem
             return true;
         }
 
-        public float CalculateAggregatedModifiers(float value, in GameplayTagContainer valueTags, GameplayTagContainer dynamicTags = null)
+        public int CalculateAggregatedModifiers(float value, in GameplayTagContainer valueTags, GameplayTagContainer dynamicTags = null)
         {
             foreach (ActiveGameplayEffect activeEffect in ActiveGameplayEffects)
             {
@@ -77,7 +78,7 @@ namespace ExplorationRoguelike.AbilitySystem
                 }
             }
 
-            return value;
+            return Mathf.RoundToInt(value);
         }
 
         public bool MeetsTagRequirements(GameplayEffect effect)

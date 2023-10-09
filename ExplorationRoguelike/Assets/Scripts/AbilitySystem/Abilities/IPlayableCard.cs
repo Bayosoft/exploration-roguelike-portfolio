@@ -15,7 +15,7 @@ namespace ExplorationRoguelike.AbilitySystem.Abilities
         public TargetType TargetType { get; }
         public int ManaCost { get; }
         public GameplayAbility GameplayAbility => GetGameplayAbility<GameplayAbility>();
-        public T GetGameplayAbility<T>()
+        private T GetGameplayAbility<T>()
         {
             if (this is not T gameplayAbility)
             {

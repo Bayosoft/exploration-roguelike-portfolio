@@ -1,13 +1,14 @@
 using System;
 using ExplorationRoguelike.AbilitySystem;
+using UnityEngine;
 
 namespace ExplorationRoguelike
 {
     [Serializable]
     public class DescriptionText
     {
-
-        public DescriptionText(IDescribable owner)
+        [SerializeField] private string description;
+        protected DescriptionText(IDescribable owner)
         {
             if(owner is IModifiable modifiable)
             {
@@ -15,7 +16,7 @@ namespace ExplorationRoguelike
             }
         }
 
-        private void UpdateText(float modifiedValue)
+        private void UpdateText(int modifiedValue)
         {
             throw new NotImplementedException();
         }
@@ -23,7 +24,7 @@ namespace ExplorationRoguelike
         // TODO: Add a way to build a description 
         public override string ToString()
         {
-            return base.ToString();
+            return description;
         }
     }
 }

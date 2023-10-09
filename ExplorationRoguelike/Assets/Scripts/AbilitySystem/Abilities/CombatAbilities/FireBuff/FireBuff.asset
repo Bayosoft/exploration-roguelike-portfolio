@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Fire Buff
   abilityType: 1
-  tags:
+  generalTags:
   - {fileID: 11400000, guid: afabe38204f53724388bd1f123ba6b54, type: 2}
-  manaCost: 0
+  description:
+    description: Multiply fire damage dealt by 5.
   gameplayEffect: {fileID: 11400000, guid: 854a0f3f30605914f9be8af8e08ee6bf, type: 2}
+  <TargetType>k__BackingField: 0
+  <ManaCost>k__BackingField: 0

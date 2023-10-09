@@ -1,6 +1,6 @@
 namespace ExplorationRoguelike.AbilitySystem
 {
-    public delegate void OnModifiersCalculated(float result);
+    public delegate void OnModifiersCalculated(int modifiedValue);
 
     public interface IModifiable
     {
