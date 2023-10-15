@@ -1,16 +1,12 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using ExplorationRoguelike.AbilitySystem;
 using ExplorationRoguelike.Combat.Events;
-using UnityEngine;
 
 namespace ExplorationRoguelike.GameplayEffects
 {
     //  Holds data directly tied to the effect being applied, including ActiveGameplayEffectHandle, GameplayEffectSpec and its start or end time, etc.
     public class ActiveGameplayEffect
     {
-
         public ActiveGameplayEffect(GameplayEffectSpecification effectSpec) 
         {
             Handle = ActiveGameplayEffectHandle.GenerateNew();

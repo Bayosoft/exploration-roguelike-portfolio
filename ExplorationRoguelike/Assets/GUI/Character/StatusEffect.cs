@@ -1,48 +1,44 @@
 using System;
-using ExplorationRoguelike.Combat.Events;
 using ExplorationRoguelike.GameplayEffects;
-using JetBrains.Annotations;
-using TMPro;
-using UnityEngine;
-using UnityEngine.EventSystems;
+using Godot;
 
 namespace ExplorationRoguelike.GUI.Character
 {
-    public class StatusEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public partial class StatusEffect : Node2D
     {
         [NonSerialized] public ActiveGameplayEffect GameplayEffect;
 
-        [SerializeField]
-        private TextMeshProUGUI effectNameText;
-        [SerializeField]
-        private TextMeshProUGUI effectDescriptionText;
-        [SerializeField]
-        private TextMeshProUGUI effectDurationText;
-        [SerializeField] 
-        private TextMeshProUGUI effectStacksText;
+        [Export]
+        private Label effectNameLabel;
+        [Export]
+        private Label effectDescriptionLabel;
+        [Export]
+        private Label effectDurationLabel;
+        [Export] 
+        private Label effectStacksLabel;
         public void Initialize(ActiveGameplayEffect effect)
         {
             GameplayEffect = effect;
-            effectNameText.text = effect.Specification.EffectSo.name;
-            effectDescriptionText.text = effect.Specification.EffectSo.description;
-            effectDurationText.text = effect.RemainingDuration.ToString();
+            effectNameLabel.Text = effect.Specification.EffectSo.name;
+            effectDescriptionLabel.Text = effect.Specification.EffectSo.description;
+            effectDurationLabel.Text = effect.RemainingDuration.ToString();
             effect.DurationChanged += UpdateDurationText;
             // if(effect.Stackable){ effectStacksText.Enable ... }
         }
 
         private void UpdateDurationText(object sender, EventArgs e)
         {
-            effectDurationText.text = GameplayEffect.RemainingDuration.ToString();
+            effectDurationLabel.Text = GameplayEffect.RemainingDuration.ToString();
         }
 
-        public void OnPointerEnter(PointerEventData eventData)
+        public void OnPointerEnter()
         {
-            effectDescriptionText.gameObject.SetActive(true);
+            effectDescriptionLabel.Show();
         }
 
-        public void OnPointerExit(PointerEventData eventData)
+        public void OnPointerExit()
         {
-            effectDescriptionText.gameObject.SetActive(false);
+            effectDescriptionLabel.Hide();
         }
     }
 }

@@ -1,6 +1,5 @@
+using Godot;
 using System;
-using UnityEngine;
-
 namespace ExplorationRoguelike
 {
     public class ConcreteEventArgs : EventArgs
@@ -13,7 +12,7 @@ namespace ExplorationRoguelike
             }
             else
             {
-                Debug.LogError($"EventArgs on {caller} is not of expected type {typeof(TEventArgs)}");
+                GD.PrintErr($"EventArgs on {caller} is not of expected type {typeof(TEventArgs)}");
                 throw new InvalidCastException();
             }
         }

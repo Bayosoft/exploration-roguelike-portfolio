@@ -1,9 +1,8 @@
 using ExplorationRoguelike.GameplayTags;
+using Godot;
+using Godot.Collections;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace ExplorationRoguelike.AbilitySystem.Abilities
 {
@@ -17,15 +16,18 @@ namespace ExplorationRoguelike.AbilitySystem.Abilities
         GameplayAction
     }
 
-    public abstract class GameplayAbility : ScriptableObject, IDescribable
+    public abstract partial class GameplayAbility : Resource, IDescribable
     {
-        public new string name;
-        public AbilityType abilityType;
-        
-        [FormerlySerializedAs("tags")]
-        public List<GameplayTag> generalTags;
+        [Export]
+        public string Name;
 
-        [SerializeField]
+        [Export]
+        public AbilityType abilityType;
+
+        [Export]
+        public Array<GameplayTag> generalTags;
+
+        [Export]
         private DescriptionText description;
         public DescriptionText Description => description;
 

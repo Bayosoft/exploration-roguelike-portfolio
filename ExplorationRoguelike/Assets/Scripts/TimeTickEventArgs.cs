@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace ExplorationRoguelike
 {
     // Move to a global time calculator class.

@@ -2,7 +2,7 @@ using ExplorationRoguelike.AbilitySystem;
 using System;
 using System.Collections.Generic;
 using ExplorationRoguelike.GameplayTags;
-using UnityEngine;
+using Godot;
 
 namespace ExplorationRoguelike.GameplayEffects
 {
@@ -21,10 +21,9 @@ namespace ExplorationRoguelike.GameplayEffects
         public const int InstantApplication = 0;
     }
 
-    [CreateAssetMenu(fileName = "Gameplay Effect", menuName = "Gameplay Effect")]
-    public class GameplayEffect : ScriptableObject
+    public partial class GameplayEffect : Resource
     {
-        public new string name;
+        public string name;
         public string description; // Should be of same type as card description.
 
         public GameplayDurationType durationType;
@@ -46,7 +45,7 @@ namespace ExplorationRoguelike.GameplayEffects
         public List<ConditionalGameplayEffect> earlyRemovalEffects; // Effects applied if this effect ends before it expired.
         public List<ConditionalGameplayEffect> expirationEffects; // Effects applied to target when this effect expires.
 
-        [Header("Tags")]
+        [ExportGroup("Tags")]
         public GameplayTagContainer assetTags; // Tags this effect has, but do not grant
         public GameplayTagContainer grantedTags; // Grants these tags to the target
         public GameplayTagContainer grantedBlockedAbilityTags; // Grants blocked ability tags to target, preventing activating abilities with any of these.

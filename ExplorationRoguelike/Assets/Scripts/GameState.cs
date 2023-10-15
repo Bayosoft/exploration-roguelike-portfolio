@@ -2,20 +2,20 @@ using System.Collections.Generic;
 using ExplorationRoguelike.Characters.NonPlayerCharacters;
 using ExplorationRoguelike.Characters.PlayerCharacter;
 using ExplorationRoguelike.Combat;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+using Godot;
 
 namespace ExplorationRoguelike
 {
-    public class GameState : MonoBehaviour
+    public partial class GameState : Node
     {
         private CombatStateComponent _combatStateComponent;
-        public GameObject player;
-        public GameObject enemy;
-        void Awake()
+        public Node player;
+        public Node enemy;
+
+        // TODO: This might not be needed at all anymore.
+/*        void Awake()
         {
-            DontDestroyOnLoad(this);
-            UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+            // UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
         }
         
         public void SetCombatants(GameObject playerPrefab, GameObject enemyPrefab)
@@ -37,7 +37,7 @@ namespace ExplorationRoguelike
         {
             _combatStateComponent.Initialize(player, enemy);
         }
-
+*/
 
     }
 }

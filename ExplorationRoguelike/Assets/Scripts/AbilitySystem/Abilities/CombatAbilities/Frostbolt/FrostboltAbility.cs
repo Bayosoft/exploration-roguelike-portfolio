@@ -1,18 +1,17 @@
 using System.Collections.Generic;
 using ExplorationRoguelike.GameplayEffects;
-using ExplorationRoguelike.GameplayTags;
-using UnityEngine;
+using Godot;
 
 namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities.Frostbolt
 {
-    public class FrostboltAbility : InstantDamageAbility, IPlayableCard
+    public partial class FrostboltAbility : InstantDamageAbility, IPlayableCard
     { 
         public GameplayEffect gameplayEffect;
         
-        [field: SerializeField]
+        [Export]
         public TargetType TargetType { get; private set; }
 
-        [field: SerializeField]
+        [Export]
         public int ManaCost { get; private set; }
         
         public override void Activate(AbilitySystemComponent instigator, IEnumerable<AbilitySystemComponent> targets)

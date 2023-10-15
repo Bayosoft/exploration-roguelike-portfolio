@@ -2,14 +2,14 @@ using ExplorationRoguelike.AbilitySystem;
 using ExplorationRoguelike.AbilitySystem.Abilities;
 using ExplorationRoguelike.AbilitySystem.CardSystem;
 using ExplorationRoguelike.Combat.Events;
+using Godot;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace ExplorationRoguelike.Combat
 {
-    public class PlayerTurnComponent : TurnComponent
+    public partial class PlayerTurnComponent : TurnComponent
     {
-        [SerializeField]
+        [Export]
         private CardDeckComponent cardDeckComponent;
         public CardDeckComponent CardDeckComponent => cardDeckComponent;
 

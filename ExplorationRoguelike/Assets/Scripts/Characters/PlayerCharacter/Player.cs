@@ -1,20 +1,20 @@
 using ExplorationRoguelike.AbilitySystem.CardSystem;
 using ExplorationRoguelike.Combat;
-using UnityEngine;
+using Godot;
 
 namespace ExplorationRoguelike.Characters.PlayerCharacter
 {
-    public class Player : Character, ICombatant
+    public partial class Player : Character, ICombatant
     {
-        [SerializeField]
+        [Export]
         private HealthComponent healthComponent;
         public HealthComponent HealthComponent => healthComponent;
 
-        [SerializeField]
+        [Export]
         private TurnComponent turnComponent;
         public TurnComponent TurnComponent => turnComponent;
 
-        [SerializeField]
+        [Export]
         private CardDeckComponent cardDeckComponent;
         public CardDeckComponent CardDeckComponent => cardDeckComponent;
     }

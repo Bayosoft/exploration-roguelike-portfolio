@@ -1,13 +1,12 @@
 using System;
 using ExplorationRoguelike.AbilitySystem;
-using UnityEngine;
+using Godot;
 
 namespace ExplorationRoguelike
 {
-    [Serializable]
-    public class DescriptionText
+    public partial class DescriptionText : Resource
     {
-        [SerializeField] private string description;
+        [Export] private string description;
         protected DescriptionText(IDescribable owner)
         {
             if(owner is IModifiable modifiable)

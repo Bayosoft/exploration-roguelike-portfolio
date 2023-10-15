@@ -1,10 +1,9 @@
+using Godot;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace ExplorationRoguelike
 {
-    [CreateAssetMenu(menuName = "Events/Event", fileName = "Event")]
-    public class ScriptableEvent : ScriptableObject
+    public partial class EventResource : Resource
     {
         private List<EventListener> _listeners = new();
         public void RaiseEvent(ConcreteEventArgs eventArgs)

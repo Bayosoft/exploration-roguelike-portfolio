@@ -1,15 +1,15 @@
 using ExplorationRoguelike.AbilitySystem;
 using ExplorationRoguelike.AbilitySystem.Abilities;
+using Godot;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace ExplorationRoguelike.Combat
 {
-    public abstract class TurnComponent : MonoBehaviour
+    public abstract partial class TurnComponent : Node
     {
         public bool MyTurn { get; protected set; } 
 
-        public ScriptableEvent endTurnEvent;
+        public EventResource endTurnEvent;
         public abstract void StartTurn();
         public abstract void Act(GameplayAbility action, List<AbilitySystemComponent> targets);
         public abstract void EndTurn();
@@ -22,7 +22,8 @@ namespace ExplorationRoguelike.Combat
             {
                 if (_owner == null)
                 {
-                    _owner = gameObject.GetComponent<AbilitySystemComponent>();
+                    // TODO: Godotify? Not needed probably with better architecture.
+                   // _owner = gameObject.GetComponent<AbilitySystemComponent>();
                 } 
                 return _owner;
             }

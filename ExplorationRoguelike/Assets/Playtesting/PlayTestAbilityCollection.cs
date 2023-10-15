@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using ExplorationRoguelike.AbilitySystem.Abilities;
-using UnityEngine;
+using Godot;
 
 namespace ExplorationRoguelike
 {
-    [CreateAssetMenu()]
-    public class PlayTestAbilityCollection : ScriptableObject
+    public partial class PlayTestAbilityCollection : Resource
     {
         public List<GameplayAbility> abilities;
     }

@@ -1,14 +1,13 @@
 using ExplorationRoguelike.GUI.Card;
+using Godot;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Unity.VisualScripting;
-using UnityEngine;
 
 namespace ExplorationRoguelike.AbilitySystem.CardSystem
 {
-    public class CardDeckComponent : MonoBehaviour
+    public partial class CardDeckComponent : Node
     {
         public CardPrinter printer;
         public int MaxMana { get; private set; } = 4;
@@ -31,14 +30,14 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
         public ObservableCollection<CardView> CardsShattered = new();
         private AbilitySystemComponent _player;
 
-
-        public void Awake()
+        // TODO: Refactor to Godot.
+/*        public void Awake()
         {
             _player = GetComponent<AbilitySystemComponent>();
 
             CardsInDeck.AddRange(printer.PrintStackFromAbilities(_player.GrantedAbilities));
         }
-
+*/
         public void Start()
         {
             Mana = MaxMana;

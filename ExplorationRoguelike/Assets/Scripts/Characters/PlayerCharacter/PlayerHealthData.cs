@@ -1,9 +1,6 @@
-using System;
-using UnityEngine;
-
 namespace ExplorationRoguelike.Characters.PlayerCharacter
 {
-    public class PlayerHealthData : HealthData
+    public partial class PlayerHealthData : HealthData
     {        
         public int currentHealth;
         

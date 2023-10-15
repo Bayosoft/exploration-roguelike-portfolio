@@ -1,18 +1,17 @@
 using System.Collections.Generic;
 using ExplorationRoguelike.GameplayTags;
-using UnityEngine;
+using Godot;
 
 namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities
 {
-    [CreateAssetMenu(fileName = "Instant Damage", menuName = "Abilities/Combat/Instant Damage")]
-    public class InstantDamageAbility : GameplayAbility, IModifiable
+    public partial class InstantDamageAbility : GameplayAbility, IModifiable
     {
-        [SerializeField]
+        [Export]
         private GameplayTagContainer damageTags = new();
-        
-        [SerializeField]
+
+        [Export]
         private float damage;
-        
+
         public override void Activate(AbilitySystemComponent instigator, IEnumerable<AbilitySystemComponent> targets)
         {
             var damageMagnitude = CalculateModifiers(instigator);

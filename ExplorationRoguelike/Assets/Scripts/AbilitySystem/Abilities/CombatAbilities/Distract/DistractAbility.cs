@@ -1,12 +1,12 @@
+using Godot;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities.Distract
 {
-    public class DistractAbility : GameplayAbility
+    public partial class DistractAbility : GameplayAbility
     {
         // StatusEffect 
-        [SerializeField]
+        [Export]
         private int durationInTurns;
         //
         // property indicating its a card/combat ability.

@@ -1,8 +1,6 @@
 using ExplorationRoguelike.AbilitySystem.Abilities;
 using ExplorationRoguelike.Characters;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace ExplorationRoguelike.AbilitySystem
 {

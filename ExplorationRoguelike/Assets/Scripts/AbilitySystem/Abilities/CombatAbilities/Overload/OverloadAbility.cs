@@ -1,13 +1,13 @@
-using UnityEngine;
+using Godot;
 
 namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities.Overload
 {
-    public class OverloadAbility : SelfStatusEffectAbility, IPlayableCard
+    public partial class OverloadAbility : SelfStatusEffectAbility, IPlayableCard
     {
-        [field: SerializeField]
+        [Export]
         public TargetType TargetType { get; private set; }
 
-        [field: SerializeField]
+        [Export]
         public int ManaCost { get; private set; }
     }
 }

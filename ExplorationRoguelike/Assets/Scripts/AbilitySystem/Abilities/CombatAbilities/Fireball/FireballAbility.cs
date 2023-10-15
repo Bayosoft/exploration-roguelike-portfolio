@@ -1,22 +1,22 @@
 using System.Collections.Generic;
 using ExplorationRoguelike.GameplayEffects;
 using ExplorationRoguelike.GameplayTags;
-using UnityEngine;
+using Godot;
 
 namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities.Fireball
 {
-    public class FireballAbility : InstantDamageAbility, IPlayableCard
+    public partial class FireballAbility : InstantDamageAbility, IPlayableCard
     {
-        [field: SerializeField]
+        [Export]
         public TargetType TargetType { get; private set; }
         
         // Added in designer
-        [SerializeField]
+        [Export]
         private GameplayTagContainer ignitedTagContainer = new();
 
         public GameplayEffect gameplayEffect;
         
-        [field: SerializeField]
+        [Export]
         public int ManaCost { get; private set; }
         
         public override void Activate(AbilitySystemComponent instigator, IEnumerable<AbilitySystemComponent> targets)

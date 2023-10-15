@@ -1,18 +1,18 @@
 using ExplorationRoguelike.Combat;
-using UnityEngine;
+using Godot;
 
 namespace ExplorationRoguelike.Characters.NonPlayerCharacters
 {
-    public class CombatNpc : Character, ICombatant
+    public partial class CombatNpc : Character, ICombatant
     {
-        [SerializeField]
+        [Export]
         private HealthComponent healthComponent;
         public HealthComponent HealthComponent { get => healthComponent; }
-        [SerializeField]
+        [Export]
         private NpcTurnComponent turnComponent;
         public TurnComponent TurnComponent => turnComponent;
         
-        [SerializeField]
+        [Export]
         private NpcCombatComponent npcCombatComponent;
         public NpcCombatComponent NpcCombatComponent => npcCombatComponent;
     }

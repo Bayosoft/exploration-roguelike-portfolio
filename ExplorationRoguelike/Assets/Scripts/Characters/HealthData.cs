@@ -1,10 +1,8 @@
-using System;
-using UnityEngine;
+using Godot;
 
 namespace ExplorationRoguelike.Characters
 {
-    [CreateAssetMenu(fileName = "Health", menuName = "Characters/Health")]
-    public class HealthData : ScriptableObject
+    public partial class HealthData : Resource
     {
         public int maxHealth;
     }

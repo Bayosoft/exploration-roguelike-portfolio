@@ -1,17 +1,17 @@
+using Godot;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities.ArcaneMissiles
 {
-    public class ArcaneMissilesAbility : InstantDamageAbility, IPlayableCard
+    public partial class ArcaneMissilesAbility : InstantDamageAbility, IPlayableCard
     {
-        [field: SerializeField]
+        [Export]
         public TargetType TargetType { get; private set; }
-        
-        [field: SerializeField]
+
+        [Export]
         public int ManaCost { get; private set; }
 
-        [SerializeField] 
+        [Export] 
         private int missileCount;
         
         public override void Activate(AbilitySystemComponent instigator, IEnumerable<AbilitySystemComponent> targets)

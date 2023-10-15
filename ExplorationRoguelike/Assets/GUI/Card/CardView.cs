@@ -2,48 +2,44 @@
 using ExplorationRoguelike.AbilitySystem.Abilities;
 using ExplorationRoguelike.Combat.Events;
 using System.Collections;
-using TMPro;
-using UnityEngine;
-using UnityEngine.EventSystems;
+using Godot;
 
 namespace ExplorationRoguelike.GUI.Card
 {
-    public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler, IPointerClickHandler
+    public partial class CardView : Node2D
     {
         [NonSerialized] public IPlayableCard playableCard;
 
-        [SerializeField]
-        private TextMeshProUGUI cardNameText;
-        [SerializeField]
-        private TextMeshProUGUI cardDescriptionText;
-        [SerializeField]
-        private TextMeshProUGUI manaCostText;
+        [Export] private Label cardNameText;
 
-        [SerializeField]
-        private float verticalMoveAmount = 30f;
-        [SerializeField]
-        private float moveTime = 0.1f;
-        [Range(0f, 2f), SerializeField]
-        private float scaleAmount = 1.1f;
+        [Export] private Label cardDescriptionText;
 
-        private Vector3 _startPosition;
-        private Vector3 _startScale;
+        [Export] private Label manaCostText;
+
+        [Export] private float verticalMoveAmount = 30f;
+
+        [Export] private float moveTime = 0.1f;
+
+        [Export(PropertyHint.Range, "0,2,")] private float scaleAmount = 1.1f;
+
+        private Vector2 _startPosition;
+        private Vector2 _startScale;
 
         private int _index;
 
-        [SerializeField]
-        private ScriptableEvent playCardEvent;
+        [Export] private EventResource playCardEvent;
 
         public void Initialize(IPlayableCard playableCard)
         {
             this.playableCard = playableCard;
 
-            _startPosition = transform.position;
-            _startScale = transform.localScale;
+            // TODO: current position
+            //_startPosition = position;
+            // _startScale = transform.localScale;
 
-            cardNameText.text = this.playableCard.GameplayAbility.name;
-            cardDescriptionText.text = this.playableCard.GameplayAbility.Description.ToString();
-            manaCostText.text = this.playableCard.ManaCost.ToString();
+            cardNameText.Text = this.playableCard.GameplayAbility.Name;
+            cardDescriptionText.Text = this.playableCard.GameplayAbility.Description.ToString();
+            manaCostText.Text = this.playableCard.ManaCost.ToString();
         }
 
         public void TryPlayCard()
@@ -53,56 +49,55 @@ namespace ExplorationRoguelike.GUI.Card
 
         private IEnumerator HighlightCard(bool startingAnimation)
         {
-            Vector3 endPosition;
-            Vector3 endScale;
+            Vector2 endPosition;
+            Vector2 endScale;
 
-            float elapsedTime = 0f;
+            double elapsedTime = 0f;
             while(elapsedTime < moveTime)
             {
-                elapsedTime += Time.deltaTime;
+                elapsedTime += GetProcessDeltaTime();
                 if(startingAnimation)
                 {
-                    //endPosition = _startPosition + new Vector3(0, _verticalMoveAmount, 0);
                     endScale = _startScale * scaleAmount;
                 }
                 else
                 {
-                  //  endPosition = _startPosition;
                     endScale = _startScale;
                 }
 
-                //   Vector3 lerpedPos = Vector3.Lerp(transform.position, endPosition, (elapsedTime / _moveTime));
-                Vector3 lerpedScale = Vector3.Lerp(transform.localScale, endScale, (elapsedTime / moveTime));
+              // TODO: Transition to Godot Lerp
+              // Vector3 lerpedScale = Vector3.Lerp(transform.localScale, endScale, (elapsedTime / moveTime));
 
-             //   transform.position = lerpedPos;
-                transform.localScale = lerpedScale;
+              //  Scale = lerpedScale;
 
                 yield return null;
             }
         }
 
-        public void OnPointerEnter(PointerEventData eventData)
+        // TODO: Create node with button Signals.
+        public void OnPointerEnter()
         {
-            eventData.selectedObject = gameObject;
+         //   eventData.selectedObject = gameObject;
         }
 
-        public void OnPointerExit(PointerEventData eventData)
+        public void OnPointerExit()
         {
-            eventData.selectedObject = null;
+         //   eventData.selectedObject = null;
         }
-        public void OnSelect(BaseEventData eventData)
+
+        public void OnSelect()
         {
-            _index = gameObject.transform.GetSiblingIndex();
+          /*  _index = gameObject.transform.GetSiblingIndex();
             gameObject.transform.SetAsLastSibling();
 
-            StartCoroutine(HighlightCard(true));
+            StartCoroutine(HighlightCard(true));*/
         }
-        public void OnDeselect(BaseEventData eventData)
+        public void OnDeselect()
         {
-            gameObject.transform.SetSiblingIndex(_index);
-            StartCoroutine(HighlightCard(false));
+/*            gameObject.transform.SetSiblingIndex(_index);
+            StartCoroutine(HighlightCard(false));*/
         }
-        public void OnPointerClick(PointerEventData eventData)
+        public void OnPointerClick()
         {
             TryPlayCard();
         }

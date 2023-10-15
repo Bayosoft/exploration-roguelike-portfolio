@@ -1,14 +1,14 @@
 ﻿using ExplorationRoguelike.AbilitySystem;
 using ExplorationRoguelike.AbilitySystem.Abilities;
 using ExplorationRoguelike.Combat.Events;
+using Godot;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace ExplorationRoguelike.Combat
 {
-    public class NpcTurnComponent : TurnComponent
+    public partial class NpcTurnComponent : TurnComponent
     {
-        [SerializeField]
+        [Export]
         private NpcCombatComponent npcCombatComponent;
         public NpcCombatComponent NpcCombatComponent { get => npcCombatComponent; }
 

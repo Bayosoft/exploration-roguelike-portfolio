@@ -1,23 +1,24 @@
 using ExplorationRoguelike.AbilitySystem;
 using ExplorationRoguelike.AbilitySystem.Abilities;
+using Godot;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace ExplorationRoguelike.Combat
 {
-    public class NpcCombatComponent : MonoBehaviour
+    public partial class NpcCombatComponent : Node
     {
         private AbilitySystemComponent _npc;
         public List<GameplayAbility> abilities;
         public GameplayAbility DeclaredAbility { get; private set; }
         public event EventHandler<GameplayAbility> OnDeclaredIntent;
 
-        public void Awake()
+        // TODO: Refactor to Godot.
+  /*      public void Awake()
         {
             _npc = GetComponent<AbilitySystemComponent>();
             abilities = _npc.GrantedAbilities;
-        }
+        }*/
         internal void ExecuteIntent(GameplayAbility declaredAbility, IEnumerable<AbilitySystemComponent> targets)
         {
             _npc.TryActivateAbility(declaredAbility, targets);

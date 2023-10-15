@@ -1,18 +1,19 @@
-using System;
-using ExplorationRoguelike;
 using ExplorationRoguelike.AbilitySystem.Abilities;
 using ExplorationRoguelike.Characters;
 using ExplorationRoguelike.GameplayEffects;
 using System.Collections.Generic;
 using ExplorationRoguelike.GameplayTags;
-using UnityEngine;
+using Godot;
+using Godot.Collections;
+using System.Linq;
+
 namespace ExplorationRoguelike.AbilitySystem
 {
-    public class AbilitySystemComponent : MonoBehaviour
+    public partial class AbilitySystemComponent : Node
     {
-        [SerializeField]
+        [Export]
         private Character owner;
-        public List<GameplayAbility> GrantedAbilities => owner.CharacterData.Abilities;
+        public Array<GameplayAbility> GrantedAbilities => owner.CharacterData.Abilities;
         public GameplayTagContainer ActiveGameplayTags { get; }
         public GameplayTagContainer OwnedGameplayTags { get; private set; }
 

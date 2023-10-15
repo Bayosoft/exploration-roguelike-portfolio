@@ -1,30 +1,31 @@
-using UnityEngine;
-using UnityEngine.Events;
+
+using Godot;
+using System;
 
 namespace ExplorationRoguelike
 {
-    public class EventListener : MonoBehaviour 
+    public partial class EventListener : Node 
     {
-        public ScriptableEvent @event;
-        public UnityEvent<ConcreteEventArgs> onArgsEventTriggered;
-        public UnityEvent onEventTriggered;
+        public EventResource Event;
+        public event EventHandler<ConcreteEventArgs> onArgsEventTriggered;
+        public event EventHandler onEventTriggered;
 
         void OnEnable()
         {
-            @event.AddListener(this);
+            Event.AddListener(this);
         }
         void OnDisable()
         {
-            @event.RemoveListener(this);
+            Event.RemoveListener(this);
         }
         public void RaiseEvent(ConcreteEventArgs args)
         {
-            onArgsEventTriggered.Invoke(args);
+            onArgsEventTriggered.Invoke(this, args);
         }
 
         public void RaiseEvent()
         {
-            onEventTriggered.Invoke();
+            onEventTriggered.Invoke(this, EventArgs.Empty);
         }
     }
 }

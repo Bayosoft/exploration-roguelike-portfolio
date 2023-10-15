@@ -3,12 +3,12 @@ using ExplorationRoguelike.Characters;
 using ExplorationRoguelike.Characters.NonPlayerCharacters;
 using ExplorationRoguelike.Characters.PlayerCharacter;
 using ExplorationRoguelike.Combat.Events;
+using Godot;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace ExplorationRoguelike.Combat
 {
-    public class CombatStateComponent : MonoBehaviour
+    public partial class CombatStateComponent : Node
     {
         public enum CombatState
         {
@@ -32,8 +32,8 @@ namespace ExplorationRoguelike.Combat
         public NpcTurnComponent enemyTurnComponent;
         public PlayerTurnComponent playerTurnComponent;
         
-        [SerializeField]
-        private ScriptableEvent combatEvent;
+        [Export]
+        private EventResource combatEvent;
 
 
         public void Awake()
@@ -41,7 +41,8 @@ namespace ExplorationRoguelike.Combat
             enemies = new List<CombatNpc>();
         }
 
-        public void Initialize(GameObject playerPrefab, GameObject enemyPrefab)
+        // TODO: Refactor to spawn player and enemy scene in combat.
+/*        public void Initialize(GameObject playerPrefab, GameObject enemyPrefab)
         {
             var playerInstance = Instantiate(playerPrefab);
             var enemyInstance = Instantiate(enemyPrefab);
@@ -51,7 +52,7 @@ namespace ExplorationRoguelike.Combat
             
             playerTurnComponent = (PlayerTurnComponent)player.TurnComponent;
             enemyTurnComponent = (NpcTurnComponent)enemies[0].TurnComponent;
-        }
+        }*/
         // Start is called before the first frame update
         void Start()
         {

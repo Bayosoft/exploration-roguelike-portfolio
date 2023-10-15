@@ -1,15 +1,13 @@
-using System.Collections.Generic;
-using ExplorationRoguelike.GameplayEffects;
-using UnityEngine;
+using Godot;
 
 namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities.FireBuff
 {
-    public class FireBuffAbility : SelfStatusEffectAbility, IPlayableCard
+    public partial class FireBuffAbility : SelfStatusEffectAbility, IPlayableCard
     {
-        [field: SerializeField]
+        [Export]
         public TargetType TargetType { get; private set; }
 
-        [field: SerializeField]
+        [Export]
         public int ManaCost { get; private set; }
     }
 }

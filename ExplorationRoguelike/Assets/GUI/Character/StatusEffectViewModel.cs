@@ -3,30 +3,30 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using ExplorationRoguelike.AbilitySystem;
-using ExplorationRoguelike.Characters.PlayerCharacter;
 using ExplorationRoguelike.GameplayEffects;
-using UnityEngine;
+using Godot;
 
 namespace ExplorationRoguelike.GUI.Character
 {
-    public class StatusEffectViewModel : MonoBehaviour
+    public partial class StatusEffectViewModel : Node2D
     {
-        [SerializeField] private GameObject statusEffectPrefab;
+        [Export] private Resource statusEffectScene;
 
         private AbilitySystemComponent _characterAbilitySystem;
 
-        public ObservableCollection<GameObject> StatusEffectViews { get; set; }
+        public ObservableCollection<Node> StatusEffectViews { get; set; }
 
         public void Awake()
         {
-            StatusEffectViews = new ObservableCollection<GameObject>();
+            StatusEffectViews = new ObservableCollection<Node>();
         }
         
         public void Start()
         {
             if (_characterAbilitySystem == null)
             {
-                _characterAbilitySystem = GameObject.FindObjectOfType<Player>().AbilitySystemComponent;
+                // TODO: Get player's ability system? (mind the likely rename to Action system)
+               // _characterAbilitySystem = GameObject.FindObjectOfType<Player>().AbilitySystemComponent;
             }
             _characterAbilitySystem.ActiveGameplayEffects.ActiveEffects.CollectionChanged +=
                 PrintStatusEffect;
@@ -61,24 +61,29 @@ namespace ExplorationRoguelike.GUI.Character
 
         private void AddStatusEffectView(ActiveGameplayEffect addedEffect)
         {
-            var effectView = Instantiate(statusEffectPrefab, gameObject.transform, true);
-            effectView.transform.localScale = Vector2.one;
-            effectView.transform.localPosition = Vector2.one;
-            effectView.transform.SetAsLastSibling();
-            var effectComponent = effectView.GetComponent<StatusEffect>();
-            effectComponent.Initialize(addedEffect);
+            var scene = (PackedScene)ResourceLoader.Load(statusEffectScene.ResourcePath);
+            var statusEffectNode = scene.Instantiate();
 
-            StatusEffectViews.Add(effectView);
+            // TODO: Change status effect's position?
+            /*statusEffectNode..localScale = Vector2.one;
+            statusEffectNode.transform.localPosition = Vector2.one;
+            statusEffectNode.transform.SetAsLastSibling();*/
+
+            // TODO: Initialize the actual status effect
+            // var effectComponent = effectView.GetComponent<StatusEffect>();
+            // effectComponent.Initialize(addedEffect);
+
+            StatusEffectViews.Add(statusEffectNode);
         }
 
         private void RemoveStatusEffectView(ActiveGameplayEffect removedEffect)
         {
             foreach (var effectView in
                      StatusEffectViews.ToList()
-                         .Where(effectView => effectView.GetComponent<StatusEffect>().GameplayEffect == removedEffect))
+                         .Where(x => true /* TODO: Get status effect and check if it is the removed effect. effectView => effectView.GetComponent<StatusEffect>().GameplayEffect == removedEffect*/))
             {
                 StatusEffectViews.Remove(effectView);
-                Destroy(effectView);
+                effectView.QueueFree();
                 return;
             }
 

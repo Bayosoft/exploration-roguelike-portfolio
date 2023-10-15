@@ -1,88 +1,87 @@
-using System.Collections;
-using System.Collections.Generic;
 using ExplorationRoguelike.Characters;
 using ExplorationRoguelike.Characters.NonPlayerCharacters;
 using ExplorationRoguelike.Characters.PlayerCharacter;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+using Godot;
 
 namespace ExplorationRoguelike
 {
-    public class PlaytestSelector : MonoBehaviour
+    public partial class PlaytestSelector : Node
     {
-        [SerializeField] private PlayTestAbilityCollection weakDeck;
-        [SerializeField] private PlayTestAbilityCollection averageDeck;
-        [SerializeField] private PlayTestAbilityCollection strongDeck;
+        [Export] private PlayTestAbilityCollection weakDeck;
+        [Export] private PlayTestAbilityCollection averageDeck;
+        [Export] private PlayTestAbilityCollection strongDeck;
         
-        [SerializeField] private CharacterData weakEnemy;
-        [SerializeField] private CharacterData averageEnemy;
-        [SerializeField] private CharacterData bossEnemy;
+        [Export] private CharacterResource weakEnemy;
+        [Export] private CharacterResource averageEnemy;
+        [Export] private CharacterResource bossEnemy;
 
-        [SerializeField] private GameObject deckButtons;
-        [SerializeField] private GameObject enemyButtons;
+        [Export] private Node2D deckButtons;
+        [Export] private Node2D enemyButtons;
 
-        [SerializeField] private GameState gameState;
+        [Export] private GameState gameState;
 
-        [SerializeField] private GameObject playerPrefab;
-        [SerializeField] private GameObject enemyPrefab;
+        [Export] private Resource playerResource;
+        [Export] private Resource enemyResource;
         public void DeckSelected()
         {
-            deckButtons.SetActive(false);
-            enemyButtons.SetActive(true);
+            deckButtons.Hide();
+            enemyButtons.Show();
         }
-        
+
+        // TODO: Get Player
         public void OnWeakDeckClick()
         {
-            var player = playerPrefab.GetComponent<Player>();
+           /* var player = playerResource.GetComponent<Player>();
             player.CharacterData.Abilities.Clear();
-            player.CharacterData.Abilities.AddRange(weakDeck.abilities);
+            player.CharacterData.Abilities.AddRange(weakDeck.abilities);*/
             DeckSelected();
         }
         
         public void OnAverageDeckClick()
         {
-            var player = playerPrefab.GetComponent<Player>();
+           /* var player = playerResource.GetComponent<Player>();
             player.CharacterData.Abilities.Clear();
-            player.CharacterData.Abilities.AddRange(averageDeck.abilities); 
+            player.CharacterData.Abilities.AddRange(averageDeck.abilities); */
             DeckSelected();
         }
 
         public void OnStrongDeckClick()
         {
-            var player = playerPrefab.GetComponent<Player>();
+           /* var player = playerResource.GetComponent<Player>();
             player.CharacterData.Abilities.Clear();
-            player.CharacterData.Abilities.AddRange(strongDeck.abilities);
+            player.CharacterData.Abilities.AddRange(strongDeck.abilities);*/
             DeckSelected();
         }
 
+        // TODO: Get Enemy and load combat
         public void OnWeakEnemyClick()
         {
-            // set combat enemy 
-            var enemy = enemyPrefab.GetComponent<CombatNpc>();
+          /*  // set combat enemy 
+            var enemy = enemyResource.GetComponent<CombatNpc>();
 
             enemy.CharacterData = weakEnemy;
             
-            gameState.SetCombatants(playerPrefab, enemyPrefab);
-            SceneManager.LoadScene("CombatScene");
+            gameState.SetCombatants(playerResource, enemyResource);
+            SceneManager.LoadScene("CombatScene");*/
         }
         
         public void OnAverageEnemyClick()
         {
             // set combat enemy 
-            var enemy = enemyPrefab.GetComponent<CombatNpc>();
+          /*  var enemy = enemyResource.GetComponent<CombatNpc>();
             enemy.CharacterData = averageEnemy;
-            gameState.SetCombatants(playerPrefab, enemyPrefab);
-            SceneManager.LoadScene("CombatScene");
+            gameState.SetCombatants(playerResource, enemyResource);
+            SceneManager.LoadScene("CombatScene");*/
         }
 
         public void OnBossEnemyClick()
         {
             // set combat enemy 
             
-            var enemy = enemyPrefab.GetComponent<CombatNpc>();
+         /*   var enemy = enemyResource.GetComponent<CombatNpc>();
             enemy.CharacterData = bossEnemy;
-            gameState.SetCombatants(playerPrefab, enemyPrefab);
-            SceneManager.LoadScene("CombatScene");
+            gameState.SetCombatants(playerResource, enemyResource);
+            SceneManager.LoadScene("CombatScene");*/
         }
 
     }

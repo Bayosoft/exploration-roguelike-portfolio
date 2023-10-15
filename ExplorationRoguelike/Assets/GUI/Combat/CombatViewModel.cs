@@ -7,71 +7,79 @@ using ExplorationRoguelike.AbilitySystem.Abilities;
 using ExplorationRoguelike.Characters;
 using ExplorationRoguelike.Combat;
 using ExplorationRoguelike.Combat.Events;
+using ExplorationRoguelike.GUI.Card;
 using ExplorationRoguelike.GUI.Character;
-using TMPro;
-using UnityEngine;
+using Godot;
 
 namespace ExplorationRoguelike.GUI.Combat
 {
-    public class CombatViewModel : MonoBehaviour
+    public partial class CombatViewModel : Node2D
     {
         private CombatStateComponent _combat;
 
-        public GameObject cardPrefab;
-        public GameObject healthPrefab;
-        public TextMeshProUGUI manaText;
-        public ObservableCollection<GameObject> HealthViews { get; set; }
-        public ObservableCollection<GameObject> CardViews { get; set; }
+        [Export] public Resource CardScene;
+        [Export] public Resource HealthScene;
+
+        public Label manaLabel;
+        public ObservableCollection<Node2D> HealthNodes { get; set; }
+        public ObservableCollection<Node2D> CardNodes { get; set; }
 
         // public ObservableCollection<AbilitySO> DrawnCards { get { return new ObservableCollection<AbilitySO>(_combat.CardDeckComponent.CardsDrawn); } }
 
         public object SelectedCard { get; set; }
-        public TextMeshProUGUI enemyIntentText;
+        public Label enemyIntentLabel;
 
         public void Awake()
         {
-            CardViews = new ObservableCollection<GameObject>();
-            HealthViews = new ObservableCollection<GameObject>();
+            CardNodes = new ObservableCollection<Node2D>();
+            HealthNodes = new ObservableCollection<Node2D>();
         }
         public void Start()
         {
-            _combat = GameObject.Find("CombatManager").GetComponent<CombatStateComponent>();
+            // TODO: Get CombatStateComponent
+            // _combat = GameObject.Find("CombatManager").GetComponent<CombatStateComponent>();
             _combat.playerTurnComponent.CardDeckComponent.CardsDrawn.CollectionChanged += UpdateCards;
             _combat.playerTurnComponent.CardDeckComponent.OnManaChanged += UpdateMana;
             _combat.enemyTurnComponent.NpcCombatComponent.OnDeclaredIntent += UpdateEnemyIntent;
-            
+
             SpawnHealthViews();
         }
 
         private void UpdateMana(object sender, int newMana)
         {
-            manaText.text = $"Mana: {newMana}/4";
+            manaLabel.Text = $"Mana: {newMana}/4";
         }
 
         private void UpdateEnemyIntent(object sender, GameplayAbility intent)
         {
-            enemyIntentText.text = $"Enemy Intent: {intent.generalTags.First().ToString()}";
+            enemyIntentLabel.Text = $"Enemy Intent: {intent.generalTags.First().ToString()}";
         }
         private void SpawnHealthViews()
         {
             List<ICombatant> combatants = new(_combat.enemies);
 
             // Player
-            var healthView = Instantiate(healthPrefab, this.transform);
+            var healthScene = (PackedScene)ResourceLoader.Load(HealthScene.ResourcePath);
+            var healthNode = healthScene.Instantiate();
 
-            healthView.GetComponent<HealthViewModel>().Initialize(_combat.player.HealthComponent);
-            healthView.transform.localPosition = new Vector2(-400, 0);
-            healthView.transform.localScale = Vector2.one;
-            HealthViews.Add(healthView);
+            // TODO: Initialize HealthViewModel and set position of health scene
+            /* healthView.GetComponent<HealthViewModel>().Initialize(_combat.player.HealthComponent);
+             healthView.transform.localPosition = new Vector2(-400, 0);
+             healthView.transform.localScale = Vector2.one;*/
+
+            HealthNodes.Add(healthNode as Node2D);
 
             // Enemies
             foreach (var combatant in combatants)
             {
-                GameObject eHealthView = Instantiate(healthPrefab, this.transform);
-                eHealthView.GetComponent<HealthViewModel>().Initialize(combatant.HealthComponent);
-                eHealthView.transform.localPosition = new Vector2(400, 0);
-                eHealthView.transform.localScale = Vector2.one;
-                HealthViews.Add(eHealthView);
+                var enemyHealthScene = (PackedScene)ResourceLoader.Load(HealthScene.ResourcePath);
+                var enemyHealthNode = enemyHealthScene.Instantiate();
+
+                // TODO: Initialize HealthViewModel and set position of health scene
+                /* enemyHealthNode.GetComponent<HealthViewModel>().Initialize(combatant.HealthComponent);
+                   enemyHealthNode.transform.localPosition = new Vector2(400, 0);
+                   enemyHealthNode.transform.localScale = Vector2.one;*/
+                HealthNodes.Add(enemyHealthNode as Node2D);
             }
         }
 
@@ -80,27 +88,28 @@ namespace ExplorationRoguelike.GUI.Combat
             //different kind of changes that may have occurred in collection
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
-                Card.CardView c = (Card.CardView)e.NewItems[0];
-                GameObject cardView = c.gameObject;
-                cardView.transform.parent = gameObject.transform;
-                cardView.transform.localPosition = new Vector2(CardViews.Count * 100, 0);
-                cardView.transform.localPosition = new Vector2(-300 + (CardViews.Count * 100), -350f);
-                cardView.transform.localScale = Vector2.one;
-                cardView.transform.SetAsLastSibling();
+                CardView c = (CardView)e.NewItems[0];
+                Node2D cardNode = c;
+                // TODO: Place the card in the view.
+/*                cardNode.Transform = gameObject.transform;
+                cardNode.transform.localPosition = new Vector2(CardNodes.Count * 100, 0);
+                cardNode.transform.localPosition = new Vector2(-300 + (CardNodes.Count * 100), -350f);
+                cardNode.transform.localScale = Vector2.one;
+                cardNode.transform.SetAsLastSibling();*/
 
-                cardView.SetActive(true);
-                CardViews.Add(cardView);
+                cardNode.Show();
+                CardNodes.Add(cardNode);
             }
             if (e.Action == NotifyCollectionChangedAction.Remove)
             {
-                foreach (Card.CardView removedCard in e.OldItems)
+                foreach (CardView removedCard in e.OldItems)
                 {
-                    foreach (GameObject cardView in CardViews.ToList())
+                    foreach (Node2D cardNode in CardNodes.ToList())
                     {
-                        if (cardView.GetComponent<Card.CardView>() == removedCard)
+                        if (cardNode == removedCard)
                         {
-                            cardView.SetActive(false);
-                            CardViews.Remove(cardView);
+                            cardNode.Hide();
+                            CardNodes.Remove(cardNode);
                             return;
                         }
                     }

@@ -1,15 +1,14 @@
-using UnityEngine;
+using Godot;
 
 namespace ExplorationRoguelike.GameplayTags
 {
-    [CreateAssetMenu(fileName = "Tag", menuName = "Tag", order = 1)]
-    public class GameplayTag : ScriptableObject
+    public partial class GameplayTag : Resource
     {
         public GameplayTag parent;
 
         public bool Matches(GameplayTag tagToCompare)
         {
-            return tagToCompare == this || (parent && parent.Matches(tagToCompare));
+            return tagToCompare == this || (parent != null && parent.Matches(tagToCompare));
         }
 
         public bool MatchesExact(GameplayTag tagToCompare)

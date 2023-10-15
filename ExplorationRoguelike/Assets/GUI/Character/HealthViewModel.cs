@@ -1,22 +1,21 @@
 using ExplorationRoguelike.Characters;
-using TMPro;
-using UnityEngine;
+using Godot;
 
 namespace ExplorationRoguelike.GUI.Character
 {
-    public class HealthViewModel : MonoBehaviour
+    public partial class HealthViewModel : Node2D
     {
         private HealthComponent _healthComponent;
 
-        public TextMeshProUGUI currentHealthText;
-        public TextMeshProUGUI maxHealthText;
+        [Export] private Label currentHealthLabel;
+        [Export] private Label maxHealthLabel;
         public void Initialize(HealthComponent healthComponent)
         {
             _healthComponent = healthComponent;
 
             _healthComponent.OnHealthChanged += UpdateHealth;
-            maxHealthText.text = $"/{_healthComponent.MaxHealth}";
-            currentHealthText.text = Mathf.CeilToInt(_healthComponent.MaxHealth).ToString();
+            maxHealthLabel.Text = $"/{_healthComponent.MaxHealth}";
+            currentHealthLabel.Text = Mathf.CeilToInt(_healthComponent.MaxHealth).ToString();
         }
 
         public void UpdateHealth(object sender, float newHealth)
@@ -26,7 +25,7 @@ namespace ExplorationRoguelike.GUI.Character
                 return;
             }
 
-            currentHealthText.text = Mathf.CeilToInt(newHealth).ToString();
+            currentHealthLabel.Text = Mathf.CeilToInt(newHealth).ToString();
         }
     }
 }

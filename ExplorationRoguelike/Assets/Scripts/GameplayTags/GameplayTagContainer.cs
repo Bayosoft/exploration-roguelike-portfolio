@@ -1,15 +1,15 @@
+using Godot;
+using Godot.Collections;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace ExplorationRoguelike.GameplayTags
 {
-    [Serializable]
-    public class GameplayTagContainer : IEnumerable
+    public partial class GameplayTagContainer : Resource, IEnumerable
     {
-        [SerializeField]
-        private List<GameplayTag> tags;
+        [Export]
+        private Array<GameplayTag> tags;
 
         public GameplayTagContainer()
         {

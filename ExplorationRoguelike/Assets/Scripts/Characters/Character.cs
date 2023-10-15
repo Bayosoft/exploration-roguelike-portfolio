@@ -1,19 +1,19 @@
 using ExplorationRoguelike.AbilitySystem;
-using UnityEngine;
+using Godot;
 
 namespace ExplorationRoguelike.Characters
 {
-    public abstract class Character : MonoBehaviour
+    public abstract partial class Character : Node
     {
-        [SerializeField] private CharacterData characterData;
+        [Export] private CharacterResource characterData;
 
-        public CharacterData CharacterData
+        public CharacterResource CharacterData
         {
             get => characterData;
             set => characterData = value;
         }
 
-        [SerializeField] private AbilitySystemComponent abilitySystemComponent;
+        [Export] private AbilitySystemComponent abilitySystemComponent;
         public AbilitySystemComponent AbilitySystemComponent => abilitySystemComponent;
     }
 }

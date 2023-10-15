@@ -1,12 +1,9 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using ExplorationRoguelike.Characters.PlayerCharacter;
-using UnityEngine;
+using Godot;
 
 namespace ExplorationRoguelike.Characters
 {
-    public class HealthComponent : MonoBehaviour
+    public partial class HealthComponent : Node
     {
         protected float maxHealth;
         public float MaxHealth => maxHealth;
@@ -29,13 +26,13 @@ namespace ExplorationRoguelike.Characters
                 OnHealthChanged?.Invoke(this, _currentHealth);
             }
         }
-
-        public virtual void Awake()
+        // TODO: Refactor to Godot.
+/*        public virtual void Awake()
         {
             var health = GetComponent<Character>().CharacterData.Health;
             maxHealth = health.maxHealth;
             _currentHealth = health.maxHealth;
-        }
+        }*/
         
         public void ReduceHealthBy(float amount)
         {
@@ -44,11 +41,11 @@ namespace ExplorationRoguelike.Characters
 
         public virtual void OnDeath()
         {
-            var character = GetComponent<Character>();
+          /*  var character = GetComponent<Character>();
 
             var characterName = (character ? character.CharacterData.Name : gameObject.name);
             Debug.Log($"{characterName} died.");
-            // die
+            // die*/
         }
     }
 }

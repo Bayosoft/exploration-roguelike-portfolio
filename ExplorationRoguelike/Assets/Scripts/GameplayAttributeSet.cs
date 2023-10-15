@@ -1,17 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Godot;
+
 
 namespace ExplorationRoguelike
 {
-    public class GameplayAttributeSet : MonoBehaviour
+    public partial class GameplayAttributeSet : Node
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
-
 
     }
 }
