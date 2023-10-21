@@ -11,13 +11,17 @@ config_version=5
 [application]
 
 config/name="exploration-roguelike-godot"
-run/main_scene="res://Combat/CombatScene.tscn"
+run/main_scene="res://gamestates/combat/Combat.tscn"
 config/features=PackedStringArray("4.1", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [dotnet]
 
 project/assembly_name="exploration-roguelike-godot"
+
+[filesystem]
+
+import/blender/enabled=false
 
 [rendering]
 
