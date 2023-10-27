@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bgfmr1mscfdua"]
+
+[ext_resource type="PackedScene" uid="uid://bdmc8pw6fpivn" path="res://entities/card/Card.tscn" id="1_1akkw"]
+[ext_resource type="Script" path="res://entities/card/CardPrinter.cs" id="2_bi08h"]
+
+[resource]
+script = ExtResource("2_bi08h")
+cardScene = ExtResource("1_1akkw")

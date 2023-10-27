@@ -1,10 +1,10 @@
 using ExplorationRoguelike.AbilitySystem.Abilities;
 using Godot;
 using Godot.Collections;
-using System.Collections.Generic;
 
 namespace ExplorationRoguelike.Characters
 {
+    [GlobalClass]
     public abstract partial class CharacterResource : Resource
     {
         [Export]
@@ -24,7 +24,7 @@ namespace ExplorationRoguelike.Characters
         public Array<GameplayAbility> Abilities => abilities;
 
         [Export]
-        private HealthData health;
-        public virtual HealthData Health => health;
+        private HealthResource health;
+        public virtual HealthResource Health => health;
     }
 }

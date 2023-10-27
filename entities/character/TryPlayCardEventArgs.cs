@@ -1,12 +1,12 @@
-using ExplorationRoguelike.GUI.Card;
+using ExplorationRoguelike.GUI.PlayableCard;
 
 namespace ExplorationRoguelike.Combat.Events
 {
     public class TryPlayCardEventArgs : ConcreteEventArgs
     {
-        public CardView CardView { get; }
+        public Card CardView { get; }
 
-        public TryPlayCardEventArgs(CardView cardView)
+        public TryPlayCardEventArgs(Card cardView)
         {
             CardView = cardView;
         }

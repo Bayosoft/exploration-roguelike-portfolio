@@ -1,6 +1,9 @@
+using Godot;
+
 namespace ExplorationRoguelike.Characters.PlayerCharacter
 {
-    public partial class PlayerHealthData : HealthData
+    [GlobalClass]
+    public partial class PlayerHealthResource : HealthResource
     {        
         public int currentHealth;
         
@@ -11,7 +14,7 @@ namespace ExplorationRoguelike.Characters.PlayerCharacter
         
         public void UpdateMaxHealth(int newHealth)
         {
-            maxHealth = newHealth;
+            MaxHealth = newHealth;
         }
     }
 }

@@ -5,12 +5,12 @@ namespace ExplorationRoguelike.Characters
 {
     public abstract partial class Character : Node
     {
-        [Export] private CharacterResource characterData;
+        [Export] private CharacterResource characterResource;
 
-        public CharacterResource CharacterData
+        public CharacterResource CharacterResource
         {
-            get => characterData;
-            set => characterData = value;
+            get => characterResource;
+            set => characterResource = value;
         }
 
         [Export] private AbilitySystemComponent abilitySystemComponent;

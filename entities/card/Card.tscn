@@ -1,3 +1,44 @@
-[gd_scene format=3 uid="uid://bdmc8pw6fpivn"]
+[gd_scene load_steps=4 format=3 uid="uid://bdmc8pw6fpivn"]
 
-[node name="Card" type="Node2D"]
+[ext_resource type="Script" path="res://entities/card/Card.cs" id="1_vf63r"]
+[ext_resource type="Texture2D" uid="uid://bkt8somsgednk" path="res://icon.svg" id="1_xrlja"]
+[ext_resource type="FontFile" uid="uid://d3kfrcrw7p065" path="res://LiberationSans.ttf" id="2_qie03"]
+
+[node name="Card" type="Node2D" node_paths=PackedStringArray("cardNameText", "cardDescriptionText", "manaCostText")]
+script = ExtResource("1_vf63r")
+cardNameText = NodePath("")
+cardDescriptionText = NodePath("")
+manaCostText = NodePath("")
+
+[node name="CardBack" type="ColorRect" parent="."]
+offset_right = 236.0
+offset_bottom = 305.0
+color = Color(0.2, 0.168627, 0.192157, 1)
+
+[node name="CardIcon" type="Sprite2D" parent="."]
+position = Vector2(118, 79)
+scale = Vector2(1.77484, 1.10617)
+texture = ExtResource("1_xrlja")
+
+[node name="CardCost" type="RichTextLabel" parent="."]
+offset_right = 26.0
+offset_bottom = 36.0
+theme_override_fonts/normal_font = ExtResource("2_qie03")
+theme_override_font_sizes/normal_font_size = 30
+text = "5"
+
+[node name="CardName" type="RichTextLabel" parent="."]
+offset_left = 23.0
+offset_top = 150.0
+offset_right = 215.0
+offset_bottom = 172.0
+theme_override_font_sizes/normal_font_size = 20
+text = "name"
+scroll_active = false
+
+[node name="CardDescription" type="RichTextLabel" parent="."]
+offset_left = 4.0
+offset_top = 172.0
+offset_right = 232.0
+offset_bottom = 301.0
+text = "test Font"

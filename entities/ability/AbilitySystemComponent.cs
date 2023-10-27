@@ -11,14 +11,18 @@ namespace ExplorationRoguelike.AbilitySystem
 {
     public partial class AbilitySystemComponent : Node
     {
-        [Export]
         private Character owner;
-        public Array<GameplayAbility> GrantedAbilities => owner.CharacterData.Abilities;
+        public Array<GameplayAbility> GrantedAbilities => owner.CharacterResource.Abilities;
         public GameplayTagContainer ActiveGameplayTags { get; }
         public GameplayTagContainer OwnedGameplayTags { get; private set; }
 
         public ActiveGameplayEffectContainer ActiveGameplayEffects;
 
+        public override void _Ready()
+        {
+            base._Ready();
+            owner = GetParent<Character>();
+        }
         private AbilitySystemComponent()
         {
             ActiveGameplayTags = new GameplayTagContainer();

@@ -9,9 +9,9 @@ namespace ExplorationRoguelike.Characters.PlayerCharacter
         // TODO: Refactor to Godot.
 /*        public override void Awake()
         {
-            var health = GetComponent<Character>().CharacterData.Health;
-            maxHealth = health.maxHealth;
-            CurrentHealth = ((PlayerHealthData)health).currentHealth;
+            var health = GetComponent<Character>().CharacterResource.Health;
+            MaxHealth = health.MaxHealth;
+            CurrentHealth = ((PlayerHealthResource)health).currentHealth;
         }*/
         public override void OnDeath()
         {

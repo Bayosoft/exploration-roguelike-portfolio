@@ -5,6 +5,9 @@ namespace ExplorationRoguelike.Characters
 {
     public partial class HealthComponent : Node
     {
+        [Export]
+        private HealthResource healthResource;
+
         protected float maxHealth;
         public float MaxHealth => maxHealth;
         public event EventHandler<float> OnHealthChanged;
@@ -26,13 +29,11 @@ namespace ExplorationRoguelike.Characters
                 OnHealthChanged?.Invoke(this, _currentHealth);
             }
         }
-        // TODO: Refactor to Godot.
-/*        public virtual void Awake()
+        public override void _Ready()
         {
-            var health = GetComponent<Character>().CharacterData.Health;
-            maxHealth = health.maxHealth;
-            _currentHealth = health.maxHealth;
-        }*/
+            maxHealth = healthResource.MaxHealth;
+            _currentHealth = healthResource.MaxHealth;
+        }
         
         public void ReduceHealthBy(float amount)
         {
@@ -43,7 +44,7 @@ namespace ExplorationRoguelike.Characters
         {
           /*  var character = GetComponent<Character>();
 
-            var characterName = (character ? character.CharacterData.Name : gameObject.name);
+            var characterName = (character ? character.CharacterResource.Name : gameObject.name);
             Debug.Log($"{characterName} died.");
             // die*/
         }

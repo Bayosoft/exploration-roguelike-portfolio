@@ -32,24 +32,24 @@ namespace ExplorationRoguelike
         public void OnWeakDeckClick()
         {
            /* var player = playerResource.GetComponent<Player>();
-            player.CharacterData.Abilities.Clear();
-            player.CharacterData.Abilities.AddRange(weakDeck.abilities);*/
+            player.CharacterResource.Abilities.Clear();
+            player.CharacterResource.Abilities.AddRange(weakDeck.abilities);*/
             DeckSelected();
         }
         
         public void OnAverageDeckClick()
         {
            /* var player = playerResource.GetComponent<Player>();
-            player.CharacterData.Abilities.Clear();
-            player.CharacterData.Abilities.AddRange(averageDeck.abilities); */
+            player.CharacterResource.Abilities.Clear();
+            player.CharacterResource.Abilities.AddRange(averageDeck.abilities); */
             DeckSelected();
         }
 
         public void OnStrongDeckClick()
         {
            /* var player = playerResource.GetComponent<Player>();
-            player.CharacterData.Abilities.Clear();
-            player.CharacterData.Abilities.AddRange(strongDeck.abilities);*/
+            player.CharacterResource.Abilities.Clear();
+            player.CharacterResource.Abilities.AddRange(strongDeck.abilities);*/
             DeckSelected();
         }
 
@@ -59,7 +59,7 @@ namespace ExplorationRoguelike
           /*  // set combat enemy 
             var enemy = enemyResource.GetComponent<CombatNpc>();
 
-            enemy.CharacterData = weakEnemy;
+            enemy.CharacterResource = weakEnemy;
             
             gameState.SetCombatants(playerResource, enemyResource);
             SceneManager.LoadScene("CombatScene");*/
@@ -69,7 +69,7 @@ namespace ExplorationRoguelike
         {
             // set combat enemy 
           /*  var enemy = enemyResource.GetComponent<CombatNpc>();
-            enemy.CharacterData = averageEnemy;
+            enemy.CharacterResource = averageEnemy;
             gameState.SetCombatants(playerResource, enemyResource);
             SceneManager.LoadScene("CombatScene");*/
         }
@@ -79,7 +79,7 @@ namespace ExplorationRoguelike
             // set combat enemy 
             
          /*   var enemy = enemyResource.GetComponent<CombatNpc>();
-            enemy.CharacterData = bossEnemy;
+            enemy.CharacterResource = bossEnemy;
             gameState.SetCombatants(playerResource, enemyResource);
             SceneManager.LoadScene("CombatScene");*/
         }

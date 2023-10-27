@@ -3,7 +3,7 @@ using Godot;
 
 namespace ExplorationRoguelike.GUI.Character
 {
-    public partial class HealthViewModel : Node2D
+    public partial class CombatHealth : Node2D
     {
         private HealthComponent _healthComponent;
 

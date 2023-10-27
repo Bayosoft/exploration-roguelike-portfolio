@@ -1,6 +1,6 @@
 namespace ExplorationRoguelike.Characters.PlayerCharacter
 {
-    public partial class PlayerCharacterData : CharacterResource
+    public partial class PlayerCharacterResource : CharacterResource
     {
 
     }

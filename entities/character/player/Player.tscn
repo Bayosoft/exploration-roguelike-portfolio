@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://8axislhhcmuv"]
+
+[ext_resource type="Script" path="res://entities/character/player/Player.cs" id="1_bi0oj"]
+[ext_resource type="Script" path="res://entities/character/player/PlayerHealthComponent.cs" id="2_b5nbt"]
+[ext_resource type="Resource" uid="uid://cm7ueejiujrg7" path="res://entities/character/player/PlayerHealth.tres" id="3_t7dqv"]
+[ext_resource type="Script" path="res://entities/ability/AbilitySystemComponent.cs" id="3_xi5sx"]
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_bi0oj")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_b5nbt")
+healthResource = ExtResource("3_t7dqv")
+
+[node name="AbilityComponent" type="Node" parent="."]
+script = ExtResource("3_xi5sx")
