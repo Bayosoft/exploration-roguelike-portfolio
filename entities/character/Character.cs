@@ -3,17 +3,12 @@ using Godot;
 
 namespace ExplorationRoguelike.Characters
 {
-    public abstract partial class Character : Node
+    public partial class Character : Node2D
     {
-        [Export] private CharacterResource characterResource;
+        [Export]
+        public CharacterResource CharacterResource { get; private set; }
 
-        public CharacterResource CharacterResource
-        {
-            get => characterResource;
-            set => characterResource = value;
-        }
-
-        [Export] private AbilitySystemComponent abilitySystemComponent;
-        public AbilitySystemComponent AbilitySystemComponent => abilitySystemComponent;
+        [Export] 
+        public AbilitySystemComponent AbilitySystemComponent { get; private set; }
     }
 }

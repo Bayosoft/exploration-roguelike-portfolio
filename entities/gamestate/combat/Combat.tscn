@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://ca02iis2s1klp"]
+[gd_scene load_steps=3 format=3 uid="uid://ca02iis2s1klp"]
 
 [ext_resource type="Script" path="res://entities/gamestate/combat/Combat.cs" id="1_3felc"]
+[ext_resource type="PackedScene" uid="uid://dn4kyo0oh74aw" path="res://entities/character/player/Player.tscn" id="2_wjmgv"]
 
 [node name="Combat" type="Node2D"]
 script = ExtResource("1_3felc")
+
+[node name="Player" parent="." instance=ExtResource("2_wjmgv")]

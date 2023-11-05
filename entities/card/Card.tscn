@@ -6,9 +6,12 @@
 
 [node name="Card" type="Node2D" node_paths=PackedStringArray("cardNameText", "cardDescriptionText", "manaCostText")]
 script = ExtResource("1_vf63r")
-cardNameText = NodePath("")
-cardDescriptionText = NodePath("")
-manaCostText = NodePath("")
+cardNameText = NodePath("CardName")
+cardDescriptionText = NodePath("CardDescription")
+manaCostText = NodePath("CardCost")
+verticalMoveAmount = null
+moveTime = null
+scaleAmount = null
 
 [node name="CardBack" type="ColorRect" parent="."]
 offset_right = 236.0

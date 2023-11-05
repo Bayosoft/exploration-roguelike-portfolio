@@ -37,7 +37,7 @@ public partial class Card : Node2D
         // _startScale = transform.localScale;
 
         cardNameText.Text = PlayableCard.GameplayAbility.Name;
-        cardDescriptionText.Text = PlayableCard.GameplayAbility.Description.ToString();
+        cardDescriptionText.Text = PlayableCard.GameplayAbility.Description?.ToString();
         manaCostText.Text = PlayableCard.ManaCost.ToString();
     }
 

@@ -16,6 +16,7 @@ namespace ExplorationRoguelike.AbilitySystem.Abilities
         GameplayAction
     }
 
+    [GlobalClass]
     public abstract partial class GameplayAbility : Resource, IDescribable
     {
         [Export]

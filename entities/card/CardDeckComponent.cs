@@ -9,7 +9,8 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
 {
     public partial class CardDeckComponent : Node
     {
-        public CardPrinter printer;
+        [Export]
+        private CardPrinter printer;
         public int MaxMana { get; private set; } = 4;
 
         private int _mana;
@@ -28,19 +29,20 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
         public ObservableCollection<Card> CardsDrawn = new();
         public ObservableCollection<Card> CardsDiscarded = new();
         public ObservableCollection<Card> CardsShattered = new();
-        private AbilitySystemComponent _player;
 
-        // TODO: Refactor to Godot.
-        /*        public void Awake()
-                {
-                    _player = GetComponent<AbilitySystemComponent>();
+        [Export]
+        private AbilitySystemComponent _abilityComponent;
 
-                    CardsInDeck.AddRange(printer.PrintStackFromAbilities(_player.GrantedAbilities));
-                }
-        */
-        public void Start()
+        public override void _Ready()
         {
             Mana = MaxMana;
+            IEnumerable<Card> cards = printer.PrintStackFromAbilities(_abilityComponent.GrantedAbilities);
+
+            foreach(var card in cards)
+            {
+                CardsInDeck.Add(card);
+                GD.Print(card.Name);
+            }
         }
 
         public void DrawCards(int amountOfCards)
@@ -75,7 +77,7 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
                 return;
             }
 
-            var successfullyPlayed = _player.TryActivateAbility(cardView.PlayableCard.GameplayAbility, targets);
+            var successfullyPlayed = _abilityComponent.TryActivateAbility(cardView.PlayableCard.GameplayAbility, targets);
 
             if (!successfullyPlayed)
             {

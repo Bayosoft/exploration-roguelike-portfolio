@@ -1,8 +1,6 @@
 using Godot;
 using Godot.Collections;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 
 namespace ExplorationRoguelike.GameplayTags
 {
@@ -41,7 +39,7 @@ namespace ExplorationRoguelike.GameplayTags
 
         public bool HasAllExact(GameplayTagContainer tagsToCheck)
         {
-            if(tags == null)
+            if (tags == null)
             {
                 return tagsToCheck.IsEmpty();
             }
@@ -59,7 +57,7 @@ namespace ExplorationRoguelike.GameplayTags
 
         public bool HasAny(GameplayTagContainer tagsToCheck)
         {
-            if(tagsToCheck != null)
+            if (tagsToCheck != null)
             {
                 foreach (GameplayTag tagToCheck in tagsToCheck)
                 {
@@ -74,7 +72,7 @@ namespace ExplorationRoguelike.GameplayTags
 
         public bool HasAnyExact(GameplayTagContainer tagsToCheck)
         {
-            if(tagsToCheck != null)
+            if (tagsToCheck != null)
             {
                 foreach (GameplayTag tagToCheck in tagsToCheck)
                 {
@@ -83,17 +81,17 @@ namespace ExplorationRoguelike.GameplayTags
                         return true;
                     }
                 }
-            }        
+            }
             return false;
         }
 
         public bool HasTag(GameplayTag tagToCheck)
         {
-            if(tagToCheck != null)
+            if (tagToCheck != null)
             {
                 foreach (GameplayTag tag in tags)
                 {
-                    if(tag.Matches(tagToCheck))
+                    if (tag.Matches(tagToCheck))
                     {
                         return true;
                     }
@@ -104,7 +102,7 @@ namespace ExplorationRoguelike.GameplayTags
 
         public bool HasTagExact(GameplayTag tagToCheck)
         {
-            if(tagToCheck != null)
+            if (tagToCheck != null)
             {
                 return tags.Contains(tagToCheck);
             }
@@ -114,7 +112,7 @@ namespace ExplorationRoguelike.GameplayTags
 
         public void Add(GameplayTag tag)
         {
-            if(tag != null)
+            if (tag != null)
             {
                 tags.Add(tag);
             }
@@ -133,51 +131,6 @@ namespace ExplorationRoguelike.GameplayTags
         public IEnumerator GetEnumerator()
         {
             return tags.GetEnumerator();
-        }
-    }
-
-    [Serializable]
-    public struct GameplayTagRequirements
-    {
-        public GameplayTagContainer requiredTags;
-        public GameplayTagContainer blockingTags;
-
-        public bool HasRequirements()
-        {
-            return requiredTags.IsEmpty() && blockingTags.IsEmpty();
-        }
-
-        public bool RequirementsMet(GameplayTagContainer tags)
-        {
-            if(tags == null)
-            {
-                return requiredTags.IsEmpty();
-            }
-
-            return tags.HasAll(requiredTags) && !tags.HasAny(blockingTags);
-        }
-
-        public bool RequirementsMet(GameplayTagContainer tags, GameplayTagContainer dynamicTags)
-        {
-            if(tags == null)
-            {
-                return false;
-            }
-
-            foreach (GameplayTag requiredTag in requiredTags)
-            {
-                if (!tags.HasTag(requiredTag) && !dynamicTags.HasTag(requiredTag))
-                {
-                    return false;
-                }
-            }
-
-            if (tags.HasAny(blockingTags) || dynamicTags.HasAny(blockingTags))
-            {
-                return false;
-            }
-
-            return true;
         }
     }
 }

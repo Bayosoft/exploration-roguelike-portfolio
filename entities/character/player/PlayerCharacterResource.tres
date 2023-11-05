@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PlayerCharacterResource" load_steps=3 format=3 uid="uid://dmc8l1sk0w71x"]
+
+[ext_resource type="Resource" uid="uid://b3ktnyekgyy85" path="res://entities/ability/combat/Fireball.tres" id="1_8owge"]
+[ext_resource type="Script" path="res://entities/character/player/PlayerCharacterResource.cs" id="1_ltnyb"]
+
+[resource]
+script = ExtResource("1_ltnyb")
+name = "Jaina"
+abilities = Array[Object]([ExtResource("1_8owge")])

@@ -7,8 +7,8 @@ namespace ExplorationRoguelike.GUI.Character
     {
         private HealthComponent _healthComponent;
 
-        [Export] private Label currentHealthLabel;
-        [Export] private Label maxHealthLabel;
+        [Export] private RichTextLabel currentHealthLabel;
+        [Export] private RichTextLabel maxHealthLabel;
         public void Initialize(HealthComponent healthComponent)
         {
             _healthComponent = healthComponent;

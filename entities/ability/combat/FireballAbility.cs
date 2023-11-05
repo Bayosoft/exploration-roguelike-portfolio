@@ -5,6 +5,7 @@ using Godot;
 
 namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities.Fireball
 {
+    [GlobalClass]
     public partial class FireballAbility : InstantDamageAbility, IPlayableCard
     {
         [Export]

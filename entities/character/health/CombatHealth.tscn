@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://dt7fddq0ukxd4"]
+
+[ext_resource type="Script" path="res://entities/character/health/CombatHealth.cs" id="1_hmkam"]
+
+[node name="CombatHealth" type="Node2D"]
+script = ExtResource("1_hmkam")
+
+[node name="CurrentHealthLabel" type="RichTextLabel" parent="."]
+offset_left = -33.0
+offset_right = -3.0
+offset_bottom = 19.0
+text = "10"
+scroll_active = false
+text_direction = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="HealthSlashLabel" type="RichTextLabel" parent="."]
+offset_left = -2.0
+offset_right = 4.0
+offset_bottom = 19.0
+text = "/"
+metadata/_edit_use_anchors_ = true
+
+[node name="MaxHealthLabel" type="RichTextLabel" parent="."]
+offset_left = 3.0
+offset_right = 33.0
+offset_bottom = 19.0
+text = "10"
+metadata/_edit_use_anchors_ = true

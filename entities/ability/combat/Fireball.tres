@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="FireballAbility" load_steps=5 format=3 uid="uid://b3ktnyekgyy85"]
+
+[ext_resource type="Script" path="res://gameplay_tags/GameplayTagContainer.cs" id="1_1triw"]
+[ext_resource type="Script" path="res://entities/ability/combat/FireballAbility.cs" id="2_x05tj"]
+
+[sub_resource type="Resource" id="Resource_mheq8"]
+script = ExtResource("1_1triw")
+tags = []
+
+[sub_resource type="Resource" id="Resource_3h6b7"]
+script = ExtResource("1_1triw")
+tags = []
+
+[resource]
+script = ExtResource("2_x05tj")
+TargetType = 3
+ignitedTagContainer = SubResource("Resource_3h6b7")
+ManaCost = 3
+damageTags = SubResource("Resource_mheq8")
+damage = 5.0
+Name = "Fireball"
+abilityType = 1
+generalTags = null

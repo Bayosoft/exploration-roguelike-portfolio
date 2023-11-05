@@ -4,6 +4,7 @@ using Godot;
 
 namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities
 {
+    [GlobalClass]
     public partial class InstantDamageAbility : GameplayAbility, IModifiable
     {
         [Export]
