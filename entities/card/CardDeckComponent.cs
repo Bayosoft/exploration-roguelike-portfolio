@@ -37,11 +37,11 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
         {
             Mana = MaxMana;
             IEnumerable<Card> cards = printer.PrintStackFromAbilities(_abilityComponent.GrantedAbilities);
-
-            foreach(var card in cards)
+            GD.Print(cards.Count());
+            foreach (var card in cards)
             {
                 CardsInDeck.Add(card);
-                GD.Print(card.Name);
+                GD.Print(card.PlayableCard.TargetType);
             }
         }
 

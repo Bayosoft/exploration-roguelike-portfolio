@@ -26,7 +26,7 @@ public partial class CardPrinter : Resource
 /*                var cardComponent = cardNode.GetChild<CardView>();
             cardComponent.Initialize(ability);*/
 
-           // cards.Add(cardComponent);
+           cards.Add(cardNode);
         }
         return cards;
     }

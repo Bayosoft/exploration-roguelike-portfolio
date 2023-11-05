@@ -11,13 +11,13 @@ namespace ExplorationRoguelike.Characters
         private string name;
         public string Name => name;
 
-        [Export]
+/*        [Export]
         private Sprite2D gameImage;
         public Sprite2D GameImage => gameImage;
 
         [Export]
         private Sprite2D uiImage;
-        public Sprite2D UiImage => uiImage;
+        public Sprite2D UiImage => uiImage;*/
 
         [Export]
         private Array<GameplayAbility> abilities;
