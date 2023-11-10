@@ -15,6 +15,8 @@ using Godot;
 namespace ExplorationRoguelike.GUI.Combat;
 
 // TODO: All Combat needs to do is spawn the player, enemies, and combat layout and keep track of things only related to *combat*.
+// Combat should get initialized with player and enemy node passed on, then combat should keep their health and turn components as properties.
+
 public partial class Combat : Node2D
 {
     [Export] public Resource HealthScene;
@@ -52,12 +54,9 @@ public partial class Combat : Node2D
     [Export]
     private EventResource combatEvent;
 
-    public void Awake()
-    {
-        enemies = new List<CombatNpc>();
-    }
 
     // TODO: Refactor to spawn player and enemy scene in combat.
+    // LEGACY
     /*        public void Initialize(GameObject playerPrefab, GameObject enemyPrefab)
             {
                 var playerInstance = Instantiate(playerPrefab);
@@ -68,12 +67,8 @@ public partial class Combat : Node2D
 
                 playerTurnComponent = (PlayerTurnComponent)player.TurnComponent;
                 enemyTurnComponent = (NpcTurnComponent)enemies[0].TurnComponent;
-            }*/
-    // Start is called before the first frame update
-    void Start()
-    {
-        StartCombat();
-    }
+            }
+    */
 
     public override void _Ready()
     {
@@ -82,11 +77,13 @@ public partial class Combat : Node2D
         CardNodes = new ObservableCollection<Node2D>();
         HealthNodes = new ObservableCollection<Node2D>();
 
-        _combat.playerTurnComponent.CardDeckComponent.CardsDrawn.CollectionChanged += UpdateCards;
-        _combat.playerTurnComponent.CardDeckComponent.OnManaChanged += UpdateMana;
-        _combat.enemyTurnComponent.NpcCombatComponent.OnDeclaredIntent += UpdateEnemyIntent;
+        playerTurnComponent.CardDeckComponent.CardsDrawn.CollectionChanged += UpdateCards;
+        playerTurnComponent.CardDeckComponent.OnManaChanged += UpdateMana;
+        enemyTurnComponent.NpcCombatComponent.OnDeclaredIntent += UpdateEnemyIntent;
 
-        SpawnHealthViews();
+        SpawnHealthNodes();
+
+        StartCombat();
     }
 
     public void StartCombat()
@@ -103,9 +100,9 @@ public partial class Combat : Node2D
 
     private void UpdateEnemyIntent(object sender, GameplayAbility intent)
     {
-        enemyIntentLabel.Text = $"Enemy Intent: {intent.generalTags.First().ToString()}";
+        enemyIntentLabel.Text = $"Enemy Intent: {intent.generalTags.First()}";
     }
-    private void SpawnHealthViews()
+    private void SpawnHealthNodes()
     {
         List<ICombatant> combatants = new(_combat.enemies);
 
