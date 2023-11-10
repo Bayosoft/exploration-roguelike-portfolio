@@ -5,6 +5,8 @@ using System.Linq;
 using ExplorationRoguelike.AbilitySystem;
 using ExplorationRoguelike.AbilitySystem.Abilities;
 using ExplorationRoguelike.Characters;
+using ExplorationRoguelike.Characters.NonPlayerCharacters;
+using ExplorationRoguelike.Characters.PlayerCharacter;
 using ExplorationRoguelike.Combat;
 using ExplorationRoguelike.Combat.Events;
 using ExplorationRoguelike.GUI.PlayableCard;
@@ -15,9 +17,6 @@ namespace ExplorationRoguelike.GUI.Combat;
 // TODO: All Combat needs to do is spawn the player, enemies, and combat layout and keep track of things only related to *combat*.
 public partial class Combat : Node2D
 {
-    private CombatStateComponent _combat;
-
-    [Export] public Resource CardScene;
     [Export] public Resource HealthScene;
 
     public Label manaLabel;
@@ -28,26 +27,73 @@ public partial class Combat : Node2D
 
     public object SelectedCard { get; set; }
     public Label enemyIntentLabel;
+    public enum CombatState
+    {
+        Start,
+        Playerturn,
+        Enemyturn,
+        Won,
+        Lost
+    };
+
+    private CombatState _currentState;
+    public CombatState CurrentState
+    {
+        get => _currentState;
+        private set => _currentState = value;
+    }
+
+    //  public List<Enemy> Allies; Probably not implementing this.
+    public List<CombatNpc> enemies;
+    public Player player;
+    public NpcTurnComponent enemyTurnComponent;
+    public PlayerTurnComponent playerTurnComponent;
+
+    [Export]
+    private EventResource combatEvent;
+
+    public void Awake()
+    {
+        enemies = new List<CombatNpc>();
+    }
+
+    // TODO: Refactor to spawn player and enemy scene in combat.
+    /*        public void Initialize(GameObject playerPrefab, GameObject enemyPrefab)
+            {
+                var playerInstance = Instantiate(playerPrefab);
+                var enemyInstance = Instantiate(enemyPrefab);
+
+                player = playerInstance.GetComponent<Player>();
+                enemies.Add(enemyInstance.GetComponent<CombatNpc>());
+
+                playerTurnComponent = (PlayerTurnComponent)player.TurnComponent;
+                enemyTurnComponent = (NpcTurnComponent)enemies[0].TurnComponent;
+            }*/
+    // Start is called before the first frame update
+    void Start()
+    {
+        StartCombat();
+    }
 
     public override void _Ready()
     {
         base._Ready();
-    }
-   
-    public void Awake()
-    {
+        
         CardNodes = new ObservableCollection<Node2D>();
         HealthNodes = new ObservableCollection<Node2D>();
-    }
-    public void Start()
-    {
-        // TODO: Get CombatStateComponent
-        // _combat = GameObject.Find("CombatManager").GetComponent<CombatStateComponent>();
+
         _combat.playerTurnComponent.CardDeckComponent.CardsDrawn.CollectionChanged += UpdateCards;
         _combat.playerTurnComponent.CardDeckComponent.OnManaChanged += UpdateMana;
         _combat.enemyTurnComponent.NpcCombatComponent.OnDeclaredIntent += UpdateEnemyIntent;
 
         SpawnHealthViews();
+    }
+
+    public void StartCombat()
+    {
+        CurrentState = CombatState.Start;
+        enemyTurnComponent.NpcCombatComponent.DeclareIntent();
+        playerTurnComponent.StartTurn();
     }
 
     private void UpdateMana(object sender, int newMana)
@@ -136,6 +182,32 @@ public partial class Combat : Node2D
         if (_combat.playerTurnComponent.MyTurn)
         {
             _combat.playerTurnComponent.EndTurn();
+        }
+    }
+
+    public void OnTurnEnded(ConcreteEventArgs eventArgs)
+    {
+        var endTurnEventArgs = eventArgs.ValidateEventArgs<EndTurnEventArgs>(eventArgs);
+
+        if (endTurnEventArgs.Initiator is PlayerTurnComponent)
+        {
+            enemyTurnComponent.StartTurn();
+            enemyTurnComponent.Act(enemyTurnComponent.NpcCombatComponent.DeclaredAbility, new List<AbilitySystemComponent>() { player.AbilitySystemComponent });
+
+            CurrentState = CombatState.Enemyturn;
+        }
+        else if (endTurnEventArgs.Initiator is NpcTurnComponent)
+        {
+            playerTurnComponent.StartTurn();
+            CurrentState = CombatState.Playerturn;
+        }
+    }
+
+    public void OnDeath<T>(T deadCombatant)
+    {
+        if (deadCombatant is Player)
+        {
+            _currentState = CombatState.Lost;
         }
     }
 

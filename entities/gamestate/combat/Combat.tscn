@@ -7,3 +7,9 @@
 script = ExtResource("1_3felc")
 
 [node name="Player" parent="." instance=ExtResource("2_wjmgv")]
+
+[node name="DrawnCards" type="Node" parent="."]
+
+[node name="CardStack" type="Node" parent="."]
+
+[node name="ShatteredCards" type="Node" parent="."]

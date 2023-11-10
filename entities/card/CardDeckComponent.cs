@@ -37,17 +37,16 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
         {
             Mana = MaxMana;
             IEnumerable<Card> cards = printer.PrintStackFromAbilities(_abilityComponent.GrantedAbilities);
-            GD.Print(cards.Count());
             foreach (var card in cards)
             {
                 CardsInDeck.Add(card);
-                GD.Print(card.PlayableCard.TargetType);
+                AddChild(card);
             }
         }
 
         public void DrawCards(int amountOfCards)
         {
-            Card cardView;
+            Card card;
             // TODO: Probably should loop through in case individual cards trigger abilities as they are drawn.
 
             for (int amountDrawn = 0; amountDrawn < amountOfCards;)
@@ -62,10 +61,10 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
                     }
                 }
 
-                cardView = CardsInDeck.First();
+                card = CardsInDeck.First();
 
-                CardsInDeck.Remove(cardView);
-                CardsDrawn.Add(cardView);
+                CardsInDeck.Remove(card);
+                CardsDrawn.Add(card);
 
                 ++amountDrawn;
             }
