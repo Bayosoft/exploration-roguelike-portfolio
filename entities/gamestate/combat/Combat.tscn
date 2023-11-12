@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ca02iis2s1klp"]
 
-[ext_resource type="Script" path="res://entities/gamestate/combat/Combat.cs" id="1_3felc"]
+[ext_resource type="Script" path="res://entities/gamestate/combat/CombatState.cs" id="1_3felc"]
 [ext_resource type="PackedScene" uid="uid://dn4kyo0oh74aw" path="res://entities/character/player/Player.tscn" id="2_wjmgv"]
 
 [node name="Combat" type="Node2D"]

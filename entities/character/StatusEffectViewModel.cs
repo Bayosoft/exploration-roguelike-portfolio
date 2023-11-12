@@ -25,7 +25,7 @@ namespace ExplorationRoguelike.GUI.Character
         {
             if (_characterAbilitySystem == null)
             {
-                // TODO: Get player's ability system? (mind the likely rename to Action system)
+                // TODO: Get Player's ability system? (mind the likely rename to Action system)
                // _characterAbilitySystem = GameObject.FindObjectOfType<Player>().AbilitySystemComponent;
             }
             _characterAbilitySystem.ActiveGameplayEffects.ActiveEffects.CollectionChanged +=

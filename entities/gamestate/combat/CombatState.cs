@@ -14,10 +14,10 @@ using Godot;
 
 namespace ExplorationRoguelike.GUI.Combat;
 
-// TODO: All Combat needs to do is spawn the player, enemies, and combat layout and keep track of things only related to *combat*.
-// Combat should get initialized with player and enemy node passed on, then combat should keep their health and turn components as properties.
+// TODO: All CombatState needs to do is spawn the Player, enemies, and combat layout and keep track of things only related to *combat*.
+// CombatState should get initialized with Player and enemy node passed on, then combat should keep their health and turn components as properties.
 
-public partial class Combat : Node2D
+public partial class CombatState : Node2D
 {
     [Export] public Resource HealthScene;
 
@@ -29,7 +29,7 @@ public partial class Combat : Node2D
 
     public object SelectedCard { get; set; }
     public Label enemyIntentLabel;
-    public enum CombatState
+    public enum TurnState
     {
         Start,
         Playerturn,
@@ -38,44 +38,30 @@ public partial class Combat : Node2D
         Lost
     };
 
-    private CombatState _currentState;
-    public CombatState CurrentState
+    private TurnState _currentTurnState;
+    public TurnState CurrentTurnState
     {
-        get => _currentState;
-        private set => _currentState = value;
+        get => _currentTurnState;
+        private set => _currentTurnState = value;
     }
 
     //  public List<Enemy> Allies; Probably not implementing this.
     public List<CombatNpc> enemies;
-    public Player player;
+    public Player Player;
     public NpcTurnComponent enemyTurnComponent;
     public PlayerTurnComponent playerTurnComponent;
 
     [Export]
     private EventResource combatEvent;
 
-
-    // TODO: Refactor to spawn player and enemy scene in combat.
-    // LEGACY
-    /*        public void Initialize(GameObject playerPrefab, GameObject enemyPrefab)
-            {
-                var playerInstance = Instantiate(playerPrefab);
-                var enemyInstance = Instantiate(enemyPrefab);
-
-                player = playerInstance.GetComponent<Player>();
-                enemies.Add(enemyInstance.GetComponent<CombatNpc>());
-
-                playerTurnComponent = (PlayerTurnComponent)player.TurnComponent;
-                enemyTurnComponent = (NpcTurnComponent)enemies[0].TurnComponent;
-            }
-    */
-
-    public override void _Ready()
+    public void Initialize(Player player, CombatNpc enemy)
     {
-        base._Ready();
-        
-        CardNodes = new ObservableCollection<Node2D>();
-        HealthNodes = new ObservableCollection<Node2D>();
+        // TODO: CombatVisualizer class that spawns character sprites, health bars etc for combat.
+        Player = player;
+        enemies.Add(enemy);
+
+        playerTurnComponent = (PlayerTurnComponent)player.TurnComponent;
+        enemyTurnComponent = (NpcTurnComponent)enemies[0].TurnComponent;
 
         playerTurnComponent.CardDeckComponent.CardsDrawn.CollectionChanged += UpdateCards;
         playerTurnComponent.CardDeckComponent.OnManaChanged += UpdateMana;
@@ -86,9 +72,19 @@ public partial class Combat : Node2D
         StartCombat();
     }
 
+    public CombatState()
+    {
+        CardNodes = new ObservableCollection<Node2D>();
+        HealthNodes = new ObservableCollection<Node2D>();
+    }
+    public override void _Ready()
+    {
+        base._Ready();
+    }
+
     public void StartCombat()
     {
-        CurrentState = CombatState.Start;
+        CurrentTurnState = TurnState.Start;
         enemyTurnComponent.NpcCombatComponent.DeclareIntent();
         playerTurnComponent.StartTurn();
     }
@@ -104,14 +100,14 @@ public partial class Combat : Node2D
     }
     private void SpawnHealthNodes()
     {
-        List<ICombatant> combatants = new(_combat.enemies);
+        List<ICombatant> combatants = new(enemies);
 
         // Player
         var healthScene = (PackedScene)ResourceLoader.Load(HealthScene.ResourcePath);
         var healthNode = healthScene.Instantiate();
 
         // TODO: Initialize CombatHealth and set position of health scene
-        /* healthView.GetComponent<CombatHealth>().Initialize(_combat.player.HealthComponent);
+        /* healthView.GetComponent<CombatHealth>().Initialize(_combat.Player.HealthComponent);
          healthView.transform.localPosition = new Vector2(-400, 0);
          healthView.transform.localScale = Vector2.one;*/
 
@@ -139,11 +135,11 @@ public partial class Combat : Node2D
             Card c = (Card)e.NewItems[0];
             Node2D cardNode = c;
             // TODO: Place the card in the view.
-/*                cardNode.Transform = gameObject.transform;
-            cardNode.transform.localPosition = new Vector2(CardNodes.Count * 100, 0);
-            cardNode.transform.localPosition = new Vector2(-300 + (CardNodes.Count * 100), -350f);
-            cardNode.transform.localScale = Vector2.one;
-            cardNode.transform.SetAsLastSibling();*/
+            /*                cardNode.Transform = gameObject.transform;
+                        cardNode.transform.localPosition = new Vector2(CardNodes.Count * 100, 0);
+                        cardNode.transform.localPosition = new Vector2(-300 + (CardNodes.Count * 100), -350f);
+                        cardNode.transform.localScale = Vector2.one;
+                        cardNode.transform.SetAsLastSibling();*/
 
             cardNode.Show();
             CardNodes.Add(cardNode);
@@ -168,17 +164,17 @@ public partial class Combat : Node2D
     public void OnTryPlayCard(ConcreteEventArgs args)
     {
         var eventArgs = args.ValidateEventArgs<TryPlayCardEventArgs>();
-        if (eventArgs.CardView != null && _combat.playerTurnComponent.MyTurn)
+        if (eventArgs.CardView != null && playerTurnComponent.MyTurn)
         {
-            _combat.playerTurnComponent.CardDeckComponent.PlayCard(eventArgs.CardView, new List<AbilitySystemComponent>() { _combat.enemies[0].AbilitySystemComponent });
+            playerTurnComponent.CardDeckComponent.PlayCard(eventArgs.CardView, new List<AbilitySystemComponent>() { enemies[0].AbilitySystemComponent });
         }
     }
 
     public void OnEndTurn()
     {
-        if (_combat.playerTurnComponent.MyTurn)
+        if (playerTurnComponent.MyTurn)
         {
-            _combat.playerTurnComponent.EndTurn();
+            playerTurnComponent.EndTurn();
         }
     }
 
@@ -189,14 +185,14 @@ public partial class Combat : Node2D
         if (endTurnEventArgs.Initiator is PlayerTurnComponent)
         {
             enemyTurnComponent.StartTurn();
-            enemyTurnComponent.Act(enemyTurnComponent.NpcCombatComponent.DeclaredAbility, new List<AbilitySystemComponent>() { player.AbilitySystemComponent });
+            enemyTurnComponent.Act(enemyTurnComponent.NpcCombatComponent.DeclaredAbility, new List<AbilitySystemComponent>() { Player.AbilitySystemComponent });
 
-            CurrentState = CombatState.Enemyturn;
+            CurrentTurnState = TurnState.Enemyturn;
         }
         else if (endTurnEventArgs.Initiator is NpcTurnComponent)
         {
             playerTurnComponent.StartTurn();
-            CurrentState = CombatState.Playerturn;
+            CurrentTurnState = TurnState.Playerturn;
         }
     }
 
@@ -204,7 +200,7 @@ public partial class Combat : Node2D
     {
         if (deadCombatant is Player)
         {
-            _currentState = CombatState.Lost;
+            CurrentTurnState = TurnState.Lost;
         }
     }
 

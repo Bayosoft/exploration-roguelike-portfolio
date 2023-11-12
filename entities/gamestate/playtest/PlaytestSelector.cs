@@ -31,25 +31,25 @@ namespace ExplorationRoguelike
         // TODO: Get Player
         public void OnWeakDeckClick()
         {
-           /* var player = playerResource.GetComponent<Player>();
-            player.CharacterResource.Abilities.Clear();
-            player.CharacterResource.Abilities.AddRange(weakDeck.abilities);*/
+           /* var Player = playerResource.GetComponent<Player>();
+            Player.CharacterResource.Abilities.Clear();
+            Player.CharacterResource.Abilities.AddRange(weakDeck.abilities);*/
             DeckSelected();
         }
         
         public void OnAverageDeckClick()
         {
-           /* var player = playerResource.GetComponent<Player>();
-            player.CharacterResource.Abilities.Clear();
-            player.CharacterResource.Abilities.AddRange(averageDeck.abilities); */
+           /* var Player = playerResource.GetComponent<Player>();
+            Player.CharacterResource.Abilities.Clear();
+            Player.CharacterResource.Abilities.AddRange(averageDeck.abilities); */
             DeckSelected();
         }
 
         public void OnStrongDeckClick()
         {
-           /* var player = playerResource.GetComponent<Player>();
-            player.CharacterResource.Abilities.Clear();
-            player.CharacterResource.Abilities.AddRange(strongDeck.abilities);*/
+           /* var Player = playerResource.GetComponent<Player>();
+            Player.CharacterResource.Abilities.Clear();
+            Player.CharacterResource.Abilities.AddRange(strongDeck.abilities);*/
             DeckSelected();
         }
 
