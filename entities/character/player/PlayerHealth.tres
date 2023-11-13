@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="PlayerHealthResource" load_steps=2 format=3 uid="uid://cm7ueejiujrg7"]
-
-[ext_resource type="Script" path="res://entities/character/health/PlayerHealthResource.cs" id="1_82c5p"]
-
-[resource]
-script = ExtResource("1_82c5p")
-MaxHealth = 50

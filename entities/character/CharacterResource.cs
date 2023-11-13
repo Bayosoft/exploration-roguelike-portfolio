@@ -5,7 +5,7 @@ using Godot.Collections;
 namespace ExplorationRoguelike.Characters
 {
     [GlobalClass]
-    public abstract partial class CharacterResource : Resource
+    public partial class CharacterResource : Resource
     {
         [Export]
         private string name;

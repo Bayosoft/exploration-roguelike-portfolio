@@ -76,6 +76,7 @@ public partial class CombatState : Node2D
     {
         CardNodes = new ObservableCollection<Node2D>();
         HealthNodes = new ObservableCollection<Node2D>();
+        enemies = new List<CombatNpc>();
     }
     public override void _Ready()
     {

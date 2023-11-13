@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 namespace ExplorationRoguelike.Combat
 {
+    [GlobalClass]
     public partial class NpcCombatComponent : Node
     {
         private AbilitySystemComponent _npc;

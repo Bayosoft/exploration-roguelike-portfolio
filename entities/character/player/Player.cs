@@ -4,6 +4,7 @@ using Godot;
 
 namespace ExplorationRoguelike.Characters.PlayerCharacter
 {
+    [GlobalClass]
     public partial class Player : Character, ICombatant
     {
         [Export]

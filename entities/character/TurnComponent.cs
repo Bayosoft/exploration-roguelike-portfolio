@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace ExplorationRoguelike.Combat
 {
+    [GlobalClass]
     public abstract partial class TurnComponent : Node
     {
         public bool MyTurn { get; protected set; } 

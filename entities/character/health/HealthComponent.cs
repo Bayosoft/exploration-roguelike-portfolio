@@ -5,7 +5,6 @@ namespace ExplorationRoguelike.Characters
 {
     public partial class HealthComponent : Node
     {
-        [Export]
         private HealthResource healthResource;
 
         protected float maxHealth;
@@ -31,6 +30,8 @@ namespace ExplorationRoguelike.Characters
         }
         public override void _Ready()
         {
+            healthResource = GetParent<Character>().CharacterResource.Health;
+
             maxHealth = healthResource.MaxHealth;
             _currentHealth = healthResource.MaxHealth;
         }

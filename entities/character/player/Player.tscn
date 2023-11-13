@@ -1,15 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://dn4kyo0oh74aw"]
+[gd_scene load_steps=8 format=3 uid="uid://dn4kyo0oh74aw"]
 
 [ext_resource type="PackedScene" uid="uid://yjrd2cv66um" path="res://entities/character/Character.tscn" id="1_17fl6"]
-[ext_resource type="Resource" uid="uid://dmc8l1sk0w71x" path="res://entities/character/player/PlayerCharacterResource.tres" id="2_86sqn"]
+[ext_resource type="Script" path="res://entities/character/player/Player.cs" id="2_7jlax"]
 [ext_resource type="Script" path="res://entities/card/CardDeckComponent.cs" id="2_gjj5h"]
+[ext_resource type="Resource" uid="uid://dmc8l1sk0w71x" path="res://entities/character/player/PlayerCharacterResource.tres" id="3_erpyh"]
 [ext_resource type="Resource" uid="uid://bgfmr1mscfdua" path="res://entities/card/CardPrinter.tres" id="4_ujex1"]
+[ext_resource type="Script" path="res://entities/character/player/PlayerTurnComponent.cs" id="5_ep5ww"]
+[ext_resource type="Script" path="res://entities/character/player/PlayerHealthComponent.cs" id="6_0sgli"]
 
-[node name="Player" node_paths=PackedStringArray("AbilitySystemComponent") instance=ExtResource("1_17fl6")]
-CharacterResource = ExtResource("2_86sqn")
+[node name="Player" node_paths=PackedStringArray("healthComponent", "turnComponent", "cardDeckComponent", "AbilitySystemComponent") instance=ExtResource("1_17fl6")]
+script = ExtResource("2_7jlax")
+healthComponent = NodePath("HealthComponent")
+turnComponent = NodePath("TurnComponent")
+cardDeckComponent = NodePath("CardDeckComponent")
+CharacterResource = ExtResource("3_erpyh")
 AbilitySystemComponent = NodePath("AbilityComponent")
 
 [node name="CardDeckComponent" type="Node" parent="." index="2" node_paths=PackedStringArray("_abilityComponent")]
 script = ExtResource("2_gjj5h")
 printer = ExtResource("4_ujex1")
 _abilityComponent = NodePath("../AbilityComponent")
+
+[node name="HealthComponent" type="Node" parent="." index="3"]
+script = ExtResource("6_0sgli")
+
+[node name="TurnComponent" parent="." index="4" node_paths=PackedStringArray("cardDeckComponent")]
+script = ExtResource("5_ep5ww")
+cardDeckComponent = NodePath("../CardDeckComponent")

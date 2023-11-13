@@ -10,3 +10,5 @@ script = ExtResource("1_oddrq")
 script = ExtResource("1_1ek68")
 
 [node name="CharacterSprite" type="Sprite2D" parent="."]
+
+[node name="TurnComponent" type="Node" parent="."]
