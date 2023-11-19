@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "exploration-roguelike-godot": {
+      "commandName": "Project",
+      "commandLineArgs": "-e --path E:\\Git\\exploration-roguelike\\exploration-roguelike-godot",
+      "workingDirectory": "$(ProjectDir)"
+    }
+  }
+}

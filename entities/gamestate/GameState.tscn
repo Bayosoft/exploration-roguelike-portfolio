@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxbv8pic3a23"]
+
+[ext_resource type="Script" path="res://entities/gamestate/GameState.cs" id="1_hpoym"]
+
+[node name="GameState" type="Node2D"]
+script = ExtResource("1_hpoym")

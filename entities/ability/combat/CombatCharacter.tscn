@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwvrvgmmubld"]
+
+[ext_resource type="PackedScene" uid="uid://dt7fddq0ukxd4" path="res://entities/ability/combat/CombatHealth.tscn" id="1_24ph7"]
+
+[node name="CombatCharacter" type="Node2D"]
+
+[node name="CombatHealth" parent="." instance=ExtResource("1_24ph7")]
+
+[node name="CharacterSprite" type="Sprite2D" parent="."]

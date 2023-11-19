@@ -5,7 +5,7 @@ using System.Collections;
 using Godot;
 
 namespace ExplorationRoguelike.GUI.PlayableCard;
-public partial class Card : Node2D
+public partial class Card : Control
 {
     [NonSerialized] public IPlayableCard PlayableCard;
 

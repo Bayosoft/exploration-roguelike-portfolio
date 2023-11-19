@@ -5,4 +5,5 @@
 
 [resource]
 script = ExtResource("2_bi08h")
-cardScene = ExtResource("1_1akkw")
+CardScene = ExtResource("1_1akkw")
+CardSize = Vector2(125, 175)

@@ -1,32 +1,35 @@
 using ExplorationRoguelike.AbilitySystem;
 using ExplorationRoguelike.AbilitySystem.Abilities;
+using ExplorationRoguelike.Characters;
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ExplorationRoguelike.Combat
 {
     [GlobalClass]
     public partial class NpcCombatComponent : Node
     {
-        private AbilitySystemComponent _npc;
+        [Export]
+        private AbilitySystemComponent _abilityComponent;
         public List<GameplayAbility> abilities;
         public GameplayAbility DeclaredAbility { get; private set; }
         public event EventHandler<GameplayAbility> OnDeclaredIntent;
 
-        // TODO: Refactor to Godot.
-  /*      public void Awake()
+        public override void _Ready()
         {
-            _npc = GetComponent<AbilitySystemComponent>();
-            abilities = _npc.GrantedAbilities;
-        }*/
+            base._Ready();
+            abilities = _abilityComponent.GrantedAbilities.ToList();
+        }
+
         internal void ExecuteIntent(GameplayAbility declaredAbility, IEnumerable<AbilitySystemComponent> targets)
         {
-            _npc.TryActivateAbility(declaredAbility, targets);
+            _abilityComponent.TryActivateAbility(declaredAbility, targets);
         }
         public GameplayAbility DeclareIntent()
         {
-            if (_npc.GrantedAbilities.Count > 0)
+            if (abilities.Count > 0)
             {
                 DeclaredAbility = abilities[new System.Random().Next(abilities.Count)];
             }

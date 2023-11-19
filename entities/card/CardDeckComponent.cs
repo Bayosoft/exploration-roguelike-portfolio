@@ -7,10 +7,11 @@ using System.Linq;
 
 namespace ExplorationRoguelike.AbilitySystem.CardSystem
 {
+    [GlobalClass]
     public partial class CardDeckComponent : Node
     {
         [Export]
-        private CardPrinter printer;
+        private CardPrinter _cardPrinter;
         public int MaxMana { get; private set; } = 4;
 
         private int _mana;
@@ -36,7 +37,7 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
         public override void _Ready()
         {
             Mana = MaxMana;
-            IEnumerable<Card> cards = printer.PrintStackFromAbilities(_abilityComponent.GrantedAbilities);
+            IEnumerable<Card> cards = _cardPrinter.PrintStackFromAbilities(_abilityComponent.GrantedAbilities);
             foreach (var card in cards)
             {
                 CardsInDeck.Add(card);

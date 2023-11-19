@@ -19,16 +19,20 @@ namespace ExplorationRoguelike.GUI.Combat;
 
 public partial class CombatState : Node2D
 {
-    [Export] public Resource HealthScene;
+    [Export] private Resource HealthScene;
 
-    public Label manaLabel;
+    [Export] private Node2D PlayerPosition;
+    [Export] private Node2D EnemyPosition;
+
+    [Export] private RichTextLabel manaLabel; 
+    [Export] private RichTextLabel enemyIntentLabel;
     public ObservableCollection<Node2D> HealthNodes { get; set; }
-    public ObservableCollection<Node2D> CardNodes { get; set; }
+    public ObservableCollection<Control> CardControls { get; set; }
 
     // public ObservableCollection<AbilitySO> DrawnCards { get { return new ObservableCollection<AbilitySO>(_combat.CardDeckComponent.CardsDrawn); } }
 
     public object SelectedCard { get; set; }
-    public Label enemyIntentLabel;
+    
     public enum TurnState
     {
         Start,
@@ -67,14 +71,14 @@ public partial class CombatState : Node2D
         playerTurnComponent.CardDeckComponent.OnManaChanged += UpdateMana;
         enemyTurnComponent.NpcCombatComponent.OnDeclaredIntent += UpdateEnemyIntent;
 
-        SpawnHealthNodes();
+        SpawnCharacters();
 
         StartCombat();
     }
 
     public CombatState()
     {
-        CardNodes = new ObservableCollection<Node2D>();
+        CardControls = new ObservableCollection<Control>();
         HealthNodes = new ObservableCollection<Node2D>();
         enemies = new List<CombatNpc>();
     }
@@ -99,11 +103,13 @@ public partial class CombatState : Node2D
     {
         enemyIntentLabel.Text = $"Enemy Intent: {intent.generalTags.First()}";
     }
-    private void SpawnHealthNodes()
+    private void SpawnCharacters()
     {
         List<ICombatant> combatants = new(enemies);
 
         // Player
+        Player.Visible = true;
+        Player.GlobalPosition = PlayerPosition.GlobalPosition;
         var healthScene = (PackedScene)ResourceLoader.Load(HealthScene.ResourcePath);
         var healthNode = healthScene.Instantiate();
 
@@ -117,6 +123,10 @@ public partial class CombatState : Node2D
         // Enemies
         foreach (var combatant in combatants)
         {
+
+            enemies[0].Visible = true;
+            enemies[0].GlobalPosition = EnemyPosition.GlobalPosition;
+
             var enemyHealthScene = (PackedScene)ResourceLoader.Load(HealthScene.ResourcePath);
             var enemyHealthNode = enemyHealthScene.Instantiate();
 
@@ -134,27 +144,27 @@ public partial class CombatState : Node2D
         if (e.Action == NotifyCollectionChangedAction.Add)
         {
             Card c = (Card)e.NewItems[0];
-            Node2D cardNode = c;
+            Control cardControl = c;
             // TODO: Place the card in the view.
-            /*                cardNode.Transform = gameObject.transform;
-                        cardNode.transform.localPosition = new Vector2(CardNodes.Count * 100, 0);
-                        cardNode.transform.localPosition = new Vector2(-300 + (CardNodes.Count * 100), -350f);
-                        cardNode.transform.localScale = Vector2.one;
-                        cardNode.transform.SetAsLastSibling();*/
+            /*                cardControl.Transform = gameObject.transform;
+                        cardControl.transform.localPosition = new Vector2(CardControls.Count * 100, 0);
+                        cardControl.transform.localPosition = new Vector2(-300 + (CardControls.Count * 100), -350f);
+                        cardControl.transform.localScale = Vector2.one;
+                        cardControl.transform.SetAsLastSibling();*/
 
-            cardNode.Show();
-            CardNodes.Add(cardNode);
+            cardControl.Show();
+            CardControls.Add(cardControl);
         }
         if (e.Action == NotifyCollectionChangedAction.Remove)
         {
             foreach (Card removedCard in e.OldItems)
             {
-                foreach (Node2D cardNode in CardNodes.ToList())
+                foreach (Control cardControl in CardControls.ToList())
                 {
-                    if (cardNode == removedCard)
+                    if (cardControl == removedCard)
                     {
-                        cardNode.Hide();
-                        CardNodes.Remove(cardNode);
+                        cardControl.Hide();
+                        CardControls.Remove(cardControl);
                         return;
                     }
                 }

@@ -22,10 +22,13 @@ namespace ExplorationRoguelike
 
             var playerScene = ResourceLoader.Load<PackedScene>("res://entities/character/player/Player.tscn");
             player = playerScene.Instantiate<Player>();
-
+            AddChild(player);
+            player.Visible = false;
 
             var enemyScene = ResourceLoader.Load<PackedScene>("res://entities/character/enemy/Enemy.tscn");
             enemy = enemyScene.Instantiate<CombatNpc>();
+            AddChild(enemy);
+            enemy.Visible = false;
 
             InitializeCombat();
         }

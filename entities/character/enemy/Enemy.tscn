@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dbbklr8mr6o7b"]
+[gd_scene load_steps=8 format=3 uid="uid://dbbklr8mr6o7b"]
 
 [ext_resource type="PackedScene" uid="uid://yjrd2cv66um" path="res://entities/character/Character.tscn" id="1_wfj8g"]
 [ext_resource type="Script" path="res://entities/character/NpcTurnComponent.cs" id="2_m5kso"]
 [ext_resource type="Script" path="res://entities/character/CombatNpc.cs" id="2_m05ok"]
 [ext_resource type="Resource" uid="uid://dkdaiw1jkhqfj" path="res://entities/character/enemy/Goblin.tres" id="3_o2oo0"]
+[ext_resource type="Texture2D" uid="uid://cq0dfnw7e5t7k" path="res://art/sprites/Dartboard token.png" id="4_a4oef"]
 [ext_resource type="Script" path="res://entities/character/NpcCombatComponent.cs" id="5_rjpw5"]
 [ext_resource type="Script" path="res://entities/character/health/HealthComponent.cs" id="6_roscw"]
 
@@ -15,8 +16,12 @@ npcCombatComponent = NodePath("NpcCombatComponent")
 CharacterResource = ExtResource("3_o2oo0")
 AbilitySystemComponent = NodePath("AbilityComponent")
 
-[node name="NpcCombatComponent" type="Node" parent="." index="2"]
+[node name="CharacterSprite" parent="." index="1"]
+texture = ExtResource("4_a4oef")
+
+[node name="NpcCombatComponent" type="Node" parent="." index="2" node_paths=PackedStringArray("_abilityComponent")]
 script = ExtResource("5_rjpw5")
+_abilityComponent = NodePath("../AbilityComponent")
 
 [node name="HealthComponent" type="Node" parent="." index="3"]
 script = ExtResource("6_roscw")

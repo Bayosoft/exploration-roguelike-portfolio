@@ -26,5 +26,10 @@ namespace ExplorationRoguelike.Characters
         [Export]
         private HealthResource health;
         public virtual HealthResource Health => health;
+
+        public void Spawn()
+        {
+            // TODO: Instantiate Node.
+        }
     }
 }

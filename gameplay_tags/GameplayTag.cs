@@ -2,8 +2,10 @@ using Godot;
 
 namespace ExplorationRoguelike.GameplayTags
 {
+    [GlobalClass]
     public partial class GameplayTag : Resource
     {
+        [Export]
         public GameplayTag parent;
 
         public bool Matches(GameplayTag tagToCompare)

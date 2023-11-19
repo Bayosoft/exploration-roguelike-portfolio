@@ -11,13 +11,9 @@ config_version=5
 [application]
 
 config/name="exploration-roguelike-godot"
-run/main_scene="res://entities/gamestate/combat/Combat.tscn"
+run/main_scene="res://entities/gamestate/GameState.tscn"
 config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
-
-[autoload]
-
-GameState="*res://entities/gamestate/GameState.cs"
 
 [display]
 
@@ -39,5 +35,6 @@ theme/custom_font="res://LiberationSans.ttf"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

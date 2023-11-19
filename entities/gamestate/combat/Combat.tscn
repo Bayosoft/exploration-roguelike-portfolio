@@ -1,15 +1,44 @@
-[gd_scene load_steps=3 format=3 uid="uid://ca02iis2s1klp"]
+[gd_scene load_steps=4 format=3 uid="uid://ca02iis2s1klp"]
 
 [ext_resource type="Script" path="res://entities/gamestate/combat/CombatState.cs" id="1_3felc"]
-[ext_resource type="PackedScene" uid="uid://dn4kyo0oh74aw" path="res://entities/character/player/Player.tscn" id="2_wjmgv"]
+[ext_resource type="Texture2D" uid="uid://bd8dnlgjs8mt7" path="res://art/sprites/Raven Queen's Castle.jpeg" id="2_ase3v"]
+[ext_resource type="PackedScene" uid="uid://dt7fddq0ukxd4" path="res://entities/ability/combat/CombatHealth.tscn" id="2_menrx"]
 
-[node name="Combat" type="Node2D"]
+[node name="Combat" type="Node2D" node_paths=PackedStringArray("PlayerPosition", "EnemyPosition", "manaLabel", "enemyIntentLabel")]
 script = ExtResource("1_3felc")
-
-[node name="Player" parent="." instance=ExtResource("2_wjmgv")]
+HealthScene = ExtResource("2_menrx")
+PlayerPosition = NodePath("PlayerPosition")
+EnemyPosition = NodePath("EnemyPositions/Enemy1Position")
+manaLabel = NodePath("ManaLabel")
+enemyIntentLabel = NodePath("EnemyIntentLabel")
 
 [node name="DrawnCards" type="Node" parent="."]
 
 [node name="CardStack" type="Node" parent="."]
 
 [node name="ShatteredCards" type="Node" parent="."]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(968.5, 539.25)
+scale = Vector2(1.931, 1.53709)
+texture = ExtResource("2_ase3v")
+
+[node name="PlayerPosition" type="Node2D" parent="."]
+position = Vector2(500, 540)
+
+[node name="EnemyPositions" type="Node2D" parent="."]
+position = Vector2(1400, 540)
+
+[node name="Enemy1Position" type="Node2D" parent="EnemyPositions"]
+
+[node name="EnemyIntentLabel" type="RichTextLabel" parent="."]
+offset_left = 1214.0
+offset_top = 244.0
+offset_right = 1517.0
+offset_bottom = 351.0
+
+[node name="ManaLabel" type="RichTextLabel" parent="."]
+offset_left = 61.0
+offset_top = 943.0
+offset_right = 624.0
+offset_bottom = 1053.0
