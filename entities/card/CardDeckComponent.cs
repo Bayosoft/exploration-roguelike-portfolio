@@ -139,6 +139,7 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
             return true;
         }
 
+        // TODO: Move to AbilityComponent (maybe even unique ManaComponent or TurnComponent)
         public void RefreshMana(int amount)
         {
             if (amount + Mana >= MaxMana)

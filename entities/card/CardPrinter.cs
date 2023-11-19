@@ -17,17 +17,17 @@ public partial class CardPrinter : Resource
         foreach (var ability in abilities.Cast<IPlayableCard>())
         { 
             var scene = (PackedScene)ResourceLoader.Load(CardScene.ResourcePath);
-            var cardNode = scene.Instantiate<Card>();
-            cardNode.Initialize(ability);
-            cardNode.SetSize(CardSize/cardNode.Scale);
-            cardNode.SetPosition(new Vector2(500, 500));
+            var cardControl = scene.Instantiate<Card>();
+            cardControl.Initialize(ability);
+            cardControl.SetSize(CardSize, keepOffsets: true);
+            cardControl.SetPosition(new Vector2(500, 500));
             // TODO: After instantiating, it should be set as child of a node so that they can be spawned in scene. 
 
             // TODO: Move this functionality to parent node of card.
-/*                var cardComponent = cardNode.GetChild<CardView>();
+/*                var cardComponent = cardControl.GetChild<CardView>();
             cardComponent.Initialize(ability);*/
 
-           cards.Add(cardNode);
+           cards.Add(cardControl);
         }
         return cards;
     }

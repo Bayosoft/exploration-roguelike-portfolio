@@ -31,7 +31,7 @@ public partial class CombatState : Node2D
 
     // public ObservableCollection<AbilitySO> DrawnCards { get { return new ObservableCollection<AbilitySO>(_combat.CardDeckComponent.CardsDrawn); } }
 
-    public object SelectedCard { get; set; }
+    public Card SelectedCard { get; set; }
     
     public enum TurnState
     {
