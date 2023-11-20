@@ -14,6 +14,7 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
         private CardPrinter _cardPrinter;
         public int MaxMana { get; private set; } = 4;
 
+        // TODO: Move this to turn component. (player has mana per turn)
         private int _mana;
         public int Mana
         {
@@ -41,7 +42,6 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
             foreach (var card in cards)
             {
                 CardsInDeck.Add(card);
-                AddChild(card);
             }
         }
 

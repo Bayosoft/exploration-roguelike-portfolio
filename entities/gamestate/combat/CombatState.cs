@@ -26,12 +26,13 @@ public partial class CombatState : Node2D
 
     [Export] private RichTextLabel manaLabel; 
     [Export] private RichTextLabel enemyIntentLabel;
+
+    [Export] private CombatDeck combatDeck;
+
     public ObservableCollection<Node2D> HealthNodes { get; set; }
-    public ObservableCollection<Control> CardControls { get; set; }
+
 
     // public ObservableCollection<AbilitySO> DrawnCards { get { return new ObservableCollection<AbilitySO>(_combat.CardDeckComponent.CardsDrawn); } }
-
-    public Card SelectedCard { get; set; }
     
     public enum TurnState
     {
@@ -67,9 +68,10 @@ public partial class CombatState : Node2D
         playerTurnComponent = (PlayerTurnComponent)player.TurnComponent;
         enemyTurnComponent = (NpcTurnComponent)enemies[0].TurnComponent;
 
-        playerTurnComponent.CardDeckComponent.CardsDrawn.CollectionChanged += UpdateCards;
-        playerTurnComponent.CardDeckComponent.OnManaChanged += UpdateMana;
-        enemyTurnComponent.NpcCombatComponent.OnDeclaredIntent += UpdateEnemyIntent;
+        player.CardDeckComponent.OnManaChanged += UpdateMana;
+        enemies[0].NpcCombatComponent.OnDeclaredIntent += UpdateEnemyIntent;
+
+        combatDeck.Initialize(player.CardDeckComponent);
 
         SpawnCharacters();
 
@@ -78,7 +80,6 @@ public partial class CombatState : Node2D
 
     public CombatState()
     {
-        CardControls = new ObservableCollection<Control>();
         HealthNodes = new ObservableCollection<Node2D>();
         enemies = new List<CombatNpc>();
     }
@@ -135,40 +136,6 @@ public partial class CombatState : Node2D
                enemyHealthNode.transform.localPosition = new Vector2(400, 0);
                enemyHealthNode.transform.localScale = Vector2.one;*/
             HealthNodes.Add(enemyHealthNode as Node2D);
-        }
-    }
-
-    public void UpdateCards(object sender, NotifyCollectionChangedEventArgs e)
-    {
-        //different kind of changes that may have occurred in collection
-        if (e.Action == NotifyCollectionChangedAction.Add)
-        {
-            Card c = (Card)e.NewItems[0];
-            Control cardControl = c;
-            // TODO: Place the card in the view.
-            /*                cardControl.Transform = gameObject.transform;
-                        cardControl.transform.localPosition = new Vector2(CardControls.Count * 100, 0);
-                        cardControl.transform.localPosition = new Vector2(-300 + (CardControls.Count * 100), -350f);
-                        cardControl.transform.localScale = Vector2.one;
-                        cardControl.transform.SetAsLastSibling();*/
-
-            cardControl.Show();
-            CardControls.Add(cardControl);
-        }
-        if (e.Action == NotifyCollectionChangedAction.Remove)
-        {
-            foreach (Card removedCard in e.OldItems)
-            {
-                foreach (Control cardControl in CardControls.ToList())
-                {
-                    if (cardControl == removedCard)
-                    {
-                        cardControl.Hide();
-                        CardControls.Remove(cardControl);
-                        return;
-                    }
-                }
-            }
         }
     }
 
