@@ -9,7 +9,7 @@ using System.Collections.Specialized;
 public partial class CombatDeck : Node2D
 {
     [Export] private Vector2 cardSize;
-
+    [Export] private Node drawnCards;
     public Card SelectedCard { get; set; }
     public ObservableCollection<Card> Cards { get; set; }
 
@@ -35,14 +35,13 @@ public partial class CombatDeck : Node2D
         {
             Card card = (Card)e.NewItems[0];
 
-            GetNode("DrawnCards").AddChild(card);
+            drawnCards.AddChild(card);
             card.SetSize(cardSize);
 
-            GD.Print(centerCardOval);
             ovalAngleVector = new Vector2(horizontalRadius * Mathf.Cos(angle), -verticalRadius * Mathf.Sin(angle));
 
             card.Position = centerCardOval + ovalAngleVector - card.Size/2;
-            GD.Print(card.Position);
+
             // card.Rotation = (90 - Mathf.RadToDeg(angle))/4; (rotates cards based on position in hand)
             // Change angle to place card on a different spot.
 
@@ -52,7 +51,7 @@ public partial class CombatDeck : Node2D
         {
             foreach (Card removedCard in e.OldItems)
             {
-                GetNode("DrawnCards").RemoveChild(removedCard);               
+                drawnCards.RemoveChild(removedCard);               
             }
         }
      

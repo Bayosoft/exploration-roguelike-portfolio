@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdmc8pw6fpivn"]
+[gd_scene load_steps=5 format=3 uid="uid://bdmc8pw6fpivn"]
 
 [ext_resource type="Script" path="res://entities/card/Card.cs" id="1_vf63r"]
 [ext_resource type="Texture2D" uid="uid://bkt8somsgednk" path="res://icon.svg" id="1_xrlja"]
+[ext_resource type="Resource" uid="uid://t04dyfc77l5y" path="res://entities/card/PlayCardEvent.tres" id="2_24nkb"]
 [ext_resource type="FontFile" uid="uid://d3kfrcrw7p065" path="res://LiberationSans.ttf" id="2_qie03"]
 
 [node name="Card" type="MarginContainer" node_paths=PackedStringArray("cardNameText", "cardDescriptionText", "manaCostText")]
@@ -14,9 +15,7 @@ script = ExtResource("1_vf63r")
 cardNameText = NodePath("VBoxContainer/CardName")
 cardDescriptionText = NodePath("VBoxContainer/CardDescription")
 manaCostText = NodePath("VBoxContainer/CardCost")
-verticalMoveAmount = null
-moveTime = null
-scaleAmount = null
+playCardEvent = ExtResource("2_24nkb")
 
 [node name="CardBack" type="ColorRect" parent="."]
 layout_mode = 2
@@ -51,3 +50,12 @@ scroll_active = false
 custom_minimum_size = Vector2(0, 140)
 layout_mode = 2
 text = "test Font"
+
+[node name="ClickEvent" type="Button" parent="."]
+layout_mode = 2
+
+[connection signal="mouse_entered" from="." to="." method="OnPointerEnter"]
+[connection signal="mouse_exited" from="." to="." method="OnPointerExit"]
+[connection signal="button_up" from="ClickEvent" to="." method="OnPointerClick"]
+[connection signal="mouse_entered" from="ClickEvent" to="." method="OnPointerEnter"]
+[connection signal="mouse_exited" from="ClickEvent" to="." method="OnPointerExit"]

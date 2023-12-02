@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ca02iis2s1klp"]
+[gd_scene load_steps=6 format=3 uid="uid://ca02iis2s1klp"]
 
 [ext_resource type="Script" path="res://entities/gamestate/combat/CombatState.cs" id="1_3felc"]
 [ext_resource type="Texture2D" uid="uid://bd8dnlgjs8mt7" path="res://art/sprites/Raven Queen's Castle.jpeg" id="2_ase3v"]
 [ext_resource type="PackedScene" uid="uid://dt7fddq0ukxd4" path="res://entities/gamestate/combat/CombatHealth.tscn" id="2_menrx"]
+[ext_resource type="Resource" uid="uid://t04dyfc77l5y" path="res://entities/card/PlayCardEvent.tres" id="3_32qmh"]
 [ext_resource type="PackedScene" uid="uid://cnopfolveqdnh" path="res://entities/gamestate/combat/CombatDeck.tscn" id="4_2yhp0"]
 
 [node name="Combat" type="Node2D" node_paths=PackedStringArray("PlayerPosition", "EnemyPosition", "manaLabel", "enemyIntentLabel", "combatDeck")]
@@ -13,6 +14,7 @@ EnemyPosition = NodePath("EnemyPositions/Enemy1Position")
 manaLabel = NodePath("ManaLabel")
 enemyIntentLabel = NodePath("EnemyIntentLabel")
 combatDeck = NodePath("CombatDeck")
+playCardEvent = ExtResource("3_32qmh")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(968.5, 539.25)

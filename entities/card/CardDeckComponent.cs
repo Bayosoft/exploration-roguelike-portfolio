@@ -70,22 +70,22 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
                 ++amountDrawn;
             }
         }
-        public void PlayCard(Card cardView, IEnumerable<AbilitySystemComponent> targets)
+        public void PlayCard(Card card, IEnumerable<AbilitySystemComponent> targets)
         {
-            if (Mana < cardView.PlayableCard.ManaCost)
+            if (Mana < card.PlayableCard.ManaCost)
             {
                 return;
             }
 
-            var successfullyPlayed = _abilityComponent.TryActivateAbility(cardView.PlayableCard.GameplayAbility, targets);
+            var successfullyPlayed = _abilityComponent.TryActivateAbility(card.PlayableCard.GameplayAbility, targets);
 
             if (!successfullyPlayed)
             {
                 return;
             }
 
-            Mana -= cardView.PlayableCard.ManaCost; // replace with event on IPlayableCard that fires on Activate entry.
-            DiscardCard(cardView);
+            Mana -= card.PlayableCard.ManaCost; // replace with event on IPlayableCard that fires on Activate entry.
+            DiscardCard(card);
         }
         /// <summary>
         /// Discard a specific card from hand.

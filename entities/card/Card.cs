@@ -3,6 +3,8 @@ using ExplorationRoguelike.AbilitySystem.Abilities;
 using ExplorationRoguelike.Combat.Events;
 using System.Collections;
 using Godot;
+using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace ExplorationRoguelike.GUI.PlayableCard;
 public partial class Card : Control
@@ -17,7 +19,7 @@ public partial class Card : Control
 
     [Export] private float verticalMoveAmount = 30f;
 
-    [Export] private float moveTime = 0.1f;
+    [Export] private float moveTime = 3f;
 
     [Export(PropertyHint.Range, "0,2,")] private float scaleAmount = 1.1f;
 
@@ -32,10 +34,6 @@ public partial class Card : Control
     {
         PlayableCard = playableCard;
 
-        // TODO: current position
-        //_startPosition = position;
-        // _startScale = transform.localScale;
-
         cardNameText.Text = PlayableCard.GameplayAbility.Name;
         cardDescriptionText.Text = PlayableCard.GameplayAbility.Description?.ToString();
         manaCostText.Text = PlayableCard.ManaCost.ToString();
@@ -46,12 +44,14 @@ public partial class Card : Control
         playCardEvent.RaiseEvent(new TryPlayCardEventArgs(this));
     }
 
-    private IEnumerator HighlightCard(bool startingAnimation)
+    private void HighlightCard(bool startingAnimation)
     {
         Vector2 endPosition;
         Vector2 endScale;
+        Vector2 lerpedScale;
 
         double elapsedTime = 0f;
+
         while (elapsedTime < moveTime)
         {
             elapsedTime += GetProcessDeltaTime();
@@ -64,38 +64,30 @@ public partial class Card : Control
                 endScale = _startScale;
             }
 
-            // TODO: Transition to Godot Lerp
-            // Vector3 lerpedScale = Vector3.Lerp(transform.localScale, endScale, (elapsedTime / moveTime));
+            lerpedScale = Scale.Lerp(endScale, (float)(elapsedTime / moveTime));
+            //Debug.WriteLine(lerpedScale);
 
-            //  Scale = lerpedScale;
-
-            yield return null;
+            Scale = lerpedScale;
         }
     }
 
-    // TODO: Create node with button Signals.
     public void OnPointerEnter()
     {
-        //   eventData.selectedObject = gameObject;
+        _startPosition = Position;
+        _startScale = Scale;
+        ZIndex = 1;
+
+        HighlightCard(true);
+        // _startScale = transform.localScale;
     }
 
     public void OnPointerExit()
     {
+        ZIndex = 0;
+        HighlightCard(false);
         //   eventData.selectedObject = null;
     }
 
-    public void OnSelect()
-    {
-        /*  _index = gameObject.transform.GetSiblingIndex();
-          gameObject.transform.SetAsLastSibling();
-
-          StartCoroutine(HighlightCard(true));*/
-    }
-    public void OnDeselect()
-    {
-        /*            gameObject.transform.SetSiblingIndex(_index);
-                    StartCoroutine(HighlightCard(false));*/
-    }
     public void OnPointerClick()
     {
         TryPlayCard();

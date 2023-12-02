@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace ExplorationRoguelike
 {
+    [GlobalClass]
     public partial class EventResource : Resource
     {
         private List<EventListener> _listeners = new();

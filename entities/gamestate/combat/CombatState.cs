@@ -28,7 +28,7 @@ public partial class CombatState : Node2D
     [Export] private RichTextLabel enemyIntentLabel;
 
     [Export] private CombatDeck combatDeck;
-
+    [Export] private EventResource playCardEvent;
     public ObservableCollection<Node2D> HealthNodes { get; set; }
 
 

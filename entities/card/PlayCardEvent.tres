@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="EventResource" load_steps=2 format=3 uid="uid://t04dyfc77l5y"]
+
+[ext_resource type="Script" path="res://EventResource.cs" id="1_kawgt"]
+
+[resource]
+script = ExtResource("1_kawgt")
