@@ -8,7 +8,7 @@ namespace ExplorationRoguelike
         Days
     }
     
-    public class TimeTickEventArgs : TimeEventArgs
+    public partial class TimeTickEventArgs : TimeEventArgs
     {
         public int AmountOfTime;
         public TimeType TimeType;

@@ -1,14 +1,16 @@
 using ExplorationRoguelike.GUI.PlayableCard;
+using Godot;
 
 namespace ExplorationRoguelike.Combat.Events
 {
-    public class TryPlayCardEventArgs : ConcreteEventArgs
+    [GlobalClass]
+    public partial class TryPlayCardEventArgs : ConcreteEventArgs
     {
         public Card CardView { get; }
 
-        public TryPlayCardEventArgs(Card cardView)
+        public TryPlayCardEventArgs(Card card)
         {
-            CardView = cardView;
+            CardView = card;
         }
 
     }

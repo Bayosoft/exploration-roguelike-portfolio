@@ -1,6 +1,6 @@
 namespace ExplorationRoguelike.Characters.PlayerCharacter.Events
 {
-    public class OnPlayerDeathEventArgs : ConcreteEventArgs
+    public partial class OnPlayerDeathEventArgs : ConcreteEventArgs
     {
 
     }

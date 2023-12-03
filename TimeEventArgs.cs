@@ -1,7 +1,7 @@
 
 namespace ExplorationRoguelike
 {
-    public abstract class TimeEventArgs : ConcreteEventArgs
+    public abstract partial class TimeEventArgs : ConcreteEventArgs
     {
     }
 }

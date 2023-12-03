@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ExplorationRoguelike.AbilitySystem
 {
-    public class AbilityFiredEventArgs : ConcreteEventArgs
+    public partial class AbilityFiredEventArgs : ConcreteEventArgs
     {
         public Character Instigator { get; }
 

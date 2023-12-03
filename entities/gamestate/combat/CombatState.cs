@@ -71,6 +71,8 @@ public partial class CombatState : Node2D
         player.CardDeckComponent.OnManaChanged += UpdateMana;
         enemies[0].NpcCombatComponent.OnDeclaredIntent += UpdateEnemyIntent;
 
+        playCardEvent.SignalWithArgument += OnTryPlayCard;
+
         combatDeck.Initialize(player.CardDeckComponent);
 
         SpawnCharacters();

@@ -6,7 +6,7 @@ namespace ExplorationRoguelike
 {
     public partial class EventListener : Node 
     {
-        public EventResource Event;
+/*        public EventResource Event;
         public event EventHandler<ConcreteEventArgs> onArgsEventTriggered;
         public event EventHandler onEventTriggered;
 
@@ -26,6 +26,6 @@ namespace ExplorationRoguelike
         public void RaiseEvent()
         {
             onEventTriggered.Invoke(this, EventArgs.Empty);
-        }
+        }*/
     }
 }

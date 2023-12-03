@@ -2,7 +2,7 @@ using Godot;
 using System;
 namespace ExplorationRoguelike
 {
-    public class ConcreteEventArgs : EventArgs
+    public partial class ConcreteEventArgs : GodotObject
     {
         public TEventArgs ValidateEventArgs<TEventArgs>(object caller = null)
         {

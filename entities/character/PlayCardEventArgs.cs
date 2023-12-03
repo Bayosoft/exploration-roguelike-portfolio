@@ -3,7 +3,7 @@ using ExplorationRoguelike.AbilitySystem.Abilities;
 
 namespace ExplorationRoguelike.Combat.Events
 {
-    public class PlayCardEventArgs : ConcreteEventArgs
+    public partial class PlayCardEventArgs : ConcreteEventArgs
     {
         public GameplayAbility Ability { get; private set; }
         public AbilitySystemComponent Target { get; private set; }
