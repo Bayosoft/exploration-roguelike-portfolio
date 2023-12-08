@@ -23,7 +23,7 @@ namespace ExplorationRoguelike.GameplayEffects
         {
             var effect = new ActiveGameplayEffect(effectSpec);
 
-            var existingActiveEffect = GetActiveGameplayEffectByEffectSo(effectSpec.EffectSo);
+            var existingActiveEffect = GetActiveGameplayEffectByEffectSo(effectSpec.EffectResource);
             
             if(existingActiveEffect != null) // Replace effect. (Probably need to add logic for stackable effects)
             {
@@ -41,7 +41,7 @@ namespace ExplorationRoguelike.GameplayEffects
         {
             foreach(var activeEffect in ActiveEffects.ToList())
             {
-                if (activeEffect.Specification.EffectSo.assetTags.HasAny(tags))
+                if (activeEffect.Specification.EffectResource.assetTags.HasAny(tags))
                 {
                     ActiveEffects.Remove(activeEffect);
                 }
@@ -52,7 +52,7 @@ namespace ExplorationRoguelike.GameplayEffects
         {
             foreach(var activeEffect in ActiveEffects)
             {
-                if(activeEffect.Specification.EffectSo == effectSo)
+                if(activeEffect.Specification.EffectResource == effectSo)
                 {
                     return activeEffect;
                 }

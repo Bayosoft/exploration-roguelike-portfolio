@@ -9,19 +9,25 @@
 [ext_resource type="Script" path="res://entities/character/player/PlayerTurnComponent.cs" id="5_ep5ww"]
 [ext_resource type="Script" path="res://entities/character/player/PlayerHealthComponent.cs" id="6_0sgli"]
 
-[node name="Player" instance=ExtResource("1_17fl6")]
+[node name="Player" node_paths=PackedStringArray("healthComponent", "turnComponent", "cardDeckComponent", "AbilitySystemComponent") instance=ExtResource("1_17fl6")]
 script = ExtResource("2_7jlax")
+healthComponent = NodePath("HealthComponent")
+turnComponent = NodePath("TurnComponent")
+cardDeckComponent = NodePath("CardDeckComponent")
 CharacterResource = ExtResource("3_erpyh")
+AbilitySystemComponent = NodePath("AbilityComponent")
 
 [node name="CharacterSprite" parent="." index="1"]
 texture = ExtResource("4_mnkcb")
 
-[node name="CardDeckComponent" type="Node" parent="." index="2"]
+[node name="CardDeckComponent" type="Node" parent="." index="2" node_paths=PackedStringArray("_abilityComponent")]
 script = ExtResource("2_gjj5h")
 _cardPrinter = ExtResource("4_ujex1")
+_abilityComponent = NodePath("../AbilityComponent")
 
 [node name="HealthComponent" type="Node" parent="." index="3"]
 script = ExtResource("6_0sgli")
 
-[node name="TurnComponent" parent="." index="4"]
+[node name="TurnComponent" parent="." index="4" node_paths=PackedStringArray("cardDeckComponent")]
 script = ExtResource("5_ep5ww")
+cardDeckComponent = NodePath("../CardDeckComponent")

@@ -70,7 +70,6 @@ namespace ExplorationRoguelike.AbilitySystem
                 {
                     continue;
                 }
-
                 var instigator = activeEffect.Specification.Instigator;
 
                 foreach (var modifier in activeEffect.Specification.Modifiers)
@@ -132,13 +131,13 @@ namespace ExplorationRoguelike.AbilitySystem
             }
 
             // Application tag requirements must be met to apply
-            if (!effectSpec.EffectSo.applicationTagRequirements.RequirementsMet(OwnedGameplayTags))
+            if (!effectSpec.EffectResource.applicationTagRequirements.RequirementsMet(OwnedGameplayTags))
             {
                 return null;
             }
 
             // Cannot apply when removal tag requirements are met
-            if (!effectSpec.EffectSo.removalTagRequirements.RequirementsMet(OwnedGameplayTags))
+            if (!effectSpec.EffectResource.removalTagRequirements.RequirementsMet(OwnedGameplayTags))
             {
                 return null;
             }
@@ -147,7 +146,7 @@ namespace ExplorationRoguelike.AbilitySystem
 
             ActiveGameplayEffectHandle appliedHandle = new ActiveGameplayEffectHandle(-1);
 
-            if (effectSpec.EffectSo.durationType == GameplayDurationType.Instant)
+            if (effectSpec.EffectResource.durationType == GameplayDurationType.Instant)
             {
                 // Execute gameplay effect once
                 ExecuteActiveGameplayEffect(effectSpec);
@@ -158,7 +157,7 @@ namespace ExplorationRoguelike.AbilitySystem
                 appliedHandle = ActiveGameplayEffects.ApplyGameplayEffectSpec(effectSpec);
                 // If it's periodic and should execute periodics immediately, do so
 
-                if (effectSpec.EffectSo.isPeriodic && effectSpec.EffectSo.executePeriodicImmediately)
+                if (effectSpec.EffectResource.isPeriodic && effectSpec.EffectResource.executePeriodicImmediately)
                 {
                     ExecuteActivePeriodicEffect(appliedHandle);
                 }

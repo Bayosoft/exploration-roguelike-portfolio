@@ -3,11 +3,11 @@ using System;
 
 namespace ExplorationRoguelike.GameplayTags;
 
-[Serializable]
-public struct GameplayTagRequirements
+[GlobalClass]
+public partial class GameplayTagRequirements : Resource
 {
-    public GameplayTagContainer requiredTags;
-    public GameplayTagContainer blockingTags;
+    [Export] public GameplayTagContainer requiredTags;
+    [Export] public GameplayTagContainer blockingTags;
 
     public bool HasRequirements()
     {

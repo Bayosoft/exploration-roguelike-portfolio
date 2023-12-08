@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="GameplayTag" load_steps=2 format=3 uid="uid://bes7ddygarokr"]
+
+[ext_resource type="Script" path="res://gameplay_tags/GameplayTag.cs" id="1_v8mke"]
+
+[resource]
+script = ExtResource("1_v8mke")

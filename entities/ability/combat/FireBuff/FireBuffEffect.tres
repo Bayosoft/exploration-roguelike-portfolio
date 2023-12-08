@@ -1,6 +1,37 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dxvafvmnnuorf"]
+[gd_resource type="Resource" script_class="GameplayEffect" load_steps=10 format=3 uid="uid://dxvafvmnnuorf"]
 
 [ext_resource type="Script" path="res://gameplay_effects/GameplayEffect.cs" id="1_15cll"]
+[ext_resource type="Script" path="res://gameplay_effects/GameplayModifier.cs" id="1_d01ew"]
+[ext_resource type="Script" path="res://gameplay_tags/GameplayTagContainer.cs" id="1_rw241"]
+[ext_resource type="Script" path="res://gameplay_tags/GameplayTagRequirements.cs" id="1_yl48w"]
+[ext_resource type="Resource" uid="uid://cefm3fbpmm5f8" path="res://gameplay_tags/tags/Damage.Magic.Fire.tres" id="2_2itvo"]
+[ext_resource type="Resource" uid="uid://bes7ddygarokr" path="res://gameplay_tags/tags/Outgoing.tres" id="3_e4ic6"]
+
+[sub_resource type="Resource" id="Resource_cgf02"]
+script = ExtResource("1_rw241")
+tags = Array[Object]([ExtResource("2_2itvo"), ExtResource("3_e4ic6")])
+
+[sub_resource type="Resource" id="Resource_fhoct"]
+script = ExtResource("1_yl48w")
+requiredTags = SubResource("Resource_cgf02")
+
+[sub_resource type="Resource" id="Resource_5634y"]
+script = ExtResource("1_d01ew")
+TagRequirements = SubResource("Resource_fhoct")
+Operator = 2
+ModifierMagnitude = 5.0
+snapshotInstigator = true
 
 [resource]
 script = ExtResource("1_15cll")
+name = "Fire Buff"
+description = "Multiply Fire damage by 5."
+durationType = 1
+duration = 5
+isPeriodic = false
+periodicDelay = 0
+executePeriodicImmediately = false
+modifiers = Array[Object]([SubResource("Resource_5634y")])
+conditionalEffects = null
+earlyRemovalEffects = null
+expirationEffects = null

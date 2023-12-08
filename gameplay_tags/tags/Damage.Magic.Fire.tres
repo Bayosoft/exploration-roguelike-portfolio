@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="GameplayTag" load_steps=3 format=3 uid="uid://cefm3fbpmm5f8"]
+
+[ext_resource type="Resource" uid="uid://cwu4ga11mg75d" path="res://gameplay_tags/tags/Damage.Magic.tres" id="1_lvbvr"]
+[ext_resource type="Script" path="res://gameplay_tags/GameplayTag.cs" id="2_abm47"]
+
+[resource]
+script = ExtResource("2_abm47")
+parent = ExtResource("1_lvbvr")

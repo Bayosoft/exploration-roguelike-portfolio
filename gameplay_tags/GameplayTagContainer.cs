@@ -4,6 +4,7 @@ using System.Collections;
 
 namespace ExplorationRoguelike.GameplayTags
 {
+    [GlobalClass]
     public partial class GameplayTagContainer : Resource, IEnumerable
     {
         [Export]
@@ -26,14 +27,16 @@ namespace ExplorationRoguelike.GameplayTags
                 return tagsToCheck.IsEmpty();
             }
 
-            foreach (GameplayTag tagToCheck in tagsToCheck)
+            if (tagsToCheck != null)
             {
-                if (!HasTag(tagToCheck))
+                foreach (GameplayTag tagToCheck in tagsToCheck)
                 {
-                    return false;
+                    if (!HasTag(tagToCheck))
+                    {
+                        return false;
+                    }
                 }
             }
-
             return true;
         }
 

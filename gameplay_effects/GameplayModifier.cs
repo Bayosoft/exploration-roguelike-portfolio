@@ -1,6 +1,7 @@
 using System;
 using ExplorationRoguelike.AbilitySystem;
 using ExplorationRoguelike.GameplayTags;
+using Godot;
 
 namespace ExplorationRoguelike.GameplayEffects
 {
@@ -14,52 +15,55 @@ namespace ExplorationRoguelike.GameplayEffects
         Division
     }
 
-    [Serializable]
-    public struct GameplayModifier
+    [GlobalClass]
+    public partial class GameplayModifier : Resource
     {
-        public GameplayTagRequirements tagRequirements;
-        public GameplayModifierOperator @operator;
-        public float modifierMagnitude;
-        public GameplayTagContainer modifierTags;
+        [Export] public GameplayTagRequirements TagRequirements;
+        [Export] public GameplayModifierOperator Operator;
+        [Export] public float ModifierMagnitude;
+        [Export] public GameplayTagContainer ModifierTags;
 
         // True if the instigator modifiers are added to the magnitude are snapshotted
-        public bool snapshotInstigator;
+        [Export] public bool snapshotInstigator;
 
         public bool DoesMeetRequirements(GameplayTagContainer tags, GameplayTagContainer dynamicTags = null)
         {
             if(dynamicTags == null)
             {
-                return tagRequirements.RequirementsMet(tags);
+                return TagRequirements.RequirementsMet(tags);
             }
             else
             {
-                return tagRequirements.RequirementsMet(tags, dynamicTags);
+                return TagRequirements.RequirementsMet(tags, dynamicTags);
             }
         }
 
         public GameplayModifierSpec MakeModifierSpec()
         {
-            GameplayModifierSpec spec = new GameplayModifierSpec();
+            GameplayModifierSpec spec = new();
 
             return spec;
         }
     }
 
     // An instanced, runtime modifiable, version of GameplayModifier
-    [Serializable]
-    public struct GameplayModifierSpec
+    public class GameplayModifierSpec
     {
         private GameplayModifier _modifierBase;
         private float _snapshottedMagnitude;
         private bool _didSnapshotInstigator;
 
+        public GameplayModifierSpec()
+        {
+            
+        }
         public GameplayModifierSpec(GameplayModifier modifier, AbilitySystemComponent instigator)
         {
             _modifierBase = modifier;
 
             if(modifier.snapshotInstigator)
             {
-                _snapshottedMagnitude = modifier.modifierMagnitude;
+                _snapshottedMagnitude = modifier.ModifierMagnitude;
 
                 // @TODO: access GameplayTagsLibrary to retrieve IncomingTag for dynamic tags
                 GameplayTag outgoingTag = null;
@@ -97,7 +101,7 @@ namespace ExplorationRoguelike.GameplayEffects
             else
             {
                 // base magnitude
-                magnitude = _modifierBase.modifierMagnitude;
+                magnitude = _modifierBase.ModifierMagnitude;
 
                 // Apply instigator mods
                 if(instigator != null)
@@ -116,7 +120,7 @@ namespace ExplorationRoguelike.GameplayEffects
 //                magnitude = target.CalculateAggregatedModifiers(magnitude, _modifierBase.ModifierTags);
             }
 
-            switch (_modifierBase.@operator)
+            switch (_modifierBase.Operator)
             {
                 case GameplayModifierOperator.Override:
                     break;

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="GameplayTag" load_steps=3 format=3 uid="uid://cwu4ga11mg75d"]
+
+[ext_resource type="Resource" uid="uid://d2p2aqjb4mlcp" path="res://gameplay_tags/tags/Damage.tres" id="1_2de56"]
+[ext_resource type="Script" path="res://gameplay_tags/GameplayTag.cs" id="2_gjkri"]
+
+[resource]
+script = ExtResource("2_gjkri")
+parent = ExtResource("1_2de56")

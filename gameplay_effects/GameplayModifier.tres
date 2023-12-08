@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="GameplayModifier" load_steps=2 format=3 uid="uid://dh1uh40f5fcbv"]
+
+[ext_resource type="Script" path="res://gameplay_effects/GameplayModifier.cs" id="1_urrpk"]
+
+[resource]
+script = ExtResource("1_urrpk")
+Operator = 0
+ModifierMagnitude = 0.0
+snapshotInstigator = false

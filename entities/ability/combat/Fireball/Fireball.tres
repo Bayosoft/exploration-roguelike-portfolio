@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="FireballAbility" load_steps=6 format=3 uid="uid://b3ktnyekgyy85"]
+[gd_resource type="Resource" script_class="FireballAbility" load_steps=7 format=3 uid="uid://b3ktnyekgyy85"]
 
 [ext_resource type="Script" path="res://gameplay_tags/GameplayTagContainer.cs" id="1_1triw"]
-[ext_resource type="Resource" uid="uid://cefm3fbpmm5f8" path="res://gameplay_tags/tags/Fire.tres" id="2_5nhwj"]
+[ext_resource type="Resource" uid="uid://cefm3fbpmm5f8" path="res://gameplay_tags/tags/Damage.Magic.Fire.tres" id="2_6ra8d"]
 [ext_resource type="Script" path="res://entities/ability/combat/Fireball/FireballAbility.cs" id="2_x05tj"]
+[ext_resource type="Resource" uid="uid://bes7ddygarokr" path="res://gameplay_tags/tags/Outgoing.tres" id="3_qgkwf"]
 
 [sub_resource type="Resource" id="Resource_mheq8"]
 script = ExtResource("1_1triw")
@@ -21,4 +22,4 @@ damageTags = SubResource("Resource_mheq8")
 damage = 5.0
 Name = "Fireball"
 abilityType = 1
-generalTags = Array[Resource]([ExtResource("2_5nhwj")])
+generalTags = Array[Resource]([ExtResource("2_6ra8d"), ExtResource("3_qgkwf")])

@@ -19,8 +19,8 @@ namespace ExplorationRoguelike.GUI.Characters
         public void Initialize(ActiveGameplayEffect effect)
         {
             GameplayEffect = effect;
-            effectNameLabel.Text = effect.Specification.EffectSo.name;
-            effectDescriptionLabel.Text = effect.Specification.EffectSo.description;
+            effectNameLabel.Text = effect.Specification.EffectResource.name;
+            effectDescriptionLabel.Text = effect.Specification.EffectResource.description;
             effectDurationLabel.Text = effect.RemainingDuration.ToString();
             effect.DurationChanged += UpdateDurationText;
             // if(effect.Stackable){ effectStacksText.Enable ... }

@@ -1,11 +1,14 @@
-[gd_resource type="Resource" script_class="FireBuffAbility" load_steps=2 format=3 uid="uid://dieb078wg78st"]
+[gd_resource type="Resource" script_class="FireBuffAbility" load_steps=4 format=3 uid="uid://dieb078wg78st"]
 
 [ext_resource type="Script" path="res://entities/ability/combat/FireBuff/FireBuffAbility.cs" id="1_bdtqv"]
+[ext_resource type="Resource" uid="uid://dxvafvmnnuorf" path="res://entities/ability/combat/FireBuff/FireBuffEffect.tres" id="1_yd2nk"]
+[ext_resource type="Resource" uid="uid://ccrq07dhnu0rf" path="res://gameplay_tags/tags/Incoming.tres" id="2_3tlul"]
 
 [resource]
 script = ExtResource("1_bdtqv")
 TargetType = 0
 ManaCost = 0
+gameplayEffect = ExtResource("1_yd2nk")
 Name = "Fire Buff"
 abilityType = 1
-generalTags = Array[Object]([null])
+generalTags = Array[Object]([ExtResource("2_3tlul")])

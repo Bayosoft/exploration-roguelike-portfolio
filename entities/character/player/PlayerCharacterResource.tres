@@ -1,15 +1,16 @@
-[gd_resource type="Resource" script_class="PlayerCharacterResource" load_steps=5 format=3 uid="uid://dmc8l1sk0w71x"]
+[gd_resource type="Resource" script_class="PlayerCharacterResource" load_steps=6 format=3 uid="uid://dmc8l1sk0w71x"]
 
-[ext_resource type="Resource" uid="uid://b3ktnyekgyy85" path="res://entities/ability/combat/Fireball/Fireball.tres" id="1_8owge"]
+[ext_resource type="Resource" uid="uid://dieb078wg78st" path="res://entities/ability/combat/FireBuff/FireBuff.tres" id="1_lhcvm"]
 [ext_resource type="Script" path="res://entities/character/player/PlayerCharacterResource.cs" id="1_ltnyb"]
-[ext_resource type="Script" path="res://entities/character/health/PlayerHealthResource.cs" id="2_mqrhh"]
+[ext_resource type="Resource" uid="uid://b3ktnyekgyy85" path="res://entities/ability/combat/Fireball/Fireball.tres" id="2_awtfe"]
+[ext_resource type="Script" path="res://entities/character/health/HealthResource.cs" id="4_t21ep"]
 
-[sub_resource type="Resource" id="Resource_ynqjt"]
-script = ExtResource("2_mqrhh")
+[sub_resource type="Resource" id="Resource_wp6f5"]
+script = ExtResource("4_t21ep")
 MaxHealth = 50
 
 [resource]
 script = ExtResource("1_ltnyb")
 name = "Jaina"
-abilities = Array[Object]([ExtResource("1_8owge"), null, null])
-health = SubResource("Resource_ynqjt")
+abilities = Array[Object]([ExtResource("1_lhcvm"), ExtResource("2_awtfe"), ExtResource("2_awtfe"), ExtResource("2_awtfe"), ExtResource("1_lhcvm")])
+health = SubResource("Resource_wp6f5")

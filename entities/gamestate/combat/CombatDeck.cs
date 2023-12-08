@@ -40,7 +40,13 @@ public partial class CombatDeck : Node2D
 
             ovalAngleVector = new Vector2(horizontalRadius * Mathf.Cos(angle), -verticalRadius * Mathf.Sin(angle));
 
-            card.Position = centerCardOval + ovalAngleVector - card.Size/2;
+            GD.Print(DisplayServer.WindowGetSize().X / 2);
+            GD.Print(drawnCards.GetChildren().Count * 100);
+            GD.Print(card.GetIndex() * 100);
+            GD.Print((DisplayServer.WindowGetSize().X / 2) - (drawnCards.GetChildren().Count * 100) + (card.GetIndex() * 100));
+            card.Position = 
+                new Vector2((DisplayServer.WindowGetSize().X / 2) - (drawnCards.GetChildren().Count * 100) + (card.GetIndex() * 200), 700);
+            // card.Position = centerCardOval + ovalAngleVector - card.Size/2;
 
             // card.Rotation = (90 - Mathf.RadToDeg(angle))/4; (rotates cards based on position in hand)
             // Change angle to place card on a different spot.

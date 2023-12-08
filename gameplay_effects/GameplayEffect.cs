@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using ExplorationRoguelike.GameplayTags;
 using Godot;
+using Godot.Collections;
 
 namespace ExplorationRoguelike.GameplayEffects
 {
@@ -24,27 +25,27 @@ namespace ExplorationRoguelike.GameplayEffects
     [GlobalClass]
     public partial class GameplayEffect : Resource
     {
-        public string name;
-        public string description; // Should be of same type as card description.
+        [Export] public string name;
+        [Export] public string description; // Should be of same type as card description.
 
-        public GameplayDurationType durationType;
+        [Export] public GameplayDurationType durationType;
 
-        public int duration; // Duration of the effect in turns
-        public bool isPeriodic; // Not relevant on instant effects
+        [Export] public int duration; // Duration of the effect in turns
+        [Export] public bool isPeriodic; // Not relevant on instant effects
 
-        public int periodicDelay; // Delay between periodic ticks in turns
-        public bool executePeriodicImmediately; // Whether to execute once before the first periodic delay
+        [Export] public int periodicDelay; // Delay between periodic ticks in turns
+        [Export] public bool executePeriodicImmediately; // Whether to execute once before the first periodic delay
 
         // These 3 may differ depending on DurationPolicy and IsPeriodic
         // Instant applies immediately. Periodic apply them every periodic tick. 
         // Duration and infinite without periodic apply modifiers and conditional effects until this main effect ends. (Unless they're marked to persist longer individually)
         public List<GameplayExecution> Executions; // Select custom execution script, specify values to affect what's being sent in from the effect on application.
-       
-        public List<GameplayModifier> modifiers; // List of modifiers to apply. (For non-periodic and non-instant, this is applied while active and removed after)
-        public List<ConditionalGameplayEffect> conditionalEffects; // List of conditional effects to apply if this effect is applied and their individual tag requirements are met
 
-        public List<ConditionalGameplayEffect> earlyRemovalEffects; // Effects applied if this effect ends before it expired.
-        public List<ConditionalGameplayEffect> expirationEffects; // Effects applied to target when this effect expires.
+        [Export] public Array<GameplayModifier> modifiers; // List of modifiers to apply. (For non-periodic and non-instant, this is applied while active and removed after)
+        [Export] public Array<ConditionalGameplayEffect> conditionalEffects; // List of conditional effects to apply if this effect is applied and their individual tag requirements are met
+
+        [Export] public Array<ConditionalGameplayEffect> earlyRemovalEffects; // Effects applied if this effect ends before it expired.
+        [Export] public Array<ConditionalGameplayEffect> expirationEffects; // Effects applied to target when this effect expires.
 
         [ExportGroup("Tags")]
         public GameplayTagContainer assetTags; // Tags this effect has, but do not grant
@@ -65,11 +66,11 @@ namespace ExplorationRoguelike.GameplayEffects
             executePeriodicImmediately = false;
 
             Executions = new List<GameplayExecution>();
-            modifiers = new List<GameplayModifier>();
-            conditionalEffects = new List<ConditionalGameplayEffect>();
+            modifiers = new Array<GameplayModifier>();
+            conditionalEffects = new Array<ConditionalGameplayEffect>();
 
-            earlyRemovalEffects = new List<ConditionalGameplayEffect>();
-            expirationEffects = new List<ConditionalGameplayEffect>();
+            earlyRemovalEffects = new Array<ConditionalGameplayEffect>();
+            expirationEffects = new Array<ConditionalGameplayEffect>();
 
             assetTags = new GameplayTagContainer();
             grantedTags = new GameplayTagContainer();
@@ -86,12 +87,11 @@ namespace ExplorationRoguelike.GameplayEffects
         }
     }
 
-    [Serializable]
-    public struct ConditionalGameplayEffect
+    public partial class ConditionalGameplayEffect : GodotObject
     {
-        public GameplayEffect gameplayEffect;
-        public bool isPersistent;
-        public GameplayTagRequirements applicationTagRequirements;
+       [Export] public GameplayEffect gameplayEffect;
+       [Export] public bool isPersistent;
+       [Export] public GameplayTagRequirements applicationTagRequirements;
     }
 
     public class GameplayExecution

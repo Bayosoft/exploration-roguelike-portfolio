@@ -32,7 +32,7 @@ namespace ExplorationRoguelike.GameplayEffects
 
         public void TickDuration(ConcreteEventArgs eventArgs, AbilitySystemComponent owner)
         {
-            switch (Specification.EffectSo.durationType)
+            switch (Specification.EffectResource.durationType)
             {
                 case GameplayDurationType.Turns:
                     var endTurnEventArgs = eventArgs.ValidateEventArgs<EndTurnEventArgs>();
