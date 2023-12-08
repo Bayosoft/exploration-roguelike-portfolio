@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CharacterResource" load_steps=5 format=3 uid="uid://dkdaiw1jkhqfj"]
 
-[ext_resource type="Resource" uid="uid://b3ktnyekgyy85" path="res://entities/ability/combat/Fireball.tres" id="1_u46ay"]
+[ext_resource type="Resource" uid="uid://b3ktnyekgyy85" path="res://entities/ability/combat/Fireball/Fireball.tres" id="1_u46ay"]
 [ext_resource type="Script" path="res://entities/character/health/HealthResource.cs" id="1_x1xdp"]
 [ext_resource type="Script" path="res://entities/character/CharacterResource.cs" id="2_bf384"]
 

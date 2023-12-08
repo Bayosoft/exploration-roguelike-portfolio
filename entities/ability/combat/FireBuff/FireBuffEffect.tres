@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dxvafvmnnuorf"]
+
+[ext_resource type="Script" path="res://gameplay_effects/GameplayEffect.cs" id="1_15cll"]
+
+[resource]
+script = ExtResource("1_15cll")

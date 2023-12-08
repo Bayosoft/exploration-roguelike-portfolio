@@ -1,14 +1,16 @@
 using System.Collections.Generic;
+using ExplorationRoguelike.Characters;
 using ExplorationRoguelike.GameplayEffects;
+using Godot;
 
 namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities
 {
 
     public partial class SelfStatusEffectAbility : GameplayAbility
     {
-        public GameplayEffect gameplayEffect;
+        [Export] private GameplayEffect gameplayEffect;
 
-        public override void Activate(AbilitySystemComponent instigator, IEnumerable<AbilitySystemComponent> targets)
+        public override void Activate(AbilitySystemComponent instigator, IEnumerable<Character> targets)
         {
             var spec = instigator.MakeOutgoingEffectSpec(gameplayEffect);
 
@@ -19,7 +21,7 @@ namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities
             // Ability Fired event.
         }
 
-        public override void Activate(AbilitySystemComponent instigator, AbilitySystemComponent target)
+        public override void Activate(AbilitySystemComponent instigator, Character target)
         {
             var spec = instigator.MakeOutgoingEffectSpec(gameplayEffect);
             instigator.ApplyGameplayEffectSpecToSelf(spec);

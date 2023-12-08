@@ -1,6 +1,8 @@
 using ExplorationRoguelike.Characters;
+using ExplorationRoguelike.Characters.NonPlayerCharacters;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ExplorationRoguelike.AbilitySystem
 {
@@ -8,29 +10,25 @@ namespace ExplorationRoguelike.AbilitySystem
     {
         public static int GetRandomDamage(int min, int max)
         {
-           return new Random().Next(min, max);
+            return new Random().Next(min, max);
         }
 
         // TODO: Affect target's health
-        public static void DamageMultipleTargets(AbilitySystemComponent instigator, IEnumerable<AbilitySystemComponent> targets, int damage)
+        public static void DamageMultipleTargets(AbilitySystemComponent instigator, IEnumerable<Character> targets, int damage)
         {
-            foreach (AbilitySystemComponent target in targets)
+            foreach (ICombatant combatant in targets.Where(t => t is ICombatant))
             {
-               /* var healthComponent = target.GetComponent<HealthComponent>();
-                if (healthComponent)
-                {
-                    healthComponent.ReduceHealthBy(damage);
-                }*/
+                combatant.HealthComponent.ReduceHealthBy(damage);
             }
         }
 
-        public static void DamageSingleTarget(AbilitySystemComponent instigator, AbilitySystemComponent target, float damage)
+        public static void DamageSingleTarget(AbilitySystemComponent instigator, Character target, float damage)
         {
-            /*var healthComponent = target.GetComponent<HealthComponent>();
-            if(healthComponent)
+            if(target is ICombatant combatant)
             {
-                healthComponent.ReduceHealthBy(damage);
-            }*/
+                combatant.HealthComponent.ReduceHealthBy(damage);
+            }
+
         }
     }
 }

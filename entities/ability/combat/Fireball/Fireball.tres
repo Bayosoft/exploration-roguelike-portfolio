@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://gameplay_tags/GameplayTagContainer.cs" id="1_1triw"]
 [ext_resource type="Resource" uid="uid://cefm3fbpmm5f8" path="res://gameplay_tags/tags/Fire.tres" id="2_5nhwj"]
-[ext_resource type="Script" path="res://entities/ability/combat/FireballAbility.cs" id="2_x05tj"]
+[ext_resource type="Script" path="res://entities/ability/combat/Fireball/FireballAbility.cs" id="2_x05tj"]
 
 [sub_resource type="Resource" id="Resource_mheq8"]
 script = ExtResource("1_1triw")

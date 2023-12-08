@@ -2,6 +2,7 @@ using Godot;
 
 namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities.FireBuff
 {
+    [GlobalClass]
     public partial class FireBuffAbility : SelfStatusEffectAbility, IPlayableCard
     {
         [Export]

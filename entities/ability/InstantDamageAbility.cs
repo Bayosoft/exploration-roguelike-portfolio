@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using ExplorationRoguelike.Characters;
+using ExplorationRoguelike.Characters.NonPlayerCharacters;
 using ExplorationRoguelike.GameplayTags;
 using Godot;
 
@@ -13,7 +15,7 @@ namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities
         [Export]
         private float damage;
 
-        public override void Activate(AbilitySystemComponent instigator, IEnumerable<AbilitySystemComponent> targets)
+        public override void Activate(AbilitySystemComponent instigator, IEnumerable<Character> targets)
         {
             var damageMagnitude = CalculateModifiers(instigator);
             foreach (var target in targets)
@@ -22,7 +24,7 @@ namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities
             }
         }
 
-        public override void Activate(AbilitySystemComponent instigator, AbilitySystemComponent target)
+        public override void Activate(AbilitySystemComponent instigator, Character target)
         {
             var damageMagnitude = CalculateModifiers(instigator);
             AbilityExtensions.DamageSingleTarget(instigator, target, damageMagnitude);

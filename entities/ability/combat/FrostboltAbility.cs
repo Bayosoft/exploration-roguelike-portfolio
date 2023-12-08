@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using ExplorationRoguelike.Characters;
+using ExplorationRoguelike.Characters.NonPlayerCharacters;
 using ExplorationRoguelike.GameplayEffects;
 using Godot;
 
@@ -14,7 +16,7 @@ namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities.Frostbolt
         [Export]
         public int ManaCost { get; private set; }
         
-        public override void Activate(AbilitySystemComponent instigator, IEnumerable<AbilitySystemComponent> targets)
+        public override void Activate(AbilitySystemComponent instigator, IEnumerable<Character> targets)
         {
             var spec = instigator.MakeOutgoingEffectSpec(gameplayEffect);
 
@@ -35,7 +37,7 @@ namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities.Frostbolt
             // Ability Fired event.
         }
 
-        public override void Activate(AbilitySystemComponent instigator, AbilitySystemComponent target)
+        public override void Activate(AbilitySystemComponent instigator, Character target)
         {
             var spec = instigator.MakeOutgoingEffectSpec(gameplayEffect);
 

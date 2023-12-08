@@ -21,6 +21,7 @@ namespace ExplorationRoguelike.GameplayEffects
         public const int InstantApplication = 0;
     }
 
+    [GlobalClass]
     public partial class GameplayEffect : Resource
     {
         public string name;

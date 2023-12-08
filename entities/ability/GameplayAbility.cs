@@ -1,3 +1,5 @@
+using ExplorationRoguelike.Characters;
+using ExplorationRoguelike.Characters.NonPlayerCharacters;
 using ExplorationRoguelike.GameplayTags;
 using Godot;
 using Godot.Collections;
@@ -40,7 +42,7 @@ namespace ExplorationRoguelike.AbilitySystem.Abilities
         /// <param name="instigator"></param>
         /// <param name="targets"></param>
         /// <param name="activationType"></param>
-        public abstract void Activate(AbilitySystemComponent instigator, IEnumerable<AbilitySystemComponent> targets);
+        public abstract void Activate(AbilitySystemComponent instigator, IEnumerable<Character> targets);
 
         /// <summary>
         /// Overridden by specific ability implementations.
@@ -48,6 +50,6 @@ namespace ExplorationRoguelike.AbilitySystem.Abilities
         /// <param name="instigator"></param>
         /// <param name="targets"></param>
         /// <param name="activationType"></param>
-        public abstract void Activate(AbilitySystemComponent instigator, AbilitySystemComponent target);
+        public abstract void Activate(AbilitySystemComponent instigator, Character target);
     }
 }

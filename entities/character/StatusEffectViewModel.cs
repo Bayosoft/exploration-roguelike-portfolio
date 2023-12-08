@@ -6,7 +6,7 @@ using ExplorationRoguelike.AbilitySystem;
 using ExplorationRoguelike.GameplayEffects;
 using Godot;
 
-namespace ExplorationRoguelike.GUI.Character
+namespace ExplorationRoguelike.GUI.Characters
 {
     public partial class StatusEffectViewModel : Node2D
     {

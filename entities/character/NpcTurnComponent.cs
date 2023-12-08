@@ -1,5 +1,6 @@
 ﻿using ExplorationRoguelike.AbilitySystem;
 using ExplorationRoguelike.AbilitySystem.Abilities;
+using ExplorationRoguelike.Characters;
 using ExplorationRoguelike.Combat.Events;
 using Godot;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace ExplorationRoguelike.Combat
             MyTurn = true;
         }
 
-        public override void Act(GameplayAbility action, List<AbilitySystemComponent> targets)
+        public override void Act(GameplayAbility action, List<Character> targets)
         {
             if (MyTurn)
             {

@@ -23,7 +23,7 @@ namespace ExplorationRoguelike.Combat
             abilities = _abilityComponent.GrantedAbilities.ToList();
         }
 
-        internal void ExecuteIntent(GameplayAbility declaredAbility, IEnumerable<AbilitySystemComponent> targets)
+        internal void ExecuteIntent(GameplayAbility declaredAbility, IEnumerable<Character> targets)
         {
             _abilityComponent.TryActivateAbility(declaredAbility, targets);
         }

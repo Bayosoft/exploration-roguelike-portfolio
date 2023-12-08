@@ -15,6 +15,9 @@ script = ExtResource("1_vf63r")
 cardNameText = NodePath("VBoxContainer/CardName")
 cardDescriptionText = NodePath("VBoxContainer/CardDescription")
 manaCostText = NodePath("VBoxContainer/CardCost")
+verticalMoveAmount = null
+moveTime = null
+scaleAmount = null
 playCardEvent = ExtResource("2_24nkb")
 
 [node name="CardBack" type="ColorRect" parent="."]

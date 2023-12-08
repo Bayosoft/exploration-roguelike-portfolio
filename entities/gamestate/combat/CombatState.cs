@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Linq;
 using ExplorationRoguelike.AbilitySystem;
 using ExplorationRoguelike.AbilitySystem.Abilities;
@@ -9,7 +8,7 @@ using ExplorationRoguelike.Characters.NonPlayerCharacters;
 using ExplorationRoguelike.Characters.PlayerCharacter;
 using ExplorationRoguelike.Combat;
 using ExplorationRoguelike.Combat.Events;
-using ExplorationRoguelike.GUI.PlayableCard;
+using ExplorationRoguelike.GUI.Characters;
 using Godot;
 
 namespace ExplorationRoguelike.GUI.Combat;
@@ -114,14 +113,18 @@ public partial class CombatState : Node2D
         Player.Visible = true;
         Player.GlobalPosition = PlayerPosition.GlobalPosition;
         var healthScene = (PackedScene)ResourceLoader.Load(HealthScene.ResourcePath);
-        var healthNode = healthScene.Instantiate();
+        var healthNode = (CombatHealth)healthScene.Instantiate();
+
+        healthNode.Initialize(Player.HealthComponent);
 
         // TODO: Initialize CombatHealth and set position of health scene
         /* healthView.GetComponent<CombatHealth>().Initialize(_combat.Player.HealthComponent);
          healthView.transform.localPosition = new Vector2(-400, 0);
          healthView.transform.localScale = Vector2.one;*/
 
-        HealthNodes.Add(healthNode as Node2D);
+        HealthNodes.Add(healthNode);
+        AddChild(healthNode);
+        healthNode.GlobalPosition = new Vector2(PlayerPosition.GlobalPosition.X, PlayerPosition.GlobalPosition.Y + 300);
 
         // Enemies
         foreach (var combatant in combatants)
@@ -131,22 +134,28 @@ public partial class CombatState : Node2D
             enemies[0].GlobalPosition = EnemyPosition.GlobalPosition;
 
             var enemyHealthScene = (PackedScene)ResourceLoader.Load(HealthScene.ResourcePath);
-            var enemyHealthNode = enemyHealthScene.Instantiate();
+            var enemyHealthNode = (CombatHealth)enemyHealthScene.Instantiate();
+            enemyHealthNode.Initialize(combatant.HealthComponent);
 
             // TODO: Initialize CombatHealth and set position of health scene
             /* enemyHealthNode.GetComponent<CombatHealth>().Initialize(combatant.HealthComponent);
                enemyHealthNode.transform.localPosition = new Vector2(400, 0);
                enemyHealthNode.transform.localScale = Vector2.one;*/
-            HealthNodes.Add(enemyHealthNode as Node2D);
+            HealthNodes.Add(enemyHealthNode);
+            AddChild(enemyHealthNode);
+
+            enemyHealthNode.GlobalPosition = new Vector2(EnemyPosition.GlobalPosition.X, EnemyPosition.GlobalPosition.Y + 300);
         }
     }
 
+
+    // TODO: Remove this and make Card aware of its target(s), then call event directly to CardDeckComponent.
     public void OnTryPlayCard(ConcreteEventArgs args)
     {
         var eventArgs = args.ValidateEventArgs<TryPlayCardEventArgs>();
         if (eventArgs.CardView != null && playerTurnComponent.MyTurn)
         {
-            playerTurnComponent.CardDeckComponent.PlayCard(eventArgs.CardView, new List<AbilitySystemComponent>() { enemies[0].AbilitySystemComponent });
+            playerTurnComponent.CardDeckComponent.PlayCard(eventArgs.CardView, new List<CombatNpc>() { enemies[0] });
         }
     }
 
@@ -165,7 +174,7 @@ public partial class CombatState : Node2D
         if (endTurnEventArgs.Initiator is PlayerTurnComponent)
         {
             enemyTurnComponent.StartTurn();
-            enemyTurnComponent.Act(enemyTurnComponent.NpcCombatComponent.DeclaredAbility, new List<AbilitySystemComponent>() { Player.AbilitySystemComponent });
+            enemyTurnComponent.Act(enemyTurnComponent.NpcCombatComponent.DeclaredAbility, new List<Character>() { Player });
 
             CurrentTurnState = TurnState.Enemyturn;
         }

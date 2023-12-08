@@ -6,6 +6,7 @@ using ExplorationRoguelike.GameplayTags;
 using Godot;
 using Godot.Collections;
 using System.Linq;
+using ExplorationRoguelike.Characters.NonPlayerCharacters;
 
 namespace ExplorationRoguelike.AbilitySystem
 {
@@ -22,18 +23,13 @@ namespace ExplorationRoguelike.AbilitySystem
             base._Ready();
 
             GrantedAbilities = GetParent<Character>().CharacterResource.Abilities;
+            ActiveGameplayEffects = new ActiveGameplayEffectContainer(this);
         }
         private AbilitySystemComponent()
         {
             ActiveGameplayTags = new GameplayTagContainer();
             OwnedGameplayTags = new GameplayTagContainer();
         }
-
-        private void Awake()
-        {
-            ActiveGameplayEffects = new ActiveGameplayEffectContainer(this);
-        }
-
         // In case levels are a thing
         /*
         public int GetLevel()
@@ -42,7 +38,7 @@ namespace ExplorationRoguelike.AbilitySystem
         }
         */
 
-        public bool TryActivateAbility(GameplayAbility ability, IEnumerable<AbilitySystemComponent> targets)
+        public bool TryActivateAbility(GameplayAbility ability, IEnumerable<Character> targets)
         {
             if (ability == null)
             {

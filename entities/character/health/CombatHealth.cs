@@ -1,7 +1,7 @@
 using ExplorationRoguelike.Characters;
 using Godot;
 
-namespace ExplorationRoguelike.GUI.Character
+namespace ExplorationRoguelike.GUI.Characters
 {
     public partial class CombatHealth : Node2D
     {

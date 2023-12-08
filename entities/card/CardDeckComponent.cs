@@ -1,3 +1,5 @@
+using ExplorationRoguelike.Characters;
+using ExplorationRoguelike.Characters.NonPlayerCharacters;
 using ExplorationRoguelike.GUI.PlayableCard;
 using Godot;
 using System;
@@ -70,7 +72,7 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
                 ++amountDrawn;
             }
         }
-        public void PlayCard(Card card, IEnumerable<AbilitySystemComponent> targets)
+        public void PlayCard(Card card, IEnumerable<CombatNpc> targets)
         {
             if (Mana < card.PlayableCard.ManaCost)
             {

@@ -1,3 +1,4 @@
+using ExplorationRoguelike.Characters;
 using Godot;
 using System.Collections.Generic;
 
@@ -14,7 +15,7 @@ namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities.ArcaneMis
         [Export] 
         private int missileCount;
         
-        public override void Activate(AbilitySystemComponent instigator, IEnumerable<AbilitySystemComponent> targets)
+        public override void Activate(AbilitySystemComponent instigator, IEnumerable<Character> targets)
         {
             for (var missilesFired = 0; missilesFired < missileCount; missilesFired++)
             {
@@ -22,7 +23,7 @@ namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities.ArcaneMis
             }
         }
 
-        public override void Activate(AbilitySystemComponent instigator, AbilitySystemComponent target)
+        public override void Activate(AbilitySystemComponent instigator, Character target)
         {
             base.Activate(instigator, target);
         }

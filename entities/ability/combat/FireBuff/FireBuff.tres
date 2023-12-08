@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FireBuffAbility" load_steps=2 format=3 uid="uid://dieb078wg78st"]
+
+[ext_resource type="Script" path="res://entities/ability/combat/FireBuff/FireBuffAbility.cs" id="1_bdtqv"]
+
+[resource]
+script = ExtResource("1_bdtqv")
+TargetType = 0
+ManaCost = 0
+Name = "Fire Buff"
+abilityType = 1
+generalTags = Array[Object]([null])

@@ -2,7 +2,7 @@ using System;
 using ExplorationRoguelike.GameplayEffects;
 using Godot;
 
-namespace ExplorationRoguelike.GUI.Character
+namespace ExplorationRoguelike.GUI.Characters
 {
     public partial class StatusEffect : Node2D
     {

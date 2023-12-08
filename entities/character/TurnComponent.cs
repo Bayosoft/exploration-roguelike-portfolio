@@ -1,5 +1,6 @@
 using ExplorationRoguelike.AbilitySystem;
 using ExplorationRoguelike.AbilitySystem.Abilities;
+using ExplorationRoguelike.Characters;
 using Godot;
 using System.Collections.Generic;
 
@@ -12,7 +13,7 @@ namespace ExplorationRoguelike.Combat
 
         public EventResource endTurnEvent;
         public abstract void StartTurn();
-        public abstract void Act(GameplayAbility action, List<AbilitySystemComponent> targets);
+        public abstract void Act(GameplayAbility action, List<Character> targets);
         public abstract void EndTurn();
 
         private AbilitySystemComponent _owner;

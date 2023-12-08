@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" path="res://entities/character/health/CombatHealth.cs" id="1_hmkam"]
 
-[node name="CombatHealth" type="Node2D"]
+[node name="CombatHealth" type="Node2D" node_paths=PackedStringArray("currentHealthLabel", "maxHealthLabel")]
 script = ExtResource("1_hmkam")
+currentHealthLabel = NodePath("CurrentHealthLabel")
+maxHealthLabel = NodePath("MaxHealthLabel")
 
 [node name="CurrentHealthLabel" type="RichTextLabel" parent="."]
 offset_left = -33.0
