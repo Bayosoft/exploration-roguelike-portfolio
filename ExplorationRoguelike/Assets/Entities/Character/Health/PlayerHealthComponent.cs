@@ -8,9 +8,13 @@ namespace ExplorationRoguelike.Characters.PlayerCharacter
 
         public override void Awake()
         {
-            var health = GetComponent<Character>().CharacterData.Health;
-            maxHealth = health.maxHealth;
-            CurrentHealth = ((PlayerHealthData)health).currentHealth;
+            var pcData = GetComponent<Player>().PlayerCharacterData;
+
+            var playerHealth = pcData.PlayerHealth;
+            playerHealth.characterHealth = pcData.Health;
+
+            maxHealth = playerHealth.characterHealth.maxHealth;
+            CurrentHealth = playerHealth.currentHealth; 
         }
         public override void OnDeath()
         {

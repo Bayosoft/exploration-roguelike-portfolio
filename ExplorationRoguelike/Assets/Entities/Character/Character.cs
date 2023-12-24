@@ -5,7 +5,7 @@ namespace ExplorationRoguelike.Characters
 {
     public abstract class Character : MonoBehaviour
     {
-        [SerializeField] private CharacterData characterData;
+        [SerializeField] protected CharacterData characterData;
 
         public CharacterData CharacterData
         {

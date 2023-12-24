@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ea47326f6d856749a42082085340a29, type: 3}
-  m_Name: GoblinThief
+  m_Script: {fileID: 11500000, guid: dc3ce7980edf04f43a8cf5eaeac4cf74, type: 3}
+  m_Name: Goblin Thief
   m_EditorClassIdentifier: 
   name: Goblin Thief
   gameImage: {fileID: 0}
@@ -18,5 +18,5 @@ MonoBehaviour:
   abilities:
   - {fileID: 11400000, guid: ad74d21efd4bd0a42a32af346e448646, type: 2}
   - {fileID: 11400000, guid: 309fee7195cd6c64abff5ef40e85dd79, type: 2}
-  health: {fileID: 11400000, guid: 9dfcb92377af65b4ba84d3bcafa3ac46, type: 2}
-  regenerationBonus: 2
+  health:
+    maxHealth: 50

@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace ExplorationRoguelike.Characters
 {
-    [CreateAssetMenu(fileName = "Health", menuName = "Characters/Health")]
-    public class HealthData : ScriptableObject
+    [Serializable]
+    public class CharacterHealth
     {
         public int maxHealth;
     }

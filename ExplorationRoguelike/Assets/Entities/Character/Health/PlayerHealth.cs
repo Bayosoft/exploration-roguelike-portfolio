@@ -3,10 +3,14 @@ using UnityEngine;
 
 namespace ExplorationRoguelike.Characters.PlayerCharacter
 {
-    public class PlayerHealthData : HealthData
-    {        
+    [Serializable]
+    public class PlayerHealth 
+    {
+        [NonSerialized]
+        public CharacterHealth characterHealth;
+
         public int currentHealth;
-        
+
         public void UpdateCurrentHealth(int newHealth)
         {
             currentHealth = newHealth;
@@ -14,7 +18,7 @@ namespace ExplorationRoguelike.Characters.PlayerCharacter
         
         public void UpdateMaxHealth(int newHealth)
         {
-            maxHealth = newHealth;
+            characterHealth.maxHealth = newHealth;
         }
     }
 }

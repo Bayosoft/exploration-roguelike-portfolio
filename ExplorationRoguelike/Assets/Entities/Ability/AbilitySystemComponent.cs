@@ -181,7 +181,7 @@ namespace ExplorationRoguelike.AbilitySystem
             // 1) Apply modifiers
             foreach (GameplayModifierSpec modifierSpec in effectSpec.Modifiers)
             {
-                // TODO: Figure out how to execute modifiers to affect desired values (Health, resource, stats)
+                // TODO: Figure out how to execute modifiers to affect desired values (CharacterHealth, resource, stats)
             }
 
             // 2) Apply executions

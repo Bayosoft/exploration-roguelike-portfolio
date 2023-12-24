@@ -5,7 +5,8 @@ using UnityEngine;
 
 namespace ExplorationRoguelike.Characters
 {
-    public abstract class CharacterData : ScriptableObject
+    [CreateAssetMenu(fileName = "Character", menuName = "Characters/New Character")]
+    public class CharacterData : ScriptableObject
     {
         [SerializeField]
         private new string name;
@@ -24,7 +25,7 @@ namespace ExplorationRoguelike.Characters
         public List<GameplayAbility> Abilities => abilities;
 
         [SerializeField][CanBeNull]
-        private HealthData health;
-        public virtual HealthData Health => health;
+        private CharacterHealth health;
+        public virtual CharacterHealth Health => health;
     }
 }

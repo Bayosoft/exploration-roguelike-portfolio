@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aae89838a8232745bc556cf1573d37f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterData: {fileID: 0}
+  characterData: {fileID: 11400000, guid: 48ccfb445900fb94ebeab30132800215, type: 2}
   abilitySystemComponent: {fileID: 3116688327760132695}
   healthComponent: {fileID: 7391135013950234280}
   turnComponent: {fileID: 95701396686375421}

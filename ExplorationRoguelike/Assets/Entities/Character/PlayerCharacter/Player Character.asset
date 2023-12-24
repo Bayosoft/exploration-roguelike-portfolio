@@ -23,4 +23,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b6674a32240e6364ba6e84a46d2aaffa, type: 2}
   - {fileID: 11400000, guid: b6674a32240e6364ba6e84a46d2aaffa, type: 2}
   - {fileID: 11400000, guid: b6674a32240e6364ba6e84a46d2aaffa, type: 2}
-  health: {fileID: 11400000, guid: 153e102bb23d2c64dbd2be0e85c57b57, type: 2}
+  health:
+    maxHealth: 100
