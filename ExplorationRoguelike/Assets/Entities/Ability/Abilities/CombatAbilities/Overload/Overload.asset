@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Overload
   abilityType: 1
-  generalTags:
-  - {fileID: 11400000, guid: 3f578cd34669816479d4a7ab5f68db6f, type: 2}
+  generalTags: []
   description:
     description: Increase arcane damage dealt by 1.
   gameplayEffect: {fileID: 11400000, guid: 134cc4ced0c324347948012e679ca17b, type: 2}
+  <IntentTag>k__BackingField: {fileID: 0}
   <TargetType>k__BackingField: 1
   <ManaCost>k__BackingField: 0

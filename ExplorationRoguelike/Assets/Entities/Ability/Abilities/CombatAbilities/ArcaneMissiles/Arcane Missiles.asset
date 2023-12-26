@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Arcane Missiles
   abilityType: 1
-  generalTags:
-  - {fileID: 11400000, guid: 3f578cd34669816479d4a7ab5f68db6f, type: 2}
+  generalTags: []
   description:
     description: Deal 1 arcane damage 3 times.
   damageTags:
@@ -23,6 +22,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 3f578cd34669816479d4a7ab5f68db6f, type: 2}
     - {fileID: 11400000, guid: 97af3b0ddf2bb394a85ce0988e00b2df, type: 2}
   damage: 1
+  <IntentTag>k__BackingField: {fileID: 0}
   <TargetType>k__BackingField: 1
   <ManaCost>k__BackingField: 3
   missileCount: 3

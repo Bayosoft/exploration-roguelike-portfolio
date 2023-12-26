@@ -4,7 +4,6 @@ namespace ExplorationRoguelike.AbilitySystem
 
     public interface IModifiable
     {
-
         public event OnModifiersCalculated OnModifiersCalculated;
         public float CalculateModifiers(AbilitySystemComponent source);
     }

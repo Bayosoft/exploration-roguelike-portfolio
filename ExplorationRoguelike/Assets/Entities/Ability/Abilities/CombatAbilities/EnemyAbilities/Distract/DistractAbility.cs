@@ -1,13 +1,18 @@
+using ExplorationRoguelike.GameplayTags;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities.Distract
 {
-    public class DistractAbility : GameplayAbility
+    public class DistractAbility : GameplayAbility, IIntentfulAbility
     {
         // StatusEffect 
         [SerializeField]
         private int durationInTurns;
+
+        [field: SerializeField]
+        public GameplayTag IntentTag { get; private set; }
+
         //
         // property indicating its a card/combat ability.
         // tags for determining status modifiers.

@@ -21,5 +21,10 @@ namespace ExplorationRoguelike.GameplayTags
         {
             return new GameplayTagContainer(this);
         }
+
+        public override string ToString()
+        {
+            return this.name;
+        }
     }
 }

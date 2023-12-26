@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d9ca0fb8f96c6440a6c3ac76efe528a, type: 3}
-  m_Name: Damage.Melee
+  m_Name: Damage.Physical
   m_EditorClassIdentifier: 
   parent: {fileID: 11400000, guid: bc3df637670c1414a80010fe16dad400, type: 2}

@@ -5,14 +5,17 @@ using UnityEngine;
 namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities
 {
     [CreateAssetMenu(fileName = "Instant Damage", menuName = "Abilities/Combat/Instant Damage")]
-    public class InstantDamageAbility : GameplayAbility, IModifiable
+    public class InstantDamageAbility : GameplayAbility, IIntentfulAbility, IModifiable
     {
         [SerializeField]
         private GameplayTagContainer damageTags = new();
         
         [SerializeField]
         private float damage;
-        
+
+        [field: SerializeField]
+        public GameplayTag IntentTag { get; private set; }
+
         public override void Activate(AbilitySystemComponent instigator, IEnumerable<AbilitySystemComponent> targets)
         {
             var damageMagnitude = CalculateModifiers(instigator);

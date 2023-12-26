@@ -11,7 +11,7 @@ namespace ExplorationRoguelike.Combat
         private AbilitySystemComponent _npc;
         public List<GameplayAbility> abilities;
         public GameplayAbility DeclaredAbility { get; private set; }
-        public event EventHandler<GameplayAbility> OnDeclaredIntent;
+        public event EventHandler<IIntentfulAbility> OnDeclaredIntent;
 
         public void Awake()
         {
@@ -22,7 +22,7 @@ namespace ExplorationRoguelike.Combat
         {
             _npc.TryActivateAbility(declaredAbility, targets);
         }
-        public GameplayAbility DeclareIntent()
+        public void DeclareIntent()
         {
             if (_npc.GrantedAbilities.Count > 0)
             {
@@ -32,10 +32,12 @@ namespace ExplorationRoguelike.Combat
             {
                 DeclaredAbility = null;
             }
-            
-            OnDeclaredIntent?.Invoke(this, DeclaredAbility);
 
-            return DeclaredAbility;
+            if(DeclaredAbility is IIntentfulAbility intentfulAbility)
+            {
+                OnDeclaredIntent?.Invoke(this, intentfulAbility);
+            }
+
         }
     }
 }

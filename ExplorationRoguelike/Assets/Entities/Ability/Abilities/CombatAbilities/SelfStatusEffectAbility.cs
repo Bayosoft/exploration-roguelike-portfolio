@@ -1,15 +1,19 @@
 using System.Collections.Generic;
 using ExplorationRoguelike.GameplayEffects;
+using ExplorationRoguelike.GameplayTags;
 using UnityEngine;
 
 namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities
 {
     
     [CreateAssetMenu(fileName = "Status Effect (self)", menuName = "Abilities/Combat/Status Effect (self)")]
-    public class SelfStatusEffectAbility : GameplayAbility
+    public class SelfStatusEffectAbility : GameplayAbility, IIntentfulAbility
     {
         public GameplayEffect gameplayEffect;
-        
+
+        [field: SerializeField]
+        public GameplayTag IntentTag { get; private set; }
+
         public override void Activate(AbilitySystemComponent instigator, IEnumerable<AbilitySystemComponent> targets)
         {
             var spec = instigator.MakeOutgoingEffectSpec(gameplayEffect);

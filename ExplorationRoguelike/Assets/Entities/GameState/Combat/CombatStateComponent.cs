@@ -113,9 +113,16 @@ namespace ExplorationRoguelike.Combat
             manaText.text = $"Mana: {newMana}/4";
         }
 
-        private void UpdateEnemyIntent(object sender, GameplayAbility intent)
+        private void UpdateEnemyIntent(object sender, IIntentfulAbility intent)
         {
-            enemyIntentText.text = $"Enemy Intent: {intent.generalTags.First().ToString()}";
+            if (intent == null || intent.IntentTag == null)
+            {
+                enemyIntentText.text = $"???";
+                return;
+            }
+
+            enemyIntentText.text = $"{intent.IntentTag.ToString()}";
+
         }
         private void SpawnHealthViews()
         {
