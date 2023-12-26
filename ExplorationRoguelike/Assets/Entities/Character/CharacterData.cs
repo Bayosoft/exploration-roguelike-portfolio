@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ExplorationRoguelike.Characters
 {
-    [CreateAssetMenu(fileName = "Character", menuName = "Characters/New Character")]
+    [CreateAssetMenu(fileName = "Character", menuName = "Character/New Character")]
     public class CharacterData : ScriptableObject
     {
         [SerializeField]
