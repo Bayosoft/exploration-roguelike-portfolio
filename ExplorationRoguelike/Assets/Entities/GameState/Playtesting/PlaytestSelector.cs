@@ -23,8 +23,14 @@ namespace ExplorationRoguelike
 
         [SerializeField] private GameState gameState;
 
-        [SerializeField] private GameObject playerPrefab;
+        private Player player;
         [SerializeField] private GameObject enemyPrefab;
+
+        public void Start()
+        {
+            player = FindAnyObjectByType<Player>();
+        }
+
         public void DeckSelected()
         {
             deckButtons.SetActive(false);
@@ -33,7 +39,6 @@ namespace ExplorationRoguelike
         
         public void OnWeakDeckClick()
         {
-            var player = playerPrefab.GetComponent<Player>();
             player.CharacterData.Abilities.Clear();
             player.CharacterData.Abilities.AddRange(weakDeck.abilities);
             DeckSelected();
@@ -41,7 +46,6 @@ namespace ExplorationRoguelike
         
         public void OnAverageDeckClick()
         {
-            var player = playerPrefab.GetComponent<Player>();
             player.CharacterData.Abilities.Clear();
             player.CharacterData.Abilities.AddRange(averageDeck.abilities); 
             DeckSelected();
@@ -49,7 +53,6 @@ namespace ExplorationRoguelike
 
         public void OnStrongDeckClick()
         {
-            var player = playerPrefab.GetComponent<Player>();
             player.CharacterData.Abilities.Clear();
             player.CharacterData.Abilities.AddRange(strongDeck.abilities);
             DeckSelected();
@@ -62,7 +65,7 @@ namespace ExplorationRoguelike
 
             enemy.CharacterData = weakEnemy;
             
-            gameState.SetCombatants(playerPrefab, enemyPrefab);
+            gameState.SetCombat(enemyPrefab);
             SceneManager.LoadScene("CombatScene");
         }
         
@@ -71,7 +74,7 @@ namespace ExplorationRoguelike
             // set combat enemy 
             var enemy = enemyPrefab.GetComponent<CombatNpc>();
             enemy.CharacterData = averageEnemy;
-            gameState.SetCombatants(playerPrefab, enemyPrefab);
+            gameState.SetCombat(enemyPrefab);
             SceneManager.LoadScene("CombatScene");
         }
 
@@ -81,7 +84,7 @@ namespace ExplorationRoguelike
             
             var enemy = enemyPrefab.GetComponent<CombatNpc>();
             enemy.CharacterData = bossEnemy;
-            gameState.SetCombatants(playerPrefab, enemyPrefab);
+            gameState.SetCombat(enemyPrefab);
             SceneManager.LoadScene("CombatScene");
         }
 

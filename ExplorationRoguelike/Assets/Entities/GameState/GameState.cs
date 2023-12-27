@@ -12,15 +12,19 @@ namespace ExplorationRoguelike
         private CombatStateComponent _combatStateComponent;
         public GameObject player;
         public GameObject enemy;
+        public GameObject gameOverlay;
+
         void Awake()
         {
             DontDestroyOnLoad(this);
+            Instantiate(player);
+            DontDestroyOnLoad(gameOverlay);
+
             UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
         }
         
-        public void SetCombatants(GameObject playerPrefab, GameObject enemyPrefab)
+        public void SetCombat(GameObject enemyPrefab)
         {
-            player = playerPrefab;
             enemy = enemyPrefab;
         }
         
@@ -29,7 +33,7 @@ namespace ExplorationRoguelike
         {
             if (scene.name == "CombatScene")
             {
-                _combatStateComponent = FindObjectOfType<CombatStateComponent>();
+                _combatStateComponent = FindAnyObjectByType<CombatStateComponent>();
                 InitializeCombat();
             }
         }

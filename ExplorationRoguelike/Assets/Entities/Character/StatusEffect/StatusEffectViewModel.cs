@@ -9,6 +9,7 @@ using UnityEngine;
 
 namespace ExplorationRoguelike.GUI.Character
 {
+    // TODO: Rework.
     public class StatusEffectViewModel : MonoBehaviour
     {
         [SerializeField] private GameObject statusEffectPrefab;

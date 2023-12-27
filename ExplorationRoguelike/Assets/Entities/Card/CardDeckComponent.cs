@@ -36,6 +36,7 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
         {
             _player = GetComponent<AbilitySystemComponent>();
 
+            // TODO: Refactor so that cards can be visualized when necessary rather than printing right away.
             CardsInDeck.AddRange(printer.PrintStackFromAbilities(_player.GrantedAbilities));
         }
 

@@ -22,4 +22,4 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 7ad1df40796497e488b5dca971492b9a, type: 2}
     - {fileID: 11400000, guid: 97af3b0ddf2bb394a85ce0988e00b2df, type: 2}
   damage: 2
-  <IntentTag>k__BackingField: {fileID: 11400000, guid: bc3df637670c1414a80010fe16dad400, type: 2}
+  <IntentTag>k__BackingField: {fileID: 11400000, guid: 7ad1df40796497e488b5dca971492b9a, type: 2}
