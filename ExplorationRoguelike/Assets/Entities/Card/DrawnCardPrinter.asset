@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1721bebecfb1d4a4da49054cf3a61eba, type: 3}
-  m_Name: Card Printer
+  m_Name: DrawnCardPrinter
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 2796258955135256527, guid: 6c2997fd00c048147961645af76a8b2f, type: 3}

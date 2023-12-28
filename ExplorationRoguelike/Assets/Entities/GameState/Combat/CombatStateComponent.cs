@@ -152,7 +152,7 @@ namespace ExplorationRoguelike.Combat
             //different kind of changes that may have occurred in collection
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
-                CardView c = (CardView)e.NewItems[0];
+                Card c = (Card)e.NewItems[0];
                 GameObject cardView = c.gameObject;
                 cardView.transform.parent = gameObject.transform;
                 cardView.transform.localPosition = new Vector2(CardViews.Count * 100, 0);
@@ -165,11 +165,11 @@ namespace ExplorationRoguelike.Combat
             }
             if (e.Action == NotifyCollectionChangedAction.Remove)
             {
-                foreach (CardView removedCard in e.OldItems)
+                foreach (Card removedCard in e.OldItems)
                 {
                     foreach (GameObject cardView in CardViews.ToList())
                     {
-                        if (cardView.GetComponent<CardView>() == removedCard)
+                        if (cardView.GetComponent<Card>() == removedCard)
                         {
                             cardView.SetActive(false);
                             CardViews.Remove(cardView);

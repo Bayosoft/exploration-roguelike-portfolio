@@ -4,9 +4,9 @@ namespace ExplorationRoguelike.Combat.Events
 {
     public class TryPlayCardEventArgs : ConcreteEventArgs
     {
-        public CardView CardView { get; }
+        public Card CardView { get; }
 
-        public TryPlayCardEventArgs(CardView cardView)
+        public TryPlayCardEventArgs(Card cardView)
         {
             CardView = cardView;
         }

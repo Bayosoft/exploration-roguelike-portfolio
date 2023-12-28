@@ -25,10 +25,10 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
         }
         public event EventHandler<int> OnManaChanged;
 
-        public ObservableCollection<CardView> CardsInDeck = new();
-        public ObservableCollection<CardView> CardsDrawn = new();
-        public ObservableCollection<CardView> CardsDiscarded = new();
-        public ObservableCollection<CardView> CardsShattered = new();
+        public ObservableCollection<Card> CardsInDeck = new();
+        public ObservableCollection<Card> CardsDrawn = new();
+        public ObservableCollection<Card> CardsDiscarded = new();
+        public ObservableCollection<Card> CardsShattered = new();
         private AbilitySystemComponent _player;
 
 
@@ -36,8 +36,8 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
         {
             _player = GetComponent<AbilitySystemComponent>();
 
-            // TODO: Refactor so that cards can be visualized when necessary rather than printing right away.
-            CardsInDeck.AddRange(printer.PrintStackFromAbilities(_player.GrantedAbilities));
+            IEnumerable<Card> printedCards = printer.PrintStackFromAbilities(_player.GrantedAbilities);
+            CardsInDeck  = new ObservableCollection<Card>(printedCards);
         }
 
         public void Start()
@@ -47,7 +47,7 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
 
         public void DrawCards(int amountOfCards)
         {
-            CardView cardView;
+            Card cardView;
             // TODO: Probably should loop through in case individual cards trigger abilities as they are drawn.
 
             for (int amountDrawn = 0; amountDrawn < amountOfCards;)
@@ -70,7 +70,7 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
                 ++amountDrawn;
             }
         }
-        public void PlayCard(CardView cardView, IEnumerable<AbilitySystemComponent> targets)
+        public void PlayCard(Card cardView, IEnumerable<AbilitySystemComponent> targets)
         {
             if (Mana < cardView.playableCard.ManaCost)
             {
@@ -91,7 +91,7 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
         /// Discard a specific card from hand.
         /// </summary>
         /// <param name="cardView"></param>
-        public void DiscardCard(CardView cardView)
+        public void DiscardCard(Card cardView)
         {
             CardsDrawn.Remove(cardView);
             CardsDiscarded.Add(cardView);
@@ -105,7 +105,7 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
         {
             for (int i = 0; i < amountOfCards; i++)
             {
-                CardView cardView = CardsDrawn[0];
+                Card cardView = CardsDrawn[0];
                 CardsDrawn.Remove(cardView);
                 CardsDiscarded.Add(cardView);
             }
@@ -115,9 +115,9 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
         /// Discard specific cards in hand.
         /// </summary>
         /// <param name="cards"></param>
-        public void DiscardCards(List<CardView> cards)
+        public void DiscardCards(List<Card> cards)
         {
-            foreach (CardView card in cards)
+            foreach (Card card in cards)
             {
                 CardsDrawn.Remove(card);
                 CardsDiscarded.Add(card);
@@ -131,7 +131,7 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
                 return false;
             }
 
-            foreach (CardView card in CardsDiscarded.ToList())
+            foreach (Card card in CardsDiscarded.ToList())
             {
                 CardsDiscarded.Remove(card);
                 CardsInDeck.Add(card);

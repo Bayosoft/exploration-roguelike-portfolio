@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 3332081181953840401}
   - component: {fileID: 7189007905484694347}
   m_Layer: 5
-  m_Name: Card
+  m_Name: DrawnCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

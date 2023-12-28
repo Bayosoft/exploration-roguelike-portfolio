@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 
 namespace ExplorationRoguelike.GUI.Card
 {
-    public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler, IPointerClickHandler
+    public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler, IPointerClickHandler
     {
         [NonSerialized] public IPlayableCard playableCard;
 

@@ -9,18 +9,18 @@ namespace ExplorationRoguelike.GUI.Card
     {
         public GameObject cardPrefab;
 
-        public IEnumerable<CardView> PrintStackFromAbilities(IEnumerable<GameplayAbility> abilities)
+        public IEnumerable<Card> PrintStackFromAbilities(IEnumerable<GameplayAbility> abilities)
         {
-            List<CardView> cards = new(); // Logic of the cards
+            List<Card> cards = new();
 
             foreach (var ability in abilities.Cast<IPlayableCard>())
             {
-                var cardView = Instantiate(cardPrefab);
+                var cardObject = Instantiate(cardPrefab);
 
-                var cardComponent = cardView.GetComponent<CardView>();
-                cardComponent.Initialize(ability);
+                var card = cardObject.GetComponent<Card>();
+                card.Initialize(ability);
 
-                cards.Add(cardComponent);
+                cards.Add(card);
             }
 
             return cards;
