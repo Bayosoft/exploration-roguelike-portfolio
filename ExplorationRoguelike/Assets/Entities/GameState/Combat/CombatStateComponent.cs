@@ -62,20 +62,20 @@ namespace ExplorationRoguelike.Combat
         // Start is called before the first frame update
         void Start()
         {
+            playerTurnComponent.CardDeckComponent.InstantiateCards();
             playerTurnComponent.CardDeckComponent.CardsDrawn.CollectionChanged += UpdateCards;
             playerTurnComponent.CardDeckComponent.OnManaChanged += UpdateMana;
             enemyTurnComponent.NpcCombatComponent.OnDeclaredIntent += UpdateEnemyIntent;
 
             SpawnHealthViews();
             StartCombat();
-
         }
-        public void Initialize(GameObject playerPrefab, GameObject enemyPrefab)
+
+        public void Initialize(Player player, GameObject enemyPrefab)
         {
-            var playerInstance = Instantiate(playerPrefab);
             var enemyInstance = Instantiate(enemyPrefab);
 
-            player = playerInstance.GetComponent<Player>();
+            this.player = player;
             enemies.Add(enemyInstance.GetComponent<CombatNpc>());
             
             playerTurnComponent = (PlayerTurnComponent)player.TurnComponent;

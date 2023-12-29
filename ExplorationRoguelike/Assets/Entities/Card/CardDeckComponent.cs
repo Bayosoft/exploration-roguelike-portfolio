@@ -1,7 +1,9 @@
+using ExplorationRoguelike.AbilitySystem.Abilities;
 using ExplorationRoguelike.GUI.Card;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -14,14 +16,14 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
         public int MaxMana { get; private set; } = 4;
 
         private int _mana;
-        public int Mana 
-        { 
-            get { return _mana; } 
+        public int Mana
+        {
+            get { return _mana; }
             private set
             {
                 _mana = value;
                 OnManaChanged?.Invoke(this, _mana);
-            } 
+            }
         }
         public event EventHandler<int> OnManaChanged;
 
@@ -36,8 +38,20 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
         {
             _player = GetComponent<AbilitySystemComponent>();
 
+            CardsInDeck = new ObservableCollection<Card>();
+            CardsDrawn = new ObservableCollection<Card>();
+            CardsDiscarded = new ObservableCollection<Card>();
+            CardsShattered = new ObservableCollection<Card>();
+
+            // IEnumerable<Card> printedCards = printer.PrintStackFromAbilities(_player.GrantedAbilities);
+
+            //CardsInDeck  = new ObservableCollection<Card>(printedCards);
+        }
+
+        public void InstantiateCards()
+        {
             IEnumerable<Card> printedCards = printer.PrintStackFromAbilities(_player.GrantedAbilities);
-            CardsInDeck  = new ObservableCollection<Card>(printedCards);
+            CardsInDeck.AddRange(printedCards);
         }
 
         public void Start()
@@ -47,14 +61,14 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
 
         public void DrawCards(int amountOfCards)
         {
-            Card cardView;
+            Card card;
             // TODO: Probably should loop through in case individual cards trigger abilities as they are drawn.
 
             for (int amountDrawn = 0; amountDrawn < amountOfCards;)
             {
-                if(CardsInDeck.Count == 0)
+                if (CardsInDeck.Count == 0)
                 {
-                   var shuffled = TryShuffle();
+                    var shuffled = TryShuffle();
 
                     if (!shuffled)
                     {
@@ -62,10 +76,10 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
                     }
                 }
 
-                cardView = CardsInDeck.First();
+                card = CardsInDeck.First();
 
-                CardsInDeck.Remove(cardView);
-                CardsDrawn.Add(cardView);
+                CardsInDeck.Remove(card);
+                CardsDrawn.Add(card);
 
                 ++amountDrawn;
             }
@@ -76,14 +90,14 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
             {
                 return;
             }
-            
+
             var successfullyPlayed = _player.TryActivateAbility(cardView.playableCard.GameplayAbility, targets);
 
             if (!successfullyPlayed)
             {
                 return;
             }
-            
+
             Mana -= cardView.playableCard.ManaCost; // replace with event on IPlayableCard that fires on Activate entry.
             DiscardCard(cardView);
         }
@@ -126,7 +140,7 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
 
         public bool TryShuffle()
         {
-            if(CardsDiscarded.Count == 0)
+            if (CardsDiscarded.Count == 0)
             {
                 return false;
             }

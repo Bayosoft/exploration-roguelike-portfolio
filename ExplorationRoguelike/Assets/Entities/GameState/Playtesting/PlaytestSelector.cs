@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using ExplorationRoguelike.AbilitySystem.Abilities;
 using ExplorationRoguelike.Characters;
 using ExplorationRoguelike.Characters.NonPlayerCharacters;
 using ExplorationRoguelike.Characters.PlayerCharacter;
@@ -40,21 +39,32 @@ namespace ExplorationRoguelike
         public void OnWeakDeckClick()
         {
             player.CharacterData.Abilities.Clear();
-            player.CharacterData.Abilities.AddRange(weakDeck.abilities);
+
+            foreach (GameplayAbility ability in weakDeck.abilities)
+            {
+                player.CharacterData.GrantAbility(ability);
+            }
+
             DeckSelected();
         }
         
         public void OnAverageDeckClick()
         {
             player.CharacterData.Abilities.Clear();
-            player.CharacterData.Abilities.AddRange(averageDeck.abilities); 
+            foreach (GameplayAbility ability in averageDeck.abilities)
+            {
+                player.CharacterData.GrantAbility(ability);
+            }
             DeckSelected();
         }
 
         public void OnStrongDeckClick()
         {
             player.CharacterData.Abilities.Clear();
-            player.CharacterData.Abilities.AddRange(strongDeck.abilities);
+            foreach (GameplayAbility ability in strongDeck.abilities)
+            {
+                player.CharacterData.GrantAbility(ability);
+            }
             DeckSelected();
         }
 

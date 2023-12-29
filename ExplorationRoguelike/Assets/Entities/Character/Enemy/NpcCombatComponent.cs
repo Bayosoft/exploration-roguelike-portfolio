@@ -2,6 +2,7 @@ using ExplorationRoguelike.AbilitySystem;
 using ExplorationRoguelike.AbilitySystem.Abilities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace ExplorationRoguelike.Combat
@@ -16,7 +17,7 @@ namespace ExplorationRoguelike.Combat
         public void Awake()
         {
             _npc = GetComponent<AbilitySystemComponent>();
-            abilities = _npc.GrantedAbilities;
+            abilities = _npc.GrantedAbilities.ToList();
         }
         internal void ExecuteIntent(GameplayAbility declaredAbility, IEnumerable<AbilitySystemComponent> targets)
         {

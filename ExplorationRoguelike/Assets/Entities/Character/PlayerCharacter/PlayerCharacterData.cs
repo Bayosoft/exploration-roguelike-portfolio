@@ -1,3 +1,4 @@
+using ExplorationRoguelike.Characters.PlayerCharacter;
 using JetBrains.Annotations;
 using UnityEngine;
 

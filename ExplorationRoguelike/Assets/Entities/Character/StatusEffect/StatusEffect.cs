@@ -1,12 +1,10 @@
 using System;
-using ExplorationRoguelike.Combat.Events;
 using ExplorationRoguelike.GameplayEffects;
-using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace ExplorationRoguelike.GUI.Character
+namespace ExplorationRoguelike.Characters
 {
     public class StatusEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {

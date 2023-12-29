@@ -79,6 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 5660111992492341691}
+  CharacterData: {fileID: 0}
 --- !u!114 &7861583019040378717
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,5 @@
-using System.Collections.Generic;
-using ExplorationRoguelike.Characters.NonPlayerCharacters;
+using ExplorationRoguelike.AbilitySystem;
+using ExplorationRoguelike.Characters;
 using ExplorationRoguelike.Characters.PlayerCharacter;
 using ExplorationRoguelike.Combat;
 using UnityEngine;
@@ -9,20 +9,33 @@ namespace ExplorationRoguelike
 {
     public class GameState : MonoBehaviour
     {
-        private CombatStateComponent _combatStateComponent;
         public GameObject player;
         public GameObject enemy;
         public GameObject gameOverlay;
 
+        private Player _playerInstance;
+
+        private PlayerStatusEffectDisplayer _playerStatusEffectDisplayer;
+        private CombatStateComponent _combatStateComponent;
+
         void Awake()
         {
             DontDestroyOnLoad(this);
-            Instantiate(player);
+
+            _playerInstance = Instantiate(player).GetComponent<Player>();
+
+            DontDestroyOnLoad(_playerInstance);
             DontDestroyOnLoad(gameOverlay);
 
-            UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
-        
+
+        private void Start()
+        {
+            _playerStatusEffectDisplayer = FindAnyObjectByType<PlayerStatusEffectDisplayer>();
+            _playerStatusEffectDisplayer.Initialize(_playerInstance);
+        }
+
         public void SetCombat(GameObject enemyPrefab)
         {
             enemy = enemyPrefab;
@@ -34,14 +47,9 @@ namespace ExplorationRoguelike
             if (scene.name == "CombatScene")
             {
                 _combatStateComponent = FindAnyObjectByType<CombatStateComponent>();
-                InitializeCombat();
+
+                _combatStateComponent.Initialize(_playerInstance, enemy);
             }
         }
-        private void InitializeCombat()
-        {
-            _combatStateComponent.Initialize(player, enemy);
-        }
-
-
     }
 }

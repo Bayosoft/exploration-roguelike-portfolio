@@ -1,3 +1,4 @@
+using ExplorationRoguelike.Characters;
 using ExplorationRoguelike.Combat;
 using UnityEngine;
 

@@ -6,13 +6,15 @@ using ExplorationRoguelike.GameplayEffects;
 using System.Collections.Generic;
 using ExplorationRoguelike.GameplayTags;
 using UnityEngine;
+using System.Collections.ObjectModel;
+
 namespace ExplorationRoguelike.AbilitySystem
 {
     public class AbilitySystemComponent : MonoBehaviour
     {
         [SerializeField]
         private Character owner;
-        public List<GameplayAbility> GrantedAbilities => owner.CharacterData.Abilities;
+        public ObservableCollection<GameplayAbility> GrantedAbilities; // Back to List that refers to owner.CharacterData.Abilities?
         public GameplayTagContainer ActiveGameplayTags { get; }
         public GameplayTagContainer OwnedGameplayTags { get; private set; }
 
@@ -26,7 +28,14 @@ namespace ExplorationRoguelike.AbilitySystem
 
         private void Awake()
         {
+            GrantedAbilities = new(owner.CharacterData.Abilities);
+            owner.CharacterData.AbilityGranted += OnAbilityGranted;
             ActiveGameplayEffects = new ActiveGameplayEffectContainer(this);
+        }
+
+        private void OnAbilityGranted(object sender, AbilityGrantedEventArgs e)
+        {
+            GrantedAbilities.Add(e.GrantedAbility);
         }
 
         // In case levels are a thing

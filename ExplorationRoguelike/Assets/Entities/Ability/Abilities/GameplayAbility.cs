@@ -20,6 +20,8 @@ namespace ExplorationRoguelike.AbilitySystem.Abilities
     public abstract class GameplayAbility : ScriptableObject, IDescribable
     {
         public new string name;
+        
+        public bool IsUnique;
         public AbilityType abilityType;
         
         [FormerlySerializedAs("tags")]

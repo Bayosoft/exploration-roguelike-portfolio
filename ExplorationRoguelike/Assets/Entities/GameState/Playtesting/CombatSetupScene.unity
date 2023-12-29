@@ -2201,7 +2201,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2084882762}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 354764da0af434b459280eb69e8c1ef1, type: 3}
+  m_Script: {fileID: 11500000, guid: 77db6c2023cbbfe4e83e3b27800fb302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   statusEffectPrefab: {fileID: 8097500327302776517, guid: 1bcefe4646897ed4b92f2b33ab622737, type: 3}

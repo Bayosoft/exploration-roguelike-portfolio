@@ -1,6 +1,6 @@
 using ExplorationRoguelike.AbilitySystem.CardSystem;
+using ExplorationRoguelike.Characters;
 using ExplorationRoguelike.Combat;
-using UnityEditor.U2D.Animation;
 using UnityEngine;
 
 namespace ExplorationRoguelike.Characters.PlayerCharacter
