@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 using System;
+using ExplorationRoguelike.GameplayEffects;
 
 namespace ExplorationRoguelike.Characters
 {
@@ -24,6 +25,7 @@ namespace ExplorationRoguelike.Characters
         [SerializeField]
         private List<GameplayAbility> abilities;
         public List<GameplayAbility> Abilities => abilities;
+
         public event EventHandler<AbilityGrantedEventArgs> AbilityGranted;
 
         public void GrantAbility(GameplayAbility ability)
@@ -40,5 +42,7 @@ namespace ExplorationRoguelike.Characters
         [SerializeField][CanBeNull]
         private CharacterHealth health;
         public virtual CharacterHealth Health => health;
+
+        public ActiveGameplayEffectContainer ActiveGameplayEffects;
     }
 }

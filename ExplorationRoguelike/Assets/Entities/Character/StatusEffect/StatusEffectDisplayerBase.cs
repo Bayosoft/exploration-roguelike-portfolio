@@ -13,8 +13,6 @@ namespace ExplorationRoguelike.Characters
     {
         [SerializeField] protected GameObject statusEffectPrefab;
 
-        protected AbilitySystemComponent _characterAbilitySystem;
-
         public ObservableCollection<GameObject> StatusEffects { get; set; }
 
         public void Awake()
@@ -23,9 +21,7 @@ namespace ExplorationRoguelike.Characters
         }
         public void Initialize(Character character)
         {
-            _characterAbilitySystem = character.AbilitySystemComponent;
-
-            _characterAbilitySystem.ActiveGameplayEffects.ActiveEffects.CollectionChanged +=
+            character.CharacterData.ActiveGameplayEffects.ActiveEffects.CollectionChanged +=
             PrintStatusEffect;
         }
 

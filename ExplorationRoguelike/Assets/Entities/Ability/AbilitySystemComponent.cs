@@ -18,8 +18,6 @@ namespace ExplorationRoguelike.AbilitySystem
         public GameplayTagContainer ActiveGameplayTags { get; }
         public GameplayTagContainer OwnedGameplayTags { get; private set; }
 
-        public ActiveGameplayEffectContainer ActiveGameplayEffects;
-
         private AbilitySystemComponent()
         {
             ActiveGameplayTags = new GameplayTagContainer();
@@ -30,7 +28,7 @@ namespace ExplorationRoguelike.AbilitySystem
         {
             GrantedAbilities = new(owner.CharacterData.Abilities);
             owner.CharacterData.AbilityGranted += OnAbilityGranted;
-            ActiveGameplayEffects = new ActiveGameplayEffectContainer(this);
+            owner.CharacterData.ActiveGameplayEffects = new ActiveGameplayEffectContainer(this);
         }
 
         private void OnAbilityGranted(object sender, AbilityGrantedEventArgs e)
@@ -72,7 +70,7 @@ namespace ExplorationRoguelike.AbilitySystem
 
         public int CalculateAggregatedModifiers(float value, in GameplayTagContainer valueTags, GameplayTagContainer dynamicTags = null)
         {
-            foreach (ActiveGameplayEffect activeEffect in ActiveGameplayEffects)
+            foreach (ActiveGameplayEffect activeEffect in owner.CharacterData.ActiveGameplayEffects)
             {
                 if (activeEffect.IsInhibited)
                 {
@@ -163,7 +161,7 @@ namespace ExplorationRoguelike.AbilitySystem
             else
             {
                 // Apply the effect to the active effects
-                appliedHandle = ActiveGameplayEffects.ApplyGameplayEffectSpec(effectSpec);
+                appliedHandle = owner.CharacterData.ActiveGameplayEffects.ApplyGameplayEffectSpec(effectSpec);
                 // If it's periodic and should execute periodics immediately, do so
 
                 if (effectSpec.EffectSo.isPeriodic && effectSpec.EffectSo.executePeriodicImmediately)
@@ -181,7 +179,7 @@ namespace ExplorationRoguelike.AbilitySystem
         // Removes all active gameplay effects with given asset tags.
         public void RemoveGameplayEffectsWithAssetTags(GameplayTagContainer tags)
         {
-            ActiveGameplayEffects.RemoveGameplayEffectsWithAssetTags(tags);
+            owner.CharacterData.ActiveGameplayEffects.RemoveGameplayEffectsWithAssetTags(tags);
         }
 
         // Execute instant gameplay effect 

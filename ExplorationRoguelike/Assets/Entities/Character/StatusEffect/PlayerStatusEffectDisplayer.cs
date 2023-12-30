@@ -13,7 +13,6 @@ namespace ExplorationRoguelike.Characters
 
         protected override void AddStatusEffect(ActiveGameplayEffect addedEffect)
         {
-
             var effectObject = Instantiate(statusEffectPrefab, gameObject.transform, true);
             effectObject.transform.localScale = Vector2.one;
             effectObject.transform.localPosition = Vector2.one;

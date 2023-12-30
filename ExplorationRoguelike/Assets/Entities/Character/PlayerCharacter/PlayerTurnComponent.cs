@@ -1,6 +1,7 @@
 using ExplorationRoguelike.AbilitySystem;
 using ExplorationRoguelike.AbilitySystem.Abilities;
 using ExplorationRoguelike.AbilitySystem.CardSystem;
+using ExplorationRoguelike.Characters;
 using ExplorationRoguelike.Combat.Events;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,7 +35,8 @@ namespace ExplorationRoguelike.Combat
 
             var endTurnEventArgs = new EndTurnEventArgs(this);
             endTurnEvent.RaiseEvent(endTurnEventArgs);
-            Owner.ActiveGameplayEffects.OnTimeChanged(endTurnEventArgs);
+            // TODO: Refactor so that turn component's owner is Character directly.
+            Owner.GetComponent<Character>().CharacterData.ActiveGameplayEffects.OnTimeChanged(endTurnEventArgs);
         }
     }
 }
