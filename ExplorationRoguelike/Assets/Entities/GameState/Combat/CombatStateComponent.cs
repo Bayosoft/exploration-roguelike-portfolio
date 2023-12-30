@@ -38,7 +38,8 @@ namespace ExplorationRoguelike.Combat
         public Player player;
         public NpcTurnComponent enemyTurnComponent;
         public PlayerTurnComponent playerTurnComponent;
-      
+
+        public GameObject enemyPrefab;
         public GameObject cardPrefab;
         public GameObject healthPrefab;
         public TextMeshProUGUI manaText;
@@ -71,11 +72,13 @@ namespace ExplorationRoguelike.Combat
             StartCombat();
         }
 
-        public void Initialize(Player player, GameObject enemyPrefab)
+        public void Initialize(Player player, CharacterData enemyData)
         {
-            var enemyInstance = Instantiate(enemyPrefab);
-
             this.player = player;
+
+            var enemy = enemyPrefab.GetComponent<CombatNpc>();
+            enemy.CharacterData = enemyData;
+            var enemyInstance = Instantiate(enemyPrefab);
             enemies.Add(enemyInstance.GetComponent<CombatNpc>());
             
             playerTurnComponent = (PlayerTurnComponent)player.TurnComponent;

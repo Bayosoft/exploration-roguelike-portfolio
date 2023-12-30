@@ -6,9 +6,11 @@ using System.Linq;
 using ExplorationRoguelike.Combat.Events;
 using ExplorationRoguelike.GameplayTags;
 using UnityEngine;
+using System;
 
 namespace ExplorationRoguelike.GameplayEffects
 {
+    [Serializable]
     //  A container with accessors specific to active gameplay effects, such as telling it to remove effects by application of a given effect
     public class ActiveGameplayEffectContainer : IEnumerable
     {

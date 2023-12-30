@@ -23,11 +23,15 @@ namespace ExplorationRoguelike
         [SerializeField] private GameState gameState;
 
         private Player player;
-        [SerializeField] private GameObject enemyPrefab;
 
         public void Start()
         {
             player = FindAnyObjectByType<Player>();
+
+            if(SceneManager.GetActiveScene().name == "ExplorationSetupScene")
+            {
+                SceneManager.LoadScene("ExplorationScene");
+            }
         }
 
         public void DeckSelected()
@@ -69,32 +73,20 @@ namespace ExplorationRoguelike
         }
 
         public void OnWeakEnemyClick()
-        {
-            // set combat enemy 
-            var enemy = enemyPrefab.GetComponent<CombatNpc>();
-
-            enemy.CharacterData = weakEnemy;
-            
-            gameState.SetCombat(enemyPrefab);
+        {            
+            gameState.SetCombat(weakEnemy);
             SceneManager.LoadScene("CombatScene");
         }
         
         public void OnAverageEnemyClick()
         {
-            // set combat enemy 
-            var enemy = enemyPrefab.GetComponent<CombatNpc>();
-            enemy.CharacterData = averageEnemy;
-            gameState.SetCombat(enemyPrefab);
+            gameState.SetCombat(averageEnemy);
             SceneManager.LoadScene("CombatScene");
         }
 
         public void OnBossEnemyClick()
         {
-            // set combat enemy 
-            
-            var enemy = enemyPrefab.GetComponent<CombatNpc>();
-            enemy.CharacterData = bossEnemy;
-            gameState.SetCombat(enemyPrefab);
+            gameState.SetCombat(bossEnemy);
             SceneManager.LoadScene("CombatScene");
         }
 

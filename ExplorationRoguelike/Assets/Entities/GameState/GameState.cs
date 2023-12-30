@@ -10,13 +10,15 @@ namespace ExplorationRoguelike
     public class GameState : MonoBehaviour
     {
         public GameObject player;
-        public GameObject enemy;
+        public CharacterData enemyData;
         public GameObject gameOverlay;
 
         private Player _playerInstance;
 
         private PlayerStatusEffectDisplayer _playerStatusEffectDisplayer;
+
         private CombatStateComponent _combatStateComponent;
+        private ExplorationStateComponent _explorationStateComponent;
 
         void Awake()
         {
@@ -36,9 +38,9 @@ namespace ExplorationRoguelike
             _playerStatusEffectDisplayer.Initialize(_playerInstance);
         }
 
-        public void SetCombat(GameObject enemyPrefab)
+        public void SetCombat(CharacterData enemyData)
         {
-            enemy = enemyPrefab;
+            this.enemyData = enemyData;
         }
         
         // called second
@@ -48,7 +50,13 @@ namespace ExplorationRoguelike
             {
                 _combatStateComponent = FindAnyObjectByType<CombatStateComponent>();
 
-                _combatStateComponent.Initialize(_playerInstance, enemy);
+                _combatStateComponent.Initialize(_playerInstance, enemyData);
+            }
+            if(scene.name == "ExplorationScene")
+            {
+                _explorationStateComponent = FindAnyObjectByType<ExplorationStateComponent>();
+
+                // TODO: I guess irrelevant if im refactoring this whole thing anyway.
             }
         }
     }

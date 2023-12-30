@@ -579,6 +579,7 @@ MonoBehaviour:
   player: {fileID: 0}
   enemyTurnComponent: {fileID: 0}
   playerTurnComponent: {fileID: 0}
+  enemyPrefab: {fileID: 5612204403386450629, guid: 4f14c8c8f8961074fa334e3dd1776d80, type: 3}
   cardPrefab: {fileID: 2796258955135256527, guid: 6c2997fd00c048147961645af76a8b2f, type: 3}
   healthPrefab: {fileID: 9191561106690347280, guid: c2e70258d05c0064c9df492cc61dab4b, type: 3}
   manaText: {fileID: 1194741969}
