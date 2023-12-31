@@ -25,6 +25,7 @@ namespace ExplorationRoguelike.GameplayEffects
     public class GameplayEffect : ScriptableObject
     {
         public new string name;
+        public Sprite effectSprite;
         public string description; // Should be of same type as card description.
 
         public GameplayDurationType durationType;

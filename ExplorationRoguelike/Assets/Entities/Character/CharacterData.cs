@@ -8,7 +8,7 @@ using ExplorationRoguelike.GameplayEffects;
 namespace ExplorationRoguelike.Characters
 {
     [CreateAssetMenu(fileName = "Character", menuName = "Character/New Character")]
-    public class CharacterData : ScriptableObject
+    public class CharacterData : ScriptableObject, IAbilityEntity
     {
         [SerializeField]
         private new string name;

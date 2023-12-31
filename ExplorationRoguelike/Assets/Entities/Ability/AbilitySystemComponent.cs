@@ -12,8 +12,7 @@ namespace ExplorationRoguelike.AbilitySystem
 {
     public class AbilitySystemComponent : MonoBehaviour
     {
-        [SerializeField]
-        private Character owner;
+        private CharacterData owner;
         public ObservableCollection<GameplayAbility> GrantedAbilities; // Back to List that refers to owner.CharacterData.Abilities?
         public GameplayTagContainer ActiveGameplayTags { get; }
         public GameplayTagContainer OwnedGameplayTags { get; private set; }
@@ -26,9 +25,11 @@ namespace ExplorationRoguelike.AbilitySystem
 
         private void Awake()
         {
-            GrantedAbilities = new(owner.CharacterData.Abilities);
-            owner.CharacterData.AbilityGranted += OnAbilityGranted;
-            owner.CharacterData.ActiveGameplayEffects = new ActiveGameplayEffectContainer(this);
+            owner = GetComponent<Character>().CharacterData;
+
+            GrantedAbilities = new(owner.Abilities);
+            owner.AbilityGranted += OnAbilityGranted;
+            owner.ActiveGameplayEffects = new ActiveGameplayEffectContainer(this);
         }
 
         private void OnAbilityGranted(object sender, AbilityGrantedEventArgs e)
@@ -70,7 +71,7 @@ namespace ExplorationRoguelike.AbilitySystem
 
         public int CalculateAggregatedModifiers(float value, in GameplayTagContainer valueTags, GameplayTagContainer dynamicTags = null)
         {
-            foreach (ActiveGameplayEffect activeEffect in owner.CharacterData.ActiveGameplayEffects)
+            foreach (ActiveGameplayEffect activeEffect in owner.ActiveGameplayEffects)
             {
                 if (activeEffect.IsInhibited)
                 {
@@ -161,7 +162,7 @@ namespace ExplorationRoguelike.AbilitySystem
             else
             {
                 // Apply the effect to the active effects
-                appliedHandle = owner.CharacterData.ActiveGameplayEffects.ApplyGameplayEffectSpec(effectSpec);
+                appliedHandle = owner.ActiveGameplayEffects.ApplyGameplayEffectSpec(effectSpec);
                 // If it's periodic and should execute periodics immediately, do so
 
                 if (effectSpec.EffectSo.isPeriodic && effectSpec.EffectSo.executePeriodicImmediately)
@@ -179,7 +180,7 @@ namespace ExplorationRoguelike.AbilitySystem
         // Removes all active gameplay effects with given asset tags.
         public void RemoveGameplayEffectsWithAssetTags(GameplayTagContainer tags)
         {
-            owner.CharacterData.ActiveGameplayEffects.RemoveGameplayEffectsWithAssetTags(tags);
+            owner.ActiveGameplayEffects.RemoveGameplayEffectsWithAssetTags(tags);
         }
 
         // Execute instant gameplay effect 
