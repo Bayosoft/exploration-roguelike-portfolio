@@ -10,7 +10,7 @@ namespace ExplorationRoguelike
     public class GameState : MonoBehaviour
     {
         public GameObject player;
-        public CharacterData enemyData;
+        private CharacterData enemyData;
         public GameObject gameOverlay;
 
         private Player _playerInstance;

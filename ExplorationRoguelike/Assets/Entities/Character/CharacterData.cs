@@ -8,7 +8,7 @@ using ExplorationRoguelike.GameplayEffects;
 namespace ExplorationRoguelike.Characters
 {
     [CreateAssetMenu(fileName = "Character", menuName = "Character/New Character")]
-    public class CharacterData : ScriptableObject, IAbilityEntity
+    public class CharacterData : ScriptableObject, IAbilityData
     {
         [SerializeField]
         private new string name;
@@ -41,8 +41,14 @@ namespace ExplorationRoguelike.Characters
 
         [SerializeField][CanBeNull]
         private CharacterHealth health;
+
         public virtual CharacterHealth Health => health;
 
-        public ActiveGameplayEffectContainer ActiveGameplayEffects;
+        private ActiveGameplayEffectContainer activeGameplayEffects;
+        public ActiveGameplayEffectContainer ActiveGameplayEffects 
+        {
+            get => activeGameplayEffects; 
+            set => activeGameplayEffects = value; 
+        }
     }
 }

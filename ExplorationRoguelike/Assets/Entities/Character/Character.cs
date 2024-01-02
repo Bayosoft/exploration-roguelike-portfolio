@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ExplorationRoguelike.Characters
 {
-    public abstract class Character : MonoBehaviour
+    public abstract class Character : MonoBehaviour, IAbilityEntity
     {
         [SerializeField] protected CharacterData characterData;
 
@@ -15,5 +15,7 @@ namespace ExplorationRoguelike.Characters
 
         [SerializeField] private AbilitySystemComponent abilitySystemComponent;
         public AbilitySystemComponent AbilitySystemComponent => abilitySystemComponent;
+
+        public IAbilityData AbilityData { get => CharacterData; }
     }
 }

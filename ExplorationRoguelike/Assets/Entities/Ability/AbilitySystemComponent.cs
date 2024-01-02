@@ -12,7 +12,7 @@ namespace ExplorationRoguelike.AbilitySystem
 {
     public class AbilitySystemComponent : MonoBehaviour
     {
-        private CharacterData owner;
+        private IAbilityData owner;
         public ObservableCollection<GameplayAbility> GrantedAbilities; // Back to List that refers to owner.CharacterData.Abilities?
         public GameplayTagContainer ActiveGameplayTags { get; }
         public GameplayTagContainer OwnedGameplayTags { get; private set; }
@@ -25,10 +25,13 @@ namespace ExplorationRoguelike.AbilitySystem
 
         private void Awake()
         {
-            owner = GetComponent<Character>().CharacterData;
+            IAbilityEntity entity = GetComponent<IAbilityEntity>();
+
+            owner = entity.AbilityData;
 
             GrantedAbilities = new(owner.Abilities);
             owner.AbilityGranted += OnAbilityGranted;
+
             owner.ActiveGameplayEffects = new ActiveGameplayEffectContainer(this);
         }
 

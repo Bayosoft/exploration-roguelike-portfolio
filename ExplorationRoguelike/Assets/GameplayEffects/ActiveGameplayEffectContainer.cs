@@ -15,7 +15,7 @@ namespace ExplorationRoguelike.GameplayEffects
     public class ActiveGameplayEffectContainer : IEnumerable
     {
         public ObservableCollection<ActiveGameplayEffect> ActiveEffects;
-        private readonly AbilitySystemComponent _owner;
+        private AbilitySystemComponent _owner;
 
         public ActiveGameplayEffectContainer(AbilitySystemComponent owner)
         {
