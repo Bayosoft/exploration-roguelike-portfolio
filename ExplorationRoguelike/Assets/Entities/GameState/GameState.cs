@@ -2,6 +2,7 @@ using ExplorationRoguelike.AbilitySystem;
 using ExplorationRoguelike.Characters;
 using ExplorationRoguelike.Characters.PlayerCharacter;
 using ExplorationRoguelike.Combat;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,6 +20,8 @@ namespace ExplorationRoguelike
 
         private CombatStateComponent _combatStateComponent;
         private ExplorationStateComponent _explorationStateComponent;
+        private DialogueStateComponent _dialogueStateComponent;
+        private MultiChoiceOptionData choiceData;
 
         void Awake()
         {
@@ -41,8 +44,15 @@ namespace ExplorationRoguelike
         public void SetCombat(CharacterData enemyData)
         {
             this.enemyData = enemyData;
+            SceneManager.LoadScene("CombatScene");
         }
-        
+
+        public void SetDialogue(MultiChoiceOptionData choiceData) /* Replace with DialogueData which holds all the dialogue, choices, and sprites */
+        {
+            this.choiceData = choiceData;
+            SceneManager.LoadScene("DialogueScene");
+        }
+
         // called second
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
@@ -56,6 +66,13 @@ namespace ExplorationRoguelike
             {
                 _explorationStateComponent = FindAnyObjectByType<ExplorationStateComponent>();
 
+                // TODO: I guess irrelevant if im refactoring this whole thing anyway.
+            }
+            if (scene.name == "DialogueScene")
+            {
+                _dialogueStateComponent = FindAnyObjectByType<DialogueStateComponent>();
+
+                _dialogueStateComponent.LoadDialogue(new List<MultiChoiceOptionData>() { choiceData });
                 // TODO: I guess irrelevant if im refactoring this whole thing anyway.
             }
         }

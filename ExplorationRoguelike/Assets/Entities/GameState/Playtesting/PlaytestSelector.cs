@@ -17,6 +17,8 @@ namespace ExplorationRoguelike
         [SerializeField] private CharacterData averageEnemy;
         [SerializeField] private CharacterData bossEnemy;
 
+        [SerializeField] private MultiChoiceOptionData multiChoiceData;
+
         [SerializeField] private GameObject deckButtons;
         [SerializeField] private GameObject enemyButtons;
 
@@ -31,6 +33,10 @@ namespace ExplorationRoguelike
             if(SceneManager.GetActiveScene().name == "ExplorationSetupScene")
             {
                 SceneManager.LoadScene("ExplorationScene");
+            }
+            if(SceneManager.GetActiveScene().name == "MultiChoiceSetupScene")
+            {
+                gameState.SetDialogue(multiChoiceData);
             }
         }
 
@@ -75,19 +81,16 @@ namespace ExplorationRoguelike
         public void OnWeakEnemyClick()
         {            
             gameState.SetCombat(weakEnemy);
-            SceneManager.LoadScene("CombatScene");
         }
         
         public void OnAverageEnemyClick()
         {
             gameState.SetCombat(averageEnemy);
-            SceneManager.LoadScene("CombatScene");
         }
 
         public void OnBossEnemyClick()
         {
             gameState.SetCombat(bossEnemy);
-            SceneManager.LoadScene("CombatScene");
         }
 
     }
