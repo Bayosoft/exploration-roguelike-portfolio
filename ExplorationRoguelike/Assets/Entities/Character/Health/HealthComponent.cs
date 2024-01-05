@@ -2,15 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ExplorationRoguelike.Characters.PlayerCharacter;
+using ExplorationRoguelike.Characters.PlayerCharacter.Events;
 using UnityEngine;
 
 namespace ExplorationRoguelike.Characters
 {
     public class HealthComponent : MonoBehaviour
     {
+        protected Character owner;
+
         protected float maxHealth;
         public float MaxHealth => maxHealth;
         public event EventHandler<float> OnHealthChanged;
+        
+        public ScriptableEvent onDeathEvent;
 
         private float _currentHealth;
         public float CurrentHealth
@@ -32,7 +37,8 @@ namespace ExplorationRoguelike.Characters
 
         public virtual void Awake()
         {
-            var health = GetComponent<Character>().CharacterData.Health;
+            owner = GetComponent<Character>();
+            var health = owner.CharacterData.Health;
             maxHealth = health.maxHealth;
             _currentHealth = health.maxHealth;
         }
@@ -44,11 +50,11 @@ namespace ExplorationRoguelike.Characters
 
         public virtual void OnDeath()
         {
-            var character = GetComponent<Character>();
-
-            var characterName = (character ? character.CharacterData.Name : gameObject.name);
+            var characterName = (owner ? owner.CharacterData.Name : gameObject.name);
             Debug.Log($"{characterName} died.");
-            // die
+
+            var onDeathEventArgs = new OnDeathEventArgs(owner);
+            onDeathEvent.RaiseEvent(onDeathEventArgs);
         }
     }
 }

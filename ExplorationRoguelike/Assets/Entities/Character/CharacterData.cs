@@ -50,5 +50,10 @@ namespace ExplorationRoguelike.Characters
             get => activeGameplayEffects; 
             set => activeGameplayEffects = value; 
         }
+
+        [SerializeField]
+        [CanBeNull]
+        private LootTable lootTable;
+        public LootTable LootTable => lootTable;
     }
 }

@@ -3,6 +3,7 @@ using ExplorationRoguelike.AbilitySystem.Abilities;
 using ExplorationRoguelike.Characters;
 using ExplorationRoguelike.Characters.NonPlayerCharacters;
 using ExplorationRoguelike.Characters.PlayerCharacter;
+using ExplorationRoguelike.Characters.PlayerCharacter.Events;
 using ExplorationRoguelike.Combat.Events;
 using ExplorationRoguelike.GUI.Card;
 using ExplorationRoguelike.GUI.Character;
@@ -205,11 +206,29 @@ namespace ExplorationRoguelike.Combat
             var combatEventArgs = eventArgs.ValidateEventArgs<CombatEventArgs>(this);
 
         }
-        public void OnDeath<T>(T deadCombatant)
+        public void OnDeath(ConcreteEventArgs eventArgs)
         {
-            if (deadCombatant is Player)
+            OnDeathEventArgs onDeathEventArgs = eventArgs.ValidateEventArgs<OnDeathEventArgs>();
+            if (onDeathEventArgs.DeadCharacter is Player)
             {
                 _currentState = CombatState.Lost;
+            }
+            else if (onDeathEventArgs.DeadCharacter is CombatNpc combatNpc) 
+            {
+                EndCombat();
+            }
+        }
+
+        [SerializeField]
+        private GameObject lootBag;
+        public void EndCombat()
+        {
+            if (enemies[0].CharacterData.LootTable != null)
+            {
+                var bagInstance = Instantiate(lootBag);
+                bagInstance.transform.SetParent(this.transform);
+
+                bagInstance.GetComponent<Lootbag>().Initialize(enemies[0].CharacterData.LootTable);
             }
         }
     }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9206238031483290144}
   - component: {fileID: 7861583019040378717}
   - component: {fileID: 9183813431817207782}
+  - component: {fileID: 5089698862356824848}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -65,7 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d4f80f75c4a30478c9c3f4cccc5414, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onPlayerDeathEvent: {fileID: 11400000, guid: 05064ccfd312b4e4ab6a6b924992497b, type: 2}
+  onDeathEvent: {fileID: 11400000, guid: 05064ccfd312b4e4ab6a6b924992497b, type: 2}
 --- !u!114 &9206238031483290144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,8 +79,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0a04c7ac73c84f4682426adca016fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 5660111992492341691}
-  CharacterData: {fileID: 0}
 --- !u!114 &7861583019040378717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,3 +106,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   printer: {fileID: 11400000, guid: 2157d38e25b53c14a9c44035dcd38d8c, type: 2}
+--- !u!114 &5089698862356824848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9206238031483290149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7064ddd56e43c4dbab5de1e2cf28ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

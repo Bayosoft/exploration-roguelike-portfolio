@@ -8,7 +8,7 @@ namespace ExplorationRoguelike.Characters
     {
         public void Start()
         {
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(transform.parent);
         }
 
         protected override void AddStatusEffect(ActiveGameplayEffect addedEffect)

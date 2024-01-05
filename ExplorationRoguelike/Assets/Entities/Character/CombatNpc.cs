@@ -12,9 +12,10 @@ namespace ExplorationRoguelike.Characters.NonPlayerCharacters
         [SerializeField]
         private NpcTurnComponent turnComponent;
         public TurnComponent TurnComponent => turnComponent;
-        
+
         [SerializeField]
         private NpcCombatComponent npcCombatComponent;
         public NpcCombatComponent NpcCombatComponent => npcCombatComponent;
+
     }
 }

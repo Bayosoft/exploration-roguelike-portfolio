@@ -53,6 +53,7 @@ MonoBehaviour:
   healthComponent: {fileID: 7391135013950234280}
   turnComponent: {fileID: 95701396686375421}
   npcCombatComponent: {fileID: 594199252236119613}
+  lootTable: {fileID: 0}
 --- !u!114 &7391135013950234280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,6 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea3ea8451b3c94540bb9fe8537cd373b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onDeathEvent: {fileID: 11400000, guid: f8bc143ea8c40c74eb95a8de2c11f666, type: 2}
 --- !u!114 &3116688327760132695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,7 +79,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0a04c7ac73c84f4682426adca016fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 11400000, guid: 48ccfb445900fb94ebeab30132800215, type: 2}
 --- !u!114 &95701396686375421
 MonoBehaviour:
   m_ObjectHideFlags: 0
