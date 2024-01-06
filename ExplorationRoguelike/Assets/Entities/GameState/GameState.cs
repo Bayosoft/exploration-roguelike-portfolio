@@ -17,6 +17,7 @@ namespace ExplorationRoguelike
         private Player _playerInstance;
 
         private PlayerStatusEffectDisplayer _playerStatusEffectDisplayer;
+        private PlayerGoldDisplayer _playerGoldDisplayer;
 
         private CombatStateComponent _combatStateComponent;
         private ExplorationStateComponent _explorationStateComponent;
@@ -39,6 +40,9 @@ namespace ExplorationRoguelike
         {
             _playerStatusEffectDisplayer = FindAnyObjectByType<PlayerStatusEffectDisplayer>();
             _playerStatusEffectDisplayer.Initialize(_playerInstance);
+
+            _playerGoldDisplayer = FindAnyObjectByType<PlayerGoldDisplayer>();
+            _playerGoldDisplayer.Initialize(_playerInstance);
         }
 
         public void SetCombat(CharacterData enemyData)

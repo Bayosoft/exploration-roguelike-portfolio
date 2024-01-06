@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7861583019040378717}
   - component: {fileID: 9183813431817207782}
   - component: {fileID: 5089698862356824848}
+  - component: {fileID: 8934107606023374121}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -54,6 +55,7 @@ MonoBehaviour:
   healthComponent: {fileID: 7494087647512919820}
   turnComponent: {fileID: 7861583019040378717}
   cardDeckComponent: {fileID: 9183813431817207782}
+  inventoryComponent: {fileID: 5089698862356824848}
 --- !u!114 &7494087647512919820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,3 +120,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec7064ddd56e43c4dbab5de1e2cf28ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryData: {fileID: 11400000, guid: 00c96b0c107818a4fa000e84be715df8, type: 2}
+--- !u!114 &8934107606023374121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9206238031483290149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3422457e4efdcc4ba3de1c6e6c8d985, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  event: {fileID: 11400000, guid: a9cca9900c8f0ca44b350fbdd54fb756, type: 2}
+  onArgsEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5089698862356824848}
+        m_TargetAssemblyTypeName: ExplorationRoguelike.InventoryComponent, Assembly-CSharp
+        m_MethodName: OnRewardClaimed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls: []

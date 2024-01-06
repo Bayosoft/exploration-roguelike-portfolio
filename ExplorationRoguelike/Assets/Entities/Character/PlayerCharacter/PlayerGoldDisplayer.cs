@@ -1,4 +1,5 @@
 using ExplorationRoguelike.Characters;
+using ExplorationRoguelike.Characters.PlayerCharacter;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -10,10 +11,15 @@ namespace ExplorationRoguelike
     {
         [SerializeField]
         private TextMeshProUGUI goldText;
-        public void Initialize(Character character)
+        public void Initialize(Player player)
         {
-           /* character.CharacterData.ActiveGameplayEffects.ActiveEffects.CollectionChanged +=
-            PrintStatusEffect;*/
+            UpdateGold(null, player.InventoryComponent.GetGold());
+            player.InventoryComponent.OnGoldChanged += UpdateGold;
+        }
+
+        public void UpdateGold(object e, int amount)
+        {
+            goldText.text = $"{amount} Gold";
         }
     }
 }

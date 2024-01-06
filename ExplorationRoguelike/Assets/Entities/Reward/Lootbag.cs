@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using static ExplorationRoguelike.CurrencyItem;
 
 namespace ExplorationRoguelike
 {
@@ -15,8 +18,10 @@ namespace ExplorationRoguelike
             var lootInstance = Instantiate(lootItem);
 
             lootInstance.transform.SetParent(this.transform);
-            lootInstance.GetComponent<LootItem>().Initialize($"{gold} Gold", null);
 
+            var currencyItem = lootInstance.GetComponent<CurrencyItem>();
+
+            currencyItem.Initialize(gold, CurrencyType.Gold, null);
         }
     }
 }

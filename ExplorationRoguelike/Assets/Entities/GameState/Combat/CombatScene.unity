@@ -464,7 +464,7 @@ Canvas:
   m_GameObject: {fileID: 1000540532}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 475654516}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -586,7 +586,7 @@ MonoBehaviour:
   manaText: {fileID: 1194741969}
   enemyIntentText: {fileID: 1926773758}
   combatEvent: {fileID: 0}
-  lootBag: {fileID: 4440791835801482173, guid: a72380c9024afff43b916daf1a0d2e6b, type: 3}
+  lootBag: {fileID: 4204344674018462941, guid: c1dcb7f3ca2731e488ff335e64a391b1, type: 3}
 --- !u!114 &1000540541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -791,7 +791,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 412.54, y: 307}
+  m_AnchoredPosition: {x: 412.54004, y: 307}
   m_SizeDelta: {x: 259.46, y: 89.35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1762163825

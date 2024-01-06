@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 2974951541247020572}
   - component: {fileID: 6667584173690012899}
   - component: {fileID: 2761646543057996638}
-  - component: {fileID: 1313292951452934709}
+  - component: {fileID: 1284667748951262479}
+  - component: {fileID: 3019055771845089945}
   m_Layer: 5
-  m_Name: LootItem
+  m_Name: CurrencyItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -122,8 +123,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6667584173690012899}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &1313292951452934709
+      m_Calls:
+      - m_Target: {fileID: 3019055771845089945}
+        m_TargetAssemblyTypeName: ExplorationRoguelike.CurrencyItem, Assembly-CSharp
+        m_MethodName: OnClaimReward
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1284667748951262479
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,11 +145,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 1705169617682481909}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33dcf7d4d2535444fbc817eb1312ec00, type: 3}
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: {fileID: 7632009380665934581}
-  image: {fileID: 6928552597714940091}
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: 200
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
+--- !u!114 &3019055771845089945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705169617682481909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaeee61df1e6ec94ebb25c9e1fc9b799, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemName: {fileID: 7632009380665934581}
+  Image: {fileID: 6928552597714940091}
+  onClaimRewardEvent: {fileID: 11400000, guid: a9cca9900c8f0ca44b350fbdd54fb756, type: 2}
 --- !u!1 &3899890455957705673
 GameObject:
   m_ObjectHideFlags: 0

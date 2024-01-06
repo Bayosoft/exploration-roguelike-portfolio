@@ -24,5 +24,9 @@ namespace ExplorationRoguelike.Characters.PlayerCharacter
         [SerializeField]
         private CardDeckComponent cardDeckComponent;
         public CardDeckComponent CardDeckComponent => cardDeckComponent;
+
+        [SerializeField]
+        private InventoryComponent inventoryComponent;
+        public InventoryComponent InventoryComponent => inventoryComponent;
     }
 }
