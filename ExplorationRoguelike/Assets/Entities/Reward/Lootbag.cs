@@ -7,21 +7,27 @@ using static ExplorationRoguelike.CurrencyItem;
 
 namespace ExplorationRoguelike
 {
-    public class Lootbag : MonoBehaviour
+    public class LootBag : MonoBehaviour
     {
         [SerializeField]
-        private GameObject lootItem;
+        private GameObject currencyPrefab;
+
+        public Button nextButton;
 
         public void Initialize(LootTable loot)
         {
             int gold = loot.GetRandomGoldReward();
-            var lootInstance = Instantiate(lootItem);
 
-            lootInstance.transform.SetParent(this.transform);
+            if(gold > 0)
+            {
+                var currencyInstance = Instantiate(currencyPrefab);
 
-            var currencyItem = lootInstance.GetComponent<CurrencyItem>();
+                currencyInstance.transform.SetParent(this.transform);
 
-            currencyItem.Initialize(gold, CurrencyType.Gold, null);
+                var currencyItem = currencyInstance.GetComponent<CurrencyItem>();
+
+                currencyItem.Initialize(gold, CurrencyType.Gold, null);
+            }
         }
     }
 }

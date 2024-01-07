@@ -22,7 +22,9 @@ namespace ExplorationRoguelike
         }
         public override void OnClaimReward()
         {
-           onClaimRewardEvent.RaiseEvent(new OnClaimCurrencyRewardEventArgs(_amount, _currencyType));
+            onClaimRewardEvent.RaiseEvent(new OnClaimCurrencyRewardEventArgs(_amount, _currencyType));
+
+            Destroy(gameObject);
         }
     }
 }

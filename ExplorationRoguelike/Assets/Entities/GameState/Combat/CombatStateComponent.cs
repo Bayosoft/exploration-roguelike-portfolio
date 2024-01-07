@@ -7,12 +7,15 @@ using ExplorationRoguelike.Characters.PlayerCharacter.Events;
 using ExplorationRoguelike.Combat.Events;
 using ExplorationRoguelike.GUI.Card;
 using ExplorationRoguelike.GUI.Character;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace ExplorationRoguelike.Combat
 {
@@ -28,12 +31,12 @@ namespace ExplorationRoguelike.Combat
         };
 
         private CombatState _currentState;
-        public CombatState CurrentState 
-        { 
+        public CombatState CurrentState
+        {
             get => _currentState;
             private set => _currentState = value;
         }
-        
+
         //  public List<Enemy> Allies; Probably not implementing this.
         public List<CombatNpc> enemies;
         public Player player;
@@ -81,7 +84,7 @@ namespace ExplorationRoguelike.Combat
             enemy.CharacterData = enemyData;
             var enemyInstance = Instantiate(enemyPrefab);
             enemies.Add(enemyInstance.GetComponent<CombatNpc>());
-            
+
             playerTurnComponent = (PlayerTurnComponent)player.TurnComponent;
             enemyTurnComponent = (NpcTurnComponent)enemies[0].TurnComponent;
         }
@@ -158,7 +161,7 @@ namespace ExplorationRoguelike.Combat
             {
                 Card c = (Card)e.NewItems[0];
                 GameObject cardView = c.gameObject;
-                cardView.transform.parent = gameObject.transform;
+                cardView.transform.parent = transform;
                 cardView.transform.localPosition = new Vector2(CardViews.Count * 100, 0);
                 cardView.transform.localPosition = new Vector2(-300 + (CardViews.Count * 100), -350f);
                 cardView.transform.localScale = Vector2.one;
@@ -213,23 +216,35 @@ namespace ExplorationRoguelike.Combat
             {
                 _currentState = CombatState.Lost;
             }
-            else if (onDeathEventArgs.DeadCharacter is CombatNpc combatNpc) 
+            else if (onDeathEventArgs.DeadCharacter is CombatNpc combatNpc)
             {
                 EndCombat();
             }
         }
 
         [SerializeField]
-        private GameObject lootBag;
+        private GameObject lootBagPrefab;
         public void EndCombat()
         {
-            if (enemies[0].CharacterData.LootTable != null)
-            {
-                var bagInstance = Instantiate(lootBag);
-                bagInstance.transform.SetParent(this.transform);
+            var bagInstance = Instantiate(lootBagPrefab);
+            bagInstance.transform.SetParent(transform);
 
-                bagInstance.GetComponent<Lootbag>().Initialize(enemies[0].CharacterData.LootTable);
-            }
+            LootBag lootBag = bagInstance.GetComponent<LootBag>();
+            lootBag.Initialize(enemies[0].CharacterData.LootTable);
+
+            lootBag.nextButton.onClick.AddListener(ChangeGamestate);
+        }
+
+        private void ChangeGamestate()
+        {
+            SceneManager.LoadSceneAsync("ExplorationScene");
+        }
+
+        public void OnDestroy()
+        {
+            playerTurnComponent.CardDeckComponent.CardsDrawn.CollectionChanged -= UpdateCards;
+            playerTurnComponent.CardDeckComponent.OnManaChanged -= UpdateMana;
+            enemyTurnComponent.NpcCombatComponent.OnDeclaredIntent -= UpdateEnemyIntent;
         }
     }
 }
