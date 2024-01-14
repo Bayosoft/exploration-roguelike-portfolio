@@ -10,6 +10,7 @@ namespace ExplorationRoguelike
         private ExplorationTileSpawner tileSpawner;
 
         private GameState gameState;
+
         // Start is called before the first frame update
         void Start()
         {

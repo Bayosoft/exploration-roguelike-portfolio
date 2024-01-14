@@ -9,6 +9,13 @@ namespace ExplorationRoguelike
         [SerializeField]
         protected ScriptableEvent exploreTileEvent;
 
+        private bool explored;
+
         public abstract void ExploreTile();
+
+        public void OnExplored()
+        {
+            explored = true;
+        }
     }
 }

@@ -200,8 +200,8 @@ GameObject:
   - component: {fileID: 1041649262}
   - component: {fileID: 1041649261}
   - component: {fileID: 1041649265}
-  - component: {fileID: 1041649266}
   - component: {fileID: 1041649267}
+  - component: {fileID: 1041649268}
   m_Layer: 5
   m_Name: ExplorationState (Canvas)
   m_TagString: Untagged
@@ -303,27 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4fc7b62536c7804aa91c69811e6bbf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileSpawner: {fileID: 1041649266}
-  gameState: {fileID: 0}
---- !u!114 &1041649266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1041649260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d41c7feb1234b8546bbdbdcdc700c32b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WeakEnemyTilePrefab: {fileID: 234758363826360883, guid: 1a4bb4f8a09b8a74f872473506de0488, type: 3}
-  AverageEnemyTilePrefab: {fileID: 234758363826360883, guid: bb2d17e8eb5b87b48ae368cfe4c2efae, type: 3}
-  BossEnemyTilePrefab: {fileID: 234758363826360883, guid: 7f2727423fb514d46bd866ad3ba3c5b4, type: 3}
-  EventTilePrefab: {fileID: 0}
-  TreasureTilePrefab: {fileID: 0}
-  WeakEnemies:
-  - {fileID: 11400000, guid: c12caf94b5929734a9cb7e7d5b5f43cb, type: 2}
+  tileSpawner: {fileID: 1041649268}
 --- !u!114 &1041649267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,6 +336,28 @@ MonoBehaviour:
   onEventTriggered:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1041649268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041649260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d41c7feb1234b8546bbdbdcdc700c32b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WeakEnemyTilePrefab: {fileID: 234758363826360883, guid: 1a4bb4f8a09b8a74f872473506de0488, type: 3}
+  AverageEnemyTilePrefab: {fileID: 234758363826360883, guid: bb2d17e8eb5b87b48ae368cfe4c2efae, type: 3}
+  BossEnemyTilePrefab: {fileID: 234758363826360883, guid: 7f2727423fb514d46bd866ad3ba3c5b4, type: 3}
+  EventTilePrefab: {fileID: 0}
+  TreasureTilePrefab: {fileID: 0}
+  WeakEnemies:
+  - {fileID: 11400000, guid: c12caf94b5929734a9cb7e7d5b5f43cb, type: 2}
+  maxStartingTiles: 3
+  maxPaths: 0
+  mapSize: {x: 15, y: 7}
 --- !u!1 &1924518407
 GameObject:
   m_ObjectHideFlags: 0
