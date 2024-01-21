@@ -1,6 +1,7 @@
 using ExplorationRoguelike.Characters;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 namespace ExplorationRoguelike
 {
@@ -22,57 +23,44 @@ namespace ExplorationRoguelike
 
         //private Dictionary<int[,], ExplorationTile> ExplorationGrid;
 
-        private ExplorationTile[,] mapGrid; // row = row, column = column
+        private Dictionary<(int, int), ExplorationTile> mapGrid; // row = row, column = column
         public void GenerateMap()
         {
-            mapGrid = new ExplorationTile[mapSize.x, mapSize.y];
+            mapGrid = new Dictionary<(int, int), ExplorationTile>();
 
             int startingTiles = Random.Range(1, maxStartingTiles);
+            int startingTileCount = 0;
+
+            (int, int) sourcePosition = default;
 
             // TODO: Refactor to create full paths based on the starting paths (generate a full path in one go, then next path)
-            for (int row = 0; row < mapSize.x; row++)
+            for (int row = 0; row <= mapSize.x; row++)
             {
-                if (row == 0)
+                if (row == 0 && startingTileCount < startingTiles)
                 {
-                    SpawnStartingTile();
+                    sourcePosition = SpawnStartingTile();
+                    startingTileCount++;
                     continue;
                 }
 
-                int tileAmount = Random.Range(1, mapSize.y);
-                int spawnedTiles = 0;
+                List<(int,int)> viablePositions = new();
 
-                for (int column = 0; column < mapSize.y; column++)
+                for (int column = 0; column <= mapSize.y; column++)
                 {
-                    if(!CanCreatePath(row, column))
+                    if (HasPathToSource(row, column, sourcePosition))
                     {
-                        continue;
+                        viablePositions.Add((row, column));
                     }
-
-                    // TODO: Determine if we create a new tile. (if we always do it as soon as it is possible, the paths will hug the left)
-                    if (spawnedTiles == tileAmount)
-                    {
-                        break;
-                    }
-                    try
-                    {
-                        if (mapGrid[row - 1, column] == null && mapGrid[row - 1, column - 1] == null && mapGrid[row - 1, column + 1] == null)
-                        {
-                            continue;
-                        }
-                    }
-                    catch
-                    {
-                        continue;
-                    }
-
-                    SpawnCombatTile(WeakEnemyTilePrefab, new Vector2Int(row, column));
-                    spawnedTiles++;
-
                 }
+
+                (int, int) randomViablePosition = viablePositions[Random.Range(0, viablePositions.Count)];
+
+                sourcePosition = SpawnCombatTile(WeakEnemyTilePrefab, randomViablePosition);
+
+                DrawPath(sourcePosition);
             }
         }
-
-        private bool CanCreatePath(int row, int column)
+        private bool HasPathToSource(int row, int column, (int x, int y) sourcePosition)
         {
             if (row == 0)
             {
@@ -81,32 +69,36 @@ namespace ExplorationRoguelike
 
             int prevRow = row - 1;
 
-            if (mapGrid[prevRow, column] != null)
+            if (sourcePosition == (prevRow, column))
             {
                 return true;
             }
 
             if (column == 0) // Far left
             {
-                return mapGrid[prevRow, column + 1] != null;
+                return sourcePosition == (prevRow, column + 1);
             }
 
             if (column == mapSize.y - 1) // Far right
             {
-                return mapGrid[prevRow, column - 1] != null;
+                return sourcePosition == (prevRow, column - 1);
             }
 
+            if (sourcePosition == (prevRow, column - 1) || sourcePosition == (prevRow, column + 1))
+            {
+                return true;
+            }
             return false;
         }
 
-        private void SpawnStartingTile()
+        private (int,int) SpawnStartingTile()
         {
             int y = Random.Range(0, mapSize.y);
 
-            SpawnCombatTile(WeakEnemyTilePrefab, new Vector2Int(0, y));
+            return SpawnCombatTile(WeakEnemyTilePrefab, (0, y));
         }
 
-        private void SpawnCombatTile(GameObject tile, Vector2Int position)
+        private (int, int) SpawnCombatTile(GameObject tile, (int x, int y) position)
         {
             var tileObject = Instantiate(tile);
             tileObject.transform.parent = this.transform;
@@ -118,7 +110,30 @@ namespace ExplorationRoguelike
 
             combatTile.EnemyData = WeakEnemies;
 
-            mapGrid[position.x, position.y] = combatTile;
+            mapGrid.TryAdd((position.x, position.y), combatTile);
+
+            return (position.x, position.y);
         }
+
+        private void DrawPath((int x, int y) sourcePosition)
+        {
+            int prevRow = sourcePosition.x - 1;
+
+            if (mapGrid.TryGetValue((prevRow, sourcePosition.y), out ExplorationTile pathableTile))
+            {
+                // Draw path.
+            }
+
+            if (sourcePosition.y == 0 && mapGrid.GetValueOrDefault((prevRow, sourcePosition.y + 1)) != null) // Far left
+            {
+                // Draw path.
+            }
+
+            if (sourcePosition.y == mapSize.y - 1 && mapGrid.GetValueOrDefault((prevRow, sourcePosition.y - 1)) != null) // Far right
+            {
+                // Draw path.
+            }
+        }
+
     }
 }
