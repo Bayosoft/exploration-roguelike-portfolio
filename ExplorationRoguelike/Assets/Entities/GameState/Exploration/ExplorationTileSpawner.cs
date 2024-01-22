@@ -23,10 +23,9 @@ namespace ExplorationRoguelike
 
         //private Dictionary<int[,], ExplorationTile> ExplorationGrid;
 
-        private Dictionary<(int, int), ExplorationTile> mapGrid; // row = row, column = column
-        public void GenerateMap()
+        public Dictionary<(int, int), ExplorationTile> GenerateMap()
         {
-            mapGrid = new Dictionary<(int, int), ExplorationTile>();
+            var mapGrid = new Dictionary<(int, int), ExplorationTile>();
 
             int startingTiles = Random.Range(1, maxStartingTiles);
             int startingTileCount = 0;
@@ -38,7 +37,7 @@ namespace ExplorationRoguelike
             {
                 if (row == 0 && startingTileCount < startingTiles)
                 {
-                    sourcePosition = SpawnStartingTile();
+                    sourcePosition = SpawnStartingTile(mapGrid);
                     startingTileCount++;
                     continue;
                 }
@@ -55,10 +54,12 @@ namespace ExplorationRoguelike
 
                 (int, int) randomViablePosition = viablePositions[Random.Range(0, viablePositions.Count)];
 
-                sourcePosition = SpawnCombatTile(WeakEnemyTilePrefab, randomViablePosition);
+                sourcePosition = SpawnCombatTile(mapGrid, WeakEnemyTilePrefab, randomViablePosition);
 
-                DrawPath(sourcePosition);
+                DrawPath(mapGrid, sourcePosition);
             }
+
+            return mapGrid;
         }
         private bool HasPathToSource(int row, int column, (int x, int y) sourcePosition)
         {
@@ -91,14 +92,14 @@ namespace ExplorationRoguelike
             return false;
         }
 
-        private (int,int) SpawnStartingTile()
+        private (int,int) SpawnStartingTile(Dictionary<(int, int), ExplorationTile> mapGrid)
         {
             int y = Random.Range(0, mapSize.y);
 
-            return SpawnCombatTile(WeakEnemyTilePrefab, (0, y));
+            return SpawnCombatTile(mapGrid, WeakEnemyTilePrefab, (0, y));
         }
 
-        private (int, int) SpawnCombatTile(GameObject tile, (int x, int y) position)
+        private (int, int) SpawnCombatTile(Dictionary<(int, int), ExplorationTile> mapGrid, GameObject tile, (int x, int y) position)
         {
             var tileObject = Instantiate(tile);
             tileObject.transform.parent = this.transform;
@@ -115,7 +116,7 @@ namespace ExplorationRoguelike
             return (position.x, position.y);
         }
 
-        private void DrawPath((int x, int y) sourcePosition)
+        private void DrawPath(Dictionary<(int,int), ExplorationTile> mapGrid, (int x, int y) sourcePosition)
         {
             int prevRow = sourcePosition.x - 1;
 
