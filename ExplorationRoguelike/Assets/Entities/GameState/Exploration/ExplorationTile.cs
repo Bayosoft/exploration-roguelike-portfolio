@@ -9,6 +9,8 @@ namespace ExplorationRoguelike
         [SerializeField]
         protected ScriptableEvent exploreTileEvent;
 
+        public List<ExplorationTile> ConnectedTiles { get; private set; } = new List<ExplorationTile>();
+
         private bool explored;
 
         public abstract void ExploreTile();
@@ -16,6 +18,12 @@ namespace ExplorationRoguelike
         public void OnExplored()
         {
             explored = true;
+        }
+
+        public void AddConnectedTile(ExplorationTile tile)
+        {
+            ConnectedTiles.Add(tile);
+            Debug.Log($"Connected tile [{transform.position}] to [{tile.transform.position}]");
         }
     }
 }

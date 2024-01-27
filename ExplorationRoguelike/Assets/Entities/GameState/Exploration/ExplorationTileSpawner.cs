@@ -1,7 +1,6 @@
 using ExplorationRoguelike.Characters;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI.Table;
 
 namespace ExplorationRoguelike
 {
@@ -20,8 +19,6 @@ namespace ExplorationRoguelike
 
         [SerializeField]
         private Vector2Int mapSize;
-
-        //private Dictionary<int[,], ExplorationTile> ExplorationGrid;
 
         public Dictionary<(int, int), ExplorationTile> GenerateMap()
         {
@@ -42,7 +39,7 @@ namespace ExplorationRoguelike
                     continue;
                 }
 
-                List<(int,int)> viablePositions = new();
+                List<(int, int)> viablePositions = new();
 
                 for (int column = 0; column <= mapSize.y; column++)
                 {
@@ -92,7 +89,7 @@ namespace ExplorationRoguelike
             return false;
         }
 
-        private (int,int) SpawnStartingTile(Dictionary<(int, int), ExplorationTile> mapGrid)
+        private (int, int) SpawnStartingTile(Dictionary<(int, int), ExplorationTile> mapGrid)
         {
             int y = Random.Range(0, mapSize.y);
 
@@ -102,7 +99,7 @@ namespace ExplorationRoguelike
         private (int, int) SpawnCombatTile(Dictionary<(int, int), ExplorationTile> mapGrid, GameObject tile, (int x, int y) position)
         {
             var tileObject = Instantiate(tile);
-            tileObject.transform.parent = this.transform;
+            tileObject.transform.SetParent(this.transform, false);
 
             tileObject.transform.position = new Vector2(position.y * 100, position.x * 100);
 
@@ -116,23 +113,41 @@ namespace ExplorationRoguelike
             return (position.x, position.y);
         }
 
-        private void DrawPath(Dictionary<(int,int), ExplorationTile> mapGrid, (int x, int y) sourcePosition)
+        private void DrawPath(Dictionary<(int, int), ExplorationTile> mapGrid, (int x, int y) sourcePosition)
         {
             int prevRow = sourcePosition.x - 1;
 
             if (mapGrid.TryGetValue((prevRow, sourcePosition.y), out ExplorationTile pathableTile))
             {
+                pathableTile.AddConnectedTile(mapGrid[sourcePosition]);
                 // Draw path.
             }
 
-            if (sourcePosition.y == 0 && mapGrid.GetValueOrDefault((prevRow, sourcePosition.y + 1)) != null) // Far left
+            if (mapGrid.TryGetValue((prevRow, sourcePosition.y + 1), out pathableTile)) // Far left
             {
-                // Draw path.
+                if (pathableTile != null)
+                {
+                    pathableTile.AddConnectedTile(mapGrid[sourcePosition]);
+                    // Draw path.
+                }
+                if (sourcePosition.y == 0)
+                {
+                    return;
+                }
             }
 
-            if (sourcePosition.y == mapSize.y - 1 && mapGrid.GetValueOrDefault((prevRow, sourcePosition.y - 1)) != null) // Far right
+            if (mapGrid.TryGetValue((prevRow, sourcePosition.y - 1), out pathableTile)) // Far right
             {
+                if (pathableTile != null)
+                {
+                    pathableTile.AddConnectedTile(mapGrid[sourcePosition]);
+                }
                 // Draw path.
+
+                if(sourcePosition.y == mapSize.y - 1)
+                {
+                    return;
+                }
             }
         }
 
