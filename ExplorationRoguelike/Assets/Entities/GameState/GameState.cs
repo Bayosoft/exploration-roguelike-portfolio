@@ -48,7 +48,7 @@ namespace ExplorationRoguelike
         public void SetCombat(CharacterData enemyData)
         {
             this.enemyData = enemyData;
-            SceneManager.LoadScene("CombatScene");
+            SceneManager.LoadSceneAsync("CombatScene", LoadSceneMode.Additive);
         }
 
         public void SetDialogue(MultiChoiceOptionData choiceData) /* Replace with DialogueData which holds all the dialogue, choices, and sprites */

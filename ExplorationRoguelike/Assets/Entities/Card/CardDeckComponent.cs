@@ -50,13 +50,15 @@ namespace ExplorationRoguelike.AbilitySystem.CardSystem
 
         public void InstantiateCards()
         {
-            IEnumerable<Card> printedCards = printer.PrintStackFromAbilities(_player.GrantedAbilities);
-            CardsInDeck.AddRange(printedCards);
-        }
-
-        public void Start()
-        {
             Mana = MaxMana;
+            CardsInDeck.Clear();
+            CardsDiscarded.Clear();
+            CardsShattered.Clear();
+            CardsDrawn.Clear();
+
+            IEnumerable<Card> printedCards = printer.PrintStackFromAbilities(_player.GrantedAbilities);
+
+            CardsInDeck.AddRange(printedCards);
         }
 
         public void DrawCards(int amountOfCards)

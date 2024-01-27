@@ -67,10 +67,11 @@ namespace ExplorationRoguelike.Combat
         // Start is called before the first frame update
         void Start()
         {
-            playerTurnComponent.CardDeckComponent.InstantiateCards();
             playerTurnComponent.CardDeckComponent.CardsDrawn.CollectionChanged += UpdateCards;
             playerTurnComponent.CardDeckComponent.OnManaChanged += UpdateMana;
             enemyTurnComponent.NpcCombatComponent.OnDeclaredIntent += UpdateEnemyIntent;
+
+            playerTurnComponent.CardDeckComponent.InstantiateCards();
 
             SpawnHealthViews();
             StartCombat();
@@ -237,7 +238,7 @@ namespace ExplorationRoguelike.Combat
 
         private void ChangeGamestate()
         {
-            SceneManager.LoadSceneAsync("ExplorationScene");
+            SceneManager.UnloadSceneAsync("CombatScene");
         }
 
         public void OnDestroy()

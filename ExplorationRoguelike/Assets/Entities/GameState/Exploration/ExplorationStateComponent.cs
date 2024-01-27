@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -19,7 +20,8 @@ namespace ExplorationRoguelike
         // Start is called before the first frame update
         void Start()
         {
-            DontDestroyOnLoad(this);
+            SceneManager.sceneUnloaded += OnSceneUnloaded;
+            
             gameState = FindFirstObjectByType<GameState>();
             MapGrid = tileSpawner.GenerateMap(/* map data object (scriptable object containing enemies, sprites, and events for the map */);         
         }
@@ -33,19 +35,31 @@ namespace ExplorationRoguelike
             SelectTile(tile);
         }
 
+        [SerializeField]
+        private CinemachineVirtualCamera virtualCamera;
+
         private void SelectTile(ExplorationTile tile)
         {
             selectedTile = tile;
 
-            Camera.main.transform.position = new Vector3(tile.transform.position.x, tile.transform.position.y, -10);
+            virtualCamera.Follow = tile.transform;
 
             if (tile is CombatExplorationTile combatTile)
             {
                 gameState.SetCombat(combatTile.EnemyData.First());
-                SceneManager.LoadSceneAsync("CombatScene", LoadSceneMode.Additive);
+                gameObject.SetActive(false);
                 this.enabled = false;
-                // When combat ends, re-enable..
             }
+        }
+        private void OnSceneUnloaded(Scene current)
+        {
+            gameObject.SetActive(true);
+            this.enabled = true;
+        }
+
+        private void OnDestroy()
+        {
+            SceneManager.sceneUnloaded -= OnSceneUnloaded;
         }
     }
 }
