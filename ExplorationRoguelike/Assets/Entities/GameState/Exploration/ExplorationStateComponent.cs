@@ -42,6 +42,7 @@ namespace ExplorationRoguelike
                 if(tile != null)
                 {
                     selectableTiles.Add(tile);
+                    tile.InReach();
                 }
             }
         }
@@ -59,19 +60,16 @@ namespace ExplorationRoguelike
         {
             if(selectedTile == null)
             {
-                virtualCamera.m_Lens.OrthographicSize = 200; //TODO: Lerp to 200 so that its smooth.
+                virtualCamera.m_Lens.OrthographicSize = 240; //TODO: Lerp to 200 so that its smooth.
             }
 
             selectedTile = tile;
 
             virtualCamera.Follow = tile.transform;
 
-            if (tile is CombatExplorationTile combatTile)
-            {
-                gameState.SetCombat(combatTile.EnemyData.First());
-                gameObject.SetActive(false);
-                this.enabled = false;
-            }
+            tile.Selected();
+
+            
         }
         private void OnSceneUnloaded(Scene current)
         {
