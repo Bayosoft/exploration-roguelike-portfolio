@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 namespace ExplorationRoguelike
 {
@@ -11,7 +10,10 @@ namespace ExplorationRoguelike
     {
         [SerializeField]
         private ExplorationTileSpawner tileSpawner;
-        
+
+        [SerializeField]
+        private MapContents mapContents;
+
         [SerializeField]
         private CinemachineVirtualCamera virtualCamera;
 
@@ -29,7 +31,10 @@ namespace ExplorationRoguelike
             SceneManager.sceneUnloaded += OnSceneUnloaded;
             
             gameState = FindFirstObjectByType<GameState>();
-            MapGrid = tileSpawner.GenerateMap(/* map data object (scriptable object containing enemies, sprites, and events for the map */);
+            MapGrid = tileSpawner.GenerateMap(mapContents);
+            
+            //Destroy(tileSpawner);
+
             virtualCamera.transform.position = new Vector3(MapGrid.First().Value.transform.position.x, virtualCamera.transform.position.y, -10);
             virtualCamera.m_Lens.OrthographicSize = 600;
 

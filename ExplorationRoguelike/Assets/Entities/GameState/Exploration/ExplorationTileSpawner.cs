@@ -6,10 +6,10 @@ namespace ExplorationRoguelike
 {
     public class ExplorationTileSpawner : MonoBehaviour
     {
-        public GameObject WeakEnemyTilePrefab, AverageEnemyTilePrefab, BossEnemyTilePrefab,
+        public GameObject basicEnemyTilePrefab, AverageEnemyTilePrefab, BossEnemyTilePrefab,
             EventTilePrefab, TreasureTilePrefab;
 
-        public List<CharacterData> WeakEnemies; // TODO: this kind of list should be passed into GenerateMap as part of a scriptable object containing the map's data.
+        private MapContents mapContents;
 
         [SerializeField]
         private int maxStartingTiles;
@@ -20,9 +20,10 @@ namespace ExplorationRoguelike
         [SerializeField]
         private Vector2Int mapSize;
 
-        public Dictionary<(int, int), ExplorationTile> GenerateMap()
+        public Dictionary<(int, int), ExplorationTile> GenerateMap(MapContents contents)
         {
             var mapGrid = new Dictionary<(int, int), ExplorationTile>();
+            mapContents = contents;
 
             int startingTiles = Random.Range(1, maxStartingTiles);
             int startingTileCount = 0;
@@ -51,7 +52,7 @@ namespace ExplorationRoguelike
 
                 (int, int) randomViablePosition = viablePositions[Random.Range(0, viablePositions.Count)];
 
-                sourcePosition = SpawnCombatTile(mapGrid, WeakEnemyTilePrefab, randomViablePosition);
+                sourcePosition = SpawnCombatTile(mapGrid, basicEnemyTilePrefab, randomViablePosition);
 
                 DrawPath(mapGrid, sourcePosition);
             }
@@ -93,7 +94,7 @@ namespace ExplorationRoguelike
         {
             int y = Random.Range(0, mapSize.y);
 
-            return SpawnCombatTile(mapGrid, WeakEnemyTilePrefab, (0, y));
+            return SpawnCombatTile(mapGrid, basicEnemyTilePrefab, (0, y));
         }
 
         private (int, int) SpawnCombatTile(Dictionary<(int, int), ExplorationTile> mapGrid, GameObject tile, (int x, int y) position)
@@ -106,13 +107,17 @@ namespace ExplorationRoguelike
             // TODO: Randomly select from list of enemies
             var combatTile = tileObject.GetComponent<CombatExplorationTile>();
 
-            combatTile.EnemyData = WeakEnemies;
+            combatTile.EnemyData = GetRandomEnemy(mapContents.BasicEnemyPool);
 
             mapGrid.TryAdd((position.x, position.y), combatTile);
 
             return (position.x, position.y);
         }
 
+        private CharacterData GetRandomEnemy(List<CharacterData> enemies)
+        {
+           return enemies[Random.Range(0, enemies.Count)];
+        }
         private void DrawPath(Dictionary<(int, int), ExplorationTile> mapGrid, (int x, int y) sourcePosition)
         {
             int prevRow = sourcePosition.x - 1;

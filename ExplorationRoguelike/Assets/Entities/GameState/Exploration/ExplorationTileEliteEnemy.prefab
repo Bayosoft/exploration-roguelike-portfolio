@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 4084714547208860305}
   - component: {fileID: 1582642330911640601}
   - component: {fileID: 5945906619995095018}
-  - component: {fileID: 3388908620502245124}
   m_Layer: 5
-  m_Name: ExplorationTileWeakEnemy
+  m_Name: ExplorationTileEliteEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7977781763595671656, guid: 31b55e7b3ccfe8648a5c649a28719dad, type: 3}
+  m_Sprite: {fileID: 8694825288349552413, guid: 1f2de8ce4deefc546b00cc3375dc3d81, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -120,29 +119,4 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1582642330911640601}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3388908620502245124}
-        m_TargetAssemblyTypeName: ExplorationRoguelike.CombatExplorationTile, Assembly-CSharp
-        m_MethodName: ExploreTile
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &3388908620502245124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234758363826360883}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b20de34eb0f9d9841bd46c4ccd6a26d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  exploreTileEvent: {fileID: 11400000, guid: 2e4f9c565bf79d340bddca5e1c78edc2, type: 2}
+      m_Calls: []

@@ -31,19 +31,12 @@ namespace ExplorationRoguelike
         }
 
         // Selected when selected
-        public void Selected()
+        public virtual void Selected()
         {
             GetComponent<Image>().color = Color.green;
 
             ConnectedTiles.ForEach(tile => tile.InReach());
             GetComponent<Button>().interactable = false;
-
-            if (this is CombatExplorationTile combatTile)
-            {
-                GetComponent<GameState>().SetCombat(combatTile.EnemyData.First());
-                gameObject.SetActive(false);
-                this.enabled = false;
-            }
         }
 
         // Grey out when unselectable

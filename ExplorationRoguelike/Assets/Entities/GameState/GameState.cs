@@ -45,12 +45,17 @@ namespace ExplorationRoguelike
             _playerGoldDisplayer.Initialize(_playerInstance);
         }
 
-        public void SetCombat(CharacterData enemyData)
+        // Loads combat and keeps scene that loaded it.
+        public void SetCombatAdditive(CharacterData enemyData)
         {
             this.enemyData = enemyData;
             SceneManager.LoadSceneAsync("CombatScene", LoadSceneMode.Additive);
         }
-
+        public void SetCombat(CharacterData enemyData)
+        {
+            this.enemyData = enemyData;
+            SceneManager.LoadSceneAsync("CombatScene");
+        }
         public void SetDialogue(MultiChoiceOptionData choiceData) /* Replace with DialogueData which holds all the dialogue, choices, and sprites */
         {
             this.choiceData = choiceData;

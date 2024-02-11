@@ -91,6 +91,7 @@ namespace ExplorationRoguelike
         public void OnBossEnemyClick()
         {
             gameState.SetCombat(bossEnemy);
+
         }
 
     }

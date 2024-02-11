@@ -11,7 +11,7 @@ namespace ExplorationRoguelike
 
         public override void Activate()
         {
-            FindAnyObjectByType<GameState>().SetCombat(enemy);
+            FindAnyObjectByType<GameState>().SetCombatAdditive(enemy);
         }
     }
 }
