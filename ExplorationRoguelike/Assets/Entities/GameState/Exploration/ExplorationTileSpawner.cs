@@ -104,7 +104,6 @@ namespace ExplorationRoguelike
 
             tileObject.transform.position = new Vector2(position.y * 100, position.x * 100);
 
-            // TODO: Randomly select from list of enemies
             var combatTile = tileObject.GetComponent<CombatExplorationTile>();
 
             combatTile.EnemyData = GetRandomEnemy(mapContents.BasicEnemyPool);

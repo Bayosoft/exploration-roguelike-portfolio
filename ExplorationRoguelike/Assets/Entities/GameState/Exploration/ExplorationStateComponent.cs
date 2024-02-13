@@ -1,8 +1,8 @@
 using Cinemachine;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace ExplorationRoguelike
 {
@@ -28,23 +28,22 @@ namespace ExplorationRoguelike
         // Start is called before the first frame update
         void Start()
         {
-            SceneManager.sceneUnloaded += OnSceneUnloaded;
-            
+
             gameState = FindFirstObjectByType<GameState>();
             MapGrid = tileSpawner.GenerateMap(mapContents);
-            
-            //Destroy(tileSpawner);
+
+            Destroy(tileSpawner);
 
             virtualCamera.transform.position = new Vector3(MapGrid.First().Value.transform.position.x, virtualCamera.transform.position.y, -10);
             virtualCamera.m_Lens.OrthographicSize = 600;
 
             selectableTiles = new List<ExplorationTile>();
 
-            for(int column = 0; column < 7; column++)
+            for (int column = 0; column < 7; column++)
             {
                 MapGrid.TryGetValue((0, column), out var tile);
 
-                if(tile != null)
+                if (tile != null)
                 {
                     selectableTiles.Add(tile);
                     tile.InReach();
@@ -58,33 +57,39 @@ namespace ExplorationRoguelike
 
             ExplorationTile tile = exploreTileEventArgs.Tile;
 
-            SelectTile(tile);
+            StartCoroutine(SelectTile(tile));
         }
 
-        private void SelectTile(ExplorationTile tile)
+        private IEnumerator SelectTile(ExplorationTile tile)
         {
-            if(selectedTile == null)
-            {
-                virtualCamera.m_Lens.OrthographicSize = 240; //TODO: Lerp to 200 so that its smooth.
-            }
-
-            selectedTile = tile;
-
             virtualCamera.Follow = tile.transform;
 
+            if (selectedTile == null)
+            {
+                int endSize = 240;
+                float moveTime = 50f;
+                float elapsedTime = 0f;
+
+                while (elapsedTime < moveTime)
+                {
+                    elapsedTime += Time.deltaTime;
+
+                    int lerpedSize = (int)Mathf.Lerp(virtualCamera.m_Lens.OrthographicSize, endSize, (elapsedTime / moveTime));
+
+                    virtualCamera.m_Lens.OrthographicSize = lerpedSize;
+                    yield return null;
+                }
+            }
+            // TODO: Fix yield return null not letting me get here..
+            yield return new WaitForSecondsRealtime(1);
+
+            selectedTile = tile;
             tile.Selected();
-
-            
-        }
-        private void OnSceneUnloaded(Scene current)
-        {
-            gameObject.SetActive(true);
-            this.enabled = true;
         }
 
-        private void OnDestroy()
+/*        private IEnumerator ActivateTile(ExplorationTile tile)
         {
-            SceneManager.sceneUnloaded -= OnSceneUnloaded;
-        }
+
+        }*/
     }
 }

@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace ExplorationRoguelike
 {
-    [CreateAssetMenu(fileName = "RaceData", menuName = "Character/New Race")]
-    public class RaceData : ScriptableObject
+    [CreateAssetMenu(fileName = "Race", menuName = "Character/New Race")]
+    public class Race : ScriptableObject
     {
         GameplayTag RaceTag { get; set; }
     }

@@ -84,6 +84,7 @@ namespace ExplorationRoguelike.Combat
             var enemy = enemyPrefab.GetComponent<CombatNpc>();
             enemy.CharacterData = enemyData;
             var enemyInstance = Instantiate(enemyPrefab);
+            enemyInstance.transform.SetParent(this.transform);
             enemies.Add(enemyInstance.GetComponent<CombatNpc>());
 
             playerTurnComponent = (PlayerTurnComponent)player.TurnComponent;

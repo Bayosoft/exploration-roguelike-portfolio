@@ -13,19 +13,13 @@ namespace ExplorationRoguelike
 
         public List<ExplorationTile> ConnectedTiles { get; private set; } = new List<ExplorationTile>();
 
-        private bool explored;
-
         public abstract void ExploreTile();
-
-        public void OnExplored()
-        {
-            explored = true;
-            // tell next tiles to be selectable
-            // tell tiles after next tile to be visible
-        }
 
         public void AddConnectedTile(ExplorationTile tile)
         {
+            // hide tile
+            tile.gameObject.SetActive(false);
+
             ConnectedTiles.Add(tile);
             Debug.Log($"Connected tile [{transform.position}] to [{tile.transform.position}]");
         }
@@ -43,6 +37,7 @@ namespace ExplorationRoguelike
         public void OutOfReach()
         {
             // reveal tile
+            gameObject.SetActive(true);
             GetComponent<Image>().color = Color.grey;
             GetComponent<Button>().interactable = false;
         }
@@ -54,7 +49,5 @@ namespace ExplorationRoguelike
             ConnectedTiles.ForEach(tile => tile.OutOfReach());
             GetComponent<Button>().interactable = true;
         }
-
-        // Hide when 2 or more away
     }
 }

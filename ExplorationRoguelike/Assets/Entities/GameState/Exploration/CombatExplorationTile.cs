@@ -17,7 +17,6 @@ namespace ExplorationRoguelike
             base.Selected();
 
             FindFirstObjectByType<GameState>().SetCombatAdditive(EnemyData);
-            gameObject.SetActive(false);
             this.enabled = false;
         }
     }
