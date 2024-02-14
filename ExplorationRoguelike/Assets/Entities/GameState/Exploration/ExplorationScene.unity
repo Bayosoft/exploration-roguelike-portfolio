@@ -423,7 +423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basicEnemyTilePrefab: {fileID: 234758363826360883, guid: 1a4bb4f8a09b8a74f872473506de0488, type: 3}
-  AverageEnemyTilePrefab: {fileID: 234758363826360883, guid: bb2d17e8eb5b87b48ae368cfe4c2efae, type: 3}
+  eliteEnemyTilePrefab: {fileID: 234758363826360883, guid: bb2d17e8eb5b87b48ae368cfe4c2efae, type: 3}
   BossEnemyTilePrefab: {fileID: 234758363826360883, guid: 7f2727423fb514d46bd866ad3ba3c5b4, type: 3}
   EventTilePrefab: {fileID: 0}
   TreasureTilePrefab: {fileID: 0}

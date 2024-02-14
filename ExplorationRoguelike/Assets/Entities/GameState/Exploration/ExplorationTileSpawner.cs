@@ -1,4 +1,5 @@
 using ExplorationRoguelike.Characters;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace ExplorationRoguelike
 {
     public class ExplorationTileSpawner : MonoBehaviour
     {
-        public GameObject basicEnemyTilePrefab, AverageEnemyTilePrefab, BossEnemyTilePrefab,
+        public GameObject basicEnemyTilePrefab, eliteEnemyTilePrefab, BossEnemyTilePrefab,
             EventTilePrefab, TreasureTilePrefab;
 
         private MapContents mapContents;
@@ -25,7 +26,7 @@ namespace ExplorationRoguelike
             var mapGrid = new Dictionary<(int, int), ExplorationTile>();
             mapContents = contents;
 
-            int startingTiles = Random.Range(1, maxStartingTiles);
+            int startingTiles = UnityEngine.Random.Range(1, maxStartingTiles);
             int startingTileCount = 0;
 
             (int, int) sourcePosition = default;
@@ -50,9 +51,11 @@ namespace ExplorationRoguelike
                     }
                 }
 
-                (int, int) randomViablePosition = viablePositions[Random.Range(0, viablePositions.Count)];
+                (int, int) tilePosition = viablePositions[UnityEngine.Random.Range(0, viablePositions.Count)];
 
-                sourcePosition = SpawnCombatTile(mapGrid, basicEnemyTilePrefab, randomViablePosition);
+                var tilePrefab = DetermineTileType(tilePosition);
+
+                sourcePosition = SpawnTile(mapGrid, tilePrefab, tilePosition);
 
                 DrawPath(mapGrid, sourcePosition);
             }
@@ -92,30 +95,58 @@ namespace ExplorationRoguelike
 
         private (int, int) SpawnStartingTile(Dictionary<(int, int), ExplorationTile> mapGrid)
         {
-            int y = Random.Range(0, mapSize.y);
+            int y = UnityEngine.Random.Range(0, mapSize.y);
 
-            return SpawnCombatTile(mapGrid, basicEnemyTilePrefab, (0, y));
+            return SpawnTile(mapGrid, basicEnemyTilePrefab, (0, y));
         }
 
-        private (int, int) SpawnCombatTile(Dictionary<(int, int), ExplorationTile> mapGrid, GameObject tile, (int x, int y) position)
+        private GameObject DetermineTileType((int row, int column) position)
+        {
+            int basicEnemyWeight = 5;
+            int bossEnemyWeight = 1;
+            //int eventWeight = 0;
+
+            // if previous row has boss, set boss weight to 0..
+
+            WeightedList<GameObject> weightedTiles = new()
+            {
+                { basicEnemyTilePrefab, basicEnemyWeight },
+                { eliteEnemyTilePrefab, bossEnemyWeight },
+                /* TODO: more tile types.. */
+            };
+
+            return weightedTiles.Next(); // Draw a random item from the list.
+        }
+
+        private (int, int) SpawnTile(Dictionary<(int, int), ExplorationTile> mapGrid, GameObject tile, (int x, int y) position)
         {
             var tileObject = Instantiate(tile);
             tileObject.transform.SetParent(this.transform, false);
 
             tileObject.transform.position = new Vector2(position.y * 100, position.x * 100);
 
-            var combatTile = tileObject.GetComponent<CombatExplorationTile>();
+            var tileType = tileObject.GetComponent<ExplorationTile>();
 
-            combatTile.EnemyData = GetRandomEnemy(mapContents.BasicEnemyPool);
+            if (tileType is CombatExplorationTile combatTile)
+            {
+                DetermineCombatEnemy(combatTile);
+                tileType = combatTile;
+                Debug.Log(combatTile.EnemyData.Name);
+            }
 
-            mapGrid.TryAdd((position.x, position.y), combatTile);
+            // TODO: Spawn event tile etc..
+            mapGrid.TryAdd((position.x, position.y), tileType);
 
             return (position.x, position.y);
+        }
+        private void DetermineCombatEnemy(CombatExplorationTile combatTile)
+        {
+            combatTile.EnemyData = GetRandomEnemy(mapContents.BasicEnemyPool);
         }
 
         private CharacterData GetRandomEnemy(List<CharacterData> enemies)
         {
-           return enemies[Random.Range(0, enemies.Count)];
+            return enemies[UnityEngine.Random.Range(0, enemies.Count)];
         }
         private void DrawPath(Dictionary<(int, int), ExplorationTile> mapGrid, (int x, int y) sourcePosition)
         {
@@ -148,7 +179,7 @@ namespace ExplorationRoguelike
                 }
                 // Draw path.
 
-                if(sourcePosition.y == mapSize.y - 1)
+                if (sourcePosition.y == mapSize.y - 1)
                 {
                     return;
                 }

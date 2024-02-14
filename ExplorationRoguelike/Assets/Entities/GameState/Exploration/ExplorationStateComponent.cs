@@ -77,7 +77,7 @@ namespace ExplorationRoguelike
                     int lerpedSize = (int)Mathf.Lerp(virtualCamera.m_Lens.OrthographicSize, endSize, (elapsedTime / moveTime));
 
                     virtualCamera.m_Lens.OrthographicSize = lerpedSize;
-                    yield return null;
+
                 }
             }
             // TODO: Fix yield return null not letting me get here..
