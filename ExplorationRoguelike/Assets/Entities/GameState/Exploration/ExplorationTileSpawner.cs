@@ -129,9 +129,10 @@ namespace ExplorationRoguelike
 
             if (tileType is CombatExplorationTile combatTile)
             {
-                DetermineCombatEnemy(combatTile);
+                var enemyPool = mapContents.GetEnemyPool(combatTile.EnemyTier);   
+                combatTile.SetRandomEnemy(enemyPool);
+
                 tileType = combatTile;
-                Debug.Log(combatTile.EnemyData.Name);
             }
 
             // TODO: Spawn event tile etc..
@@ -139,15 +140,7 @@ namespace ExplorationRoguelike
 
             return (position.x, position.y);
         }
-        private void DetermineCombatEnemy(CombatExplorationTile combatTile)
-        {
-            combatTile.EnemyData = GetRandomEnemy(mapContents.BasicEnemyPool);
-        }
 
-        private CharacterData GetRandomEnemy(List<CharacterData> enemies)
-        {
-            return enemies[UnityEngine.Random.Range(0, enemies.Count)];
-        }
         private void DrawPath(Dictionary<(int, int), ExplorationTile> mapGrid, (int x, int y) sourcePosition)
         {
             int prevRow = sourcePosition.x - 1;

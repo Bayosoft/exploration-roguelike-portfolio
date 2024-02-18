@@ -422,9 +422,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d41c7feb1234b8546bbdbdcdc700c32b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicEnemyTilePrefab: {fileID: 234758363826360883, guid: 1a4bb4f8a09b8a74f872473506de0488, type: 3}
-  eliteEnemyTilePrefab: {fileID: 234758363826360883, guid: bb2d17e8eb5b87b48ae368cfe4c2efae, type: 3}
-  BossEnemyTilePrefab: {fileID: 234758363826360883, guid: 7f2727423fb514d46bd866ad3ba3c5b4, type: 3}
+  basicEnemyTilePrefab: {fileID: 2272486017052883599, guid: c2227cd9958418242a9413a08b840de7, type: 3}
+  eliteEnemyTilePrefab: {fileID: 2272486017052883599, guid: 0baf8ff775e53f443965d08e0054f3df, type: 3}
+  BossEnemyTilePrefab: {fileID: 2272486017052883599, guid: 25d026e5870b86b4580f4bae5e5ea75b, type: 3}
   EventTilePrefab: {fileID: 0}
   TreasureTilePrefab: {fileID: 0}
   maxStartingTiles: 3

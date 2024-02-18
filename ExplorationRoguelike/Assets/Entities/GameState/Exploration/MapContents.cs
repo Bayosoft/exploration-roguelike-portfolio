@@ -1,4 +1,5 @@
 using ExplorationRoguelike.Characters;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,5 +24,16 @@ namespace ExplorationRoguelike
         public List<CharacterData> EliteEnemyPool => eliteEnemyPool;
         public CharacterData BossEnemy => bossEnemy;
 
+
+        public List<CharacterData> GetEnemyPool(EnemyTier enemyTier)
+        {
+            return enemyTier switch
+            {
+                EnemyTier.BASIC => basicEnemyPool,
+                EnemyTier.ELITE => eliteEnemyPool,
+                EnemyTier.BOSS => new List<CharacterData>() { bossEnemy },
+                _ => throw new NotImplementedException(),
+            };
+        }
     }
 }
