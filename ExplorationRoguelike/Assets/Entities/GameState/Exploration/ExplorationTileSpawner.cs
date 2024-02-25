@@ -178,6 +178,5 @@ namespace ExplorationRoguelike
                 }
             }
         }
-
     }
 }
