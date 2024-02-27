@@ -225,16 +225,12 @@ namespace ExplorationRoguelike.Combat
         }
 
         [SerializeField]
-        private GameObject lootBagPrefab;
+        private LootTransition lootTransition;
         public void EndCombat()
         {
-            var bagInstance = Instantiate(lootBagPrefab);
-            bagInstance.transform.SetParent(transform);
-
-            LootBag lootBag = bagInstance.GetComponent<LootBag>();
-            lootBag.Initialize(enemies[0].CharacterData.LootTable);
-
-            lootBag.nextButton.onClick.AddListener(ChangeGamestate);
+            gameObject.SetActive(false);
+            lootTransition.Transition(enemies[0].CharacterData.LootTable, ChangeGamestate);
+            
         }
 
         private void ChangeGamestate()

@@ -586,7 +586,7 @@ MonoBehaviour:
   manaText: {fileID: 1194741969}
   enemyIntentText: {fileID: 1926773758}
   combatEvent: {fileID: 0}
-  lootBagPrefab: {fileID: 4204344674018462941, guid: c1dcb7f3ca2731e488ff335e64a391b1, type: 3}
+  lootTransition: {fileID: 11400000, guid: 42de32485da4d6b4b8d38aef22ea72c6, type: 2}
 --- !u!114 &1000540541
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,14 +1,12 @@
-using UnityEngine;
-
 namespace ExplorationRoguelike
 {
-    public class CombatTransition : TansitionBase
+    public class CombatTransition : TransitionBase
     {
-        // Switch to combat
-
-        void Start()
+        public void Transition()
         {
-        
+            throw new System.NotImplementedException();
         }
+
+        // Switch to combat
     }
 }
