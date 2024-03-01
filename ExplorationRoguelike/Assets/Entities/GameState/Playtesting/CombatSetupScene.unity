@@ -241,10 +241,11 @@ MonoBehaviour:
   weakEnemy: {fileID: 11400000, guid: c12caf94b5929734a9cb7e7d5b5f43cb, type: 2}
   averageEnemy: {fileID: 11400000, guid: 6887d792ed2b8d04fb678c84312a5e6a, type: 2}
   bossEnemy: {fileID: 11400000, guid: a22762ccf7d60fc49a25e53161cc4b16, type: 2}
+  multiChoiceData: {fileID: 0}
   deckButtons: {fileID: 1736298835}
   enemyButtons: {fileID: 1488961675}
   gameState: {fileID: 747129934}
-  enemyPrefab: {fileID: 5612204403386450629, guid: 4f14c8c8f8961074fa334e3dd1776d80, type: 3}
+  combatTransitioner: {fileID: 11400000, guid: 83ac47ef0c0cfcb448f30a0f9d40b4c9, type: 2}
 --- !u!1 &103479768
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,7 +949,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 9206238031483290149, guid: d83f280b8af725446be4ddba59ac6e7e, type: 3}
-  enemy: {fileID: 5612204403386450629, guid: 4f14c8c8f8961074fa334e3dd1776d80, type: 3}
   gameOverlay: {fileID: 1189078554}
 --- !u!4 &747129935
 Transform:

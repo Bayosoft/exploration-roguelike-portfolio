@@ -11,6 +11,11 @@ namespace ExplorationRoguelike
 
         private Action nextButtonBehavior;
         private GameObject lootBagInstance;
+
+        public override void Awake()
+        {
+        }
+
         public void Transition(LootTable lootTable, Action nextButtonBehavior)
         {
             this.nextButtonBehavior = nextButtonBehavior;

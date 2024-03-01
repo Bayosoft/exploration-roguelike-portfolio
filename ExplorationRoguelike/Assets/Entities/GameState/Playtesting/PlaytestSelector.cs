@@ -1,6 +1,5 @@
 using ExplorationRoguelike.AbilitySystem.Abilities;
 using ExplorationRoguelike.Characters;
-using ExplorationRoguelike.Characters.NonPlayerCharacters;
 using ExplorationRoguelike.Characters.PlayerCharacter;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -23,6 +22,7 @@ namespace ExplorationRoguelike
         [SerializeField] private GameObject enemyButtons;
 
         [SerializeField] private GameState gameState;
+        [SerializeField] private CombatTransition combatTransitioner;
 
         private Player player;
 
@@ -80,18 +80,17 @@ namespace ExplorationRoguelike
 
         public void OnWeakEnemyClick()
         {            
-            gameState.SetCombat(weakEnemy);
+            combatTransitioner.Transition(weakEnemy, LoadSceneMode.Single);
         }
         
         public void OnAverageEnemyClick()
         {
-            gameState.SetCombat(averageEnemy);
+            combatTransitioner.Transition(averageEnemy, LoadSceneMode.Single);
         }
 
         public void OnBossEnemyClick()
         {
-            gameState.SetCombat(bossEnemy);
-
+            combatTransitioner.Transition(bossEnemy, LoadSceneMode.Single);
         }
 
     }

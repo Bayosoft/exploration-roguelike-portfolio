@@ -1,7 +1,13 @@
+using System;
+
 namespace ExplorationRoguelike
 {
     public class DialogueTransition : TransitionBase
     {
+        public override void Awake()
+        {
+        }
+
         public void Transition()
         {
             throw new System.NotImplementedException();
@@ -12,10 +18,5 @@ namespace ExplorationRoguelike
 
 
         // Transition to Dialoguestate
-
-        void Start()
-        {
-        
-        }
     }
 }

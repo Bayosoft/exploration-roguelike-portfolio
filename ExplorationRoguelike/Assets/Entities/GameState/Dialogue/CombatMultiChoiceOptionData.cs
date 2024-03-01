@@ -1,5 +1,6 @@
 using ExplorationRoguelike.Characters;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace ExplorationRoguelike
 {
@@ -9,9 +10,12 @@ namespace ExplorationRoguelike
         [SerializeField]
         private CharacterData enemy;
 
+        [SerializeField]
+        private CombatTransition combatTransition;
+
         public override void Activate()
         {
-            FindAnyObjectByType<GameState>().SetCombatAdditive(enemy);
+            combatTransition.Transition(enemy, LoadSceneMode.Additive);
         }
     }
 }

@@ -2,6 +2,7 @@ using ExplorationRoguelike.AbilitySystem;
 using ExplorationRoguelike.Characters;
 using ExplorationRoguelike.Characters.PlayerCharacter;
 using ExplorationRoguelike.Combat;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -24,16 +25,21 @@ namespace ExplorationRoguelike
         private DialogueStateComponent _dialogueStateComponent;
         private MultiChoiceOptionData choiceData;
 
+        public event EventHandler GameLoaded;
+
         void Awake()
         {
             DontDestroyOnLoad(this);
 
             _playerInstance = Instantiate(player).GetComponent<Player>();
-
             DontDestroyOnLoad(_playerInstance);
             DontDestroyOnLoad(gameOverlay);
 
+            FindObjectsByType<TransitionBase>(FindObjectsSortMode.None).Initialize();
+
             SceneManager.sceneLoaded += OnSceneLoaded;
+
+            GameLoaded?.Invoke(this, EventArgs.Empty);
         }
 
         private void Start()
@@ -45,17 +51,6 @@ namespace ExplorationRoguelike
             _playerGoldDisplayer.Initialize(_playerInstance);
         }
 
-        // Loads combat and keeps scene that loaded it.
-        public void SetCombatAdditive(CharacterData enemyData)
-        {
-            this.enemyData = enemyData;
-            SceneManager.LoadSceneAsync("CombatScene", LoadSceneMode.Additive);
-        }
-        public void SetCombat(CharacterData enemyData)
-        {
-            this.enemyData = enemyData;
-            SceneManager.LoadSceneAsync("CombatScene");
-        }
         public void SetDialogue(MultiChoiceOptionData choiceData) /* Replace with DialogueData which holds all the dialogue, choices, and sprites */
         {
             this.choiceData = choiceData;
@@ -65,12 +60,6 @@ namespace ExplorationRoguelike
         // called second
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            if (scene.name == "CombatScene")
-            {
-                _combatStateComponent = FindAnyObjectByType<CombatStateComponent>();
-
-                _combatStateComponent.Initialize(_playerInstance, enemyData);
-            }
             if(scene.name == "ExplorationScene")
             {
                 _explorationStateComponent = FindAnyObjectByType<ExplorationStateComponent>();

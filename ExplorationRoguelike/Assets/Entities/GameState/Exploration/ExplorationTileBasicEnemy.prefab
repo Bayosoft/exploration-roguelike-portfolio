@@ -165,4 +165,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exploreTileEvent: {fileID: 11400000, guid: 2e4f9c565bf79d340bddca5e1c78edc2, type: 2}
+  tileSelectTransition: {fileID: 11400000, guid: 83ac47ef0c0cfcb448f30a0f9d40b4c9, type: 2}
   enemyTier: 0

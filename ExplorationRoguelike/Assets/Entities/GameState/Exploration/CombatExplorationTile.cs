@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace ExplorationRoguelike
 {
@@ -39,9 +40,9 @@ namespace ExplorationRoguelike
         {
             base.Selected();
 
-            if(Enemy != null)
+            if(tileSelectTransition is CombatTransition combatTransition)
             {
-                FindFirstObjectByType<GameState>().SetCombatAdditive(Enemy);
+                combatTransition.Transition(Enemy, LoadSceneMode.Additive);
             }
             
             this.enabled = false;

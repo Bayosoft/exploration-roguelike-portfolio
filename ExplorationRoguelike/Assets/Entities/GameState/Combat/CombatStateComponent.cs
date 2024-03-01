@@ -230,7 +230,6 @@ namespace ExplorationRoguelike.Combat
         {
             gameObject.SetActive(false);
             lootTransition.Transition(enemies[0].CharacterData.LootTable, ChangeGamestate);
-            
         }
 
         private void ChangeGamestate()
