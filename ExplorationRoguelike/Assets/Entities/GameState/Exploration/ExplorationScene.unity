@@ -425,7 +425,7 @@ MonoBehaviour:
   basicEnemyTilePrefab: {fileID: 2272486017052883599, guid: c2227cd9958418242a9413a08b840de7, type: 3}
   eliteEnemyTilePrefab: {fileID: 2272486017052883599, guid: 0baf8ff775e53f443965d08e0054f3df, type: 3}
   BossEnemyTilePrefab: {fileID: 2272486017052883599, guid: 25d026e5870b86b4580f4bae5e5ea75b, type: 3}
-  EventTilePrefab: {fileID: 0}
+  EventTilePrefab: {fileID: 5337654911105987388, guid: 83c2a5c70b6d19d49b6d45a7e464e6f2, type: 3}
   TreasureTilePrefab: {fileID: 0}
   maxStartingTiles: 3
   maxPaths: 0

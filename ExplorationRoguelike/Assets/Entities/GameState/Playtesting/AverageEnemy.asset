@@ -21,3 +21,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b6674a32240e6364ba6e84a46d2aaffa, type: 2}
   health:
     maxHealth: 75
+  lootTable: {fileID: 11400000, guid: b81faabc056c09f479ee3883fc21a563, type: 2}

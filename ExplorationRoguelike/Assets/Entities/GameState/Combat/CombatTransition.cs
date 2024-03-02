@@ -13,11 +13,9 @@ namespace ExplorationRoguelike
         private CharacterData _enemyData;
         private Player _player;
 
-        public override void Awake()
+        internal void Initialize(Player player)
         {
-            Debug.Log("Combat transition laoded");
-
-            _player = FindAnyObjectByType<Player>();
+            _player = player;
 
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
@@ -33,9 +31,14 @@ namespace ExplorationRoguelike
         // Switch to combat
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
+            if (scene.name != sceneName)
+            {
+                return;
+            }
             var combat = FindAnyObjectByType<CombatStateComponent>();
 
             combat.Initialize(_player, _enemyData);
+
         }
     }
 }

@@ -315,6 +315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 9206238031483290149, guid: d83f280b8af725446be4ddba59ac6e7e, type: 3}
   gameOverlay: {fileID: 2008529603}
+  combatTransitioner: {fileID: 11400000, guid: 83ac47ef0c0cfcb448f30a0f9d40b4c9, type: 2}
 --- !u!4 &1298211401
 Transform:
   m_ObjectHideFlags: 0
@@ -446,6 +447,7 @@ MonoBehaviour:
   deckButtons: {fileID: 0}
   enemyButtons: {fileID: 0}
   gameState: {fileID: 0}
+  combatTransitioner: {fileID: 0}
 --- !u!114 &1612481453
 MonoBehaviour:
   m_ObjectHideFlags: 0

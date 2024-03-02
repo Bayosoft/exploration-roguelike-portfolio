@@ -17,13 +17,22 @@ namespace ExplorationRoguelike
         [SerializeField]
         private CharacterData bossEnemy;
 
-        [SerializeField]
-        private List<LootTable> lootTable;
-
         public List<CharacterData> BasicEnemyPool => basicEnemyPool;
         public List<CharacterData> EliteEnemyPool => eliteEnemyPool;
         public CharacterData BossEnemy => bossEnemy;
 
+        [SerializeField]
+        private List<LootTable> eventLoot;
+
+        // DialogueCollection ..
+
+        [SerializeField]
+        private List<CharacterData> eventEnemies;
+
+
+        public List<LootTable> EventLoot => eventLoot;
+        // public DialogueCollection EventDialogue;
+        public List<CharacterData> EventEnemies => eventEnemies;
 
         public List<CharacterData> GetEnemyPool(EnemyTier enemyTier)
         {

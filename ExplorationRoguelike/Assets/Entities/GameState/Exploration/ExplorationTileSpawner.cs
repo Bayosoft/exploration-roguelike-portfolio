@@ -103,16 +103,16 @@ namespace ExplorationRoguelike
         private GameObject DetermineTileType((int row, int column) position)
         {
             int basicEnemyWeight = 5;
-            int bossEnemyWeight = 1;
-            //int eventWeight = 0;
+            int eliteEnemyWeight = 1;
+            int randomEventWeight = 2;
 
             // if previous row has boss, set boss weight to 0..
 
             WeightedList<GameObject> weightedTiles = new()
             {
                 { basicEnemyTilePrefab, basicEnemyWeight },
-                { eliteEnemyTilePrefab, bossEnemyWeight },
-                /* TODO: more tile types.. */
+                { eliteEnemyTilePrefab, eliteEnemyWeight },
+                { EventTilePrefab, randomEventWeight },
             };
 
             return weightedTiles.Next(); // Draw a random item from the list.
@@ -134,8 +134,13 @@ namespace ExplorationRoguelike
 
                 tileType = combatTile;
             }
+            if(tileType is RandomEventExplorationTile eventTile)
+            {
+                eventTile.SetRandomEvent(mapContents);
 
-            // TODO: Spawn event tile etc..
+                tileType = eventTile;
+            }
+
             mapGrid.TryAdd((position.x, position.y), tileType);
 
             return (position.x, position.y);

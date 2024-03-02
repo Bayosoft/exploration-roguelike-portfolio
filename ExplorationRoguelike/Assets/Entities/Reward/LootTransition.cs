@@ -30,7 +30,7 @@ namespace ExplorationRoguelike
 
         private void NextButtonPressed()
         {
-            nextButtonBehavior();
+            nextButtonBehavior?.Invoke();
             Destroy(lootBagInstance);
         }
     }    

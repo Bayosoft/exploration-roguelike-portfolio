@@ -10,12 +10,40 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 234758363826360883, guid: 1a4bb4f8a09b8a74f872473506de0488, type: 3}
       propertyPath: m_Name
-      value: ExplorationTile Variant
+      value: ExplorationTileRandomEvent
       objectReference: {fileID: 0}
     - target: {fileID: 5945906619995095018, guid: 1a4bb4f8a09b8a74f872473506de0488, type: 3}
       propertyPath: m_TargetGraphic
       value: 
       objectReference: {fileID: 6676449493577592086}
+    - target: {fileID: 5945906619995095018, guid: 1a4bb4f8a09b8a74f872473506de0488, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5945906619995095018, guid: 1a4bb4f8a09b8a74f872473506de0488, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5945906619995095018, guid: 1a4bb4f8a09b8a74f872473506de0488, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: -7862362478431661523}
+    - target: {fileID: 5945906619995095018, guid: 1a4bb4f8a09b8a74f872473506de0488, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5945906619995095018, guid: 1a4bb4f8a09b8a74f872473506de0488, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ExploreTile
+      objectReference: {fileID: 0}
+    - target: {fileID: 5945906619995095018, guid: 1a4bb4f8a09b8a74f872473506de0488, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ExplorationRoguelike.RandomEventExplorationTile, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5945906619995095018, guid: 1a4bb4f8a09b8a74f872473506de0488, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8707932237154572766, guid: 1a4bb4f8a09b8a74f872473506de0488, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -99,14 +127,39 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 234758363826360883, guid: 1a4bb4f8a09b8a74f872473506de0488, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7862362478431661523}
   m_SourcePrefab: {fileID: 100100000, guid: 1a4bb4f8a09b8a74f872473506de0488, type: 3}
+--- !u!1 &5337654911105987388 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 234758363826360883, guid: 1a4bb4f8a09b8a74f872473506de0488, type: 3}
+  m_PrefabInstance: {fileID: 5283056204237201679}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-7862362478431661523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5337654911105987388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2e814c96209a8344a2cf17a954af5b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exploreTileEvent: {fileID: 11400000, guid: 2e4f9c565bf79d340bddca5e1c78edc2, type: 2}
+  tileSelectTransition: {fileID: 0}
+  lootTransition: {fileID: 11400000, guid: 42de32485da4d6b4b8d38aef22ea72c6, type: 2}
+  combatTransition: {fileID: 11400000, guid: 83ac47ef0c0cfcb448f30a0f9d40b4c9, type: 2}
+  dialogueTransition: {fileID: 0}
 --- !u!114 &6676449493577592086 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1582642330911640601, guid: 1a4bb4f8a09b8a74f872473506de0488, type: 3}
   m_PrefabInstance: {fileID: 5283056204237201679}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 5337654911105987388}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}

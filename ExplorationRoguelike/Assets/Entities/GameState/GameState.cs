@@ -20,12 +20,13 @@ namespace ExplorationRoguelike
         private PlayerStatusEffectDisplayer _playerStatusEffectDisplayer;
         private PlayerGoldDisplayer _playerGoldDisplayer;
 
-        private CombatStateComponent _combatStateComponent;
-        private ExplorationStateComponent _explorationStateComponent;
         private DialogueStateComponent _dialogueStateComponent;
         private MultiChoiceOptionData choiceData;
 
         public event EventHandler GameLoaded;
+
+        [SerializeField]
+        private CombatTransition combatTransitioner;
 
         void Awake()
         {
@@ -35,7 +36,7 @@ namespace ExplorationRoguelike
             DontDestroyOnLoad(_playerInstance);
             DontDestroyOnLoad(gameOverlay);
 
-            FindObjectsByType<TransitionBase>(FindObjectsSortMode.None).Initialize();
+            combatTransitioner.Initialize(_playerInstance);
 
             SceneManager.sceneLoaded += OnSceneLoaded;
 
@@ -51,6 +52,7 @@ namespace ExplorationRoguelike
             _playerGoldDisplayer.Initialize(_playerInstance);
         }
 
+        // TODO: Remove and refactor into DialogueTransition
         public void SetDialogue(MultiChoiceOptionData choiceData) /* Replace with DialogueData which holds all the dialogue, choices, and sprites */
         {
             this.choiceData = choiceData;
@@ -60,12 +62,6 @@ namespace ExplorationRoguelike
         // called second
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            if(scene.name == "ExplorationScene")
-            {
-                _explorationStateComponent = FindAnyObjectByType<ExplorationStateComponent>();
-
-                // TODO: I guess irrelevant if im refactoring this whole thing anyway.
-            }
             if (scene.name == "DialogueScene")
             {
                 _dialogueStateComponent = FindAnyObjectByType<DialogueStateComponent>();
