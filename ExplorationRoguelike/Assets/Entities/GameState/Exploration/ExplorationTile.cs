@@ -20,6 +20,12 @@ namespace ExplorationRoguelike
 
         public void AddConnectedTile(ExplorationTile tile)
         {
+
+            if (ConnectedTiles.Contains(tile)) 
+            {
+                return;
+            }
+
             // hide tile
             tile.gameObject.SetActive(false);
 

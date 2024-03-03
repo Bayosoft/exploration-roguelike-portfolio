@@ -17,7 +17,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c12caf94b5929734a9cb7e7d5b5f43cb, type: 2}
   - {fileID: 11400000, guid: 48ccfb445900fb94ebeab30132800215, type: 2}
   eliteEnemyPool:
-  - {fileID: 11400000, guid: a22762ccf7d60fc49a25e53161cc4b16, type: 2}
+  - {fileID: 11400000, guid: 6887d792ed2b8d04fb678c84312a5e6a, type: 2}
   bossEnemy: {fileID: 0}
   eventLoot:
   - {fileID: 11400000, guid: b81faabc056c09f479ee3883fc21a563, type: 2}

@@ -84,12 +84,23 @@ namespace ExplorationRoguelike
             yield return new WaitForSecondsRealtime(1);
 
             selectedTile = tile;
+
+            DisableTilesOnSelectedRow(selectedTile);
+            
             tile.Selected();
         }
 
-/*        private IEnumerator ActivateTile(ExplorationTile tile)
-        {
 
-        }*/
+        private void DisableTilesOnSelectedRow(ExplorationTile selectedTile)
+        {
+            var selectedCell = MapGrid.FirstOrDefault(x => x.Value == selectedTile).Key;
+
+            foreach (ExplorationTile tile in MapGrid
+                .Where(kv => kv.Key.x == selectedCell.x && kv.Key.y != selectedCell.y)
+                .Select(kv => kv.Value))
+            {
+                tile.OutOfReach();
+            }
+        }
     }
 }
