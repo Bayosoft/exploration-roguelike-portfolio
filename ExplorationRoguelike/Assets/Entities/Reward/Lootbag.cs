@@ -22,7 +22,7 @@ namespace ExplorationRoguelike
             {
                 var currencyInstance = Instantiate(currencyPrefab);
 
-                currencyInstance.transform.SetParent(this.transform);
+                currencyInstance.transform.SetParent(this.transform.GetChild(0).transform);
 
                 var currencyItem = currencyInstance.GetComponent<CurrencyItem>();
 
