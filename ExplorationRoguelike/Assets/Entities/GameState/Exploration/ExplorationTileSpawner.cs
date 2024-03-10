@@ -2,8 +2,6 @@ using ExplorationRoguelike.Characters;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEngine.Rendering.DebugUI.Table;
 
 namespace ExplorationRoguelike
 {

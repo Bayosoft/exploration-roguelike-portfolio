@@ -7,16 +7,19 @@ namespace ExplorationRoguelike
     public class DialogueStateComponent : MonoBehaviour
     {
         [SerializeField]
-        private GameObject multiChoiceButton;
+        private GameObject dialogueBox;
 
-        public void LoadDialogue(/* List<Dialogue> dialogues*/ List<MultiChoiceOptionData> options)
+        [SerializeField]
+        private GameObject dialogueOptionButton;
+
+        public void LoadDialogue(/* List<Dialogue> dialogues*/ List<DialogueOption> options)
         {
-            foreach (MultiChoiceOptionData option in options)
+            foreach (DialogueOption option in options)
             {
-                var buttonInstance = Instantiate(multiChoiceButton);
+                var buttonInstance = Instantiate(dialogueOptionButton);
                 buttonInstance.transform.parent = transform;
 
-                buttonInstance.GetComponent<MultiChoiceOption>().Initialize(option);
+                buttonInstance.GetComponent<DialogueOptionButton>().Initialize(option);
             }
         }
     }

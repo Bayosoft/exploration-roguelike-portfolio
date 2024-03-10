@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 7802937462529576323}
   - component: {fileID: 3168458133572958746}
   m_Layer: 5
-  m_Name: MultiChoiceButton
+  m_Name: DialogueButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

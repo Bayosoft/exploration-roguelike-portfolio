@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 
 namespace ExplorationRoguelike
 {
-    [CreateAssetMenu(fileName = "CombatMultiChoiceOptionData", menuName = "Multiple Choice Options/Combat Option")]
-    public class CombatMultiChoiceOptionData : MultiChoiceOptionData
+    [CreateAssetMenu(fileName = "CombatMultiChoiceOption", menuName = "Dialogue/Combat Option")]
+    public class CombatMultiChoiceOption : DialogueOption
     {
         [SerializeField]
         private CharacterData enemy;

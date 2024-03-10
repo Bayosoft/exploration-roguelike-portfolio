@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09893b2885f0431448cc813bc07ebb9d, type: 3}
-  m_Name: GoblinThiefCombatChoice
+  m_Script: {fileID: 11500000, guid: 633b35a30dade724283aafda6e52ba78, type: 3}
+  m_Name: 1. Test Dialogue
   m_EditorClassIdentifier: 
-  OptionText: Fight the thief!
-  enemy: {fileID: 11400000, guid: 48ccfb445900fb94ebeab30132800215, type: 2}
+  speakerName: -1
+  dialogue: Do you want to fight, get a reward, or die?
+  dialogueOptions: []

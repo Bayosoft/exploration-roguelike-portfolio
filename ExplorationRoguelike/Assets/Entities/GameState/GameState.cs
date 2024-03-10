@@ -21,7 +21,7 @@ namespace ExplorationRoguelike
         private PlayerGoldDisplayer _playerGoldDisplayer;
 
         private DialogueStateComponent _dialogueStateComponent;
-        private MultiChoiceOptionData choiceData;
+        private DialogueOption choiceData;
 
         public event EventHandler GameLoaded;
 
@@ -53,7 +53,7 @@ namespace ExplorationRoguelike
         }
 
         // TODO: Remove and refactor into DialogueTransition
-        public void SetDialogue(MultiChoiceOptionData choiceData) /* Replace with DialogueData which holds all the dialogue, choices, and sprites */
+        public void SetDialogue(DialogueOption choiceData) /* Replace with DialogueData which holds all the dialogue, choices, and sprites */
         {
             this.choiceData = choiceData;
             SceneManager.LoadScene("DialogueScene");
@@ -66,7 +66,7 @@ namespace ExplorationRoguelike
             {
                 _dialogueStateComponent = FindAnyObjectByType<DialogueStateComponent>();
 
-                _dialogueStateComponent.LoadDialogue(new List<MultiChoiceOptionData>() { choiceData });
+                _dialogueStateComponent.LoadDialogue(new List<DialogueOption>() { choiceData });
                 // TODO: I guess irrelevant if im refactoring this whole thing anyway.
             }
         }

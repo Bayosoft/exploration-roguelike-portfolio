@@ -16,7 +16,7 @@ namespace ExplorationRoguelike
         [SerializeField] private CharacterData averageEnemy;
         [SerializeField] private CharacterData bossEnemy;
 
-        [SerializeField] private MultiChoiceOptionData multiChoiceData;
+        [SerializeField] private DialogueOption multiChoiceData;
 
         [SerializeField] private GameObject deckButtons;
         [SerializeField] private GameObject enemyButtons;

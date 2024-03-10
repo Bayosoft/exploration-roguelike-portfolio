@@ -9,16 +9,10 @@ namespace ExplorationRoguelike
     {
         [SerializeField]
         private TextMeshProUGUI dialogueText;
-        // Start is called before the first frame update
-        void Start()
-        {
-            dialogueText.text = "You're bananas!";
-        }
 
-        // Update is called once per frame
-        void Update()
+        public void DisplayDialogue(string dialogue)
         {
-        
+            dialogueText.text = dialogue;
         }
     }
 }
