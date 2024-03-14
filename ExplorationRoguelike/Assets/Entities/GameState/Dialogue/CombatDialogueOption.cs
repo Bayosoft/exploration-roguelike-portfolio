@@ -10,12 +10,9 @@ namespace ExplorationRoguelike
         [SerializeField]
         private CharacterData enemy;
 
-        [SerializeField]
-        private CombatTransition combatTransition;
-
         public override void Activate()
         {
-            combatTransition.Transition(enemy, LoadSceneMode.Additive);
+            CombatTransition.Instance.Transition(enemy, LoadSceneMode.Additive);
         }
     }
 }

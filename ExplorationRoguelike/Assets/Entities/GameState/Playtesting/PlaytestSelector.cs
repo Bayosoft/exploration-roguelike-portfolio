@@ -16,7 +16,7 @@ namespace ExplorationRoguelike
         [SerializeField] private CharacterData averageEnemy;
         [SerializeField] private CharacterData bossEnemy;
 
-        [SerializeField] private DialogueOption multiChoiceData;
+        [SerializeField] private Dialogue dialogue;
 
         [SerializeField] private GameObject deckButtons;
         [SerializeField] private GameObject enemyButtons;
@@ -36,7 +36,7 @@ namespace ExplorationRoguelike
             }
             if(SceneManager.GetActiveScene().name == "MultiChoiceSetupScene")
             {
-                gameState.SetDialogue(multiChoiceData);
+                DialogueTransition.Instance.Transition(dialogue, LoadSceneMode.Single);
             }
         }
 

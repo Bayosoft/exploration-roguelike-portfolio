@@ -12,7 +12,6 @@ namespace ExplorationRoguelike
     public class GameState : MonoBehaviour
     {
         public GameObject player;
-        private CharacterData enemyData;
         public GameObject gameOverlay;
 
         private Player _playerInstance;
@@ -20,13 +19,8 @@ namespace ExplorationRoguelike
         private PlayerStatusEffectDisplayer _playerStatusEffectDisplayer;
         private PlayerGoldDisplayer _playerGoldDisplayer;
 
-        private DialogueStateComponent _dialogueStateComponent;
-        private DialogueOption choiceData;
-
         public event EventHandler GameLoaded;
 
-        [SerializeField]
-        private CombatTransition combatTransitioner;
 
         void Awake()
         {
@@ -36,9 +30,7 @@ namespace ExplorationRoguelike
             DontDestroyOnLoad(_playerInstance);
             DontDestroyOnLoad(gameOverlay);
 
-            combatTransitioner.Initialize(_playerInstance);
-
-            SceneManager.sceneLoaded += OnSceneLoaded;
+            CombatTransition.Instance.Initialize(_playerInstance);
 
             GameLoaded?.Invoke(this, EventArgs.Empty);
         }
@@ -52,23 +44,6 @@ namespace ExplorationRoguelike
             _playerGoldDisplayer.Initialize(_playerInstance);
         }
 
-        // TODO: Remove and refactor into DialogueTransition
-        public void SetDialogue(DialogueOption choiceData) /* Replace with DialogueData which holds all the dialogue, choices, and sprites */
-        {
-            this.choiceData = choiceData;
-            SceneManager.LoadScene("DialogueScene");
-        }
-
-        // called second
-        void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-        {
-            if (scene.name == "DialogueScene")
-            {
-                _dialogueStateComponent = FindAnyObjectByType<DialogueStateComponent>();
-
-                _dialogueStateComponent.LoadDialogue(new List<DialogueOption>() { choiceData });
-                // TODO: I guess irrelevant if im refactoring this whole thing anyway.
-            }
-        }
+    
     }
 }

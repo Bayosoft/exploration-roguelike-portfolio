@@ -16,10 +16,8 @@ namespace ExplorationRoguelike
 
         public override void ExploreTile()
         {
-            if (tileSelectTransition is LootTransition lootTransition)
-            {
-                lootTransition.Transition(lootTable, null);
-            }        
+
+            LootTransition.Instance.Transition(lootTable, null);
         }
     }
 }

@@ -2,16 +2,31 @@ using ExplorationRoguelike.Characters;
 using ExplorationRoguelike.Characters.PlayerCharacter;
 using ExplorationRoguelike.Combat;
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace ExplorationRoguelike
 {
-    [CreateAssetMenu(fileName = "CombatTransition", menuName = "Transitions/Combat Transition")]
     public class CombatTransition : TransitionBase
     {
         private CharacterData _enemyData;
         private Player _player;
+        public static CombatTransition Instance { get; private set; }
+
+        private void Awake()
+        {
+            // If there is an instance, and it's not me, delete myself.
+
+            if (Instance != null && Instance != this)
+            {
+                Destroy(this);
+            }
+            else
+            {
+                Instance = this;
+            }
+        }
 
         internal void Initialize(Player player)
         {

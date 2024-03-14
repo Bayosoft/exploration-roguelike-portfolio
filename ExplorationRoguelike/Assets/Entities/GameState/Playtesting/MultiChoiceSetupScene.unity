@@ -145,6 +145,9 @@ GameObject:
   m_Component:
   - component: {fileID: 883967582}
   - component: {fileID: 883967581}
+  - component: {fileID: 883967585}
+  - component: {fileID: 883967584}
+  - component: {fileID: 883967583}
   m_Layer: 0
   m_Name: Gamestate
   m_TagString: Untagged
@@ -181,6 +184,46 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &883967583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883967580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31582136422e2b24fb0da4c28b4859ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: 
+  lootBagPrefab: {fileID: 8031398943237908610, guid: a32f5eae1088d414e938d713c5a752cf, type: 3}
+--- !u!114 &883967584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883967580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e6d73fbb0a94364e8838d05b7a331a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: DialogueScene
+--- !u!114 &883967585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883967580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eceab15344b3ff843beb1ad2fe2f2862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: CombatScene
 --- !u!1 &1258483852
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,10 +404,11 @@ MonoBehaviour:
   weakEnemy: {fileID: 0}
   averageEnemy: {fileID: 0}
   bossEnemy: {fileID: 0}
-  multiChoiceData: {fileID: 11400000, guid: 7b771f489543eee408dbe7d3c0674a28, type: 2}
+  dialogue: {fileID: 11400000, guid: 459780a8a7ecffd4e93251c0d26a8c1a, type: 2}
   deckButtons: {fileID: 0}
   enemyButtons: {fileID: 0}
   gameState: {fileID: 883967581}
+  combatTransitioner: {fileID: 0}
 --- !u!114 &1877225030
 MonoBehaviour:
   m_ObjectHideFlags: 0

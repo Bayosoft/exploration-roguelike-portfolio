@@ -1,9 +1,9 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace ExplorationRoguelike
 {
-    [CreateAssetMenu(fileName = "LootTransition", menuName = "Transitions/Loot Transition")]
     public class LootTransition : TransitionBase
     {
         [SerializeField]
@@ -11,9 +11,20 @@ namespace ExplorationRoguelike
 
         private Action nextButtonBehavior;
         private GameObject lootBagInstance;
+        public static LootTransition Instance { get; private set; }
 
-        public override void Awake()
+        private void Awake()
         {
+            // If there is an instance, and it's not me, delete myself.
+
+            if (Instance != null && Instance != this)
+            {
+                Destroy(this);
+            }
+            else
+            {
+                Instance = this;
+            }
         }
 
         public void Transition(LootTable lootTable, Action nextButtonBehavior)
@@ -33,5 +44,5 @@ namespace ExplorationRoguelike
             nextButtonBehavior?.Invoke();
             Destroy(lootBagInstance);
         }
-    }    
+    }
 }

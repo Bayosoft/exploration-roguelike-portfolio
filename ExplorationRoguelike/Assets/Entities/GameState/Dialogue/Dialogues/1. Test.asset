@@ -10,8 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 633b35a30dade724283aafda6e52ba78, type: 3}
-  m_Name: 1. Test Dialogue
+  m_Name: 1. Test
   m_EditorClassIdentifier: 
-  speakerName: -1
-  dialogue: Do you want to fight, get a reward, or die?
-  dialogueOptions: []
+  dialogueBoxes:
+  - order: 0
+    speakerName: -1
+    dialogue: Choose your fate.
+  - order: 1
+    speakerName: 0
+    dialogue: Hmmm.. what to do...
+  dialogueOptions:
+  - {fileID: 11400000, guid: 7b771f489543eee408dbe7d3c0674a28, type: 2}

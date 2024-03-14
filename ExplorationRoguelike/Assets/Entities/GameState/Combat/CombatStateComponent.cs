@@ -163,7 +163,7 @@ namespace ExplorationRoguelike.Combat
             {
                 Card c = (Card)e.NewItems[0];
                 GameObject cardView = c.gameObject;
-                cardView.transform.parent = transform;
+                cardView.transform.SetParent(transform);
                 cardView.transform.localPosition = new Vector2(CardViews.Count * 100, 0);
                 cardView.transform.localPosition = new Vector2(-300 + (CardViews.Count * 100), -350f);
                 cardView.transform.localScale = Vector2.one;

@@ -1,18 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+using System;
 using UnityEngine;
 
 namespace ExplorationRoguelike
 {
-    public class DialogueBox : MonoBehaviour
+    [Serializable]
+    public class DialogueBox
     {
-        [SerializeField]
-        private TextMeshProUGUI dialogueText;
-
-        public void DisplayDialogue(string dialogue)
-        {
-            dialogueText.text = dialogue;
-        }
-    }
+        public int order;
+        public SpeakerName speakerName;
+        [TextArea(15, 20)]
+        public string dialogue;
+    }    
 }
