@@ -238,7 +238,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueDisplay: {fileID: 1309070555957088030, guid: 17b0d1edf3b3e6148a7a1b601191caaa, type: 3}
+  nextOption: {fileID: 11400000, guid: e42b252542296094c927fd77fb62fa3c, type: 2}
   dialogueOptionButton: {fileID: 3139324921633162066, guid: da427d54a463c3f43bfa6fb906b3af4b, type: 3}
+  dialogueFrame: {fileID: 285729648}
+  dialogueOptionsFrame: {fileID: 864220064}
 --- !u!1 &285729648
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,8 +251,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 285729649}
-  - component: {fileID: 285729652}
-  - component: {fileID: 285729651}
   - component: {fileID: 285729650}
   m_Layer: 5
   m_Name: DialogueFrame
@@ -286,60 +287,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 285729648}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &285729651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 285729648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
---- !u!223 &285729652
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 285729648}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
-  m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_TargetDisplay: 0
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 1
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &864220064
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,7 +317,7 @@ GameObject:
   - component: {fileID: 864220067}
   - component: {fileID: 864220066}
   m_Layer: 5
-  m_Name: MultiChoiceFrame
+  m_Name: DialogueOptionsFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
