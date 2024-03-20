@@ -33,7 +33,7 @@ namespace ExplorationRoguelike
             Debug.Log($"Connected tile [{transform.position}] to [{tile.transform.position}]");
         }
 
-        // Selected when selected
+        // OptionSelected when selected
         public virtual void Selected()
         {
             GetComponent<Image>().color = Color.green;

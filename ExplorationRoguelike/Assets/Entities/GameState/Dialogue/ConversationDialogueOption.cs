@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+using System;
 using UnityEngine;
 
 namespace ExplorationRoguelike
@@ -8,17 +6,19 @@ namespace ExplorationRoguelike
     [CreateAssetMenu(fileName = "ConversationDialogueOption", menuName = "Dialogue/Conversation Option")]
     public class ConversationDialogueOption : DialogueOption
     {
-        [SerializeField]
-        private DialogueBox dialogue;
+        public event EventHandler<int> OptionSelected;
 
-        public void SetNextDialogueBox(DialogueBox next)
+        [SerializeField]
+        private int nextDialogueOrder;
+
+        public void SetNextDialogueBox(int next)
         {
-            dialogue = next;
+            nextDialogueOrder = next;
         }
 
         public override void Activate()
         {
-
+            OptionSelected?.Invoke(this, nextDialogueOrder);
         }
     }    
 }

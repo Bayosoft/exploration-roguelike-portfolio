@@ -37,15 +37,17 @@ namespace ExplorationRoguelike
             // Set order
         }
 
-        // TODO: This needs to run when a ConversationDialogueOption is Activated.
-        public void OnNextDialogue(DialogueBox nextDialogue)
+        // TODO: This needs to run when a ConversationDialogueOption is OptionSelected.
+        public void OnOptionSelected(object sender, int currentDialogueOrder)
         {
-            foreach (GameObject option in dialogueOptionsFrame.transform)
+            foreach (Transform option in dialogueOptionsFrame.transform)
             {
-                Destroy(option);
+                Destroy(option.gameObject);
             }
 
-            RenderDialogue(nextDialogue);
+            var newDialogue = _dialogue.DialogueBoxes[currentDialogueOrder];
+
+            RenderDialogue(newDialogue);
         }
 
         private void RenderDialogue(DialogueBox dialogueBox)
@@ -67,7 +69,7 @@ namespace ExplorationRoguelike
 
                 // else add next button which loads next dialogue box when clicked. 
                 // TODO: Maybe not a button but just clicking the screen in general?
-                nextOption.SetNextDialogueBox(_dialogue.GetNext(dialogueBox));
+                nextOption.SetNextDialogueBox(_dialogue.GetNextOrder(dialogueBox));
 
                 RenderOption(nextOption);
 
@@ -86,7 +88,14 @@ namespace ExplorationRoguelike
             var buttonInstance = Instantiate(dialogueOptionButton);
             buttonInstance.transform.SetParent(dialogueOptionsFrame.transform);
 
-            buttonInstance.GetComponent<DialogueOptionButton>().Initialize(option);
+            var optionButton = buttonInstance.GetComponent<DialogueOptionButton>();
+
+            optionButton.Initialize(option); 
+
+            if(optionButton.dialogueOption is ConversationDialogueOption conversationDialogueOption)
+            {
+                conversationDialogueOption.OptionSelected += OnOptionSelected;
+            }
         }
     }
 }

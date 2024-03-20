@@ -8,17 +8,17 @@ namespace ExplorationRoguelike
         [SerializeField]
         private TextMeshProUGUI dialogueOptionText;
 
-        private DialogueOption _dialogueOption;
+        internal DialogueOption dialogueOption;
 
         public void Initialize(DialogueOption dialogueOption)
         {
-            _dialogueOption = dialogueOption;
+            this.dialogueOption = dialogueOption;
 
-            dialogueOptionText.text = _dialogueOption.OptionText;
+            dialogueOptionText.text = this.dialogueOption.OptionText;
         }
         public void OnOptionClicked()
         {
-            _dialogueOption.Activate();
+            dialogueOption.Activate();
         }
     }
 }

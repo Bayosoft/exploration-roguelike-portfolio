@@ -20,9 +20,9 @@ namespace ExplorationRoguelike
             return DialogueBoxes.Count != DialogueBoxes.IndexOf(current);
         }
 
-        internal DialogueBox GetNext(DialogueBox current)
+        internal int GetNextOrder(DialogueBox current)
         {
-            return DialogueBoxes[DialogueBoxes.IndexOf(current) + 1];
+            return DialogueBoxes.IndexOf(current) + 1;
         }
     }
 }
