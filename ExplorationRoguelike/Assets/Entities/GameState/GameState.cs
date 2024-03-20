@@ -30,13 +30,13 @@ namespace ExplorationRoguelike
             DontDestroyOnLoad(_playerInstance);
             DontDestroyOnLoad(gameOverlay);
 
-            CombatTransition.Instance.Initialize(_playerInstance);
-
             GameLoaded?.Invoke(this, EventArgs.Empty);
         }
 
         private void Start()
         {
+            CombatTransition.Instance.Initialize(_playerInstance);
+
             _playerStatusEffectDisplayer = FindAnyObjectByType<PlayerStatusEffectDisplayer>();
             _playerStatusEffectDisplayer.Initialize(_playerInstance);
 
