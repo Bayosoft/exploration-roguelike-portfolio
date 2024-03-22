@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ExplorationRoguelike
 {
@@ -59,6 +60,7 @@ namespace ExplorationRoguelike
 
             dialogueDisplay.DisplayDialogue(dialogueBox.dialogue);
 
+            LayoutRebuilder.MarkLayoutForRebuild(dialogueDisplayInstance.GetComponent<RectTransform>());
             // If there is no option to choose
             if (dialogueBox.DialogueOptions == null || !dialogueBox.DialogueOptions.Any())
             {
