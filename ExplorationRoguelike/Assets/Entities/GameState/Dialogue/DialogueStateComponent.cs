@@ -8,7 +8,7 @@ namespace ExplorationRoguelike
     public class DialogueStateComponent : MonoBehaviour
     {
         [SerializeField]
-        private GameObject dialogueDisplay;
+        private GameObject dialogueDisplayPrefab;
 
         [SerializeField]
         private ConversationDialogueOption nextOption;
@@ -52,10 +52,12 @@ namespace ExplorationRoguelike
 
         private void RenderDialogue(DialogueBox dialogueBox)
         {
-            var dialogueDisplayInstance = Instantiate(dialogueDisplay);
+            var dialogueDisplayInstance = Instantiate(dialogueDisplayPrefab);
             dialogueDisplayInstance.transform.SetParent(dialogueFrame.transform);
 
-            dialogueDisplayInstance.GetComponent<DialogueDisplay>().DisplayDialogue(dialogueBox.dialogue);
+            var dialogueDisplay = dialogueDisplayInstance.GetComponent<DialogueDisplay>();
+
+            dialogueDisplay.DisplayDialogue(dialogueBox.dialogue);
 
             // If there is no option to choose
             if (dialogueBox.DialogueOptions == null || !dialogueBox.DialogueOptions.Any())
