@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,6 +44,11 @@ namespace ExplorationRoguelike
         {
             foreach (Transform option in dialogueOptionsFrame.transform)
             {
+                if(option.gameObject.GetComponent<DialogueOptionButton>().dialogueOption is ConversationDialogueOption conversationDialogueOption)
+                {
+                    conversationDialogueOption.OptionSelected -= OnOptionSelected;
+                }
+
                 Destroy(option.gameObject);
             }
 
