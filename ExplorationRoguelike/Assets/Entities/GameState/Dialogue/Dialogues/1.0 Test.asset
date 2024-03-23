@@ -15,11 +15,23 @@ MonoBehaviour:
   dialogueBoxes:
   - order: 0
     speakerName: -1
-    dialogue: Choose your fate.
+    dialogue: This dialogue will decide your fate. You can either fight the thief,
+      or fight the thief. Such choice!
     dialogueOptions: []
   - order: 1
     speakerName: 0
-    dialogue: Hmmm.. what to do...
+    dialogue: Hmmm.. Such a difficult decision...
     dialogueOptions:
     - {fileID: 11400000, guid: 7b771f489543eee408dbe7d3c0674a28, type: 2}
     - {fileID: 11400000, guid: 7b771f489543eee408dbe7d3c0674a28, type: 2}
+    - {fileID: 11400000, guid: 975cc3bef9ce1fd47b47239250c38b84, type: 2}
+  - order: 2
+    speakerName: -1
+    dialogue: 'Huh... You''re doing nothing?
+
+      But that is pointless, you will
+      be stuck here forever!'
+    dialogueOptions:
+    - {fileID: 11400000, guid: 7b771f489543eee408dbe7d3c0674a28, type: 2}
+    - {fileID: 11400000, guid: 7b771f489543eee408dbe7d3c0674a28, type: 2}
+    - {fileID: 11400000, guid: 975cc3bef9ce1fd47b47239250c38b84, type: 2}

@@ -11,9 +11,24 @@ namespace ExplorationRoguelike
         [SerializeField]
         private TextMeshProUGUI dialogueText;
 
-        public void DisplayDialogue(string dialogue)
+        [SerializeField]
+        private GameObject dialogueBubble;
+
+        [SerializeField]
+        private GameObject emptyFill;
+        public void DisplayDialogue(DialogueBox dialogueBox)
         {
-            dialogueText.text = dialogue;
+            if(dialogueBox.speakerName == SpeakerName.PLAYER)
+            {
+                emptyFill.transform.SetSiblingIndex(1);
+                dialogueBubble.transform.localPosition = new Vector2(dialogueBubble.transform.localPosition.x - 50, dialogueBubble.transform.localPosition.y);
+            }
+            else
+            {
+                emptyFill.transform.SetSiblingIndex(0);
+                dialogueBubble.transform.localPosition = new Vector2(dialogueBubble.transform.localPosition.x + 50, dialogueBubble.transform.localPosition.y);
+            }
+            dialogueText.text = dialogueBox.dialogue;
         }
     }
 }

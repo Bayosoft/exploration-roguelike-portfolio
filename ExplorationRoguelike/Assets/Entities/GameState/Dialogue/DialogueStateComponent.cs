@@ -58,9 +58,12 @@ namespace ExplorationRoguelike
 
             var dialogueDisplay = dialogueDisplayInstance.GetComponent<DialogueDisplay>();
 
-            dialogueDisplay.DisplayDialogue(dialogueBox.dialogue);
+            dialogueDisplay.DisplayDialogue(dialogueBox);
 
-            LayoutRebuilder.MarkLayoutForRebuild(dialogueDisplayInstance.GetComponent<RectTransform>());
+            LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
+            LayoutRebuilder.ForceRebuildLayoutImmediate(dialogueDisplayInstance.GetComponent<RectTransform>());
+            LayoutRebuilder.ForceRebuildLayoutImmediate(dialogueDisplayInstance.GetComponentInChildren<RectTransform>());
+
             // If there is no option to choose
             if (dialogueBox.DialogueOptions == null || !dialogueBox.DialogueOptions.Any())
             {
