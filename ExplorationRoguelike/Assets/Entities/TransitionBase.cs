@@ -1,5 +1,7 @@
 using JetBrains.Annotations;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace ExplorationRoguelike
 {
@@ -10,5 +12,17 @@ namespace ExplorationRoguelike
 
         [SerializeField]
         protected string sceneName;
+
+        protected IEnumerator LoadScene(LoadSceneMode mode)
+        {
+            AsyncOperation load = SceneManager.LoadSceneAsync(sceneName, mode);
+            yield return load;
+        }
+
+        protected IEnumerator UnloadScene()
+        {
+            AsyncOperation unload = SceneManager.UnloadSceneAsync(sceneName);
+            yield return unload;
+        }
     }
 }

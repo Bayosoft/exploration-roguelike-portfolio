@@ -13,6 +13,8 @@ namespace ExplorationRoguelike
         public override void Activate()
         {
             CombatTransition.Instance.Transition(enemy, LoadSceneMode.Additive);
+
+            SceneManager.sceneLoaded += DialogueTransition.Instance.OnCombatStarted;
         }
     }
 }

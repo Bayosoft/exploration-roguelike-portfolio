@@ -26,7 +26,6 @@ namespace ExplorationRoguelike
 
         private Dialogue _dialogue;
 
-        // TODO: Create Vertical (for dialogue order) and horizontal (for side) layout group for dialogue. And vertical layout group for options.
         public void Initialize(Dialogue dialogue)
         {
             _dialogue = dialogue;

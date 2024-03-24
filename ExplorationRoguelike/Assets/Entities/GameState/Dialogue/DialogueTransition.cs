@@ -1,6 +1,7 @@
 using ExplorationRoguelike.Combat;
 using System;
 using Unity.VisualScripting;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 namespace ExplorationRoguelike
@@ -31,10 +32,16 @@ namespace ExplorationRoguelike
         {
             _dialogue = dialogue;
 
-            SceneManager.LoadSceneAsync(sceneName, loadSceneMode);
+            StartCoroutine(LoadScene(loadSceneMode));
         }
 
-        // Switch to combat
+        public void OnCombatStarted(Scene scene, LoadSceneMode mode)
+        {
+            StartCoroutine(UnloadScene());
+
+            SceneManager.sceneLoaded -= OnCombatStarted;
+        }
+
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             if (scene.name != sceneName)
@@ -46,11 +53,5 @@ namespace ExplorationRoguelike
             dialogueState.Initialize(_dialogue);
 
         }
-
-        // contains dialogueState data and switches scene to dialogueState.
-        // Also should keep track of whether it should switch while keeping previous scene.
-
-
-        // Transition to Dialoguestate
     }
 }

@@ -37,10 +37,9 @@ namespace ExplorationRoguelike
 
         public void Transition(CharacterData enemyData, LoadSceneMode loadSceneMode)
         {
-            Debug.Log("Transitioned");
             _enemyData = enemyData;
 
-            SceneManager.LoadSceneAsync(sceneName, loadSceneMode);
+            StartCoroutine(LoadScene(loadSceneMode));
         }
 
         // Switch to combat
