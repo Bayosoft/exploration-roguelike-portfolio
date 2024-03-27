@@ -38,7 +38,6 @@ namespace ExplorationRoguelike
             // Set order
         }
 
-        // TODO: This needs to run when a ConversationDialogueOption is OptionSelected.
         public void OnOptionSelected(object sender, int currentDialogueOrder)
         {
             foreach (Transform option in dialogueOptionsFrame.transform)
