@@ -47,6 +47,16 @@ namespace ExplorationRoguelike.Characters
         {
             CurrentHealth = Mathf.Max(0, CurrentHealth - amount);
         }
+        public void IncreaseHealthBy(float amount)
+        {
+            if(CurrentHealth + amount > MaxHealth)
+            {
+                CurrentHealth = MaxHealth;
+                return;
+            }
+
+            CurrentHealth = Mathf.Max(0, CurrentHealth + amount);
+        }
 
         public virtual void OnDeath()
         {

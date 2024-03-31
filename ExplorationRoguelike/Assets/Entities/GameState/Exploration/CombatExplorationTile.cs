@@ -25,7 +25,7 @@ namespace ExplorationRoguelike
 
         public void SetRandomEnemy(List<CharacterData> enemyPool)
         {
-            if(enemyPool != null && enemyPool.Count > 0)
+            if (enemyPool != null && enemyPool.Count > 0)
             {
                 Enemy = enemyPool[UnityEngine.Random.Range(0, enemyPool.Count)];
             }
@@ -39,12 +39,7 @@ namespace ExplorationRoguelike
         public override void Selected()
         {
             base.Selected();
-
-            if(tileSelectTransition is CombatTransition combatTransition)
-            {
-                combatTransition.Transition(Enemy, LoadSceneMode.Additive);
-            }
-            
+            CombatTransition.Instance.Transition(Enemy, LoadSceneMode.Additive);
             this.enabled = false;
         }
     }

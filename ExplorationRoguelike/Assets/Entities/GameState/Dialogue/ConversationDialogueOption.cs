@@ -18,6 +18,7 @@ namespace ExplorationRoguelike
 
         public override void Activate()
         {
+            base.Activate();
             OptionSelected?.Invoke(this, nextDialogueOrder);
         }
     }    

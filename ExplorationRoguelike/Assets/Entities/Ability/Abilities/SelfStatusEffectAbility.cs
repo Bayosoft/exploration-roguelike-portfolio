@@ -6,7 +6,7 @@ using UnityEngine;
 namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities
 {
     
-    [CreateAssetMenu(fileName = "Status Effect (self)", menuName = "Abilities/Combat/Status Effect (self)")]
+    [CreateAssetMenu(fileName = "Status Effect (self)", menuName = "Abilities/Status Effect (self)")]
     public class SelfStatusEffectAbility : GameplayAbility, IIntentfulAbility
     {
         public GameplayEffect gameplayEffect;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities
 {
-    [CreateAssetMenu(fileName = "Instant Damage", menuName = "Abilities/Combat/Instant Damage")]
+    [CreateAssetMenu(fileName = "Instant Damage", menuName = "Abilities/Instant Damage")]
     public class InstantDamageAbility : GameplayAbility, IIntentfulAbility, IModifiable
     {
         [SerializeField]

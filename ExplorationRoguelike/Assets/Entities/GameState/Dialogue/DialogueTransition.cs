@@ -35,11 +35,18 @@ namespace ExplorationRoguelike
             StartCoroutine(LoadScene(loadSceneMode));
         }
 
-        public void OnCombatStarted(Scene scene, LoadSceneMode mode)
+        public void OnUnloadDialogue(Scene scene, LoadSceneMode mode)
         {
             StartCoroutine(UnloadScene());
 
-            SceneManager.sceneLoaded -= OnCombatStarted;
+            SceneManager.sceneLoaded -= OnUnloadDialogue;
+        }
+
+        public void OnUnloadDialogue()
+        {
+            StartCoroutine(UnloadScene());
+
+            SceneManager.sceneLoaded -= OnUnloadDialogue;
         }
 
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)

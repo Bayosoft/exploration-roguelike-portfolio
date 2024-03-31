@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace ExplorationRoguelike
@@ -50,6 +51,11 @@ namespace ExplorationRoguelike
                 Destroy(option.gameObject);
             }
 
+            if(currentDialogueOrder == -1)
+            {
+                DialogueTransition.Instance.OnUnloadDialogue();
+                return;
+            }
             var newDialogue = _dialogue.DialogueBoxes[currentDialogueOrder];
 
             RenderDialogue(newDialogue);

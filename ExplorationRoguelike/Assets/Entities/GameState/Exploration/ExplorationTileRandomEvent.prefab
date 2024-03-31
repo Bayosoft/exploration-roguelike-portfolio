@@ -124,7 +124,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2946054677493656254, guid: 1a4bb4f8a09b8a74f872473506de0488, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -150,7 +151,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exploreTileEvent: {fileID: 11400000, guid: 2e4f9c565bf79d340bddca5e1c78edc2, type: 2}
-  tileSelectTransition: {fileID: 0}
   lootTransition: {fileID: 11400000, guid: 42de32485da4d6b4b8d38aef22ea72c6, type: 2}
   combatTransition: {fileID: 11400000, guid: 83ac47ef0c0cfcb448f30a0f9d40b4c9, type: 2}
   dialogueTransition: {fileID: 0}

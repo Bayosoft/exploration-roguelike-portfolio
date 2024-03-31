@@ -64,18 +64,6 @@ namespace ExplorationRoguelike.Combat
             CardViews = new ObservableCollection<GameObject>();
             HealthViews = new ObservableCollection<GameObject>();
         }
-        // Start is called before the first frame update
-        void Start()
-        {
-            playerTurnComponent.CardDeckComponent.CardsDrawn.CollectionChanged += UpdateCards;
-            playerTurnComponent.CardDeckComponent.OnManaChanged += UpdateMana;
-            enemyTurnComponent.NpcCombatComponent.OnDeclaredIntent += UpdateEnemyIntent;
-
-            playerTurnComponent.CardDeckComponent.InstantiateCards();
-
-            SpawnHealthViews();
-            StartCombat();
-        }
 
         public void Initialize(Player player, CharacterData enemyData)
         {
@@ -89,6 +77,15 @@ namespace ExplorationRoguelike.Combat
 
             playerTurnComponent = (PlayerTurnComponent)player.TurnComponent;
             enemyTurnComponent = (NpcTurnComponent)enemies[0].TurnComponent;
+
+            playerTurnComponent.CardDeckComponent.CardsDrawn.CollectionChanged += UpdateCards;
+            playerTurnComponent.CardDeckComponent.OnManaChanged += UpdateMana;
+            enemyTurnComponent.NpcCombatComponent.OnDeclaredIntent += UpdateEnemyIntent;
+
+            playerTurnComponent.CardDeckComponent.InstantiateCards();
+
+            SpawnHealthViews();
+            StartCombat();
         }
 
 

@@ -4,6 +4,7 @@ namespace ExplorationRoguelike
     {
         public override void Activate()
         {
+            base.Activate();
             throw new System.NotImplementedException();
         }
     }    

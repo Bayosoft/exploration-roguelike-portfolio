@@ -34,6 +34,9 @@ namespace ExplorationRoguelike
         // public DialogueCollection EventDialogue;
         public List<CharacterData> EventEnemies => eventEnemies;
 
+        [SerializeField]
+        private Dialogue restSiteDialogue;
+        public Dialogue RestSiteDialogue => restSiteDialogue;
         public List<CharacterData> GetEnemyPool(EnemyTier enemyTier)
         {
             return enemyTier switch

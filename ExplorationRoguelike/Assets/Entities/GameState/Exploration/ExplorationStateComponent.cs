@@ -17,8 +17,6 @@ namespace ExplorationRoguelike
         [SerializeField]
         private CinemachineVirtualCamera virtualCamera;
 
-        private GameState gameState;
-
         public Dictionary<(int x, int y), ExplorationTile> MapGrid;
 
         private ExplorationTile selectedTile;
@@ -28,8 +26,6 @@ namespace ExplorationRoguelike
         // Start is called before the first frame update
         void Start()
         {
-
-            gameState = FindFirstObjectByType<GameState>();
             MapGrid = tileSpawner.GenerateMap(mapContents);
 
             Destroy(tileSpawner);

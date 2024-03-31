@@ -318,7 +318,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 9206238031483290149, guid: d83f280b8af725446be4ddba59ac6e7e, type: 3}
   gameOverlay: {fileID: 2008529603}
-  combatTransitioner: {fileID: 11400000, guid: 83ac47ef0c0cfcb448f30a0f9d40b4c9, type: 2}
 --- !u!4 &1298211401
 Transform:
   m_ObjectHideFlags: 0
@@ -347,7 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e6d73fbb0a94364e8838d05b7a331a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  sceneName: DialogueScene
 --- !u!114 &1298211403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -487,7 +486,7 @@ MonoBehaviour:
   weakEnemy: {fileID: 0}
   averageEnemy: {fileID: 0}
   bossEnemy: {fileID: 0}
-  multiChoiceData: {fileID: 0}
+  dialogue: {fileID: 0}
   deckButtons: {fileID: 0}
   enemyButtons: {fileID: 0}
   gameState: {fileID: 0}

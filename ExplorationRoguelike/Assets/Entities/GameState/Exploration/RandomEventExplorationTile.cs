@@ -9,15 +9,6 @@ namespace ExplorationRoguelike
     public class RandomEventExplorationTile : ExplorationTile
     { 
 
-        [SerializeField]
-        private LootTransition lootTransition;
-
-        [SerializeField]
-        private CombatTransition combatTransition;
-
-        [SerializeField]
-        private DialogueTransition dialogueTransition;
-
         private ScriptableObject randomEvent;
 
         public void SetRandomEvent(MapContents mapContents)
@@ -50,11 +41,11 @@ namespace ExplorationRoguelike
             {
                 if (randomEvent is LootTable lootTable)
                 {
-                    lootTransition.Transition(lootTable, null);
+                    LootTransition.Instance.Transition(lootTable, null);
                 }
                 if (randomEvent is CharacterData enemy)
                 {
-                    combatTransition.Transition(enemy, LoadSceneMode.Additive);
+                    CombatTransition.Instance.Transition(enemy, LoadSceneMode.Additive);
                 }
                 // Dialogue
             }

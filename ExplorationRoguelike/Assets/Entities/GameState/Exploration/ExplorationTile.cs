@@ -11,9 +11,6 @@ namespace ExplorationRoguelike
         [SerializeField]
         protected ScriptableEvent exploreTileEvent;
 
-        [SerializeField] 
-        protected TransitionBase tileSelectTransition;
-
         public List<ExplorationTile> ConnectedTiles { get; private set; } = new List<ExplorationTile>();
 
         public abstract void ExploreTile();

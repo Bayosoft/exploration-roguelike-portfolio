@@ -8,7 +8,7 @@ namespace ExplorationRoguelike
     public class ExplorationTileSpawner : MonoBehaviour
     {
         public GameObject basicEnemyTilePrefab, eliteEnemyTilePrefab, BossEnemyTilePrefab,
-            EventTilePrefab, TreasureTilePrefab;
+            EventTilePrefab, TreasureTilePrefab, RestSiteTilePrefab;
 
         private MapContents mapContents;
 
@@ -20,6 +20,9 @@ namespace ExplorationRoguelike
 
         [SerializeField]
         private Vector2Int mapSize;
+
+        [SerializeField]
+        private List<int> restSiteRows;
 
         public Dictionary<(int, int), ExplorationTile> GenerateMap(MapContents contents)
         {
@@ -34,6 +37,7 @@ namespace ExplorationRoguelike
             {
                 for (int row = 0; row <= mapSize.x; row++)
                 {
+                    // If row is 0 spawn start tile
                     if (row == 0)
                     {
                         int column = UnityEngine.Random.Range(0, mapSize.y);
@@ -60,9 +64,16 @@ namespace ExplorationRoguelike
 
                     (int, int) tilePosition = viablePositions[UnityEngine.Random.Range(0, viablePositions.Count)];
 
-                    var tilePrefab = DetermineTileType(tilePosition);
+                    if(restSiteRows.Contains(row))
+                    {
+                        SpawnTile(mapGrid, RestSiteTilePrefab, tilePosition);
+                    }
+                    else
+                    {
+                        var tilePrefab = DetermineTileType(tilePosition);
 
-                    SpawnTile(mapGrid, tilePrefab, tilePosition);
+                        SpawnTile(mapGrid, tilePrefab, tilePosition);
+                    }              
 
                     sourcePosition = tilePosition;
 
@@ -142,6 +153,11 @@ namespace ExplorationRoguelike
                 eventTile.SetRandomEvent(mapContents);
 
                 tileType = eventTile;
+            }
+            if(tileType is DialogueExplorationTile dialogueTile)
+            {
+                dialogueTile.Dialogue = mapContents.RestSiteDialogue;
+                tileType = dialogueTile;
             }
 
             return mapGrid.TryAdd((position.x, position.y), tileType);

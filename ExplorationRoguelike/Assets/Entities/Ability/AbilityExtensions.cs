@@ -31,5 +31,22 @@ namespace ExplorationRoguelike.AbilitySystem
                 healthComponent.ReduceHealthBy(damage);
             }
         }
+
+        public static void HealSelf(AbilitySystemComponent instigator, float healing)
+        {
+            var healthComponent = instigator.GetComponent<HealthComponent>();
+            if (healthComponent)
+            {
+                healthComponent.IncreaseHealthBy(healing);
+            }
+        }
+        public static void HealOther(AbilitySystemComponent instigator, AbilitySystemComponent target, float healing)
+        {
+            var healthComponent = target.GetComponent<HealthComponent>();
+            if (healthComponent)
+            {
+                healthComponent.IncreaseHealthBy(healing);
+            }
+        }
     }
 }

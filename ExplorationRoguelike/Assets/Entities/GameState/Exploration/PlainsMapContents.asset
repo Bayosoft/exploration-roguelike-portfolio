@@ -23,3 +23,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b81faabc056c09f479ee3883fc21a563, type: 2}
   eventEnemies:
   - {fileID: 11400000, guid: c12caf94b5929734a9cb7e7d5b5f43cb, type: 2}
+  restSiteDialogue: {fileID: 11400000, guid: 459780a8a7ecffd4e93251c0d26a8c1a, type: 2}

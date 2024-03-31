@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5305914435207b3499f5c3531e305f74, type: 3}
-  m_Name: 1.0.2 DonothingChoice
+  m_Name: 1.0.1 Rest
   m_EditorClassIdentifier: 
-  OptionText: Do Nothing
-  dialogueAbility: {fileID: 0}
-  instigator: {fileID: 0}
-  target: {fileID: 0}
-  nextDialogueOrder: 1
+  OptionText: Rest (1 day)
+  dialogueAbility: {fileID: 11400000, guid: 24ee4747e162b024db94c2fa3e2278de, type: 2}
+  instigator: {fileID: 11400000, guid: 3c8a1f72ccf552b43b64b8eb7a5512ab, type: 2}
+  target: {fileID: 11400000, guid: 3c8a1f72ccf552b43b64b8eb7a5512ab, type: 2}
+  nextDialogueOrder: -1

@@ -359,9 +359,11 @@ MonoBehaviour:
   BossEnemyTilePrefab: {fileID: 2272486017052883599, guid: 25d026e5870b86b4580f4bae5e5ea75b, type: 3}
   EventTilePrefab: {fileID: 5337654911105987388, guid: 83c2a5c70b6d19d49b6d45a7e464e6f2, type: 3}
   TreasureTilePrefab: {fileID: 0}
+  RestSiteTilePrefab: {fileID: 4894191529211226701, guid: baf41031f3ce775488b6873bbc57fb42, type: 3}
   maxStartingTiles: 3
   maxPaths: 0
   mapSize: {x: 15, y: 7}
+  restSiteRows: 0300000007000000
 --- !u!1 &1685157368
 GameObject:
   m_ObjectHideFlags: 3
