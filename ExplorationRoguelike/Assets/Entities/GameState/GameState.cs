@@ -2,6 +2,7 @@ using ExplorationRoguelike.AbilitySystem;
 using ExplorationRoguelike.Characters;
 using ExplorationRoguelike.Characters.PlayerCharacter;
 using ExplorationRoguelike.Combat;
+using ExplorationRoguelike.StatusEffect;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

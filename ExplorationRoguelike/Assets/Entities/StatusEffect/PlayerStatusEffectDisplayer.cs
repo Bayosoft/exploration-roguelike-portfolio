@@ -2,7 +2,7 @@ using ExplorationRoguelike.AbilitySystem;
 using ExplorationRoguelike.GameplayEffects;
 using UnityEngine;
 
-namespace ExplorationRoguelike.Characters
+namespace ExplorationRoguelike.StatusEffect
 {
     public class PlayerStatusEffectDisplayer : StatusEffectDisplayerBase
     {
@@ -11,16 +11,16 @@ namespace ExplorationRoguelike.Characters
             DontDestroyOnLoad(transform.parent);
         }
 
-        protected override void AddStatusEffect(ActiveGameplayEffect addedEffect)
+        protected override void AddStatusEffect(ActiveGameplayEffect addedEffect, GameObject freeSlot)
         {
-            var effectObject = Instantiate(statusEffectPrefab, gameObject.transform, true);
+            var effectObject = Instantiate(statusEffectPrefab, freeSlot.transform, true);
             effectObject.transform.localScale = Vector2.one;
             effectObject.transform.localPosition = Vector2.one;
             effectObject.transform.SetAsLastSibling();
             var effectComponent = effectObject.GetComponent<StatusEffect>();
             effectComponent.Initialize(addedEffect);
 
-            StatusEffects.Add(effectObject);
+            // StatusEffects.Add(effectObject);
         }
     }
 }

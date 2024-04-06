@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace ExplorationRoguelike.Characters
+namespace ExplorationRoguelike.StatusEffect
 {
     public class StatusEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
