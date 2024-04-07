@@ -472,7 +472,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2179045804476147975, guid: b95f2f9c990e7654995414fe5af44285, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3254251230977680599, guid: b95f2f9c990e7654995414fe5af44285, type: 3}
       propertyPath: m_text
@@ -570,6 +570,10 @@ PrefabInstance:
       propertyPath: goldText
       value: 
       objectReference: {fileID: 624694271}
+    - target: {fileID: 5842336960334197551, guid: b95f2f9c990e7654995414fe5af44285, type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

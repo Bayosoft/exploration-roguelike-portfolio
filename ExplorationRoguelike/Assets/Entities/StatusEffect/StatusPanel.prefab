@@ -47,7 +47,6 @@ GameObject:
   - component: {fileID: 7820779006707585525}
   - component: {fileID: 8717408980982493176}
   - component: {fileID: 6997402880742755352}
-  - component: {fileID: 7812919685711681532}
   m_Layer: 5
   m_Name: StatusPanel
   m_TagString: Untagged
@@ -138,30 +137,6 @@ MonoBehaviour:
   - {fileID: 8387072145141898752}
   - {fileID: 6778722750908557361}
   - {fileID: 6166780618662552579}
---- !u!114 &7812919685711681532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3339475650392435043}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 0
-  m_StartCorner: 0
-  m_StartAxis: 0
-  m_CellSize: {x: 100, y: 100}
-  m_Spacing: {x: 0, y: 0}
-  m_Constraint: 0
-  m_ConstraintCount: 2
 --- !u!1 &6136148544884833459
 GameObject:
   m_ObjectHideFlags: 0
