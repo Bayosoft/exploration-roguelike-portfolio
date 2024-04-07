@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fcc44e56c34a6f41b8e1509eb30fff4, type: 3}
+  m_Name: FrostBuffAbility
+  m_EditorClassIdentifier: 
+  name: Frost Buff
+  IsUnique: 0
+  abilityType: 1
+  generalTags: []
+  description:
+    description: Multiply frost damage dealt by 5.
+  gameplayEffect: {fileID: 11400000, guid: 1c236c95e87881043827b6f8d59dd654, type: 2}
+  <IntentTag>k__BackingField: {fileID: 0}
+  <TargetType>k__BackingField: 0
+  <ManaCost>k__BackingField: 0

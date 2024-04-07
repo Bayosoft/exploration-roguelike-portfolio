@@ -37,13 +37,7 @@ namespace ExplorationRoguelike.StatusEffect
             {
                 case NotifyCollectionChangedAction.Add:
                     {
-                        var freeSlot = activeStatusesBySlot.FirstOrDefault(slot => slot.Value == null);
-                        if(freeSlot.Equals(default(KeyValuePair<GameObject, GameObject>)))
-                        {
-                            // Dont visually add the status effects (TODO: Make it appear when a slot becomes available)
-                            return;
-                        }
-                        AddStatusEffect((ActiveGameplayEffect)e.NewItems[0], freeSlot.Key);
+                        AddStatusEffect((ActiveGameplayEffect)e.NewItems[0]);
                         break;
                     }
                 case NotifyCollectionChangedAction.Remove:
@@ -55,8 +49,7 @@ namespace ExplorationRoguelike.StatusEffect
                     break;
                 case NotifyCollectionChangedAction.Replace:
                     RemoveStatusEffectView((ActiveGameplayEffect)e.OldItems[0]);
-                    // TODO: get the slot that has been freed up from removal.
-                   // AddStatusEffect((ActiveGameplayEffect)e.NewItems[0]);
+                    AddStatusEffect((ActiveGameplayEffect)e.NewItems[0]);
                     break;
                 case NotifyCollectionChangedAction.Reset:
                     break;
@@ -65,7 +58,7 @@ namespace ExplorationRoguelike.StatusEffect
             }
         }
 
-        protected abstract void AddStatusEffect(ActiveGameplayEffect addedEffect, GameObject freeSlot);
+        protected abstract void AddStatusEffect(ActiveGameplayEffect addedEffect);
 
         private void RemoveStatusEffectView(ActiveGameplayEffect removedEffect)
         {
