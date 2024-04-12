@@ -17,5 +17,19 @@ namespace ExplorationRoguelike
                 throw new InvalidCastException();
             }
         }
+
+        public bool TryValidateEventArgs<TEventArgs>(out TEventArgs validatedEvent) 
+        {
+            if (this is TEventArgs eventArgsType)
+            {
+                validatedEvent = eventArgsType;
+                return true;
+            }
+            else
+            {
+                validatedEvent = default;
+                return false;
+            }
+        }
     }
 }

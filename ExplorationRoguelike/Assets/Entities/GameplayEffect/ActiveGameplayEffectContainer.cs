@@ -21,6 +21,7 @@ namespace ExplorationRoguelike.GameplayEffects
         {
             ActiveEffects = new ObservableCollection<ActiveGameplayEffect>();
             _owner = owner;
+            TimeHandler.TimeChanged += OnTimeChanged;
         }
 
         public ActiveGameplayEffectHandle ApplyGameplayEffectSpec(GameplayEffectSpecification effectSpec)
@@ -65,7 +66,7 @@ namespace ExplorationRoguelike.GameplayEffects
             return null;
         }
         
-        public void OnTimeChanged(ConcreteEventArgs eventArgs)
+        public void OnTimeChanged(object sender, ConcreteEventArgs eventArgs)
         {
             var expiredEffects = new List<ActiveGameplayEffect>();
             

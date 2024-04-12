@@ -36,7 +36,7 @@ namespace ExplorationRoguelike.Combat
             var endTurnEventArgs = new EndTurnEventArgs(this);
             endTurnEvent.RaiseEvent(endTurnEventArgs);
             // TODO: Refactor so that turn component's owner is Character directly.
-            Owner.GetComponent<Character>().CharacterData.ActiveGameplayEffects.OnTimeChanged(endTurnEventArgs);
+            Owner.GetComponent<Character>().CharacterData.ActiveGameplayEffects.OnTimeChanged(this, endTurnEventArgs);
         }
     }
 }

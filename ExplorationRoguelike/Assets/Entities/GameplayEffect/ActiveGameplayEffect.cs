@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using ExplorationRoguelike.AbilitySystem;
 using ExplorationRoguelike.Combat.Events;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace ExplorationRoguelike.GameplayEffects
 {
@@ -16,6 +17,7 @@ namespace ExplorationRoguelike.GameplayEffects
             Specification = effectSpec;
             RemainingDuration = effectSpec.Duration;
             IsInhibited = false;
+            // Subscribe to time ticker if Specification.EffectSo.durationType == Time.
         }
         public event EventHandler DurationChanged;
         public ActiveGameplayEffectHandle Handle { get; private set; }
@@ -37,19 +39,14 @@ namespace ExplorationRoguelike.GameplayEffects
         {
             switch (Specification.EffectSo.durationType)
             {
-                case GameplayDurationType.Turns:
-                    var endTurnEventArgs = eventArgs.ValidateEventArgs<EndTurnEventArgs>();
-
+                case GameplayDurationType.Turns when eventArgs.TryValidateEventArgs<EndTurnEventArgs>(out var endTurnEventArgs):
                     if (endTurnEventArgs.Initiator.Owner == owner)
                     {
                         RemainingDuration -= 1;
                     }
                     break;
-                case GameplayDurationType.Time:
-                    
-                    var timeTickEventArgs = eventArgs.ValidateEventArgs<TimeTickEventArgs>();
-                    
-                    // Reduce remaining duration using a global Time calculator (and decide on what the default time tracker keeps track of (probably minutes).
+                case GameplayDurationType.Time when eventArgs.TryValidateEventArgs<TimeTickEventArgs>(out var timeTickEventArgs):
+                    RemainingDuration -= timeTickEventArgs.AmountOfTimeHours;
                     break;
             }
         }

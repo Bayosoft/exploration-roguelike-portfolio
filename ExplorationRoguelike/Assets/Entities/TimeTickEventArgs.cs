@@ -1,26 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace ExplorationRoguelike
-{
-    // Move to a global time calculator class.
-    public enum TimeType
-    {
-        Minutes,
-        Hours,
-        Days
-    }
-    
+{   
     public class TimeTickEventArgs : TimeEventArgs
     {
-        public int AmountOfTime;
-        public TimeType TimeType;
+        public int AmountOfTimeHours;
 
-        public TimeTickEventArgs(int amountOfTime, TimeType timeType)
+        public TimeTickEventArgs(int amountOfTimeHours)
         {
-            AmountOfTime = amountOfTime;
-            TimeType = timeType;
+            AmountOfTimeHours = amountOfTimeHours;
         }
     }
 }
