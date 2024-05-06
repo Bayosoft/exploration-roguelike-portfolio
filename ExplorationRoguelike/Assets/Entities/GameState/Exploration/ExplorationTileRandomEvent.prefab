@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExplorationTileRandomEvent
       objectReference: {fileID: 0}
+    - target: {fileID: 1582642330911640601, guid: 1a4bb4f8a09b8a74f872473506de0488, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1c877f9984006e741ae63d280df606f5, type: 3}
     - target: {fileID: 5945906619995095018, guid: 1a4bb4f8a09b8a74f872473506de0488, type: 3}
       propertyPath: m_TargetGraphic
       value: 
@@ -151,9 +155,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exploreTileEvent: {fileID: 11400000, guid: 2e4f9c565bf79d340bddca5e1c78edc2, type: 2}
-  lootTransition: {fileID: 11400000, guid: 42de32485da4d6b4b8d38aef22ea72c6, type: 2}
-  combatTransition: {fileID: 11400000, guid: 83ac47ef0c0cfcb448f30a0f9d40b4c9, type: 2}
-  dialogueTransition: {fileID: 0}
 --- !u!114 &6676449493577592086 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1582642330911640601, guid: 1a4bb4f8a09b8a74f872473506de0488, type: 3}

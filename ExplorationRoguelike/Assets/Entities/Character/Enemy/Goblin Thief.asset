@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Goblin Thief
   m_EditorClassIdentifier: 
   name: Goblin Thief
-  gameImage: {fileID: 0}
-  uiImage: {fileID: 0}
+  gameImage: {fileID: 2535785285293061493, guid: 336b0f8dc9d62024caaf768ec6b45431, type: 3}
+  uiImage: {fileID: 2535785285293061493, guid: 336b0f8dc9d62024caaf768ec6b45431, type: 3}
   abilities:
   - {fileID: 11400000, guid: ad74d21efd4bd0a42a32af346e448646, type: 2}
   - {fileID: 11400000, guid: 309fee7195cd6c64abff5ef40e85dd79, type: 2}

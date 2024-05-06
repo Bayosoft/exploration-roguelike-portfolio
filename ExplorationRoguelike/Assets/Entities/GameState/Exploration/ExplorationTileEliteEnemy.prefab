@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: 1582642330911640601, guid: 1a4bb4f8a09b8a74f872473506de0488, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 8694825288349552413, guid: 1f2de8ce4deefc546b00cc3375dc3d81, type: 3}
+      objectReference: {fileID: 6718695590470078046, guid: 904e26cdfe8137c4ca507817e7b7a2fe, type: 3}
     - target: {fileID: 5945906619995095018, guid: 1a4bb4f8a09b8a74f872473506de0488, type: 3}
       propertyPath: m_TargetGraphic
       value: 
@@ -165,5 +165,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exploreTileEvent: {fileID: 11400000, guid: 2e4f9c565bf79d340bddca5e1c78edc2, type: 2}
-  tileSelectTransition: {fileID: 11400000, guid: 83ac47ef0c0cfcb448f30a0f9d40b4c9, type: 2}
   enemyTier: 1

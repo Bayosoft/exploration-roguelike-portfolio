@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 06cbbab79e71bc74ea932f4190947fea
+guid: 336b0f8dc9d62024caaf768ec6b45431
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6429236640308549408
-    second: Restsite_0
+      213: 2535785285293061493
+    second: Goblin combat sprite placeholder_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Restsite_0
+      name: Goblin combat sprite placeholder_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 2
-        width: 28
-        height: 28
+        x: 8
+        y: 0
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,8 +127,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 027548a29ac393950800000000000000
-      internalID: 6429236640308549408
+      spriteID: 5753e84284be03320800000000000000
+      internalID: 2535785285293061493
       vertices: []
       indices: 
       edges: []
@@ -144,7 +144,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Restsite_0: 6429236640308549408
+      Goblin combat sprite placeholder_0: 2535785285293061493
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
