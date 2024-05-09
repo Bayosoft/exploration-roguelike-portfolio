@@ -31,6 +31,12 @@ namespace ExplorationRoguelike
             // HourSinceStart = load functionality
         }
 
+        public static void ChangeTimeMode()
+        {
+            // TimeModeChanged?.Invoke(Instance, timeModeChangedEvent); contains previousTimeMode and newTimeMode.
+            // ActiveGameplayEffect with Turns should subscribe so that if time mode changes away from combat, all turn effects get removed.
+        }
+
         public static void AdvanceTime(int hours)
         {
             var timeTickEvent = new TimeTickEventArgs(hours);

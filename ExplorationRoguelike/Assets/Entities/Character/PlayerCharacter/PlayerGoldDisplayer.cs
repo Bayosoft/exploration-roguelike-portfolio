@@ -19,7 +19,7 @@ namespace ExplorationRoguelike
 
         public void UpdateGold(object e, int amount)
         {
-            goldText.text = $"{amount} Gold";
+            goldText.text = $"{amount}";
         }
     }
 }
