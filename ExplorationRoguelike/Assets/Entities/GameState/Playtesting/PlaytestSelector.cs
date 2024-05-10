@@ -21,7 +21,7 @@ namespace ExplorationRoguelike
         [SerializeField] private GameObject deckButtons;
         [SerializeField] private GameObject enemyButtons;
 
-        [SerializeField] private GameState gameState;
+        [SerializeField] private GameStateHandler gameState;
         [SerializeField] private CombatTransition combatTransitioner;
 
         private Player player;

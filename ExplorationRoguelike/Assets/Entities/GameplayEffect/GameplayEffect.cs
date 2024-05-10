@@ -3,18 +3,10 @@ using System;
 using System.Collections.Generic;
 using ExplorationRoguelike.GameplayTags;
 using UnityEngine;
+using ExplorationRoguelike.GameState;
 
 namespace ExplorationRoguelike.GameplayEffects
 {
-    [Serializable]
-    public enum GameplayDurationType
-    {
-        Instant,
-        Turns,
-        Time,
-        Infinite
-    }
-
     public static class GameplayEffectConstants
     {
         public const int InfiniteDuration = -1;

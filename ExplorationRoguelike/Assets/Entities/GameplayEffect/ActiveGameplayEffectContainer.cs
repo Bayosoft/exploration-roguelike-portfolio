@@ -7,6 +7,8 @@ using ExplorationRoguelike.Combat.Events;
 using ExplorationRoguelike.GameplayTags;
 using UnityEngine;
 using System;
+using System.Diagnostics.Tracing;
+using ExplorationRoguelike.GameState;
 
 namespace ExplorationRoguelike.GameplayEffects
 {
@@ -15,22 +17,22 @@ namespace ExplorationRoguelike.GameplayEffects
     public class ActiveGameplayEffectContainer : IEnumerable
     {
         public ObservableCollection<ActiveGameplayEffect> ActiveEffects;
-        private AbilitySystemComponent _owner;
+        private readonly AbilitySystemComponent _owner;
 
         public ActiveGameplayEffectContainer(AbilitySystemComponent owner)
         {
             ActiveEffects = new ObservableCollection<ActiveGameplayEffect>();
             _owner = owner;
             TimeHandler.TimeChanged += OnTimeChanged;
+            TimeHandler.GameplayDurationTypeChanged += OnGameplayDurationTypeChanged;
         }
 
         public ActiveGameplayEffectHandle ApplyGameplayEffectSpec(GameplayEffectSpecification effectSpec)
         {
             var effect = new ActiveGameplayEffect(effectSpec);
-
             var existingActiveEffect = GetActiveGameplayEffectByEffectSo(effectSpec.EffectSo);
-            
-            if(existingActiveEffect != null) // Replace effect. (Probably need to add logic for stackable effects)
+
+            if (existingActiveEffect != null) // Replace effect. (Probably need to add logic for stackable effects)
             {
                 ActiveEffects[ActiveEffects.IndexOf(existingActiveEffect)] = effect;
             }
@@ -44,7 +46,7 @@ namespace ExplorationRoguelike.GameplayEffects
 
         public void RemoveGameplayEffectsWithAssetTags(GameplayTagContainer tags)
         {
-            foreach(var activeEffect in ActiveEffects.ToList())
+            foreach (var activeEffect in ActiveEffects.ToList())
             {
                 if (activeEffect.Specification.EffectSo.assetTags.HasAny(tags))
                 {
@@ -55,9 +57,9 @@ namespace ExplorationRoguelike.GameplayEffects
 
         public ActiveGameplayEffect GetActiveGameplayEffectByEffectSo(GameplayEffect effectSo)
         {
-            foreach(var activeEffect in ActiveEffects)
+            foreach (var activeEffect in ActiveEffects)
             {
-                if(activeEffect.Specification.EffectSo == effectSo)
+                if (activeEffect.Specification.EffectSo == effectSo)
                 {
                     return activeEffect;
                 }
@@ -65,27 +67,38 @@ namespace ExplorationRoguelike.GameplayEffects
 
             return null;
         }
-        
+
         public void OnTimeChanged(object sender, ConcreteEventArgs eventArgs)
         {
-            var expiredEffects = new List<ActiveGameplayEffect>();
-            
-            foreach (var activeEffect in ActiveEffects)
+            foreach (var activeEffect in ActiveEffects.ToList())
             {
+                if(activeEffect == null)
+                {
+                    ActiveEffects.Remove(activeEffect);
+                }
+
                 activeEffect.TickDuration(eventArgs, _owner);
 
                 if (activeEffect.RemainingDuration <= 0)
                 {
-                    expiredEffects.Add(activeEffect);
+                    ActiveEffects.Remove(activeEffect);
                 }
             }
-
-            foreach (var expiredEffect in expiredEffects)
-            {
-                ActiveEffects.Remove(expiredEffect);
-            }
         }
-        
+
+        public void OnGameplayDurationTypeChanged(object sender, ConcreteEventArgs eventArgs)
+        {
+            if (eventArgs.ValidateEventArgs<GameplayDurationTypeChangedEventArgs>().NewDurationType != GameplayDurationType.Turns)
+            {
+                foreach (var activeEffect in ActiveEffects.Where(
+                ae => ae.Specification.EffectSo.durationType == GameplayDurationType.Turns).ToList())
+                {                  
+                    ActiveEffects.Remove(activeEffect);
+                }
+            }
+            
+        }
+
         public IEnumerator GetEnumerator()
         {
             return ActiveEffects.GetEnumerator();

@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 
 namespace ExplorationRoguelike
 {
-    public class GameState : MonoBehaviour
+    public class GameStateHandler : MonoBehaviour
     {
         public GameObject player;
         public GameObject gameOverlay;

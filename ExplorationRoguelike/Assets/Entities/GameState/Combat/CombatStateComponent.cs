@@ -5,6 +5,7 @@ using ExplorationRoguelike.Characters.NonPlayerCharacters;
 using ExplorationRoguelike.Characters.PlayerCharacter;
 using ExplorationRoguelike.Characters.PlayerCharacter.Events;
 using ExplorationRoguelike.Combat.Events;
+using ExplorationRoguelike.GameState;
 using ExplorationRoguelike.GUI.Card;
 using ExplorationRoguelike.GUI.Character;
 using System;
@@ -227,6 +228,7 @@ namespace ExplorationRoguelike.Combat
         {
             gameObject.SetActive(false);
             lootTransition.Transition(enemies[0].CharacterData.LootTable, ChangeGamestate);
+            TimeHandler.ChangeTimeDurationType(GameplayDurationType.Time);
             TimeHandler.AdvanceTime(2);
         }
 

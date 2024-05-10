@@ -1,3 +1,4 @@
+using ExplorationRoguelike.GameState;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,12 +9,15 @@ namespace ExplorationRoguelike
     public class TimeHandler : MonoBehaviour
     {
         public static TimeHandler Instance { get; private set; }
+        public static GameplayDurationType CurrentTimeType { get; private set; } = GameplayDurationType.Time;
 
         public static int HoursSinceStart { get; private set; }
 
         public static int DaysSinceStart => Mathf.FloorToInt(HoursSinceStart / 24);
 
         public static event EventHandler<TimeEventArgs> TimeChanged;
+
+        public static event EventHandler<TimeEventArgs> GameplayDurationTypeChanged;
 
         private void Awake()
         {
@@ -31,10 +35,11 @@ namespace ExplorationRoguelike
             // HourSinceStart = load functionality
         }
 
-        public static void ChangeTimeMode()
+        public static void ChangeTimeDurationType(GameplayDurationType newDurationType)
         {
-            // TimeModeChanged?.Invoke(Instance, timeModeChangedEvent); contains previousTimeMode and newTimeMode.
-            // ActiveGameplayEffect with Turns should subscribe so that if time mode changes away from combat, all turn effects get removed.
+            var durationTypeChangedEventArgs = new GameplayDurationTypeChangedEventArgs(newDurationType);
+            GameplayDurationTypeChanged?.Invoke(Instance, durationTypeChangedEventArgs); 
+            CurrentTimeType = newDurationType;
         }
 
         public static void AdvanceTime(int hours)

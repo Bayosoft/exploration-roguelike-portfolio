@@ -2,7 +2,7 @@ namespace ExplorationRoguelike
 {   
     public class TimeTickEventArgs : TimeEventArgs
     {
-        public int AmountOfTimeHours;
+        public int AmountOfTimeHours { get; }
 
         public TimeTickEventArgs(int amountOfTimeHours)
         {

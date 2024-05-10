@@ -42,13 +42,13 @@ namespace ExplorationRoguelike.StatusEffect
                     }
                 case NotifyCollectionChangedAction.Remove:
                     {
-                        RemoveStatusEffectView((ActiveGameplayEffect)e.OldItems[0]);
+                        RemoveStatusEffect((ActiveGameplayEffect)e.OldItems[0]);
                         break;
                     }
                 case NotifyCollectionChangedAction.Move:
                     break;
                 case NotifyCollectionChangedAction.Replace:
-                    RemoveStatusEffectView((ActiveGameplayEffect)e.OldItems[0]);
+                    RemoveStatusEffect((ActiveGameplayEffect)e.OldItems[0]);
                     AddStatusEffect((ActiveGameplayEffect)e.NewItems[0]);
                     break;
                 case NotifyCollectionChangedAction.Reset:
@@ -60,7 +60,7 @@ namespace ExplorationRoguelike.StatusEffect
 
         protected abstract void AddStatusEffect(ActiveGameplayEffect addedEffect);
 
-        private void RemoveStatusEffectView(ActiveGameplayEffect removedEffect)
+        private void RemoveStatusEffect(ActiveGameplayEffect removedEffect)
         {
             foreach (var effectToRemove in
                      activeStatusesBySlot

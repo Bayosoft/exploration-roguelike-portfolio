@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using ExplorationRoguelike.AbilitySystem;
 using ExplorationRoguelike.Combat.Events;
+using ExplorationRoguelike.GameState;
 
 namespace ExplorationRoguelike.GameplayEffects
 {
@@ -46,14 +47,6 @@ namespace ExplorationRoguelike.GameplayEffects
                 case GameplayDurationType.Time when eventArgs.TryValidateEventArgs<TimeTickEventArgs>(out var timeTickEventArgs):
                     RemainingDuration -= timeTickEventArgs.AmountOfTimeHours;
                     break;
-            }
-        }
-
-        public void ExpireOnCombatEnded()
-        {
-            if(Specification.EffectSo.durationType == GameplayDurationType.Turns)
-            {
-                RemainingDuration = 0;
             }
         }
     }

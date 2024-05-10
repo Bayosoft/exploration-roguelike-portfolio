@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using ExplorationRoguelike.GameplayTags;
 using UnityEngine;
 using System.Collections.ObjectModel;
+using ExplorationRoguelike.GameState;
 
 namespace ExplorationRoguelike.AbilitySystem
 {
