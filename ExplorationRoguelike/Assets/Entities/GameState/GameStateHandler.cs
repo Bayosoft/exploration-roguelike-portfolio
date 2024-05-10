@@ -2,6 +2,7 @@ using ExplorationRoguelike.AbilitySystem;
 using ExplorationRoguelike.Characters;
 using ExplorationRoguelike.Characters.PlayerCharacter;
 using ExplorationRoguelike.Combat;
+using ExplorationRoguelike.GameplayEffects;
 using ExplorationRoguelike.StatusEffect;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace ExplorationRoguelike
 
         public event EventHandler GameLoaded;
 
+        [SerializeField] private GameplayEffect exhaustion;
 
         void Awake()
         {
@@ -43,6 +45,9 @@ namespace ExplorationRoguelike
 
             _playerGoldDisplayer = FindAnyObjectByType<PlayerGoldDisplayer>();
             _playerGoldDisplayer.Initialize(_playerInstance);
+
+            var spec = _playerInstance.AbilitySystemComponent.MakeOutgoingEffectSpec(exhaustion);
+            _playerInstance.AbilitySystemComponent.ApplyGameplayEffectSpecToSelf(spec);
         }
 
     

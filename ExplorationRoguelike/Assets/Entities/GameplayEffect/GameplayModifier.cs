@@ -14,19 +14,31 @@ namespace ExplorationRoguelike.GameplayEffects
         Division
     }
 
+    public enum GameplayModifierDirection
+    {
+        Incoming,
+        Outgoing
+    }
+
     [Serializable]
     public struct GameplayModifier
     {
         public GameplayTagRequirements tagRequirements;
         public GameplayModifierOperator @operator;
+        public GameplayModifierDirection direction;
         public float modifierMagnitude;
         public GameplayTagContainer modifierTags;
 
         // True if the instigator modifiers are added to the magnitude are snapshotted
         public bool snapshotInstigator;
 
-        public bool DoesMeetRequirements(GameplayTagContainer tags, GameplayTagContainer dynamicTags = null)
+        public bool DoesMeetRequirements(GameplayTagContainer tags, GameplayModifierDirection abilityDirection, GameplayTagContainer dynamicTags = null)
         {
+            if(direction != abilityDirection)
+            {
+                return false;
+            }
+
             if(dynamicTags == null)
             {
                 return tagRequirements.RequirementsMet(tags);
@@ -75,9 +87,9 @@ namespace ExplorationRoguelike.GameplayEffects
         }
         
         // Return true if it passed the required tags to modify the value
-        public bool TryApply(ref float value, GameplayTagContainer valueTags, GameplayTagContainer dynamicTags, AbilitySystemComponent instigator, AbilitySystemComponent target)
+        public bool TryApply(ref float value, GameplayTagContainer valueTags, GameplayTagContainer dynamicTags, GameplayModifierDirection direction, AbilitySystemComponent instigator, AbilitySystemComponent target)
         {
-            if (_modifierBase.DoesMeetRequirements(valueTags, dynamicTags) == false)
+            if (_modifierBase.DoesMeetRequirements(valueTags, direction, dynamicTags) == false)
             {
                 return false;
             }

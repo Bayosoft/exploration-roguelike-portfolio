@@ -73,7 +73,7 @@ namespace ExplorationRoguelike.AbilitySystem
             return true;
         }
 
-        public int CalculateAggregatedModifiers(float value, in GameplayTagContainer valueTags, GameplayTagContainer dynamicTags = null)
+        public int CalculateAggregatedModifiers(float value, in GameplayTagContainer valueTags, GameplayModifierDirection direction, GameplayTagContainer dynamicTags = null)
         {
             foreach (ActiveGameplayEffect activeEffect in owner.ActiveGameplayEffects)
             {
@@ -86,7 +86,7 @@ namespace ExplorationRoguelike.AbilitySystem
 
                 foreach (var modifier in activeEffect.Specification.Modifiers)
                 {
-                    modifier.TryApply(ref value, valueTags, dynamicTags, instigator, this);
+                    modifier.TryApply(ref value, valueTags, dynamicTags, direction, instigator, this);
                 }
             }
 

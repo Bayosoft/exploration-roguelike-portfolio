@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb499093bdd06794fbdcd3a4f2c698e9, type: 3}
-  m_Name: OverloadEffect
+  m_Name: ExhaustionGameplayEffect
   m_EditorClassIdentifier: 
-  name: Overload
-  effectSprite: {fileID: 0}
-  description: Increase Arcane damage by 1 for 3 turns.
-  durationType: 1
-  duration: 3
+  name: Exhaustion
+  effectSprite: {fileID: 7827973194279391312, guid: 1a69b09d1cfbd734e873189a48ed2d2d, type: 3}
+  description: Exhausted from travel. +500% damage taken.
+  durationType: 2
+  duration: 4
   isPeriodic: 0
   periodicDelay: 0
   executePeriodicImmediately: 0
@@ -24,16 +24,15 @@ MonoBehaviour:
   - tagRequirements:
       requiredTags:
         tags:
-        - {fileID: 11400000, guid: 3f578cd34669816479d4a7ab5f68db6f, type: 2}
-        - {fileID: 11400000, guid: 97af3b0ddf2bb394a85ce0988e00b2df, type: 2}
+        - {fileID: 11400000, guid: bc3df637670c1414a80010fe16dad400, type: 2}
       blockingTags:
         tags: []
-    operator: 1
-    direction: 1
-    modifierMagnitude: 1
+    operator: 2
+    direction: 0
+    modifierMagnitude: 5
     modifierTags:
       tags: []
-    snapshotInstigator: 1
+    snapshotInstigator: 0
   conditionalEffects: []
   earlyRemovalEffects: []
   expirationEffects: []

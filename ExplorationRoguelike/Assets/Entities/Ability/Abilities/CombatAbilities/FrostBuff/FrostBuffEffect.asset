@@ -29,6 +29,7 @@ MonoBehaviour:
       blockingTags:
         tags: []
     operator: 2
+    direction: 1
     modifierMagnitude: 5
     modifierTags:
       tags: []

@@ -728,6 +728,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 9206238031483290149, guid: d83f280b8af725446be4ddba59ac6e7e, type: 3}
   gameOverlay: {fileID: 1146137360}
+  exhaustion: {fileID: 11400000, guid: afa24cbb6233d3148a95eb58637c2f79, type: 2}
 --- !u!4 &1298211401
 Transform:
   m_ObjectHideFlags: 0

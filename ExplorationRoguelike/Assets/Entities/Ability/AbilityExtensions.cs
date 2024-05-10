@@ -26,7 +26,7 @@ namespace ExplorationRoguelike.AbilitySystem
         public static void DamageSingleTarget(AbilitySystemComponent instigator, AbilitySystemComponent target, float damage)
         {
             var healthComponent = target.GetComponent<HealthComponent>();
-            if(healthComponent)
+            if (healthComponent)
             {
                 healthComponent.ReduceHealthBy(damage);
             }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using ExplorationRoguelike.GameplayEffects;
 using ExplorationRoguelike.GameplayTags;
 using UnityEngine;
 
@@ -18,23 +19,25 @@ namespace ExplorationRoguelike.AbilitySystem.Abilities.CombatAbilities
 
         public override void Activate(AbilitySystemComponent instigator, IEnumerable<AbilitySystemComponent> targets)
         {
-            var damageMagnitude = CalculateModifiers(instigator);
             foreach (var target in targets)
             {
+                var damageMagnitude = CalculateModifiers(instigator, target);
                 AbilityExtensions.DamageSingleTarget(instigator, target, damageMagnitude);
             }
         }
 
         public override void Activate(AbilitySystemComponent instigator, AbilitySystemComponent target)
         {
-            var damageMagnitude = CalculateModifiers(instigator);
+            var damageMagnitude = CalculateModifiers(instigator, target);
             AbilityExtensions.DamageSingleTarget(instigator, target, damageMagnitude);
         }
 
         public event OnModifiersCalculated OnModifiersCalculated;
-        public float CalculateModifiers(AbilitySystemComponent source)
+        public float CalculateModifiers(AbilitySystemComponent source, AbilitySystemComponent target)
         {
-            var modifiedDamage = source.CalculateAggregatedModifiers(damage, damageTags);
+            var modifiedDamage = source.CalculateAggregatedModifiers(damage, damageTags, GameplayModifierDirection.Outgoing);
+
+            modifiedDamage = target.CalculateAggregatedModifiers(modifiedDamage, damageTags, GameplayModifierDirection.Incoming);
 
             OnModifiersCalculated?.Invoke(modifiedDamage);
 

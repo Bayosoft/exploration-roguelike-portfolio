@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: FireBuffEffect
   m_EditorClassIdentifier: 
   name: Fire Buff
+  effectSprite: {fileID: 0}
   description: Multiply Fire damage by 5.
   durationType: 1
   duration: 5
@@ -28,6 +29,7 @@ MonoBehaviour:
       blockingTags:
         tags: []
     operator: 2
+    direction: 1
     modifierMagnitude: 5
     modifierTags:
       tags: []

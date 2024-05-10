@@ -20,23 +20,25 @@ namespace ExplorationRoguelike
 
         public override void Activate(AbilitySystemComponent instigator, IEnumerable<AbilitySystemComponent> targets)
         {
-            var healingMagnitude = CalculateModifiers(instigator);
             foreach(var target in targets)
             {
+                var healingMagnitude = CalculateModifiers(instigator, target);
+
                 AbilityExtensions.HealOther(instigator, target, healingMagnitude);
             }
         }
 
         public override void Activate(AbilitySystemComponent instigator, AbilitySystemComponent target)
         {
-            var healingMagnitude = CalculateModifiers(instigator);
+            var healingMagnitude = CalculateModifiers(instigator, target);
             AbilityExtensions.HealOther(instigator, target, healingMagnitude);
         }
 
         public event OnModifiersCalculated OnModifiersCalculated;
-        public float CalculateModifiers(AbilitySystemComponent source)
+        public float CalculateModifiers(AbilitySystemComponent source, AbilitySystemComponent target)
         {
-            var modifiedHealing = source.CalculateAggregatedModifiers(healing, healingTags);
+            var modifiedHealing = source.CalculateAggregatedModifiers(healing, healingTags, GameplayEffects.GameplayModifierDirection.Outgoing);
+            modifiedHealing = source.CalculateAggregatedModifiers(modifiedHealing, healingTags, GameplayEffects.GameplayModifierDirection.Incoming);
 
             OnModifiersCalculated?.Invoke(modifiedHealing);
 
