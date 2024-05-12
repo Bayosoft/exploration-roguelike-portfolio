@@ -8,10 +8,6 @@ namespace ExplorationRoguelike
     public class DialogueExplorationTile : ExplorationTile
     {
         public Dialogue Dialogue { get; set; }
-        public override void ExploreTile()
-        {
-            exploreTileEvent.RaiseEvent(new ExploreTileEventArgs(this));
-        }
 
         public override void Selected()
         {

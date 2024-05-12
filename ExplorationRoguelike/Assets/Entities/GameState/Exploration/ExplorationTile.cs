@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +14,10 @@ namespace ExplorationRoguelike
 
         public List<ExplorationTile> ConnectedTiles { get; private set; } = new List<ExplorationTile>();
 
-        public abstract void ExploreTile();
+        public void ExploreTile()
+        {
+            exploreTileEvent.RaiseEvent(new ExploreTileEventArgs(this));
+        }
 
         public void AddConnectedTile(ExplorationTile tile)
         {
@@ -22,6 +26,25 @@ namespace ExplorationRoguelike
             {
                 return;
             }
+
+            Vector3 sp = this.transform.position;
+            Vector3 ep = tile.transform.position;
+
+            LineRenderer lineRenderer;
+
+            if (this.TryGetComponent<LineRenderer>(out var renderer))
+            {
+                lineRenderer = renderer;
+            }
+            else
+            {
+                lineRenderer = this.AddComponent<LineRenderer>();
+            }
+
+            lineRenderer.positionCount += 2;
+            lineRenderer.SetPosition(lineRenderer.positionCount - 2, sp);
+            lineRenderer.SetPosition(lineRenderer.positionCount - 1, ep);
+
 
             // hide tile
             tile.gameObject.SetActive(false);

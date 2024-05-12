@@ -14,9 +14,9 @@ namespace ExplorationRoguelike
             }
         }
 
-        public override void ExploreTile()
+        public override void Selected()
         {
-
+            base.Selected();
             LootTransition.Instance.Transition(lootTable, null);
         }
     }

@@ -31,11 +31,6 @@ namespace ExplorationRoguelike
             }
         }
 
-        public override void ExploreTile()
-        {
-            exploreTileEvent.RaiseEvent(new ExploreTileEventArgs(this));
-        }
-
         public override void Selected()
         {
             base.Selected();

@@ -28,11 +28,6 @@ namespace ExplorationRoguelike
             randomEvent = eventPool[Random.Range(0, eventPool.Count)];
         }
 
-        public override void ExploreTile()
-        {
-            exploreTileEvent.RaiseEvent(new ExploreTileEventArgs(this));
-        }
-
         public override void Selected()
         {
             base.Selected();
