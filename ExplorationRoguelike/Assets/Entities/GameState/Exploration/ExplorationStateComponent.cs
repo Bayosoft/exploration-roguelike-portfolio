@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ExplorationRoguelike
 {
@@ -81,21 +82,32 @@ namespace ExplorationRoguelike
 
             selectedTile = tile;
 
-            DisableTilesOnSelectedRow(selectedTile);
+            DisableUnreachableTiles(selectedTile);
             
             tile.Selected();
         }
 
 
-        private void DisableTilesOnSelectedRow(ExplorationTile selectedTile)
+        private void DisableUnreachableTiles(ExplorationTile selectedTile)
         {
             var selectedCell = MapGrid.FirstOrDefault(x => x.Value == selectedTile).Key;
+            
+            var ct = selectedTile.ConnectedTiles.Select(t => t.ConnectedTiles);
 
-            foreach (ExplorationTile tile in MapGrid
-                .Where(kv => kv.Key.x == selectedCell.x && kv.Key.y != selectedCell.y)
-                .Select(kv => kv.Value))
+            foreach (var tileKeyValue in MapGrid
+                .Where(kv => kv.Value != selectedTile 
+                && kv.Key.x == selectedCell.x 
+                && !kv.Value.Equals(selectedTile)
+                && kv.Value.gameObject.GetComponent<Button>().interactable))
             {
-                tile.OutOfReach();
+                var tileCell = tileKeyValue.Key;
+                var tile = tileKeyValue.Value;
+
+                if(!tile.Equals(selectedTile) && selectedCell.x == tileCell.x)
+                {
+                    tile.OutOfReach();
+                    continue;
+                }
             }
         }
     }

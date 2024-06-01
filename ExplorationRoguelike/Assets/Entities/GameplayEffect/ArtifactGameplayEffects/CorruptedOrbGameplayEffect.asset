@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb499093bdd06794fbdcd3a4f2c698e9, type: 3}
+  m_Name: CorruptedOrbGameplayEffect
+  m_EditorClassIdentifier: 
+  name: Corrupted Orb
+  effectSprite: {fileID: 0}
+  description: Increases damage taken by 10% and damage dealt by 20%.
+  durationType: 3
+  duration: 0
+  isPeriodic: 0
+  periodicDelay: 0
+  executePeriodicImmediately: 0
+  modifiers:
+  - tagRequirements:
+      requiredTags:
+        tags:
+        - {fileID: 11400000, guid: bc3df637670c1414a80010fe16dad400, type: 2}
+      blockingTags:
+        tags: []
+    operator: 2
+    direction: 1
+    modifierMagnitude: 0.2
+    modifierTags:
+      tags: []
+    snapshotInstigator: 0
+  - tagRequirements:
+      requiredTags:
+        tags:
+        - {fileID: 11400000, guid: bc3df637670c1414a80010fe16dad400, type: 2}
+      blockingTags:
+        tags: []
+    operator: 2
+    direction: 0
+    modifierMagnitude: 0.1
+    modifierTags:
+      tags: []
+    snapshotInstigator: 0
+  conditionalEffects: []
+  earlyRemovalEffects: []
+  expirationEffects: []
+  assetTags:
+    tags: []
+  grantedTags:
+    tags: []
+  grantedBlockedAbilityTags:
+    tags: []
+  applicationTagRequirements:
+    requiredTags:
+      tags: []
+    blockingTags:
+      tags: []
+  ongoingTagRequirements:
+    requiredTags:
+      tags: []
+    blockingTags:
+      tags: []
+  removalTagRequirements:
+    requiredTags:
+      tags: []
+    blockingTags:
+      tags: []
+  removeEffectsWithTags:
+    tags: []
