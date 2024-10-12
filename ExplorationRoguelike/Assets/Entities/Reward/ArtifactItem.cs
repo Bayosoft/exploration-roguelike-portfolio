@@ -1,9 +1,8 @@
 using UnityEngine;
-using static ExplorationRoguelike.CurrencyItem;
 
 namespace ExplorationRoguelike
 {
-    public class ArtifactItem : LootItem
+    public class ArtifactItem : ObtainableItem
     {
 
         public void Initialize(Artifact artifact, Sprite sprite)
@@ -11,9 +10,9 @@ namespace ExplorationRoguelike
             ItemName.text = artifact.ArtifactName;
             Image.sprite = sprite;
         }
-        public override void OnClaimReward()
+        public override void OnObtain()
         {
-            onClaimRewardEvent.RaiseEvent(new OnClaimCurrencyRewardEventArgs(_amount, _currencyType));
+            onObtainEvent.RaiseEvent(new OnObtainCurrencyRewardEventArgs(_amount, _currencyType));
 
             Destroy(gameObject);
         }

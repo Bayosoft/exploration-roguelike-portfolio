@@ -5,12 +5,12 @@ using static ExplorationRoguelike.CurrencyItem;
 
 namespace ExplorationRoguelike
 {
-    public class OnClaimCurrencyRewardEventArgs : ConcreteEventArgs
+    public class OnObtainCurrencyRewardEventArgs : ConcreteEventArgs
     {
         public int Amount { get; }
         public CurrencyType CurrencyType { get; }
 
-        public OnClaimCurrencyRewardEventArgs(int amount, CurrencyType currencyType)
+        public OnObtainCurrencyRewardEventArgs(int amount, CurrencyType currencyType)
         {
             Amount = amount;
             CurrencyType = currencyType;

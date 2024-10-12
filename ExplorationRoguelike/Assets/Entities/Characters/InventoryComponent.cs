@@ -11,9 +11,9 @@ namespace ExplorationRoguelike
         private InventoryData inventoryData;
 
         public event EventHandler<int> OnGoldChanged;
-        public void OnRewardClaimed(ConcreteEventArgs eventArgs)
+        public void OnItemObtained(ConcreteEventArgs eventArgs)
         {
-            var currencyEventArgs = eventArgs.ValidateEventArgs<OnClaimCurrencyRewardEventArgs>();
+            var currencyEventArgs = eventArgs.ValidateEventArgs<OnObtainCurrencyRewardEventArgs>();
 
             inventoryData.AddGold(currencyEventArgs.Amount);
             OnGoldChanged?.Invoke(this, inventoryData.Gold);

@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ExplorationRoguelike
 {
-    public class CurrencyItem : LootItem
+    public class CurrencyItem : ObtainableItem
     {
         public enum CurrencyType
         {
@@ -20,9 +18,9 @@ namespace ExplorationRoguelike
             ItemName.text = $"{amount} {currencyType}";
             Image.sprite = sprite;
         }
-        public override void OnClaimReward()
+        public override void OnObtain()
         {
-            onClaimRewardEvent.RaiseEvent(new OnClaimCurrencyRewardEventArgs(_amount, _currencyType));
+            onObtainEvent.RaiseEvent(new OnObtainCurrencyRewardEventArgs(_amount, _currencyType));
 
             Destroy(gameObject);
         }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace ExplorationRoguelike
 {
-    public abstract class LootItem : MonoBehaviour
+    public abstract class ObtainableItem : MonoBehaviour
     {
         [SerializeField]
         public TextMeshProUGUI ItemName;
@@ -15,8 +15,8 @@ namespace ExplorationRoguelike
         public Image Image;
 
         [SerializeField]
-        protected ScriptableEvent onClaimRewardEvent;
+        protected ScriptableEvent onObtainEvent;
 
-        public abstract void OnClaimReward();
+        public abstract void OnObtain();
     }
 }
