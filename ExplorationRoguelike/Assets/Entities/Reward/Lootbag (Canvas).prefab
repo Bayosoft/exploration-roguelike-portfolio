@@ -361,6 +361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currencyPrefab: {fileID: 1705169617682481909, guid: 81c4c77ef87e22c4e890e34b5c5e69b4, type: 3}
+  artifactPrefab: {fileID: 1705169617682481909, guid: e80f1194b7f08fb4f8f0342a0a3a57bc, type: 3}
   nextButton: {fileID: 4035739324226367137}
 --- !u!1 &8494649306891519474
 GameObject:

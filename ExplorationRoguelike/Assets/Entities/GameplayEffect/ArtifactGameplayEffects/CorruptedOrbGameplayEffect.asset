@@ -29,7 +29,7 @@ MonoBehaviour:
         tags: []
     operator: 2
     direction: 1
-    modifierMagnitude: 0.2
+    modifierMagnitude: 1.2
     modifierTags:
       tags: []
     snapshotInstigator: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
         tags: []
     operator: 2
     direction: 0
-    modifierMagnitude: 0.1
+    modifierMagnitude: 1.1
     modifierTags:
       tags: []
     snapshotInstigator: 0

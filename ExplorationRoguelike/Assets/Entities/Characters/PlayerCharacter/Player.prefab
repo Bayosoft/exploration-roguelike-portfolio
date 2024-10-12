@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryData: {fileID: 11400000, guid: 00c96b0c107818a4fa000e84be715df8, type: 2}
+  abilitySystemComponent: {fileID: 9206238031483290144}
 --- !u!114 &8934107606023374121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,7 +140,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5089698862356824848}
         m_TargetAssemblyTypeName: ExplorationRoguelike.InventoryComponent, Assembly-CSharp
-        m_MethodName: OnRewardClaimed
+        m_MethodName: OnItemObtained
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

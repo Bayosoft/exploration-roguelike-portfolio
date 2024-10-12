@@ -25,7 +25,7 @@ MonoBehaviour:
       requiredTags:
         tags:
         - {fileID: 11400000, guid: bc3df637670c1414a80010fe16dad400, type: 2}
-        - {fileID: 11400000, guid: afabe38204f53724388bd1f123ba6b54, type: 2}
+        - {fileID: 11400000, guid: eade2f08bb1ca194c90d395a83d75020, type: 2}
       blockingTags:
         tags: []
     operator: 2

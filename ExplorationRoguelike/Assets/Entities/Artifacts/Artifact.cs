@@ -20,5 +20,7 @@ namespace ExplorationRoguelike
         [SerializeField]
         private Sprite sprite;
         public Sprite Sprite => sprite;
+
+        public bool InPool { get; set; } = true;
     }
 }

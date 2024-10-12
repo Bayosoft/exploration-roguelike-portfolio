@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minGold: 20
   maxGold: 80
+  artifacts:
+  - {fileID: 11400000, guid: d91ec463202fe614d9df9dd50ba8d571, type: 2}

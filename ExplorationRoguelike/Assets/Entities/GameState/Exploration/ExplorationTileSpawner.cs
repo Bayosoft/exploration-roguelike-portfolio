@@ -29,7 +29,10 @@ namespace ExplorationRoguelike
         public Dictionary<(int, int), ExplorationTile> GenerateMap(MapContents contents)
         {
             var mapGrid = new Dictionary<(int, int), ExplorationTile>();
+
+            contents.EventLoot.ForEach(el => el.ResetPool());
             mapContents = contents;
+
 
             int startingTiles = UnityEngine.Random.Range(1, maxStartingTiles);
 
@@ -62,6 +65,11 @@ namespace ExplorationRoguelike
                         {
                             viablePositions.Add((row, column));
                         }
+                    }
+
+                    if(viablePositions.Count == 0)
+                    {
+                        continue;
                     }
 
                     (int, int) tilePosition = viablePositions[UnityEngine.Random.Range(0, viablePositions.Count)];

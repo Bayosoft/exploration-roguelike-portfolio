@@ -79,7 +79,8 @@ namespace ExplorationRoguelike.GameplayEffects
 
                 activeEffect.TickDuration(eventArgs, _owner);
 
-                if (activeEffect.RemainingDuration <= 0)
+                if (activeEffect.Specification.EffectSo.durationType != GameplayDurationType.Infinite && 
+                    activeEffect.RemainingDuration <= 0)
                 {
                     ActiveEffects.Remove(activeEffect);
                 }

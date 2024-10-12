@@ -126,7 +126,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3153992143463644779}
         m_TargetAssemblyTypeName: ExplorationRoguelike.ArtifactItem, Assembly-CSharp
-        m_MethodName: OnClaimReward
+        m_MethodName: OnObtain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -168,9 +168,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36061baaa9c15944cb51709e6b310d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemName: {fileID: 0}
+  ItemName: {fileID: 7632009380665934581}
   Image: {fileID: 0}
-  onClaimRewardEvent: {fileID: 11400000, guid: a9cca9900c8f0ca44b350fbdd54fb756, type: 2}
+  onObtainEvent: {fileID: 11400000, guid: a9cca9900c8f0ca44b350fbdd54fb756, type: 2}
 --- !u!1 &3899890455957705673
 GameObject:
   m_ObjectHideFlags: 0
