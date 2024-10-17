@@ -169,6 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 9206238031483290149, guid: d83f280b8af725446be4ddba59ac6e7e, type: 3}
   gameOverlay: {fileID: 100433928}
+  exhaustion: {fileID: 0}
 --- !u!4 &883967582
 Transform:
   m_ObjectHideFlags: 0
@@ -472,8 +473,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2179045804476147975, guid: b95f2f9c990e7654995414fe5af44285, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
-      value: 0
+      value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 2924087706301669259, guid: b95f2f9c990e7654995414fe5af44285, type: 3}
+      propertyPath: excludedTags.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2924087706301669259, guid: b95f2f9c990e7654995414fe5af44285, type: 3}
+      propertyPath: 'excludedTags.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 877effbebf329c54d8493ffac3b0e155, type: 2}
     - target: {fileID: 3254251230977680599, guid: b95f2f9c990e7654995414fe5af44285, type: 3}
       propertyPath: m_text
       value: 

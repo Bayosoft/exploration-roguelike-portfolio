@@ -6,6 +6,7 @@ using System.Linq;
 using ExplorationRoguelike.AbilitySystem;
 using ExplorationRoguelike.Characters;
 using ExplorationRoguelike.GameplayEffects;
+using ExplorationRoguelike.GameplayTags;
 using UnityEngine;
 
 namespace ExplorationRoguelike.StatusEffect
@@ -18,6 +19,8 @@ namespace ExplorationRoguelike.StatusEffect
 
         protected Dictionary<GameObject, GameObject> activeStatusesBySlot;
         public ObservableCollection<GameObject> StatusEffects { get; set; }
+
+        [SerializeField] protected GameplayTag[] excludedTags;
 
         public void Awake()
         {
@@ -60,8 +63,13 @@ namespace ExplorationRoguelike.StatusEffect
 
         protected abstract void AddStatusEffect(ActiveGameplayEffect addedEffect);
 
-        private void RemoveStatusEffect(ActiveGameplayEffect removedEffect)
+        protected void RemoveStatusEffect(ActiveGameplayEffect removedEffect)
         {
+            if(HasExcludedTag(removedEffect))
+            {
+                return;
+            }
+
             foreach (var effectToRemove in
                      activeStatusesBySlot
                          .Where(statusBySlot => statusBySlot.Value != null && statusBySlot.Value.GetComponent<StatusEffect>().GameplayEffect == removedEffect))
@@ -72,6 +80,11 @@ namespace ExplorationRoguelike.StatusEffect
                 return;
             }
 
+        }
+
+        protected bool HasExcludedTag(ActiveGameplayEffect effect)
+        {
+            return excludedTags.Any(t => effect.Specification.EffectSo.assetTags.HasTag(t));
         }
     }
 }

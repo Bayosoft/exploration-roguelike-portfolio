@@ -15,6 +15,11 @@ namespace ExplorationRoguelike.StatusEffect
 
         protected override void AddStatusEffect(ActiveGameplayEffect addedEffect)
         {
+            if (HasExcludedTag(addedEffect))
+            {
+                return;
+            }
+
             var freeSlot = activeStatusesBySlot.FirstOrDefault(slot => slot.Value == null);
             if (freeSlot.Equals(default(KeyValuePair<GameObject, GameObject>)))
             {
