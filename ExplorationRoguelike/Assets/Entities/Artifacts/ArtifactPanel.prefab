@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1831734553856226502}
   - component: {fileID: 4668306210182293298}
   - component: {fileID: 6105666794587674943}
-  - component: {fileID: 5573800513129855711}
+  - component: {fileID: 1288786732230977409}
   m_Layer: 5
   m_Name: ArtifactPanel
   m_TagString: Untagged
@@ -82,7 +82,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5573800513129855711
+--- !u!114 &1288786732230977409
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,17 +91,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 151409041472233380}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77db6c2023cbbfe4e83e3b27800fb302, type: 3}
+  m_Script: {fileID: 11500000, guid: f91fff6d77b7d414881687defbf30263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statusEffectPrefab: {fileID: 8097500327302776517, guid: f9106237c11e6934cacd63a114401eb2, type: 3}
-  statusSlots:
+  artifactPrefab: {fileID: 8097500327302776517, guid: f9106237c11e6934cacd63a114401eb2, type: 3}
+  artifactSlots:
   - {fileID: 8747714815325817460}
   - {fileID: 480025118441490268}
   - {fileID: 6464289911972463165}
   - {fileID: 6351491080206723271}
   - {fileID: 8237935550326791926}
   - {fileID: 8778945713274622660}
+  excludedTags: []
 --- !u!1 &480025118441490268
 GameObject:
   m_ObjectHideFlags: 0

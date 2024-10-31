@@ -19,7 +19,7 @@ namespace ExplorationRoguelike
 
         public event EventHandler<int> OnGoldChanged;
 
-        public void Start()
+        public void Awake()
         {
             if(InventoryData.Artifacts == null)
             {

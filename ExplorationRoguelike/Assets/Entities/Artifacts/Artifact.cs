@@ -1,8 +1,5 @@
 using ExplorationRoguelike.GameplayEffects;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace ExplorationRoguelike
 {
@@ -20,6 +17,8 @@ namespace ExplorationRoguelike
         [SerializeField]
         private Sprite sprite;
         public Sprite Sprite => sprite;
+
+        public string description; // Should be of same type as card description.
 
         public bool InPool { get; set; } = true;
     }

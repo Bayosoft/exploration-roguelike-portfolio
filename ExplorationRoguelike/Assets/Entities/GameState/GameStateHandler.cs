@@ -19,6 +19,7 @@ namespace ExplorationRoguelike
         private Player _playerInstance;
 
         private PlayerStatusEffectDisplayer _playerStatusEffectDisplayer;
+        private PlayerArtifactDisplayer _playerArtifactDisplayer;
         private PlayerGoldDisplayer _playerGoldDisplayer;
 
         public event EventHandler GameLoaded;
@@ -42,6 +43,9 @@ namespace ExplorationRoguelike
 
             _playerStatusEffectDisplayer = FindAnyObjectByType<PlayerStatusEffectDisplayer>();
             _playerStatusEffectDisplayer.Initialize(_playerInstance);
+
+            _playerArtifactDisplayer = FindAnyObjectByType<PlayerArtifactDisplayer>();
+            _playerArtifactDisplayer.Initialize(_playerInstance);
 
             _playerGoldDisplayer = FindAnyObjectByType<PlayerGoldDisplayer>();
             _playerGoldDisplayer.Initialize(_playerInstance);
