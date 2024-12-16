@@ -23,6 +23,12 @@ namespace ExplorationRoguelike
 
         public CharacterData Enemy { get; private set; }
 
+        public override void OnSpawn(MapContents mapContents)
+        {
+            var enemyPool = mapContents.GetEnemyPool(EnemyTier);
+            SetRandomEnemy(enemyPool);
+        }
+
         public void SetRandomEnemy(List<CharacterData> enemyPool)
         {
             if (enemyPool != null && enemyPool.Count > 0)

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using ExplorationRoguelike.Characters.PlayerCharacter;
 using ExplorationRoguelike.Characters.PlayerCharacter.Events;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace ExplorationRoguelike.Characters
 {
@@ -65,6 +66,12 @@ namespace ExplorationRoguelike.Characters
 
             var onDeathEventArgs = new OnDeathEventArgs(owner);
             onDeathEvent.RaiseEvent(onDeathEventArgs);
+
+            // TODO: Move this to somewhere reasonable with a listener for OnDeathEvent
+            if(owner.CharacterData.Name == "Jaina")
+            {
+                SceneManager.LoadScene("TavernScene");
+            }
         }
     }
 }

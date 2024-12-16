@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,15 @@ namespace ExplorationRoguelike
         protected ScriptableEvent exploreTileEvent;
 
         public List<ExplorationTile> ConnectedTiles { get; private set; } = new List<ExplorationTile>();
+
+        public bool IsFinal { get; private set; }
+
+        public abstract void OnSpawn(MapContents mapContents);
+
+        public void SetIsFinal(bool isFinal)
+        {
+            IsFinal = isFinal;
+        }
 
         public void ExploreTile()
         {
@@ -86,6 +96,5 @@ namespace ExplorationRoguelike
             // hide tile
             gameObject.SetActive(false);
         }
-
     }
 }

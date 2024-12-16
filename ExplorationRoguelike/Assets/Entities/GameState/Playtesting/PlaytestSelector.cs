@@ -38,6 +38,10 @@ namespace ExplorationRoguelike
             {
                 DialogueTransition.Instance.Transition(dialogue, LoadSceneMode.Single);
             }
+            if (SceneManager.GetActiveScene().name == "TavernSetupScene")
+            {
+                SceneManager.LoadScene("TavernScene");
+            }
         }
 
         public void DeckSelected()

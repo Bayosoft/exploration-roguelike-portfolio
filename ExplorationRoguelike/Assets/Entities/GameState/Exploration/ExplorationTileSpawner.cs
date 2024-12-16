@@ -74,16 +74,31 @@ namespace ExplorationRoguelike
 
                     (int, int) tilePosition = viablePositions[UnityEngine.Random.Range(0, viablePositions.Count)];
 
+                    ExplorationTile tile = null;
+
                     if(restSiteRows.Contains(row))
                     {
-                        SpawnTile(mapGrid, RestSiteTilePrefab, tilePosition);
+                        tile = SpawnTile(mapGrid, RestSiteTilePrefab, tilePosition);
+                    }
+                    else if (row == mapSize.x)
+                    {
+                        tile = SpawnTile(mapGrid, BossEnemyTilePrefab, tilePosition);
                     }
                     else
                     {
                         var tilePrefab = DetermineTileType(tilePosition);
 
-                        SpawnTile(mapGrid, tilePrefab, tilePosition);
-                    }              
+                        tile = SpawnTile(mapGrid, tilePrefab, tilePosition);
+                    }
+                        
+                    if(tile != null)
+                    {
+                        tile.SetIsFinal(row == mapSize.x);
+                    }
+                    else
+                    {
+                        Debug.LogError($"Failed to create new tile on {tilePosition}!");
+                    }
 
                     sourcePosition = tilePosition;
 
@@ -126,7 +141,7 @@ namespace ExplorationRoguelike
 
         private GameObject DetermineTileType((int row, int column) position)
         {
-            int basicEnemyWeight = 5;
+            int basicEnemyWeight = 4;
             int eliteEnemyWeight = 1;
             int randomEventWeight = 2;
 
@@ -142,35 +157,35 @@ namespace ExplorationRoguelike
             return weightedTiles.Next(); // Draw a random item from the list.
         }
 
-        private bool SpawnTile(Dictionary<(int, int), ExplorationTile> mapGrid, GameObject tile, (int x, int y) position)
+        private ExplorationTile SpawnTile(Dictionary<(int, int), ExplorationTile> mapGrid, GameObject tile, (int x, int y) position)
         {
             var tileObject = Instantiate(tile);
             tileObject.transform.SetParent(this.transform, false);
 
             tileObject.transform.position = new Vector2(position.y * 100, position.x * 100);
 
-            var tileType = tileObject.GetComponent<ExplorationTile>();
+            var tileInstance = tileObject.GetComponent<ExplorationTile>();
 
-            if (tileType is CombatExplorationTile combatTile)
-            {
-                var enemyPool = mapContents.GetEnemyPool(combatTile.EnemyTier);
-                combatTile.SetRandomEnemy(enemyPool);
+            tileInstance.OnSpawn(mapContents);
 
-                tileType = combatTile;
-            }
-            if (tileType is RandomEventExplorationTile eventTile)
+            switch (tileInstance)
             {
-                eventTile.SetRandomEvent(mapContents);
-
-                tileType = eventTile;
-            }
-            if(tileType is DialogueExplorationTile dialogueTile)
-            {
-                dialogueTile.Dialogue = mapContents.RestSiteDialogue;
-                tileType = dialogueTile;
+                case CombatExplorationTile combatTile:
+                    tileInstance = combatTile;
+                    break;
+                case RandomEventExplorationTile eventTile:
+                    tileInstance = eventTile;
+                    break;
+                case DialogueExplorationTile dialogueTile:
+                    tileInstance = dialogueTile;
+                    break;
+                default:
+                    break;
             }
 
-            return mapGrid.TryAdd((position.x, position.y), tileType);
+            bool success = mapGrid.TryAdd((position.x, position.y), tileInstance);
+
+            return success ? tileInstance : null;
         }
 
         private void DrawTilePaths(Dictionary<(int, int), ExplorationTile> mapGrid, (int x, int y) sourcePosition)

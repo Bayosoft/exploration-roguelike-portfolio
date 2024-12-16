@@ -20,6 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Entities/GameState/Dialogue/DialogueScene.unity
     guid: ad206e0bcd622814db74c272f184af0b
+  - enabled: 1
+    path: Assets/Entities/GameState/Playtesting/TavernSetupScene.unity
+    guid: 42f9bcedea621f4499524a698c8dd3cf
+  - enabled: 1
+    path: Assets/Entities/GameState/Tavern/TavernScene.unity
+    guid: cf7803ac57050a549a09fa0f34e61163
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 671aa42c926dd8a448b831039fd4eadc, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: b41643bc187466e43b2aa657e730af61, type: 2}

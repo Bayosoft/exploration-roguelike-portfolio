@@ -11,6 +11,11 @@ namespace ExplorationRoguelike
 
         private ScriptableObject randomEvent;
 
+        public override void OnSpawn(MapContents mapContents)
+        {
+            SetRandomEvent(mapContents);
+        }
+
         public void SetRandomEvent(MapContents mapContents)
         {
             List<ScriptableObject> eventPool = new();

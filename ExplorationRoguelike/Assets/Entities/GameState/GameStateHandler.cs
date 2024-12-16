@@ -24,7 +24,7 @@ namespace ExplorationRoguelike
 
         public event EventHandler GameLoaded;
 
-        [SerializeField] private GameplayEffect exhaustion;
+  /*      [SerializeField] private GameplayEffect exhaustion;*/
 
         void Awake()
         {
@@ -50,8 +50,9 @@ namespace ExplorationRoguelike
             _playerGoldDisplayer = FindAnyObjectByType<PlayerGoldDisplayer>();
             _playerGoldDisplayer.Initialize(_playerInstance);
 
-            var spec = _playerInstance.AbilitySystemComponent.MakeOutgoingEffectSpec(exhaustion);
-            _playerInstance.AbilitySystemComponent.ApplyGameplayEffectSpecToSelf(spec);
+            // Test code for adding a status effect
+/*            var spec = _playerInstance.AbilitySystemComponent.MakeOutgoingEffectSpec(exhaustion);
+            _playerInstance.AbilitySystemComponent.ApplyGameplayEffectSpecToSelf(spec);*/
         }
 
     

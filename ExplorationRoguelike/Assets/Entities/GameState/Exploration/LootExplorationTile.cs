@@ -19,5 +19,10 @@ namespace ExplorationRoguelike
             base.Selected();
             LootTransition.Instance.Transition(lootTable, null);
         }
+
+        public override void OnSpawn(MapContents mapContents)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
