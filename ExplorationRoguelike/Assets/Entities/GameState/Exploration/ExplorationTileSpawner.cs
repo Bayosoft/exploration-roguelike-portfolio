@@ -168,21 +168,6 @@ namespace ExplorationRoguelike
 
             tileInstance.OnSpawn(mapContents);
 
-            switch (tileInstance)
-            {
-                case CombatExplorationTile combatTile:
-                    tileInstance = combatTile;
-                    break;
-                case RandomEventExplorationTile eventTile:
-                    tileInstance = eventTile;
-                    break;
-                case DialogueExplorationTile dialogueTile:
-                    tileInstance = dialogueTile;
-                    break;
-                default:
-                    break;
-            }
-
             bool success = mapGrid.TryAdd((position.x, position.y), tileInstance);
 
             return success ? tileInstance : null;
