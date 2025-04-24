@@ -26,11 +26,13 @@ namespace ExplorationRoguelike
 
         public void OnPointerEnter(PointerEventData eventData)
         {
+            artifactNameText.gameObject.SetActive(true);
             artifactDescriptionText.gameObject.SetActive(true);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
+            artifactNameText.gameObject.SetActive(false);
             artifactDescriptionText.gameObject.SetActive(false);
         }
     }

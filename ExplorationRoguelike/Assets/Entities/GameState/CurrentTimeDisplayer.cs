@@ -18,7 +18,7 @@ namespace ExplorationRoguelike
 
         public void UpdateTime(object sender, TimeEventArgs timeEvent)
         {
-            timeText.text = $"Day {TimeHandler.DaysSinceStart}, Time {TimeHandler.HoursSinceStart}";
+            timeText.text = $"Day {TimeHandler.DaysSinceStart}, Hour {TimeHandler.HoursSinceStart}";
         }
     }
 }

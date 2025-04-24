@@ -3,6 +3,7 @@ using ExplorationRoguelike.Characters;
 using ExplorationRoguelike.Characters.PlayerCharacter;
 using ExplorationRoguelike.Combat;
 using ExplorationRoguelike.GameplayEffects;
+using ExplorationRoguelike.GUI.Character;
 using ExplorationRoguelike.StatusEffect;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace ExplorationRoguelike
         private PlayerStatusEffectDisplayer _playerStatusEffectDisplayer;
         private PlayerArtifactDisplayer _playerArtifactDisplayer;
         private PlayerGoldDisplayer _playerGoldDisplayer;
-
+        private HealthDisplayer _playerHealthDisplayer;
         public event EventHandler GameLoaded;
 
   /*      [SerializeField] private GameplayEffect exhaustion;*/
@@ -50,9 +51,12 @@ namespace ExplorationRoguelike
             _playerGoldDisplayer = FindAnyObjectByType<PlayerGoldDisplayer>();
             _playerGoldDisplayer.Initialize(_playerInstance);
 
+
+            _playerHealthDisplayer = FindAnyObjectByType<HealthDisplayer>();
+            _playerHealthDisplayer.Initialize(_playerInstance);
             // Test code for adding a status effect
-/*            var spec = _playerInstance.AbilitySystemComponent.MakeOutgoingEffectSpec(exhaustion);
-            _playerInstance.AbilitySystemComponent.ApplyGameplayEffectSpecToSelf(spec);*/
+            /*            var spec = _playerInstance.AbilitySystemComponent.MakeOutgoingEffectSpec(exhaustion);
+                        _playerInstance.AbilitySystemComponent.ApplyGameplayEffectSpecToSelf(spec);*/
         }
 
     

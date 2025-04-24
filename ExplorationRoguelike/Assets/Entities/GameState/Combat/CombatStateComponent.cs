@@ -138,7 +138,7 @@ namespace ExplorationRoguelike.Combat
             // Player
             var healthView = Instantiate(healthPrefab, this.transform);
 
-            healthView.GetComponent<HealthViewModel>().Initialize(player.HealthComponent);
+            healthView.GetComponent<CombatHealthDisplay>().Initialize(player.HealthComponent);
             healthView.transform.localPosition = new Vector2(-400, 0);
             healthView.transform.localScale = Vector2.one;
             HealthViews.Add(healthView);
@@ -147,7 +147,7 @@ namespace ExplorationRoguelike.Combat
             foreach (var combatant in combatants)
             {
                 GameObject eHealthView = Instantiate(healthPrefab, this.transform);
-                eHealthView.GetComponent<HealthViewModel>().Initialize(combatant.HealthComponent);
+                eHealthView.GetComponent<CombatHealthDisplay>().Initialize(combatant.HealthComponent);
                 eHealthView.transform.localPosition = new Vector2(400, 0);
                 eHealthView.transform.localScale = Vector2.one;
                 HealthViews.Add(eHealthView);

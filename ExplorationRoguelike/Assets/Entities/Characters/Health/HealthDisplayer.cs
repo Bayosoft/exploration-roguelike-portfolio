@@ -1,18 +1,20 @@
 using ExplorationRoguelike.Characters;
+using ExplorationRoguelike.Characters.PlayerCharacter;
 using TMPro;
 using UnityEngine;
 
 namespace ExplorationRoguelike.GUI.Character
 {
-    public class HealthViewModel : MonoBehaviour
+    public class HealthDisplayer : MonoBehaviour
     {
         private HealthComponent _healthComponent;
 
         public TextMeshProUGUI currentHealthText;
         public TextMeshProUGUI maxHealthText;
-        public void Initialize(HealthComponent healthComponent)
+
+        public void Initialize(Player player)
         {
-            _healthComponent = healthComponent;
+            _healthComponent = player.HealthComponent;
 
             _healthComponent.OnHealthChanged += UpdateHealth;
             maxHealthText.text = $"/{_healthComponent.MaxHealth}";
