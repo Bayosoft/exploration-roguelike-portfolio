@@ -11,6 +11,9 @@ namespace ExplorationRoguelike
     public abstract class ExplorationTile : MonoBehaviour
     {
         [SerializeField]
+        private Material lineMaterial;
+
+        [SerializeField]
         protected ScriptableEvent exploreTileEvent;
 
         public List<ExplorationTile> ConnectedTiles { get; private set; } = new List<ExplorationTile>();
@@ -32,7 +35,7 @@ namespace ExplorationRoguelike
         public void AddConnectedTile(ExplorationTile tile)
         {
 
-            if (ConnectedTiles.Contains(tile)) 
+            if (ConnectedTiles.Contains(tile))
             {
                 return;
             }
@@ -40,20 +43,19 @@ namespace ExplorationRoguelike
             Vector3 sp = this.transform.position;
             Vector3 ep = tile.transform.position;
 
-            LineRenderer lineRenderer;
+            var mapLine = new GameObject().AddComponent<LineRenderer>();
+            mapLine.textureMode = LineTextureMode.Tile;
+            mapLine.materials = new Material[1] { lineMaterial };
+            mapLine.transform.parent = this.transform;
+            mapLine.textureScale = new Vector2(0.1f, 0.1f);
+            mapLine.positionCount = 2;
+            mapLine.startWidth = 5;
 
-            if (this.TryGetComponent<LineRenderer>(out var renderer))
-            {
-                lineRenderer = renderer;
-                lineRenderer.positionCount += 2;
-            }
-            else
-            {
-                lineRenderer = this.AddComponent<LineRenderer>();
-            }
+            float width = mapLine.startWidth;
+            mapLine.material.mainTextureScale = new Vector2(1f / width, 1.0f);
 
-            lineRenderer.SetPosition(lineRenderer.positionCount - 2, sp);
-            lineRenderer.SetPosition(lineRenderer.positionCount - 1, ep);
+            mapLine.SetPosition(mapLine.positionCount - 2, sp);
+            mapLine.SetPosition(mapLine.positionCount - 1, ep);
 
 
             // hide tile
